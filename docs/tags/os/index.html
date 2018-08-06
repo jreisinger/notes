@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Tags - Notes</title>
-  <meta property="og:title" content="Tags - Notes" />
-  <meta name="twitter:title" content="Tags - Notes" />
+  <title>Os - Notes</title>
+  <meta property="og:title" content="Os - Notes" />
+  <meta name="twitter:title" content="Os - Notes" />
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/tags/" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/tags/os/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.46" />
-  <link href="/notes/tags/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
-  <link href="/notes/tags/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
+  <link href="/notes/tags/os/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
+  <link href="/notes/tags/os/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
   <link rel="stylesheet" href="/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
@@ -34,39 +34,63 @@
 </header>
 <hr class="site-header-bottom">
 
-  
   <div class="breadcrumb">
-    Tags
+    <a href="/notes/tags/">Tags</a> / Os
   </div>
   <div class="main" role="main">
-    <section class="terms">
-      <ul>
-        <li>
-          <a href="/notes/tags/dd/">Dd(1)</a>
-          <time>March 20, 2014</time>
-        </li>
-        <li>
-          <a href="/notes/tags/devops/">Devops(1)</a>
-          <time>November 20, 2016</time>
-        </li>
-        <li>
-          <a href="/notes/tags/linux/">Linux(1)</a>
-          <time>March 20, 2014</time>
-        </li>
-        <li>
-          <a href="/notes/tags/os/">Os(1)</a>
-          <time>March 20, 2014</time>
-        </li>
-      </ul>
+    <section class="list taxonomy-list">
+      <article class="article">
+        <a href="/notes/posts/gen_rand_file/" class="article-titles">
+          <h2 class="article-title">Generate Random File</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>March 20, 2014</time></li>
+          <li class="article-meta-categories">
+            <a href="/notes/categories/note/">
+              <i class="fas fa-folder"></i>
+              note
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/notes/tags/os/">
+              <i class="fas fa-tag"></i>
+              os
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/notes/tags/dd/">
+              <i class="fas fa-tag"></i>
+              dd
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/notes/tags/linux/">
+              <i class="fas fa-tag"></i>
+              linux
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          How to generate a file of a defined size (ex. 100MB) with random content
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
+dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.
+        </div>
+        <div class="article-readmore"><a href="/notes/posts/gen_rand_file/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
     </section>
+    
+
   </div>
+
 
 
 <div class="site-footer">
   <div class="copyright">&copy; Copyright 2018 Jozef Reisinger</div>
   <ul class="site-footer-items">
     <li class="site-footer-item-rsslink">
-      <a href="/notes/tags/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+      <a href="/notes/tags/os/index.xml" type="application/rss+xml" target="_blank" title="RSS">
         <i class="fas fa-rss"></i>
       </a>
     </li>

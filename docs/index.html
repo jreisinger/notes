@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>$USER</title>
-  <meta property="og:title" content="$USER" />
-  <meta name="twitter:title" content="$USER" />
+  <title>Notes</title>
+  <meta property="og:title" content="Notes" />
+  <meta name="twitter:title" content="Notes" />
   <meta name="author" content="Jozef Reisinger"/>
-  <meta property="og:site_name" content="$USER" />
+  <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/notes/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.46" />
-  <link href="/notes/index.xml" rel="alternate" type="application/rss+xml" title="$USER" />
-  <link href="/notes/index.xml" rel="feed" type="application/rss+xml" title="$USER" />
+  <link href="/notes/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
+  <link href="/notes/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
   <link rel="stylesheet" href="/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
@@ -25,7 +25,7 @@
 
 <header class="site-header">
   <nav class="site-navi">
-    <h1 class="site-title"><a href="/notes/">$USER</a></h1>
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
     <ul class="site-navi-items">
       <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
       <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
@@ -37,17 +37,73 @@
   <div class="main" role="main">
     <section class="list home-list">
       <article class="article">
-        <a href="/notes/posts/test/" class="article-titles">
-          <h2 class="article-title">Test</h2>
+        <a href="/notes/posts/devops/" class="article-titles">
+          <h2 class="article-title">Devops</h2>
           
         </a>
         <ul class="article-meta">
-          <li class="article-meta-date"><time>August 6, 2018</time></li>
+          <li class="article-meta-date"><time>November 20, 2016</time></li>
+          <li class="article-meta-categories">
+            <a href="/notes/categories/note/">
+              <i class="fas fa-folder"></i>
+              note
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/notes/tags/devops/">
+              <i class="fas fa-tag"></i>
+              devops
+            </a>&nbsp;
+          </li>
         </ul>
         <div class="article-content">
-          
+          The opposite of DevOps is despair. &ndash; Gene Kim
+If HW and SW are sufficiently fault tolerant, the remaining problems are human. &ndash; TPoCSA
+CAMS: culture, automation, measurement, and sharing. &ndash; D. Edwards, J. Willis (2010)
+ DevOps is a set of techniques to solve the chronic conflict between Development an IT Operations. This conflict causes:
+ increased time to market problematic code deployments increased number of Sev 1 outages unplanned work technical debt  The techniques are:
         </div>
-        <div class="article-readmore"><a href="/notes/posts/test/">Read more...</a></div>
+        <div class="article-readmore"><a href="/notes/posts/devops/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/notes/posts/gen_rand_file/" class="article-titles">
+          <h2 class="article-title">Generate Random File</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>March 20, 2014</time></li>
+          <li class="article-meta-categories">
+            <a href="/notes/categories/note/">
+              <i class="fas fa-folder"></i>
+              note
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/notes/tags/os/">
+              <i class="fas fa-tag"></i>
+              os
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/notes/tags/dd/">
+              <i class="fas fa-tag"></i>
+              dd
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/notes/tags/linux/">
+              <i class="fas fa-tag"></i>
+              linux
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          How to generate a file of a defined size (ex. 100MB) with random content
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
+dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.
+        </div>
+        <div class="article-readmore"><a href="/notes/posts/gen_rand_file/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
@@ -58,14 +114,14 @@
 
 
 <div class="site-footer">
-  <div class="copyright">&copy; Copyright 2018</div>
+  <div class="copyright">&copy; Copyright 2018 Jozef Reisinger</div>
   <ul class="site-footer-items">
     <li class="site-footer-item-rsslink">
       <a href="/notes/index.xml" type="application/rss+xml" target="_blank" title="RSS">
         <i class="fas fa-rss"></i>
       </a>
     </li>
-    <li class="site-footer-item-about"><a href="/notes/about/" title="About">About</a></li>
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
   </ul>
   <div class="powerdby">
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>

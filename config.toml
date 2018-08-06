@@ -1,5 +1,5 @@
 baseurl = "https://jreisinger.github.io/notes/"
-title = "$USER"
+title = "Notes"
 theme = "whiteplain"
 languageCode = "en"
 # Disqus shortname
@@ -9,7 +9,7 @@ googleAnalytics = "Toracking ID"
 publishDir = "docs"
 
 # Copyright notice. This is displayer in the footer.
-copyright = "&copy; Copyright 2018"
+copyright = "&copy; Copyright 2018 Jozef Reisinger"
 
 [params]
   # Date format
@@ -87,4 +87,4 @@ copyright = "&copy; Copyright 2018"
   name = "About"
   weight = 1
   identifier = "about"
-  url = "/about/"
+  url = "http://jreisinger.github.io"

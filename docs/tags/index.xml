@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on $USER</title>
+    <title>Tags on Notes</title>
     <link>https://jreisinger.github.io/notes/tags/</link>
-    <description>Recent content in Tags on $USER</description>
+    <description>Recent content in Tags on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>&amp;copy; Copyright 2018</copyright>
+    <copyright>&amp;copy; Copyright 2018 Jozef Reisinger</copyright>
+    <lastBuildDate>Thu, 20 Mar 2014 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dd</title>
+      <link>https://jreisinger.github.io/notes/tags/dd/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/dd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devops</title>
+      <link>https://jreisinger.github.io/notes/tags/devops/</link>
+      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://jreisinger.github.io/notes/tags/linux/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Os</title>
+      <link>https://jreisinger.github.io/notes/tags/os/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/os/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

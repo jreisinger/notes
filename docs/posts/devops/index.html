@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Devops - Notes</title>
+  <meta property="og:title" content="Devops - Notes" />
+  <meta name="twitter:title" content="Devops - Notes" />
+  <meta name="description" content="The opposite of DevOps is despair. &ndash; Gene Kim
+If HW and SW are sufficiently fault tolerant, the remaining problems are human. &ndash; TPoCSA
+CAMS: culture, automation, measurement, and sharing. &ndash; D. Edwards, J. Willis (2010)
+ DevOps is a set of techniques to solve the chronic conflict between Development an IT Operations. This conflict causes:
+ increased time to market problematic code deployments increased number of Sev 1 outages unplanned work technical debt  The techniques are:">
+  <meta property="og:description" content="The opposite of DevOps is despair. &ndash; Gene Kim
+If HW and SW are sufficiently fault tolerant, the remaining problems are human. &ndash; TPoCSA
+CAMS: culture, automation, measurement, and sharing. &ndash; D. Edwards, J. Willis (2010)
+ DevOps is a set of techniques to solve the chronic conflict between Development an IT Operations. This conflict causes:
+ increased time to market problematic code deployments increased number of Sev 1 outages unplanned work technical debt  The techniques are:">
+  <meta name="twitter:description" content="The opposite of DevOps is despair. &ndash; Gene Kim
+If HW and SW are sufficiently fault tolerant, the remaining problems are human. &ndash; TPoCSA
+CAMS: culture, automation, measurement, and sharing. …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/devops/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Devops</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>November 20, 2016</time></li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/note/">
+            <i class="fas fa-folder"></i>
+            note
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/devops/">
+            <i class="fas fa-tag"></i>
+            devops
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#the-first-way-workflow">The First Way - workflow</a></li>
+<li><a href="#the-second-way-feedback">The Second Way - feedback</a></li>
+<li><a href="#the-third-way-experimentation-repetition-kata">The Third Way - experimentation &amp; repetition (kata)</a></li>
+<li><a href="#devops-without-devs">DevOps without Devs</a></li>
+<li><a href="#injecting-modern-concepts-into-legacy-processes">Injecting modern concepts into legacy processes</a></li>
+<li><a href="#source">Source</a></li>
+<li><a href="#more">More</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      
+
+<blockquote>
+<p>The opposite of DevOps is despair. &ndash; Gene Kim</p>
+
+<p>If HW and SW are sufficiently fault tolerant, the remaining problems are human. &ndash; TPoCSA</p>
+
+<p>CAMS: culture, automation, measurement, and sharing. &ndash; D. Edwards, J. Willis (2010)</p>
+</blockquote>
+
+<p>DevOps is a set of techniques to solve the chronic conflict between Development
+an IT Operations. This conflict causes:</p>
+
+<ul>
+<li>increased time to market</li>
+<li>problematic code deployments</li>
+<li>increased number of Sev 1 outages</li>
+<li>unplanned work</li>
+<li>technical debt</li>
+</ul>
+
+<p>The techniques are:</p>
+
+<ul>
+<li>architecture and processes</li>
+<li>technical practices</li>
+<li>cultural norms</li>
+</ul>
+
+<p>DevOps is an emerging field in operations. The practice of DevOps typically appears in web application and cloud environments, but its influence is spreading to all parts of all industries.</p>
+
+<p>The principles behind DevOps work patterns are the same principles that
+transformed manufacturing.</p>
+
+<p>DevOps has been formed by:</p>
+
+<ul>
+<li>Lean principles</li>
+<li>Agile Community</li>
+<li>Infrastructure as Code</li>
+<li>CI, CD</li>
+<li>Innovation Culture</li>
+<li>Toyota Kata</li>
+</ul>
+
+<p>&ldquo;The Three ways&rdquo; are the underpinning principles that all the DevOps patterns
+can be derived from.</p>
+
+<h2 id="the-first-way-workflow">The First Way - workflow</h2>
+
+<p>To maximaze left-to-right flow of work (from Dev to Ops to the customer) we need:</p>
+
+<ul>
+<li>each step is done in a repeatable way</li>
+<li>small batch sizes and intervals of works</li>
+<li>never passing defects to downstream work centers</li>
+<li>local optimization must not degrade global performance (optimmize for global goals)</li>
+</ul>
+
+<p>Necessary practices:</p>
+
+<ul>
+<li>continuous build, CI, CD</li>
+<li>environments on demand</li>
+<li>limiting WIP</li>
+<li>building safe to change systems and organizations</li>
+</ul>
+
+<h2 id="the-second-way-feedback">The Second Way - feedback</h2>
+
+<p>To prevent problems from happening again or enable faster detection and recovery we need:</p>
+
+<ul>
+<li>constant flow of fast feedback from right-to-left at all stages of the value stream</li>
+</ul>
+
+<p>Practices:</p>
+
+<ul>
+<li>stopping the production line when builds/tests go wrong</li>
+<li>constantly elevating the improvements of daily work over daily work</li>
+<li>fast automated test suites</li>
+<li>shared goals and shared pain between Devs and Ops</li>
+<li>pervasive telemetry</li>
+</ul>
+
+<h2 id="the-third-way-experimentation-repetition-kata">The Third Way - experimentation &amp; repetition (kata)</h2>
+
+<p>Create culture that fosters:</p>
+
+<ul>
+<li><em>continual</em> experimentation (risk taking and learning from success and failure)</li>
+<li>understanding that repetition and practice is the prerequisite to mastery</li>
+</ul>
+
+<p>Practices:</p>
+
+<ul>
+<li>rewarding innovation and risk taking</li>
+<li>rewarding improvements</li>
+<li>at least 20% of Dev and Ops cycles allocated towards nonfunctional requirements</li>
+</ul>
+
+<h2 id="devops-without-devs">DevOps without Devs</h2>
+
+<p>It&rsquo;s possible to apply these DevOps principles to any complex process:</p>
+
+<p>1) Turn chaotic processes into repeatable, measurable ones.
+* document process until consistent =&gt; automate =&gt; self-service</p>
+
+<p>2) Automate.</p>
+
+<ul>
+<li>to scale don&rsquo;t do IT tasks but maintain the system that does the IT tasks</li>
+</ul>
+
+<p>3) Talk about problems and issues within and between teams.</p>
+
+<ul>
+<li>don&rsquo;t obscure or suffer through problems</li>
+<li>have channels for communicating problems and issues</li>
+</ul>
+
+<p>4) Try new things, measure the results, keep the successes, and learn from the failures.</p>
+
+<ul>
+<li>create a culture of learning and experimentation</li>
+<li>use management practices that are blameless and reward learning</li>
+</ul>
+
+<p>5) Do work in small batches so we can learn and pivot along the way.</p>
+
+<ul>
+<li>it&rsquo;s better to deliver some results each day than to hold back and deliver the entire result at the end</li>
+<li>you&rsquo;ll get feedback and fix problems sooner and avoid too much waisted effort</li>
+</ul>
+
+<p>6) Drive configuration and infrastructure from machine readable sources kept under a source control system.</p>
+
+<ul>
+<li>IaC is flexible, testable and can benefit from software engineering techniques</li>
+</ul>
+
+<p>7) Always be improving.</p>
+
+<ul>
+<li>always be identifying the next big bottleneck and experiment to fix it</li>
+<li>don&rsquo;t wait for a major disaster</li>
+</ul>
+
+<p>8) Pull, don&rsquo;t push.</p>
+
+<ul>
+<li>build processes to meet demand, not accommodate supply</li>
+<li>determine the desired weekly output, allocate resources, and pull the work through the system to completion</li>
+</ul>
+
+<p>9) Build community.</p>
+
+<ul>
+<li>you, your team, your company and world&rsquo;s IT community are interdependent</li>
+</ul>
+
+<h2 id="injecting-modern-concepts-into-legacy-processes">Injecting modern concepts into legacy processes</h2>
+
+<p>1) Identify the team’s value streams — processes done for the business, or requested by the business.</p>
+
+<p>2) Each step in the process needs to be clearly defined so that it can be done in a repeatable fashion. That is, a reasonably well-trained person should be able to do the step and the result will be the same as the result from another reasonably trained person.</p>
+
+<p>3) Once the process is defined, amplify the feedback loops. That is, make sure each step has a way to raise the visibility of problems so that they are worked on, not ignored. Collect measurements on the length, frequency, and failure rate of the steps. Make this data available to all involved.</p>
+
+<p>4) Based on the feedback find pain points (steps that are the most error prone, unreliable, or slow) and build business case</p>
+
+<ul>
+<li>What problem really needs to be solved?</li>
+<li>Gather metrics showing how things can improve.</li>
+<li>Make business case showing why we need change and what we will get.</li>
+</ul>
+
+<p>5) Find allies, share and collaborate</p>
+
+<ul>
+<li>Ex. find people outside your team who can benefit from the change.</li>
+</ul>
+
+<p>6) Start small and build from the bottom up</p>
+
+<ul>
+<li>Start with something easy to build confidence while working out issues.</li>
+<li>Ex.: document =&gt; share documentation =&gt; automate (script) =&gt; automate more
+(Jenkins, RunDeck)</li>
+</ul>
+
+<h2 id="source">Source</h2>
+
+<ul>
+<li><a href="https://itrevolution.com/book/the-phoenix-project/">The Phoenix Project</a></li>
+<li><a href="http://the-sysadmin-book.com/">TPoSaNA</a></li>
+<li><a href="http://the-cloud-book.com/">TPoCSA</a></li>
+<li><a href="http://sysadvent.blogspot.sk/2016/12/day-13-injecting-modern-concepts-into.html">http://sysadvent.blogspot.sk/2016/12/day-13-injecting-modern-concepts-into.html</a></li>
+</ul>
+
+<h2 id="more">More</h2>
+
+<ul>
+<li><a href="https://www.oreilly.com/ideas/what-is-devops-yet-again">https://www.oreilly.com/ideas/what-is-devops-yet-again</a></li>
+</ul>
+
+    </article>
+
+    
+<ul class="article-share">
+  <li>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </li>
+  <li>
+    <div class="fb-share-button" data-href="https://jreisinger.github.io/notes/posts/devops/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.10";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+  </li>
+  <li>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <g:plus action="share"></g:plus>
+  </li>
+  <li>
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  </li>
+  <li>
+    <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+    <script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </li>
+</ul>
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jreisinger" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="/notes/posts/gen_rand_file/" data-toggle="tooltip" data-placement="top" title="Generate Random File">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2018 Jozef Reisinger</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/notes/js/script.js"></script>
+<script src="/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'Toracking ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

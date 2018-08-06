@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notes</title>
-    <link>https://jreisinger.github.io/notes/</link>
-    <description>Recent content on Notes</description>
+    <title>Dd on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/dd/</link>
+    <description>Recent content in Dd on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Copyright 2018 Jozef Reisinger</copyright>
-    <lastBuildDate>Sun, 20 Nov 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Mar 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/notes/tags/dd/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Devops</title>
-      <link>https://jreisinger.github.io/notes/posts/devops/</link>
-      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/devops/</guid>
-      <description>The opposite of DevOps is despair. &amp;ndash; Gene Kim
-If HW and SW are sufficiently fault tolerant, the remaining problems are human. &amp;ndash; TPoCSA
-CAMS: culture, automation, measurement, and sharing. &amp;ndash; D. Edwards, J. Willis (2010)
- DevOps is a set of techniques to solve the chronic conflict between Development an IT Operations. This conflict causes:
- increased time to market problematic code deployments increased number of Sev 1 outages unplanned work technical debt  The techniques are:</description>
-    </item>
     
     <item>
       <title>Generate Random File</title>

@@ -3,14 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/test/</loc>
-    <lastmod>2018-08-06T23:21:30+02:00</lastmod>
+    <loc>https://jreisinger.github.io/notes/posts/devops/</loc>
+    <lastmod>2016-11-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/</loc>
-    <lastmod>2018-08-06T23:21:30+02:00</lastmod>
-    <priority>0</priority>
+    <loc>https://jreisinger.github.io/notes/posts/gen_rand_file/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -19,8 +18,44 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/tags/dd/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/devops/</loc>
+    <lastmod>2016-11-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/linux/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/categories/note/</loc>
+    <lastmod>2016-11-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/</loc>
+    <lastmod>2016-11-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/os/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/</loc>
-    <lastmod>2018-08-06T23:21:30+02:00</lastmod>
+    <lastmod>2016-11-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -31,6 +66,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/tags/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
