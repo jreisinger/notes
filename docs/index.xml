@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>$USER</title>
-    <link>http://jreisinger.github.io/notes/</link>
+    <link>https://jreisinger.github.io/notes/</link>
     <description>Recent content on $USER</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Copyright 2018</copyright>
     <lastBuildDate>Mon, 06 Aug 2018 23:21:30 +0200</lastBuildDate>
     
-	<atom:link href="http://jreisinger.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Test</title>
-      <link>http://jreisinger.github.io/notes/posts/test/</link>
+      <link>https://jreisinger.github.io/notes/posts/test/</link>
       <pubDate>Mon, 06 Aug 2018 23:21:30 +0200</pubDate>
       
-      <guid>http://jreisinger.github.io/notes/posts/test/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/test/</guid>
       <description></description>
     </item>
     

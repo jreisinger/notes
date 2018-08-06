@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on $USER</title>
-    <link>http://jreisinger.github.io/notes/categories/</link>
+    <link>https://jreisinger.github.io/notes/categories/</link>
     <description>Recent content in Categories on $USER</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Copyright 2018</copyright>
     
-	<atom:link href="http://jreisinger.github.io/notes/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/notes/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
