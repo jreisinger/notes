@@ -1,4 +1,4 @@
-baseurl = "https://jreisinger.github.io/notes"
+baseurl = "http://jreisinger.github.io/notes"
 title = "$USER"
 theme = "whiteplain"
 languageCode = "en"
