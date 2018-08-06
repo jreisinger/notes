@@ -6,7 +6,7 @@ languageCode = "en"
 disqusShortname = "jreisinger"
 # google analytics tracking id
 googleAnalytics = "Toracking ID"
-pusblishDir = "docs"
+publishDir = "docs"
 
 # Copyright notice. This is displayer in the footer.
 copyright = "&copy; Copyright 2018"
