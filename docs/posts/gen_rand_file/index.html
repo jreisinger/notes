@@ -6,15 +6,15 @@
   <title>Generate Random File - Notes</title>
   <meta property="og:title" content="Generate Random File - Notes" />
   <meta name="twitter:title" content="Generate Random File - Notes" />
-  <meta name="description" content="How to generate a file of a defined size (ex. 100MB) with random content
+  <meta name="description" content=" How to generate a file of a defined size (ex. 100MB) with random content
 binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.">
-  <meta property="og:description" content="How to generate a file of a defined size (ex. 100MB) with random content
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  ">
+  <meta property="og:description" content=" How to generate a file of a defined size (ex. 100MB) with random content
 binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.">
-  <meta name="twitter:description" content="How to generate a file of a defined size (ex. 100MB) with random content
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  ">
+  <meta name="twitter:description" content=" How to generate a file of a defined size (ex. 100MB) with random content
 binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` …">
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/notes/posts/gen_rand_file/" />
@@ -81,8 +81,7 @@ dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` …">
 
 <p>or</p>
 
-<pre><code>dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
+<pre><code>dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
 </code></pre>
 
 <ul>
