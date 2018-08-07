@@ -2,7 +2,7 @@
 title: "Heap vs Stack"
 date: 2018-08-07T08:43:41+02:00
 categories: [prog]
-tags: [go, golang]
+tags: [c, go, golang]
 ---
 
 Both are memory regions.
