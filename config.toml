@@ -9,7 +9,7 @@ googleAnalytics = "Toracking ID"
 publishDir = "docs"
 
 # Copyright notice. This is displayer in the footer.
-copyright = "&copy; Copyright 2018 Jozef Reisinger"
+#copyright = "&copy; Copyright 2018 Jozef Reisinger"
 
 [params]
   # Date format
