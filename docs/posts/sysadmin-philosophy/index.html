@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Generate Random File - Notes</title>
-  <meta property="og:title" content="Generate Random File - Notes" />
-  <meta name="twitter:title" content="Generate Random File - Notes" />
-  <meta name="description" content="How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.">
-  <meta property="og:description" content="How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.">
-  <meta name="twitter:description" content="How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` …">
+  <title>System administration philosophy of AE. Frish - Notes</title>
+  <meta property="og:title" content="System administration philosophy of AE. Frish - Notes" />
+  <meta name="twitter:title" content="System administration philosophy of AE. Frish - Notes" />
+  <meta name="description" content=" Know how things work. Plan it before you do it. Make it reversible (backups help a lot with this one). Make changes incrementally. Test, test, test, before you unleash it on the world.  ">
+  <meta property="og:description" content=" Know how things work. Plan it before you do it. Make it reversible (backups help a lot with this one). Make changes incrementally. Test, test, test, before you unleash it on the world.  ">
+  <meta name="twitter:description" content=" Know how things work. Plan it before you do it. Make it reversible (backups help a lot with this one). Make changes incrementally. Test, test, test, before you unleash it on the world.  ">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/gen_rand_file/" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/sysadmin-philosophy/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.46" />
@@ -45,63 +39,38 @@ dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` …">
     <article class="article">
       
       
-      <h1 class="article-title">Generate Random File</h1>
+      <h1 class="article-title">System administration philosophy of AE. Frish</h1>
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
-        <li class="article-meta-date"><time>March 20, 2014</time></li>
+        <li class="article-meta-date"><time>March 1, 2014</time></li>
         <li class="article-meta-categories">
-          <a href="/notes/categories/os/">
+          <a href="/notes/categories/mngmt/">
             <i class="fas fa-folder"></i>
-            os
+            mngmt
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="/notes/tags/dd/">
+          <a href="/notes/tags/sysadmin/">
             <i class="fas fa-tag"></i>
-            dd
+            sysadmin
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="/notes/tags/linux/">
+          <a href="/notes/tags/philosophy/">
             <i class="fas fa-tag"></i>
-            linux
+            philosophy
           </a>&nbsp;
         </li>
       </ul>
       
-      
-
-<p>How to generate a file of a defined size (ex. 100MB) with random content</p>
-
-<h2 id="binary-file">binary file:</h2>
-
-<pre><code>dd if=/dev/urandom of=file.dat bs=1M count=100
-</code></pre>
-
-<p>or</p>
-
-<pre><code>dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
-</code></pre>
-
-<ul>
-<li><code>bs</code> &ndash; block size in bytes</li>
+      <ul>
+<li>Know how things work.</li>
+<li>Plan it before you do it.</li>
+<li>Make it reversible (backups help a lot with this one).</li>
+<li>Make changes incrementally.</li>
+<li>Test, test, test, before you unleash it on the world.</li>
 </ul>
-
-<h2 id="text-file">text file:</h2>
-
-<pre><code>base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock
-</code></pre>
-
-<ul>
-<li><code>base64</code> represents (encodes) binary data using printable ASCII characters</li>
-</ul>
-
-<h2 id="empty-file">empty file:</h2>
-
-<pre><code>dd if=/dev/zero of=file.dat bs=1M count=100
-</code></pre>
 
     </article>
 
@@ -111,7 +80,7 @@ dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
     <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </li>
   <li>
-    <div class="fb-share-button" data-href="https://jreisinger.github.io/notes/posts/gen_rand_file/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div class="fb-share-button" data-href="https://jreisinger.github.io/notes/posts/sysadmin-philosophy/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -158,11 +127,9 @@ dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="/notes/posts/meaning-of-life-by-zentara/" data-toggle="tooltip" data-placement="top" title="Meaning of Life by Zentara">&lt; Newer</a>
+          <a href="/notes/posts/gen_rand_file/" data-toggle="tooltip" data-placement="top" title="Generate Random File">&lt; Newer</a>
       </li>
-      <li class="pager-older">
-        <a href="/notes/posts/sysadmin-philosophy/" data-toggle="tooltip" data-placement="top" title="System administration philosophy of AE. Frish">Older &gt;</a>
-      </li>
+      <li class="pager-older pager-noitem">Older &gt;</li>
     </ul>
   </div>
 

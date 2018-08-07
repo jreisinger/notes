@@ -38,6 +38,16 @@ CAMS: culture, automation, measurement, and sharing. &amp;ndash; D. Edwards, J. 
     </item>
     
     <item>
+      <title>Meaning of Life by Zentara</title>
+      <link>https://jreisinger.github.io/notes/posts/meaning-of-life-by-zentara/</link>
+      <pubDate>Mon, 19 Jan 2015 17:07:00 +0200</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/meaning-of-life-by-zentara/</guid>
+      <description>http://zentara.net/ =&amp;gt; Deep Thoughts =&amp;gt; Want to know the meaning of life?
+This is the essence of the meaning of life Once you read it, you will never be able to get it out of your subconcious mind. It will crack open the door to the next level of conciousness. .................................................................... Your most previous incarnation, was a 9-month life inside your mother. During this life, you were developing the organs needed to exist on the next level.</description>
+    </item>
+    
+    <item>
       <title>Generate Random File</title>
       <link>https://jreisinger.github.io/notes/posts/gen_rand_file/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
@@ -46,6 +56,15 @@ CAMS: culture, automation, measurement, and sharing. &amp;ndash; D. Edwards, J. 
       <description>How to generate a file of a defined size (ex. 100MB) with random content
 binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
 dd if=/dev/urandom of=file.dat bs=`echo $((100*1024*1024))` count=1 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.</description>
+    </item>
+    
+    <item>
+      <title>System administration philosophy of AE. Frish</title>
+      <link>https://jreisinger.github.io/notes/posts/sysadmin-philosophy/</link>
+      <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/sysadmin-philosophy/</guid>
+      <description> Know how things work. Plan it before you do it. Make it reversible (backups help a lot with this one). Make changes incrementally. Test, test, test, before you unleash it on the world.  </description>
     </item>
     
   </channel>
