@@ -76,13 +76,13 @@ Practices:
 * shared goals and shared pain between Devs and Ops
 * pervasive telemetry
 
-The Third Way - experimentation & repetition (kata)
----------------------------------------------------
+The Third Way - experimentation & repetition
+--------------------------------------------
 
 Create culture that fosters:
 
 * *continual* experimentation (risk taking and learning from success and failure)
-* understanding that repetition and practice is the prerequisite to mastery
+* understanding that repetition and practice is the prerequisite to mastery (kata)
 
 Practices:
 
@@ -96,6 +96,7 @@ DevOps without Devs
 It's possible to apply these DevOps principles to any complex process:
 
 1) Turn chaotic processes into repeatable, measurable ones.
+
 * document process until consistent => automate => self-service
 
 2) Automate.
@@ -135,40 +136,14 @@ It's possible to apply these DevOps principles to any complex process:
 
 * you, your team, your company and world's IT community are interdependent
 
-Injecting modern concepts into legacy processes
------------------------------------------------
-
-1) Identify the team’s value streams — processes done for the business, or requested by the business.
-
-2) Each step in the process needs to be clearly defined so that it can be done in a repeatable fashion. That is, a reasonably well-trained person should be able to do the step and the result will be the same as the result from another reasonably trained person.
-
-3) Once the process is defined, amplify the feedback loops. That is, make sure each step has a way to raise the visibility of problems so that they are worked on, not ignored. Collect measurements on the length, frequency, and failure rate of the steps. Make this data available to all involved.
-
-4) Based on the feedback find pain points (steps that are the most error prone, unreliable, or slow) and build business case
-
-* What problem really needs to be solved?
-* Gather metrics showing how things can improve.
-* Make business case showing why we need change and what we will get.
-
-5) Find allies, share and collaborate
-
-* Ex. find people outside your team who can benefit from the change.
-
-6) Start small and build from the bottom up
-
-* Start with something easy to build confidence while working out issues.
-* Ex.: document => share documentation => automate (script) => automate more
-  (Jenkins, RunDeck)
-
-Source
-------
+Sources
+-------
 
 * [The Phoenix Project](https://itrevolution.com/book/the-phoenix-project/)
 * [TPoSaNA](http://the-sysadmin-book.com/)
 * [TPoCSA](http://the-cloud-book.com/)
-* http://sysadvent.blogspot.sk/2016/12/day-13-injecting-modern-concepts-into.html
 
-More
-----
+More info
 
 * https://www.oreilly.com/ideas/what-is-devops-yet-again
+* http://sysadvent.blogspot.sk/2016/12/day-13-injecting-modern-concepts-into.html
