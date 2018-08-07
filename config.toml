@@ -3,7 +3,7 @@ title = "Notes"
 theme = "whiteplain"
 languageCode = "en"
 # Disqus shortname
-disqusShortname = "jreisinger"
+disqusShortname = "notes-4"
 # google analytics tracking id
 googleAnalytics = "Toracking ID"
 publishDir = "docs"
