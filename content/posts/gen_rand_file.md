@@ -2,8 +2,8 @@
 title: "Generate Random File"
 date: 2014-03-20
 draft: false
-tags: [os, dd, linux]
-categories: [note]
+tags: [dd, linux]
+categories: [os]
 ---
 
 How to generate a file of a defined size (ex. 100MB) with random content

@@ -3,7 +3,7 @@ title: "Devops"
 date: 2016-11-20
 draft: false
 tags: [devops]
-categories: [note]
+categories: [mngmt]
 ---
 
 > The opposite of DevOps is despair. -- Gene Kim
