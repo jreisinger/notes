@@ -6,10 +6,20 @@
     <description>Recent content in Prog on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Aug 2018 08:43:41 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 08 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/categories/prog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Reading from command line arguments or from STDIN</title>
+      <link>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</link>
+      <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</guid>
+      <description>Go
+package main import ( &amp;quot;bufio&amp;quot; &amp;quot;os&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { if len(os.Args) &amp;gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  </description>
+    </item>
     
     <item>
       <title>Heap vs Stack</title>

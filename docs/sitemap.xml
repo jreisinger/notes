@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</loc>
+    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/heap-vs-stack/</loc>
     <lastmod>2018-08-07T08:43:41+02:00</lastmod>
   </url>
@@ -63,13 +68,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/tags/go/</loc>
-    <lastmod>2018-08-07T08:43:41+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/notes/tags/golang/</loc>
-    <lastmod>2018-08-07T08:43:41+02:00</lastmod>
+    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -105,7 +104,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/</loc>
-    <lastmod>2018-08-07T08:43:41+02:00</lastmod>
+    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -123,13 +122,13 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/posts/</loc>
-    <lastmod>2018-08-07T08:43:41+02:00</lastmod>
+    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jreisinger.github.io/notes/categories/prog/</loc>
-    <lastmod>2018-08-07T08:43:41+02:00</lastmod>
+    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

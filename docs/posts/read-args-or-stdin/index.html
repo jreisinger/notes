@@ -3,23 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Heap vs Stack - Notes</title>
-  <meta property="og:title" content="Heap vs Stack - Notes" />
-  <meta name="twitter:title" content="Heap vs Stack - Notes" />
-  <meta name="description" content="Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap
- not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:">
-  <meta property="og:description" content="Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap
- not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:">
-  <meta name="twitter:description" content="Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size …">
+  <title>Reading from command line arguments or from STDIN - Notes</title>
+  <meta property="og:title" content="Reading from command line arguments or from STDIN - Notes" />
+  <meta name="twitter:title" content="Reading from command line arguments or from STDIN - Notes" />
+  <meta name="description" content="Go
+package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  ">
+  <meta property="og:description" content="Go
+package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  ">
+  <meta name="twitter:description" content="Go
+package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/heap-vs-stack/" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/read-args-or-stdin/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.46" />
@@ -47,21 +42,15 @@ Stack
     <article class="article">
       
       
-      <h1 class="article-title">Heap vs Stack</h1>
+      <h1 class="article-title">Reading from command line arguments or from STDIN</h1>
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
-        <li class="article-meta-date"><time>August 7, 2018</time></li>
+        <li class="article-meta-date"><time>August 8, 2018</time></li>
         <li class="article-meta-categories">
           <a href="/notes/categories/prog/">
             <i class="fas fa-folder"></i>
             prog
-          </a>&nbsp;
-        </li>
-        <li class="article-meta-tags">
-          <a href="/notes/tags/c/">
-            <i class="fas fa-tag"></i>
-            c
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
@@ -72,51 +61,29 @@ Stack
         </li>
       </ul>
       
-      <p>Both are memory regions.</p>
+      <p>Go</p>
 
-<p>Stack</p>
+<pre><code>package main
 
-<ul>
-<li>stores temporarary variables created by functions</li>
-<li>LIFO data structure with push/pop operations</li>
-<li>all vars are popped off when function exits</li>
-<li>very fast</li>
-<li>limited in size</li>
-</ul>
+import (
+    &quot;bufio&quot;
+    &quot;os&quot;
+    &quot;fmt&quot;
+)
 
-<p>Heap</p>
-
-<ul>
-<li>not as tightly managed by CPU</li>
-<li>in C you have to manage it yourself via <code>malloc()</code>, <code>calloc()</code> or <code>realloc()</code></li>
-<li>if you fail you get a memory leak</li>
-<li>slower access because pointers are used</li>
-<li>limited only by physical memory</li>
-</ul>
-
-<p>Go example:</p>
-
-<pre><code>var global *int     // &quot;global&quot; is the name :-)
-
-func f() {
-    var x int       // heap-allocated because escapes from f()
-    x = 1
-    global = &amp;x
+func main() {
+    if len(os.Args) &gt; 1 {               // we have command line args
+        for _, arg := range os.Args[1:] {
+            fmt.Println(arg)
+        }
+    } else {                            // read from STDIN
+        scan := bufio.NewScanner(os.Stdin)
+        for scan.Scan() {
+            fmt.Println(scan.Text())
+        }
+    }
 }
-
-func g() {
-    y := new(int)   // allocated on the stack
-    *y = 1
-}
-
 </code></pre>
-
-<p>More</p>
-
-<ul>
-<li><a href="https://www.gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html">https://www.gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html</a></li>
-<li><a href="https://www.gopl.io/">https://www.gopl.io/</a>, ch. 2.3</li>
-</ul>
 
     </article>
 
@@ -146,11 +113,9 @@ func g() {
     </div>
 
     <ul class="pager article-pager">
-      <li class="pager-newer">
-          <a href="/notes/posts/read-args-or-stdin/" data-toggle="tooltip" data-placement="top" title="Reading from command line arguments or from STDIN">&lt; Newer</a>
-      </li>
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
       <li class="pager-older">
-        <a href="/notes/posts/devops/" data-toggle="tooltip" data-placement="top" title="Devops">Older &gt;</a>
+        <a href="/notes/posts/heap-vs-stack/" data-toggle="tooltip" data-placement="top" title="Heap vs Stack">Older &gt;</a>
       </li>
     </ul>
   </div>
