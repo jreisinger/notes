@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Aug 2018 08:43:41 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2015 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Boot</title>
+      <link>https://jreisinger.github.io/notes/tags/boot/</link>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/boot/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>C</title>
@@ -57,6 +66,15 @@
     </item>
     
     <item>
+      <title>Grub</title>
+      <link>https://jreisinger.github.io/notes/tags/grub/</link>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/grub/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Life</title>
       <link>https://jreisinger.github.io/notes/tags/life/</link>
       <pubDate>Mon, 19 Jan 2015 17:07:00 +0200</pubDate>
@@ -68,7 +86,7 @@
     <item>
       <title>Linux</title>
       <link>https://jreisinger.github.io/notes/tags/linux/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/tags/linux/</guid>
       <description></description>

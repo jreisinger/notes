@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>GRUB 2 - Notes</title>
+  <meta property="og:title" content="GRUB 2 - Notes" />
+  <meta name="twitter:title" content="GRUB 2 - Notes" />
+  <meta name="description" content="GRUB 2 vs. GRUB (Legacy)
+ simpler code structure modular model internationalization (support for non-ASCII character sets) GUI interface  /boot/grub/grub.cfg still exists but is not supposed to be edited.
+Files and directories
+ /boot/grub/grub.cfg - automatically created central config file /etc/default/grub - general options (no menu entries) /etc/grub.d - helper scripts; you can add scripts here to add menu entries  GRUB 2 generally automates lot of steps (helper scripts search the partitions for known OSs and create the required entries).">
+  <meta property="og:description" content="GRUB 2 vs. GRUB (Legacy)
+ simpler code structure modular model internationalization (support for non-ASCII character sets) GUI interface  /boot/grub/grub.cfg still exists but is not supposed to be edited.
+Files and directories
+ /boot/grub/grub.cfg - automatically created central config file /etc/default/grub - general options (no menu entries) /etc/grub.d - helper scripts; you can add scripts here to add menu entries  GRUB 2 generally automates lot of steps (helper scripts search the partitions for known OSs and create the required entries).">
+  <meta name="twitter:description" content="GRUB 2 vs. GRUB (Legacy)
+ simpler code structure modular model internationalization (support for non-ASCII character sets) GUI interface  /boot/grub/grub.cfg still exists but is not supposed to be …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/grub2/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">GRUB 2</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>June 1, 2015</time></li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/os/">
+            <i class="fas fa-folder"></i>
+            os
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/linux/">
+            <i class="fas fa-tag"></i>
+            linux
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/grub/">
+            <i class="fas fa-tag"></i>
+            grub
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/boot/">
+            <i class="fas fa-tag"></i>
+            boot
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      
+
+<p>GRUB 2 vs. GRUB (Legacy)</p>
+
+<ul>
+<li>simpler code structure</li>
+<li>modular model</li>
+<li>internationalization (support for non-ASCII character sets)</li>
+<li>GUI interface</li>
+</ul>
+
+<p><code>/boot/grub/grub.cfg</code> still exists but is not supposed to be edited.</p>
+
+<p>Files and directories</p>
+
+<ul>
+<li><code>/boot/grub/grub.cfg</code> - automatically created central config file</li>
+<li><code>/etc/default/grub</code> - general options (no menu entries)</li>
+<li><code>/etc/grub.d</code> - helper scripts; you can add scripts here to add menu entries</li>
+</ul>
+
+<p>GRUB 2 generally automates lot of steps (helper scripts search the partitions
+for known OSs and create the required entries).</p>
+
+<p>When GRUB starts it launches all executable scripts in <code>/etc/grub.d/</code>. If you modify scripts in this directory run <code>update-grub</code>.</p>
+
+<h2 id="adding-a-menu-entry">Adding a Menu Entry</h2>
+
+<p>Custom startup script to boot the System Rescue CD from the hard disk:</p>
+
+<pre><code>01 echo &quot;Modified entry for launching a Rescue CD as an Image&quot; &gt;&amp;2
+02 cat &lt;&lt; EOF
+03
+04 menuentry &quot;Starting System Rescue CD from hard disc&quot; {
+05         set root=(hd0,10)
+06         linux   /sysrcd/rescuecd subdir=sysrcd setkmap=de
+07         initrd  /sysrcd/initram.igz
+08 }
+09 EOF
+</code></pre>
+
+<ul>
+<li>05 - the 10th partition of the first hard disk is the root filesystem
+(partition numbering starts from 1, not from 0 as in GRUB Legacy)</li>
+<li>06 - defines the kernel path (<code>root</code> in GRUB Legacy) with two parameters: <code>subdir</code> and <code>setkmap</code></li>
+<li>07 - defines the initial RAM disk path</li>
+</ul>
+
+<h2 id="booting-from-grub-rescue">Booting from grub-rescue&gt;</h2>
+
+<p>If you see <code>grub rescue&gt;</code> that means it couldn&rsquo;t find <code>normal.mod</code>, so it probably couldn&rsquo;t find any of your boot files.</p>
+
+<p>How does this happen? The kernel might have changed drive assignments or you moved your hard drives, you changed some partitions, or installed a new operating system and moved things around. In these scenarios your boot files are still there, but GRUB can&rsquo;t find them. So you can look for your boot files at the GRUB prompt, set their locations, and then boot your system and fix your GRUB configuration.</p>
+
+<pre><code>grub rescue&gt; ls
+grub rescue&gt; set prefix=(hd0,1)/boot/grub
+grub rescue&gt; set root=(hd0,1)
+grub rescue&gt; insmod normal
+grub rescue&gt; normal
+</code></pre>
+
+<h2 id="making-permanent-repairs">Making Permanent Repairs</h2>
+
+<p>When you have successfully booted your system, run these commands to fix GRUB permanently:</p>
+
+<pre><code># update-grub
+# grub-install /dev/sdc
+</code></pre>
+
+<p>When you run <code>grub-install</code> remember you&rsquo;re installing it to the boot sector of your hard drive and not to a partition, so do not use a partition number like <code>/dev/sdc1</code>.</p>
+
+<h2 id="source">Source</h2>
+
+<ul>
+<li>Linux Magazine 111, February 2010</li>
+<li><a href="https://www.linux.com/learn/how-rescue-non-booting-grub-2-Linux">https://www.linux.com/learn/how-rescue-non-booting-grub-2-Linux</a></li>
+</ul>
+
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/notes/posts/devops/" data-toggle="tooltip" data-placement="top" title="Devops">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="/notes/posts/meaning-of-life-by-zentara/" data-toggle="tooltip" data-placement="top" title="Meaning of Life by Zentara">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/notes/js/script.js"></script>
+<script src="/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'Toracking ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

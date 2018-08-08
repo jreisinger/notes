@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Os on Notes</title>
-    <link>https://jreisinger.github.io/notes/categories/os/</link>
-    <description>Recent content in Os on Notes</description>
+    <title>Boot on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/boot/</link>
+    <description>Recent content in Boot on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 01 Jun 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/notes/categories/os/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/notes/tags/boot/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,17 +21,6 @@
  simpler code structure modular model internationalization (support for non-ASCII character sets) GUI interface  /boot/grub/grub.cfg still exists but is not supposed to be edited.
 Files and directories
  /boot/grub/grub.cfg - automatically created central config file /etc/default/grub - general options (no menu entries) /etc/grub.d - helper scripts; you can add scripts here to add menu entries  GRUB 2 generally automates lot of steps (helper scripts search the partitions for known OSs and create the required entries).</description>
-    </item>
-    
-    <item>
-      <title>Generate Random File</title>
-      <link>https://jreisinger.github.io/notes/posts/gen_rand_file/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/gen_rand_file/</guid>
-      <description> How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  </description>
     </item>
     
   </channel>

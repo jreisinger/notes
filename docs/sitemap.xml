@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/grub2/</loc>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/meaning-of-life-by-zentara/</loc>
     <lastmod>2015-01-19T17:07:00+02:00</lastmod>
   </url>
@@ -25,6 +30,12 @@
   <url>
     <loc>https://jreisinger.github.io/notes/posts/sysadmin-philosophy/</loc>
     <lastmod>2014-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/boot/</loc>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -63,6 +74,12 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/tags/grub/</loc>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/tags/life/</loc>
     <lastmod>2015-01-19T17:07:00+02:00</lastmod>
     <priority>0</priority>
@@ -70,7 +87,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/tags/linux/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -94,7 +111,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/categories/os/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -129,7 +146,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/tags/</loc>
-    <lastmod>2018-08-07T08:43:41+02:00</lastmod>
+    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

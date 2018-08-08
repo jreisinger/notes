@@ -6,10 +6,22 @@
     <description>Recent content in Linux on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 20 Mar 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2015 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GRUB 2</title>
+      <link>https://jreisinger.github.io/notes/posts/grub2/</link>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/grub2/</guid>
+      <description>GRUB 2 vs. GRUB (Legacy)
+ simpler code structure modular model internationalization (support for non-ASCII character sets) GUI interface  /boot/grub/grub.cfg still exists but is not supposed to be edited.
+Files and directories
+ /boot/grub/grub.cfg - automatically created central config file /etc/default/grub - general options (no menu entries) /etc/grub.d - helper scripts; you can add scripts here to add menu entries  GRUB 2 generally automates lot of steps (helper scripts search the partitions for known OSs and create the required entries).</description>
+    </item>
     
     <item>
       <title>Generate Random File</title>
