@@ -7,9 +7,11 @@
   <meta property="og:title" content="Reading from command line arguments or from STDIN - Notes" />
   <meta name="twitter:title" content="Reading from command line arguments or from STDIN - Notes" />
   <meta name="description" content="Go
-package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  ">
+package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  Perl
+#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }  ">
   <meta property="og:description" content="Go
-package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  ">
+package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  Perl
+#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }  ">
   <meta name="twitter:description" content="Go
 package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } …">
   <meta name="author" content="Jozef Reisinger"/>
@@ -59,6 +61,12 @@ package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func ma
             go
           </a>&nbsp;
         </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/perl/">
+            <i class="fas fa-tag"></i>
+            perl
+          </a>&nbsp;
+        </li>
       </ul>
       
       <p>Go</p>
@@ -82,6 +90,20 @@ func main() {
             fmt.Println(scan.Text())
         }
     }
+}
+</code></pre>
+
+<p>Perl</p>
+
+<pre><code>#!/usr/bin/env perl
+use 5.014;    # includes strict
+use warnings;
+use autodie;
+
+if (@ARGV) {
+    say for @ARGV;
+} else {
+    print for &lt;STDIN&gt;;    # but all lines at once
 }
 </code></pre>
 

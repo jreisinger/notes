@@ -2,7 +2,7 @@
 title: "Reading from command line arguments or from STDIN"
 date: 2018-08-08
 categories: [prog]
-tags: [go]
+tags: [go, perl]
 ---
 
 Go
@@ -27,5 +27,20 @@ func main() {
             fmt.Println(scan.Text())
         }
     }
+}
+```
+
+Perl
+
+```
+#!/usr/bin/env perl
+use 5.014;    # includes strict
+use warnings;
+use autodie;
+
+if (@ARGV) {
+    say for @ARGV;
+} else {
+    print for <STDIN>;    # but all lines at once
 }
 ```

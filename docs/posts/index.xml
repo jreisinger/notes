@@ -18,7 +18,8 @@
       
       <guid>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</guid>
       <description>Go
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;os&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { if len(os.Args) &amp;gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  </description>
+package main import ( &amp;quot;bufio&amp;quot; &amp;quot;os&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { if len(os.Args) &amp;gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  Perl
+#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &amp;lt;STDIN&amp;gt;; # but all lines at once }  </description>
     </item>
     
     <item>
