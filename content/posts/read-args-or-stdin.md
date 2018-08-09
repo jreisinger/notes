@@ -22,9 +22,9 @@ func main() {
             fmt.Println(arg)
         }
     } else {                            // read from STDIN
-        scan := bufio.NewScanner(os.Stdin)
-        for scan.Scan() {
-            fmt.Println(scan.Text())
+        stdin := bufio.NewScanner(os.Stdin)
+        for stdin.Scan() {
+            fmt.Println(stdin.Text())
         }
     }
 }
