@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Perl on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/perl/</link>
+    <description>Recent content in Perl on Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 08 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jreisinger.github.io/notes/tags/perl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reading from command line arguments or from STDIN</title>
+      <link>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</link>
+      <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</guid>
+      <description>Go
+package main import ( &amp;quot;bufio&amp;quot; &amp;quot;os&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { if len(os.Args) &amp;gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN scan := bufio.NewScanner(os.Stdin) for scan.Scan() { fmt.Println(scan.Text()) } } }  Perl
+#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &amp;lt;STDIN&amp;gt;; # but all lines at once }  </description>
+    </item>
+    
+  </channel>
+</rss>
