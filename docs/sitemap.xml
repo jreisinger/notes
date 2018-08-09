@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/tcpdump/</loc>
+    <lastmod>2016-05-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/grub2/</loc>
     <lastmod>2015-06-01T00:00:00+00:00</lastmod>
   </url>
@@ -103,6 +108,12 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/categories/net/</loc>
+    <lastmod>2016-05-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/</loc>
     <lastmod>2018-08-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -139,6 +150,12 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/categories/sec/</loc>
+    <lastmod>2016-05-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/series/</loc>
     <priority>0</priority>
   </url>
@@ -152,6 +169,12 @@
   <url>
     <loc>https://jreisinger.github.io/notes/tags/</loc>
     <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/unix/</loc>
+    <lastmod>2016-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
