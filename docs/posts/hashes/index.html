@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Hashes - Notes</title>
+  <meta property="og:title" content="Hashes - Notes" />
+  <meta name="twitter:title" content="Hashes - Notes" />
+  <meta name="description" content="There are several classes of hashes (hash functions) used for different purposes:
+ hash datatype in Perl (maps a lookup string to a memory location; fast and short) networking protocols checks like CRC or Adler (rarely go over 32-bits in length) cryptographic hashes (this article is about them)  Cryptographic hashes
+ provide an encryption using an algorithm and no key a variable length plaintext is &ldquo;hashed&rdquo; into a fixed-length hash value (also called a message digest or a hash) primarily used to provide integrity &ndash;&gt; if the hash changed, the plaintext must have changed have an &ldquo;avalanche effect&rdquo; &ndash;&gt; changing just one bit of input creates a completely different output  Collisions">
+  <meta property="og:description" content="There are several classes of hashes (hash functions) used for different purposes:
+ hash datatype in Perl (maps a lookup string to a memory location; fast and short) networking protocols checks like CRC or Adler (rarely go over 32-bits in length) cryptographic hashes (this article is about them)  Cryptographic hashes
+ provide an encryption using an algorithm and no key a variable length plaintext is &ldquo;hashed&rdquo; into a fixed-length hash value (also called a message digest or a hash) primarily used to provide integrity &ndash;&gt; if the hash changed, the plaintext must have changed have an &ldquo;avalanche effect&rdquo; &ndash;&gt; changing just one bit of input creates a completely different output  Collisions">
+  <meta name="twitter:description" content="There are several classes of hashes (hash functions) used for different purposes:
+ hash datatype in Perl (maps a lookup string to a memory location; fast and short) networking protocols checks like …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/hashes/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Hashes</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>August 10, 2018</time></li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/sec/">
+            <i class="fas fa-folder"></i>
+            sec
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/perl/">
+            <i class="fas fa-tag"></i>
+            perl
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/hashes/">
+            <i class="fas fa-tag"></i>
+            hashes
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <p>There are several classes of hashes (hash functions) used for different purposes:</p>
+
+<ul>
+<li>hash datatype in Perl (maps a lookup string to a memory location; fast and short)</li>
+<li>networking protocols checks like CRC or Adler (rarely go over 32-bits in length)</li>
+<li>cryptographic hashes (this article is about them)</li>
+</ul>
+
+<p>Cryptographic hashes</p>
+
+<ul>
+<li>provide an encryption using an algorithm and <em>no key</em></li>
+<li>a variable length plaintext is &ldquo;hashed&rdquo; into a fixed-length hash value (also called a <em>message digest</em> or a <em>hash</em>)</li>
+<li>primarily used to provide integrity &ndash;&gt; if the hash changed, the plaintext must have changed</li>
+<li>have an &ldquo;avalanche effect&rdquo; &ndash;&gt; changing just one bit of input creates a completely different output</li>
+</ul>
+
+<p>Collisions</p>
+
+<ul>
+<li>hashes are not unique - number of possible plaintexts is far larger than the number of possible hashes</li>
+<li>searching for collision to match a specific text should not be possible accomplish in a reasonable amount of time</li>
+</ul>
+
+<p>Types</p>
+
+<ul>
+<li>MD5 - 128-bit, considered weak since late 90s</li>
+<li>SHA1 - 160-bit, developed by the NSA, <a href="https://www.schneier.com/blog/archives/2005/02/sha1_broken.html">broken</a> in 2005</li>
+<li>SHA2 - group of algorithms (224 to 512-bits), kind of secure</li>
+<li>SHA3 - Keccak won a <a href="https://csrc.nist.gov/projects/hash-functions/sha-3-project">competition</a> announced in 2003, <strong>recommended</strong></li>
+</ul>
+
+<p>Usage</p>
+
+<pre><code>$ perl -MDigest::SHA3=sha3_512_hex -E 'say sha3_512_hex( &quot;plaintext&quot; )'
+</code></pre>
+
+<p>Sources:</p>
+
+<ul>
+<li><a href="http://www.wumpus-cave.net/2014/03/27/perl-encryption-primer-hashes/#comment-15391">http://www.wumpus-cave.net/2014/03/27/perl-encryption-primer-hashes/#comment-15391</a></li>
+<li><a href="http://wiki.reisinge.net/CISSP/03_Cryptography/HashFunctions">http://wiki.reisinge.net/CISSP/03_Cryptography/HashFunctions</a></li>
+</ul>
+
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="/notes/posts/read-args-or-stdin/" data-toggle="tooltip" data-placement="top" title="Reading from command line arguments or from STDIN">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/notes/js/script.js"></script>
+<script src="/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'Toracking ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>
