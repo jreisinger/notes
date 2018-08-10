@@ -38,5 +38,5 @@ $ perl -MDigest::SHA3=sha3_512_hex -E 'say sha3_512_hex( "plaintext" )'
 
 Sources:
 
-* http://www.wumpus-cave.net/2014/03/27/perl-encryption-primer-hashes/#comment-15391
+* http://www.wumpus-cave.net/2014/03/27/perl-encryption-primer-hashes
 * http://wiki.reisinge.net/CISSP/03_Cryptography/HashFunctions
