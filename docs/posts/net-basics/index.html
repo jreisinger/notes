@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Networking basics - Notes</title>
+  <meta property="og:title" content="Networking basics - Notes" />
+  <meta name="twitter:title" content="Networking basics - Notes" />
+  <meta name="description" content="Networking models OSI layering provides for standard interfaces between layers and has these benefits:
+ higher layers are shielded from the complexity of the lower layers application &ldquo;thinks&rdquo; it&rsquo;s directly communicating with another application through the standard sockets API one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&rsquo;s built-in TCP/IP SW)  OSI and TCP/IP models:
+ OSI TCP/IP TCP/IP Sample original updated protocol &#43;------------&#43; &#43;------------&#43; &#43;------------&#43; &#43;----------------&#43; Contains the &quot;language&quot; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------&#43; | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------&#43; | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------&#43; | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.">
+  <meta property="og:description" content="Networking models OSI layering provides for standard interfaces between layers and has these benefits:
+ higher layers are shielded from the complexity of the lower layers application &ldquo;thinks&rdquo; it&rsquo;s directly communicating with another application through the standard sockets API one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&rsquo;s built-in TCP/IP SW)  OSI and TCP/IP models:
+ OSI TCP/IP TCP/IP Sample original updated protocol &#43;------------&#43; &#43;------------&#43; &#43;------------&#43; &#43;----------------&#43; Contains the &quot;language&quot; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------&#43; | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------&#43; | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------&#43; | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.">
+  <meta name="twitter:description" content="Networking models OSI layering provides for standard interfaces between layers and has these benefits:
+ higher layers are shielded from the complexity of the lower layers application …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/net-basics/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Networking basics</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>September 16, 2015</time></li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/net/">
+            <i class="fas fa-folder"></i>
+            net
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/basics/">
+            <i class="fas fa-tag"></i>
+            basics
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#networking-models">Networking models</a></li>
+<li><a href="#binary-math">Binary math</a></li>
+<li><a href="#lans">LANs</a></li>
+<li><a href="#wans">WANs</a>
+<ul>
+<li><a href="#point-to-point-wans-osi-l1">Point-to-Point WANs - OSI L1</a></li>
+<li><a href="#point-to-point-wans-osi-l2">Point-to-Point WANs - OSI L2</a></li>
+<li><a href="#packet-switching">Packet switching</a></li>
+</ul></li>
+<li><a href="#ipv4-addressing-and-routing">IPv4 addressing and routing</a>
+<ul>
+<li><a href="#l3-utilities">L3 utilities</a></li>
+</ul></li>
+<li><a href="#transmission-control-protocol-tcp">Transmission Control protocol (TCP)</a></li>
+<li><a href="#user-datagram-protocol-udp">User Datagram Protocol (UDP)</a></li>
+<li><a href="#tcp-ip-applications">TCP/IP applications</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      
+
+<h2 id="networking-models">Networking models</h2>
+
+<p>OSI layering provides for standard interfaces between layers and has these benefits:</p>
+
+<ul>
+<li>higher layers are shielded from the complexity of the lower layers</li>
+<li>application &ldquo;thinks&rdquo; it&rsquo;s directly communicating with another application through the standard sockets API</li>
+<li>one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&rsquo;s built-in TCP/IP SW)</li>
+</ul>
+
+<p>OSI and TCP/IP models:</p>
+
+<pre><code>       OSI              TCP/IP             TCP/IP             Sample
+                        original           updated            protocol
+  +------------+     +------------+     +------------+     +----------------+ Contains the &quot;language&quot; that
+7 |Application |     |            |     |            |     |Telnet HTTP     | apps and servers use to
+  |------------+     |            |     |            |     |FTP SMTP        | communicate
+6 |Presentation|     |Application | 5-7 |Application |     |POP3 VoIP       |
+  |------------+     |            |     |            |     |SNMP DNS Halo 3 |
+5 |Session     |     |            |     |            |     |arp traceroute  |
+  |------------+- - -+------------+- - -+------------+- - -+----------------+ data transmission
+4 |Transport   |     |Transport   |  4  |Transport   |     |TCP UDP         | characteristics
+  |------------+- - -+------------+- - -+------------+- - -+----------------+ how to move packets
+3 |Network     |     |Internetwork|  3  |Internetwork|     |IP ICMP         | from src to dst
+  |------------+- - -+------------+- - -+------------+- - -+----------------+
+2 |Data link   |     |Network     |  2  |Data link   |     |Eth HDLC PPP ARP|  
+  |------------+     |            |- - -|------------|- - -|----------------| how to send raw data
+1 |Physical    |     |access      |  1  |Physical    |     |Eth RJ-45 V.35  | across a physical medium
+  +------------+     +------------+     +------------+     +----------------+
+</code></pre>
+
+<ul>
+<li>Please Do Not Throw Sausage Pizza Away</li>
+</ul>
+
+<p>TCP error recovery service provided to HTTP:</p>
+
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/ccna/tcp_error_recovery.png" alt="TCP error recovery service provided to HTTP" title="TCP error recovery service provided to HTTP" /></p>
+
+<p>TCP/IP network access layer encapsulation:</p>
+
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/ccna/network_access_layer.png" alt="Using ethernet to forward an IP packet to the router" title="Using ethernet to forward an IP packet to the router" /></p>
+
+<p>Encapsulation and data:</p>
+
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/ccna/data_perspectives.png" alt="Perspectives on encapsulation and data" title="Perspectives on encapsulation and data" /></p>
+
+<h2 id="binary-math">Binary math</h2>
+
+<p>Binary to hexadecimal conversion:</p>
+
+<pre><code>                 01101110   Binary (representation of) byte
+
+                  +    +
+                  |    |
+                  v    v
+
+  Higher order  0110  1110  Lower order
+  nibble                    nibble
+                  +    +
+                  |    |
+                  v    v
+
+                  6    14   Decimal byte
+
+                  +    +
+                  |    |
+                  v    v
+
+                  6    E    Hexadecimal byte
+</code></pre>
+
+<h2 id="lans">LANs</h2>
+
+<p>Most common Ethernet types</p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Speed (Mbps)</th>
+    <th>Alt. name</th>
+    <th>Standard</th>
+    <th>Cable (max)</th>
+  </tr>
+  <tr>
+    <td>Ethernet</td>
+    <td>10</td>
+    <td>10BASE-T</td>
+    <td>IEEE 802.3</td>
+    <td>Copper (100m)</td>
+  </tr>
+  <tr>
+    <td>Fast ethernet</td>
+    <td>100</td>
+    <td>100BASE-TX</td>
+    <td>IEEE 802.3u</td>
+    <td>Copper (100m)</td>
+  </tr>
+  <tr>
+    <td>Gigabit ethernet</td>
+    <td>1000</td>
+    <td>1000BASE-LX, 1000BASE-SX</td>
+    <td>IEEE 802.3z</td>
+    <td>Fiber (550m, 5km)</td>
+  </tr>
+  <tr>
+    <td>Gigabit ethernet</td>
+    <td>1000</td>
+    <td>1000BASE-T</td>
+    <td>IEEE 802.3ab</td>
+    <td>Copper (100m)</td>
+  </tr>
+</table>
+
+<ul>
+<li>&ldquo;T&rdquo; in alt. names &ndash; twisted pair</li>
+</ul>
+
+<p>CSMA/CD algorithm (required by hubs)</p>
+
+<ul>
+<li>a device that wants to send a frame waits until the LAN is silent</li>
+<li>if a collission occurs, the devices that caused the collision wait a random amount of time and then try again</li>
+</ul>
+
+<p>TIA standard Ethernet cabling pinouts</p>
+
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/ccna/t568a_b.jpg" alt="T568A vs. T568B" title="T568A vs. T568B" /></p>
+
+<ul>
+<li>straight-through cable &ndash; both ends of the cable use the same standard (devices use the opposite pins when transmitting) - PC &lt;=&gt; Hub</li>
+<li>crossover cable &ndash; devices use the same pins to transmit - Hub &lt;=&gt; Hub</li>
+<li>devices that transmit on 1,2 and receive on 3,6: PC NICs, routers</li>
+<li>devices that transmit on 3,6 and receive on 1,2: hubs, switches
+
+<ul>
+<li>auto-mdix &ndash; Cisco switch feature that readjusts the standard logic when wrong cables are used</li>
+</ul></li>
+</ul>
+
+<p>Half duplex vs. full duplex</p>
+
+<ul>
+<li>HDX &ndash; device either sends or receivs, but not both at the same time (imposed by CSMA/CD)</li>
+<li>FDX &ndash; possible if only one device is cabled to each switch&rsquo;s port (full use of bandwidth)</li>
+</ul>
+
+<p>Ethernet addressing terminology</p>
+
+<ul>
+<li>MAC = Ethernet address = NIC address = LAN address &ndash; 6-byte (48 bit, 12 hex digits) address usually burned in a ROM chip
+
+<ul>
+<li>3 bytes &ndash; Organizationally Unique Identifier (OUI)</li>
+<li>3 bytes &ndash; vendor assigned part</li>
+</ul></li>
+<li>Unicast address &ndash; MAC address representing a single LAN interface (<code>FFFF.FFFF.FFFF</code>)</li>
+<li>Multicast address &ndash; subset of Ethernet devices (<code>0100.5exx.xxxx</code>)</li>
+</ul>
+
+<p>LAN headers</p>
+
+<pre><code>      DIX
+     +--------+-----------+------+------+----------+---+
+     |Preamble|Destination|Source| Type |Data + pad|FCS|
+Bytes|   8    |     6     |  6   |  2   | 46-1500  | 4 |
+     +--------+-----------+------+------+----------+---+
+
+      IEEE 802.3 (orig)
+     +----+---+-----------+------+------+----------+---+
+     |Pre.|SFD|Destination|Source|Length|Data + pad|FCS|
+     | 7  | 1 |     6     |  6   |  2   | 46-1500  | 4 |
+     +----+---+-----------+------+------+----------+---+
+
+      IEEE 802.3 (rev. 1997)
+     +----+---+-----------+------+------+----------+---+
+     |Pre.|SFD|Destination|Source|Len./ |Data + pad|FCS|
+     | 7  | 1 |     6     |  6   |type 2| 46-1500  | 4 |
+     +----+---+-----------+------+------+----------+---+
+</code></pre>
+
+<ul>
+<li>IEEE 802.3 Ethernet header/trailer fields
+
+<ul>
+<li>Preamble &ndash; synchronization</li>
+<li>Start Field Delimiter &ndash; tells that next byte is destination MAC address</li>
+<li>Length/Type &ndash; lenght/type of data field (either length or type is present, not both)</li>
+<li>Data and padding &ndash; data from a higher layer (ex. L3 PDU - IP packet)</li>
+<li>Frame Check Sequence &ndash; used by NIC to check the frame integrity</li>
+</ul></li>
+</ul>
+
+<h2 id="wans">WANs</h2>
+
+<ul>
+<li>WAN standards and protocols &ndash; networking spanning relatively large distances compared to LANs</li>
+</ul>
+
+<h3 id="point-to-point-wans-osi-l1">Point-to-Point WANs - OSI L1</h3>
+
+<p>Leased line &ndash; a WAN circuit usually not owned by the data owner but by a telco (telecommunications company)</p>
+
+<ul>
+<li>(leased line = leased circuit = link = serial link = serial line = point-to-point link = circuit)</li>
+</ul>
+
+<p>LEASED LINE COMPONENTS</p>
+
+<pre><code>                  |                                               |
+                  |      T   E   L   C   O        N  E  T         |
+                  |                                               |
+                  |           CO                                  |
++-------+    +---+|      +----------+          +----------+       |+---+    +-------+
+|Router1+----+CSU+-------+WAN switch+----------+WAN switch+--------+CSU+----+Router2|
++-------+    +---+|      +----------+          +----------+  ^    |+---+ ^  +-------+
+    ^          ^  |                                          |    |      |
+    |          |  |                                          |    |    Short cable
+    +----------+  |                                          |    |    (max 15m)
+    |             |                                          |    |
+    |           Demarc                                       |  Demarc
+    |                                                        |
+   CPE                                                Long cable (KMs)
+</code></pre>
+
+<p>WAN connectors:</p>
+
+<p><IMG SRC="https://raw.github.com/jreisinger/blog/master/files/ccna/wan_serial_cables.jpg" ALT="WAN connectors" WIDTH=600></p>
+
+<p>Terminology</p>
+
+<ul>
+<li>Synchronous &ndash; both devices use (roughly) the same speed when transfering the bits over serial link</li>
+<li>Clock source &ndash; time source for devices using a synchronous serial link</li>
+<li>CSU/DSU &ndash; in U.S., digital links interface to telco</li>
+</ul>
+
+<p>WAN links speeds</p>
+
+<ul>
+<li>DS0 - 64 kbps</li>
+<li>DS1 (T1) - 1.544 Mbps (24 DS0 + 8 kbps overhead)</li>
+<li>DS3 (T3) - 44.736 Mbps (28 DS1s + mngt. overhead)</li>
+<li>E1 - 2.048 Mbps (32 DS0s)</li>
+<li>E3 - 34.368 Mbps (16 E1s + mngt. overhead)</li>
+<li>J1 (Y1) - 2.048 Mbps (32 DS0s, Japanese standard)</li>
+</ul>
+
+<h3 id="point-to-point-wans-osi-l2">Point-to-Point WANs - OSI L2</h3>
+
+<p>Most popular protocols: HDLC, PPP</p>
+
+<p>HDLC</p>
+
+<pre><code>HDLC framing
+
+       Standard
+      +----+-------+-------+--------+---+
+      |Flag|Address|Control|  Data  |FCS|
+Bytes | 1  |   1   |   1   |Variable| 2 |
+      +----+-------+-------+--------+---+
+
+       Cisco (PPP)
+      +----+-------+-------+----+--------+---+
+      |Flag|Address|Control|Type|  Data  |FCS|
+      | 1  |   1   |   1   | 2  |Variable| 2 |
+      +----+-------+-------+----+--------+---+
+</code></pre>
+
+<ul>
+<li>Address field is not really needed</li>
+<li>since point-to-point links are relatively simple, HDLC only does
+
+<ul>
+<li>error checking</li>
+<li>packet type determination</li>
+</ul></li>
+</ul>
+
+<p>Point-to-point protocol</p>
+
+<ul>
+<li>framing is identical to Cisco framing (above)</li>
+<li>defined later than HDLC =&gt; more features =&gt; more popular</li>
+</ul>
+
+<h3 id="packet-switching">Packet switching</h3>
+
+<ul>
+<li>most popular services: ATM, Frame relay (much more common today)</li>
+</ul>
+
+<p>Frame relay</p>
+
+<ul>
+<li>multiaccess network similar to LANs</li>
+<li>access links - leased lines between routers (DTE) and FR switches (DCE)</li>
+<li>each FR header holds DLCI - based on DLCI switch forwards the frame to the destination</li>
+<li>FR creates logical path (VC) between two FR DTE devices</li>
+<li>each VC has a committed information rate (CIR)</li>
+</ul>
+
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/ccna/frame_relay.png" alt="Typical FR network" title="Typical FR network" /></p>
+
+<h2 id="ipv4-addressing-and-routing">IPv4 addressing and routing</h2>
+
+<ul>
+<li>the only widely used L3 protocol - IP</li>
+</ul>
+
+<p>Standard 20-byte IPv4 header:</p>
+
+<pre><code> 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Version|  IHL  |   DS Field    |        Packet Length          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         Identification        |Flags|      Fragment Offset    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Time to Live |    Protocol   |         Header Checksum       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Source Address                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Destination Address                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre>
+
+<ul>
+<li>IHL &ndash; IP header length (including optional fields)</li>
+<li>DS Field &ndash; differentiated services field (QoS)</li>
+<li>Packet Length &ndash; entire packet length, including data</li>
+<li>Identification &ndash; used by IP fragmentation process, all fragments have the same ID</li>
+<li>Flags &ndash; used by IP fragmentation process (3 bits)</li>
+<li>TTL &ndash; to prevent routing loops</li>
+<li>Protocol &ndash; contents of the data portion of the IP packet (ex. 6 means TCP header is first thing in data field)</li>
+</ul>
+
+<p>IP addressing</p>
+
+<ul>
+<li>all IP addresses in the same group (class) must not be separated by a router</li>
+</ul>
+
+<p>Router logic</p>
+
+<ol>
+<li>use FCS to check for errors, if error occurred discard the frame and repeat this step</li>
+<li>discard the data-link header and trailer, leaving the IP packet</li>
+<li>use destination IP address to look up the outgoing interface in routing table</li>
+<li>encapsulate IP packet inside a data-link header and trailer appropriate for outgoing interface and forward the frame</li>
+</ol>
+
+<h3 id="l3-utilities">L3 utilities</h3>
+
+<p>DNS</p>
+
+<ol>
+<li>What is the foo&rsquo;s IP address?</li>
+<li>Foo&rsquo;s IP is 10.1.1.2</li>
+</ol>
+
+<p>ARP</p>
+
+<ol>
+<li>Hey everybody, if you are 10.1.1.2 tell me your MAC address!</li>
+<li>I&rsquo;m 10.1.1.2 and my MAC is 0200.2222.222</li>
+</ol>
+
+<p><a href="https://github.com/jreisinger/blog/blob/master/posts/dhcp.md">DHCP</a></p>
+
+<ol>
+<li>Client &ndash; DHCP discover message (LAN broadcast)</li>
+<li>Server &ndash; DHCP offer message (LAN broadcast)</li>
+<li>Client &ndash; DHCP request message (to server)</li>
+<li>Server &ndash; DHCP acknowledgement (to client)</li>
+</ol>
+
+<h2 id="transmission-control-protocol-tcp">Transmission Control protocol (TCP)</h2>
+
+<p>Connection-oriented protocol &ndash; requires an exchange of message (or preestablished correlation) before data transfer</p>
+
+<p>Features:</p>
+
+<ul>
+<li>multiplexing using ports</li>
+<li>error recovery</li>
+<li>flow control using windowing</li>
+<li>connection establishment and termination</li>
+<li>ordered data transfer and segmentation</li>
+</ul>
+
+<p>TCP header format (fields):</p>
+
+<pre><code> 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ -----
+|          Source Port          |       Destination Port        |    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+    |
+|                        Sequence Number                        |    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+    |
+|                    Acknowledgment Number                      |    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  Required
+|  Data |           |U|A|P|R|S|F|                               |    |
+| Offset| Reserved  |R|C|S|S|Y|I|            Window             |    |
+|       |           |G|K|H|T|N|N|                               |    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+    |
+|           Checksum            |         Urgent Pointer        |    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ -----
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             data                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre>
+
+<p>Window field &ndash; maximum number of unacknowledged bytes</p>
+
+<ul>
+<li>starts small, then grows until errors occur (dynamic or sliding window)</li>
+</ul>
+
+<p>Multiplexing relies on sockets</p>
+
+<ul>
+<li>IP address (ex. 10.1.1.2)</li>
+<li>transport protocol (ex. TCP)</li>
+<li>port number (ex. 80)</li>
+</ul>
+
+<p>TCP connection establishment (three-way handshake):</p>
+
+<pre><code> +-------+             SEQ=200                 +------+
+ |Web    |     SYN, DPORT=80, SPORT=1027       |Web   |
+ |browser| ----------------------------------&gt; |server|
+ +-------+                                     +------+
+                    SEQ=1450, ACK=201
+              SYN, ACK, DPORT=1027, SPORT=80
+           &lt;----------------------------------
+
+                  SEQ=201, ACK=1451
+               ACK, DPORT=80, SPORT=1027
+           ----------------------------------&gt;
+</code></pre>
+
+<p>Maximum transmission unit (MTU) - size of the largest L3 packet that can sit inside a frame&rsquo;s data field (it&rsquo;s 1500 bytes for many L2 protocols, including Ethernet)</p>
+
+<ul>
+<li>because IP and TCP headers are 20 bytes each, TCP typically segments large data into 1460-byte chunks</li>
+<li>TCP segment (L4PDU) = TCP header + data field</li>
+</ul>
+
+<h2 id="user-datagram-protocol-udp">User Datagram Protocol (UDP)</h2>
+
+<p>Connectionless protocol &ndash; does not require an exchange of message (or preestablished correlation) before data transfer</p>
+
+<p>UDP adds just two features to IP:</p>
+
+<ul>
+<li>port numbers for multiplexing</li>
+<li>data checksum for error detection</li>
+</ul>
+
+<p>apps using UDP are tolerant of the data loss or have some application mechanism for lost data recovery</p>
+
+<ul>
+<li>VoiP &ndash; recovery wouldn&rsquo;t help anyway, it would be too late</li>
+<li>DNS &ndash; will retry if DNS resolution fails</li>
+<li>NFS &ndash; recovery done by application layer code</li>
+</ul>
+
+<p>UDP header format:</p>
+
+<pre><code> 0      7 8     15 16    23 24    31
++--------+--------+--------+--------+
+|     Source      |   Destination   |
+|      Port       |      Port       |
++--------+--------+--------+--------+
+|                 |                 |
+|     Length      |    Checksum     |
++--------+--------+--------+--------+
+|
+|          data octets ...
++---------------- ...
+</code></pre>
+
+<h2 id="tcp-ip-applications">TCP/IP applications</h2>
+
+<p>QoS &ndash; application&rsquo;s requirements from the network service</p>
+
+<p>Before mid 1990s video and voice used totally separate networking facilities, today - <strong>VoIP</strong>.</p>
+
+<p>VoIP QoS demands</p>
+
+<ul>
+<li>low delay (&lt; 200 ms)</li>
+<li>low jitter (&lt; 30 ms) - variation in delay</li>
+<li>loss - if VoIP packet is lost, it&rsquo;s not retransmitted</li>
+</ul>
+
+<p><strong>HTTP</strong> commands and responses</p>
+
+<ul>
+<li>GET request &ndash; request from client to get a file from a web server</li>
+<li>server sends GET response with code 200 (meaning OK) together with file contents</li>
+<li>404 &ndash; file not found</li>
+</ul>
+
+<p>See <a href="https://github.com/jreisinger/blog/blob/master/posts/http.md">HTTP protocol</a> for more.</p>
+
+<hr />
+
+<p>Sources</p>
+
+<ul>
+<li>W. Odom: CCENT/CCNA ICDN1 (2012)</li>
+<li>ULSAH, Ch. 14: TCP/IP Networking</li>
+<li><a href="http://www.ietf.org/rfc/rfc791.txt">RFC 971 - IP</a></li>
+<li><a href="http://tools.ietf.org/html/rfc793">RFC 793 - TCP</a></li>
+<li><a href="http://www.ietf.org/rfc/rfc768.txt">RFC 768 - UDP</a></li>
+</ul>
+
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/notes/posts/tcpdump/" data-toggle="tooltip" data-placement="top" title="tcpdump">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="/notes/posts/grub2/" data-toggle="tooltip" data-placement="top" title="GRUB 2">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/notes/js/script.js"></script>
+<script src="/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'Toracking ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>
