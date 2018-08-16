@@ -36,5 +36,19 @@
 -nn &amp;ndash; turn off host and protocol name resolution (to avoid generating DNS packets)</description>
     </item>
     
+    <item>
+      <title>tcpdump2</title>
+      <link>https://jreisinger.github.io/notes/posts/tcpdump2/</link>
+      <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/tcpdump2/</guid>
+      <description>despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options:
+-D &amp;ndash; list available interfaces
+-i INTERFACE &amp;ndash; listen on INTERFACE (default: lowest numbered interface)
+-w FILE &amp;ndash; write raw packets to FILE
+-r FILE &amp;ndash; read packets from FILE
+-nn &amp;ndash; turn off host and protocol name resolution (to avoid generating DNS packets)</description>
+    </item>
+    
   </channel>
 </rss>
