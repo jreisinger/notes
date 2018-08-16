@@ -117,6 +117,17 @@ dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &amp;ndas
     </item>
     
     <item>
+      <title>Git</title>
+      <link>https://jreisinger.github.io/notes/posts/git/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/git/</guid>
+      <description>Git is a free &amp;amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do.
+First-Time Git Setup Introduce yourself to git with your name and public email address before doing any operation:</description>
+    </item>
+    
+    <item>
       <title>System administration philosophy of AE. Frish</title>
       <link>https://jreisinger.github.io/notes/posts/sysadmin-philosophy/</link>
       <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>

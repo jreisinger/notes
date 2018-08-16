@@ -48,6 +48,11 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/git/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/sysadmin-philosophy/</loc>
     <lastmod>2014-03-01T00:00:00+00:00</lastmod>
   </url>
@@ -84,6 +89,12 @@
   <url>
     <loc>https://jreisinger.github.io/notes/tags/devops/</loc>
     <lastmod>2016-11-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/categories/git/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -162,6 +173,12 @@
   <url>
     <loc>https://jreisinger.github.io/notes/posts/</loc>
     <lastmod>2018-08-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/prog/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
