@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Git - Notes</title>
+  <meta property="og:title" content="Git - Notes" />
+  <meta name="twitter:title" content="Git - Notes" />
+  <meta name="description" content="Git is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do.
+First-Time Git Setup Introduce yourself to git with your name and public email address before doing any operation:">
+  <meta property="og:description" content="Git is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do.
+First-Time Git Setup Introduce yourself to git with your name and public email address before doing any operation:">
+  <meta name="twitter:description" content="Git is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+Every Git clone is a full-fledged [in …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/git/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Git</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>March 20, 2014</time></li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/git/">
+            <i class="fas fa-tag"></i>
+            git
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#first-time-git-setup">First-Time Git Setup</a></li>
+<li><a href="#starting-a-git-repository">Starting a git repository</a></li>
+<li><a href="#getting-a-git-repository">Getting a git repository</a></li>
+<li><a href="#making-changes">Making changes</a></li>
+<li><a href="#exclude-some-files">Exclude some files</a></li>
+<li><a href="#tips-and-tricks">Tips and Tricks</a></li>
+<li><a href="#more">More</a></li>
+</ul>
+</nav>
+</aside>
+      
+
+<p><a href="http://git-scm.com/">Git</a> is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
+
+<p>Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do.</p>
+
+<h1 id="first-time-git-setup">First-Time Git Setup</h1>
+
+<p>Introduce yourself to git with your name and public email address before doing any operation:</p>
+
+<pre><code>git config --global user.name &quot;Jeffrey Lebowski&quot;
+git config --global user.email &quot;jlebowski@dude.org&quot;
+</code></pre>
+
+<p>You might also like to add some colors, alias(es), your editor and diff tool:</p>
+
+<pre><code>git config --global color.ui true
+git config alias.lol 'log --pretty=oneline --abbrev-commit --graph --decorate'
+git config --global core.editor vim
+git config --global merge.tool vimdiff
+</code></pre>
+
+<p>You only need to do this <em>once</em>.</p>
+
+<p>You can see your configuration like this:</p>
+
+<pre><code>$ git config --list    # output depends on whether you're in a git repo directory or not
+</code></pre>
+
+<p>You can also manage you configuration via <a href="https://github.com/jreisinger/dotfiles/blob/master/.gitconfig">~/.gitconfig</a> file.</p>
+
+<p>If you want to manage the current repository configuration just leave out the <code>--global</code> option or use the local config file <code>.git/config</code>.</p>
+
+<p>To start using git, you can either create a new project or get one from the Internet and start working on it.</p>
+
+<h1 id="starting-a-git-repository">Starting a git repository</h1>
+
+<pre><code>$ mkdir project
+$ cd project
+$ git init
+</code></pre>
+
+<p>You&rsquo;ve now initialized the working directory &ndash; you may notice a new directory created, named <code>.git</code>. Git stores all of its stuff in this hidden directory. If you want Git to stop tracking your files, just remove <code>.git</code>.</p>
+
+<p>Next, tell git to take a snapshot [in svk: momentka] of the contents of all files under the current directory (note the <code>.</code>), with git-add:</p>
+
+<pre><code>$ git add .     # add files in working directory to a temporary storage - index
+</code></pre>
+
+<p>This snapshot is now stored in a <em>temporary staging area</em> which git calls the &ldquo;staging index&rdquo; or just &ldquo;index&rdquo;. You can permanently store the contents of the index in the repository with <code>git-commit</code>:</p>
+
+<pre><code>$ git commit    # add files in index to a permanent storage - repository (.git directory)
+</code></pre>
+
+<p>This will prompt you for a commit message. You&rsquo;ve now stored the first version of your project in git.</p>
+
+<h1 id="getting-a-git-repository">Getting a git repository</h1>
+
+<pre><code>## the Linux kernel (approx. 150MB download):
+$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+## any server with ssh and git
+$ git clone ssh://[user@]server.xy/path/to/repo.git/
+</code></pre>
+
+<h1 id="making-changes">Making changes</h1>
+
+<p>When dealing with git, it&rsquo;s best to work in small bits. Rule of thumb: <em>if you can&rsquo;t summarise it in a sentence, you&rsquo;ve gone too long without committing</em>.</p>
+
+<p>The typical working cycle is:</p>
+
+<ol>
+<li>Work on your project.</li>
+
+<li><p>Check which files you have changed:</p>
+
+<pre><code>$ git status
+</code></pre></li>
+
+<li><p>Check what the actual changes were:</p>
+
+<pre><code>$ git diff
+</code></pre></li>
+
+<li><p>Add any files/folders mentioned in step 2:</p>
+
+<pre><code>$ git add file1 newfile2 newfolder3
+</code></pre></li>
+
+<li><p>You are now ready to commit. You can see what is about to be committed using <code>git-diff</code> with the <code>--cached</code> option:</p>
+
+<pre><code>$ git diff --cached
+</code></pre>
+
+<p>(Without <code>--cached</code>, <code>git-diff</code> will show you any changes that you&rsquo;ve made but not yet added to the index.) If you need to make any further adjustments, do so now, and then add any newly modified content to the index. Finally, &ldquo;commit&rdquo; your changes with:</p>
+
+<pre><code>$ git commit
+</code></pre>
+
+<p>This will again prompt you for a message describing the change, and then record a new version of the project.</p></li>
+</ol>
+
+<p>Alternatively, instead of running <code>git-add</code> beforehand, you can use</p>
+
+<pre><code>$ git commit -am &quot;commit message&quot;
+</code></pre>
+
+<p>which will automatically notice any modified (but not new) files, add them to the index, and commit, all in one step.</p>
+
+<p>A note on commit messages: Though not required, it&rsquo;s a good idea to begin the commit message with a single short (less than 50 character) line summarizing the change, followed by a blank line and then a more thorough description. Tools that turn commits into email, for example, use the first line on the <code>Subject:</code> line and the rest of the commit in the body.</p>
+
+<h1 id="exclude-some-files">Exclude some files</h1>
+
+<p>To set certain files or patterns to be ignored by Git, you must either modify the <code>$GIT_DIR/info/exclude</code> file or create a file called <code>.gitignore</code> in your project’s root directory. The former is not shared between repositories (so you can set ignores for your specific environment), while the <code>.gitignore</code> is usually checked into Git and distributed along with everything else.</p>
+
+<p>For example if you don&rsquo;t want to track dot-files, setup <code>.gitignore</code> like this:</p>
+
+<pre><code>.*
+!/.gitignore
+</code></pre>
+
+<p>See more <a href="http://github.com/guides/ignore-for-git">here</a>.</p>
+
+<p>If some of your files is already beeing tracked by git, you can untrack it like this:</p>
+
+<pre><code>git rm --cached &lt;filename&gt;
+</code></pre>
+
+<p>To to list tracked files:</p>
+
+<pre><code># currently tracked files under master branch
+git ls-tree -r master --name-only
+
+# files that ever existed (i.e. including deleted files)
+git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
+</code></pre>
+
+<p>To remove files not tracked by Git (like log files, zipped files, compiled files)</p>
+
+<pre><code>git clean -n  # dry-run
+git clean -f  # files removed!
+</code></pre>
+
+<h1 id="tips-and-tricks">Tips and Tricks</h1>
+
+<p>Apply changes generated via <code>git diff [--binary]</code>:</p>
+
+<pre><code>git apply --ignore-space-change --ignore-whitespace
+</code></pre>
+
+<p>While in Git-tracked directory, print the filename followed by the author of the last commit:</p>
+
+<pre><code>for f in `find -type f`; do
+        git log -1 --date=iso -- $f |
+        grep ^Author |
+        perl -wnla -s -F: -e 'print &quot;$file --&quot; . $F[1]' -- -file=$f
+done
+</code></pre>
+
+<p>Ignore changes of the files&rsquo; mode (for current repo):</p>
+
+<pre><code>git config core.fileMode false
+</code></pre>
+
+<h1 id="more">More</h1>
+
+<ul>
+<li>See my <a href="http://wiki.reisinge.net/Git">wiki</a> for more</li>
+<li><a href="http://jreisinger.blogspot.sk/2014/01/simple-source-code-management-with-git.html">My blog post derived from this text</a></li>
+<li><a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">Git Magic</a></li>
+<li><a href="http://www.youtube.com/watch?v=OFkgSjRnay4">O&rsquo;Reilly Webcast: Git in One hour</a></li>
+<li><a href="http://progit.org/book/">Pro Git - Online book</a></li>
+</ul>
+
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/notes/posts/gen_rand_file/" data-toggle="tooltip" data-placement="top" title="Generate Random File">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="/notes/posts/sysadmin-philosophy/" data-toggle="tooltip" data-placement="top" title="System administration philosophy of AE. Frish">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/notes/js/script.js"></script>
+<script src="/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'Toracking ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>
