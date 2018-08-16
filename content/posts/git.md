@@ -1,7 +1,6 @@
 ---
 title: "Git"
 date: 2014-03-20
-draft: false
 tags: [prog]
 categories: [git]
 ---
