@@ -6,14 +6,18 @@
   <title>Git - Notes</title>
   <meta property="og:title" content="Git - Notes" />
   <meta name="twitter:title" content="Git - Notes" />
-  <meta name="description" content="Git is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
-Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do.
+  <meta name="description" content="Git is a free &amp; open source, distributed version (revision) control system created by Linus Torvalds.
+Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server.
+Branching and merging are fast and easy to do.
+Git uses an intelligent compression system to reduce the cost of storing the entire history.
 First-Time Git Setup Introduce yourself to git with your name and public email address before doing any operation:">
-  <meta property="og:description" content="Git is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
-Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do.
+  <meta property="og:description" content="Git is a free &amp; open source, distributed version (revision) control system created by Linus Torvalds.
+Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server.
+Branching and merging are fast and easy to do.
+Git uses an intelligent compression system to reduce the cost of storing the entire history.
 First-Time Git Setup Introduce yourself to git with your name and public email address before doing any operation:">
-  <meta name="twitter:description" content="Git is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
-Every Git clone is a full-fledged [in …">
+  <meta name="twitter:description" content="Git is a free &amp; open source, distributed version (revision) control system created by Linus Torvalds.
+Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/notes/posts/git/" />
@@ -70,7 +74,7 @@ Every Git clone is a full-fledged [in …">
 <li><a href="#starting-a-git-repository">Starting a git repository</a></li>
 <li><a href="#getting-a-git-repository">Getting a git repository</a></li>
 <li><a href="#making-changes">Making changes</a></li>
-<li><a href="#exclude-some-files">Exclude some files</a></li>
+<li><a href="#excluding-some-files">Excluding some files</a></li>
 <li><a href="#tips-and-tricks">Tips and Tricks</a></li>
 <li><a href="#more">More</a></li>
 </ul>
@@ -78,9 +82,13 @@ Every Git clone is a full-fledged [in …">
 </aside>
       
 
-<p><a href="http://git-scm.com/">Git</a> is a free &amp; open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
+<p><a href="http://git-scm.com/">Git</a> is a free &amp; open source, distributed version (revision) control system created by Linus Torvalds.</p>
 
-<p>Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do.</p>
+<p>Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server.</p>
+
+<p>Branching and merging are fast and easy to do.</p>
+
+<p>Git uses an intelligent compression system to reduce the cost of storing the entire history.</p>
 
 <h1 id="first-time-git-setup">First-Time Git Setup</h1>
 
@@ -118,7 +126,7 @@ $ cd project
 $ git init
 </code></pre>
 
-<p>You&rsquo;ve now initialized the working directory &ndash; you may notice a new directory created, named <code>.git</code>. Git stores all of its stuff in this hidden directory. If you want Git to stop tracking your files, just remove <code>.git</code>.</p>
+<p>You&rsquo;ve now initialized the working directory. You may notice a new directory created, named <code>.git</code>. Git stores all of its stuff in this hidden directory. If you want Git to stop tracking your files, just remove <code>.git</code>.</p>
 
 <p>Next, tell git to take a snapshot [in svk: momentka] of the contents of all files under the current directory (note the <code>.</code>), with git-add:</p>
 
@@ -186,7 +194,7 @@ $ git clone ssh://[user@]server.xy/path/to/repo.git/
 
 <p>A note on commit messages: Though not required, it&rsquo;s a good idea to begin the commit message with a single short (less than 50 character) line summarizing the change, followed by a blank line and then a more thorough description. Tools that turn commits into email, for example, use the first line on the <code>Subject:</code> line and the rest of the commit in the body.</p>
 
-<h1 id="exclude-some-files">Exclude some files</h1>
+<h1 id="excluding-some-files">Excluding some files</h1>
 
 <p>To set certain files or patterns to be ignored by Git, you must either modify the <code>$GIT_DIR/info/exclude</code> file or create a file called <code>.gitignore</code> in your project’s root directory. The former is not shared between repositories (so you can set ignores for your specific environment), while the <code>.gitignore</code> is usually checked into Git and distributed along with everything else.</p>
 
@@ -203,6 +211,8 @@ $ git clone ssh://[user@]server.xy/path/to/repo.git/
 <pre><code>git rm --cached &lt;filename&gt;
 </code></pre>
 
+<h1 id="tips-and-tricks">Tips and Tricks</h1>
+
 <p>To to list tracked files:</p>
 
 <pre><code># currently tracked files under master branch
@@ -217,8 +227,6 @@ git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
 <pre><code>git clean -n  # dry-run
 git clean -f  # files removed!
 </code></pre>
-
-<h1 id="tips-and-tricks">Tips and Tricks</h1>
 
 <p>Apply changes generated via <code>git diff [--binary]</code>:</p>
 
