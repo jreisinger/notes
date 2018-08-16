@@ -1,8 +1,8 @@
 ---
 title: "Git"
 date: 2014-03-20
-tags: [prog]
-categories: [git]
+categories: [prog]
+tags: [git]
 ---
 
 [Git](http://git-scm.com/) is a free & open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.

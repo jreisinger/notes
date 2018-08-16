@@ -93,7 +93,7 @@
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/categories/git/</loc>
+    <loc>https://jreisinger.github.io/notes/tags/git/</loc>
     <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -179,12 +179,6 @@
   <url>
     <loc>https://jreisinger.github.io/notes/categories/prog/</loc>
     <lastmod>2018-08-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/notes/tags/prog/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
