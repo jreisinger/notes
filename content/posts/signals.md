@@ -12,7 +12,9 @@ Signal -- a message from the kernel (or a process) to a process. Used for:
 
 To ask the kernel to a send a signal:
 
-    kill [-SIGNAL] PID  # default signal is TERM
+``` shell
+kill [-SIGNAL] PID  # default signal is TERM
+```
 
 Selected signal types:
 

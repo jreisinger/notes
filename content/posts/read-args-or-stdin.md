@@ -7,7 +7,7 @@ tags: [go, perl]
 
 Go
 
-```
+``` go
 package main
 
 import (
@@ -32,7 +32,7 @@ func main() {
 
 Perl
 
-```
+``` perl
 #!/usr/bin/env perl
 use 5.014;    # includes strict
 use warnings;
