@@ -8,11 +8,11 @@
   <meta name="twitter:title" content="Signals - Notes" />
   <meta name="description" content="Signal &ndash; a message from the kernel (or a process) to a process. Used for:
  errors (kernel saying: &ldquo;You can&rsquo;t touch that area of memory!&rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
-kill [-SIGNAL] PID # default signal is TERM  Selected signal types:
+kill [-SIGNAL] PID # default signal is TERM Selected signal types:
  TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.">
   <meta property="og:description" content="Signal &ndash; a message from the kernel (or a process) to a process. Used for:
  errors (kernel saying: &ldquo;You can&rsquo;t touch that area of memory!&rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
-kill [-SIGNAL] PID # default signal is TERM  Selected signal types:
+kill [-SIGNAL] PID # default signal is TERM Selected signal types:
  TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.">
   <meta name="twitter:description" content="Signal &ndash; a message from the kernel (or a process) to a process. Used for:
  errors (kernel saying: &ldquo;You can&rsquo;t touch that area of memory!&rdquo;) events (death of a child, interrupt …">
@@ -91,10 +91,7 @@ kill [-SIGNAL] PID # default signal is TERM  Selected signal types:
 </ul>
 
 <p>To ask the kernel to a send a signal:</p>
-
-<pre><code>kill [-SIGNAL] PID  # default signal is TERM
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kill <span style="color:#f92672">[</span>-SIGNAL<span style="color:#f92672">]</span> PID  # default signal is TERM</code></pre></div>
 <p>Selected signal types:</p>
 
 <ul>
@@ -119,53 +116,47 @@ off)</li>
 </ul>
 
 <p>This is how you can catch signals in Perl:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># signal-catcher -- send me a signal, e.g.:</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># $ kill -2 &lt;my-pid&gt;</span>
+<span style="color:#75715e">#</span>
+<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.014</span>;    <span style="color:#75715e"># includes strict</span>
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> autodie;
 
-<pre><code class="language-perl">#!/usr/bin/env perl
-#
-# signal-catcher -- send me a signal, e.g.:
-#
-# $ kill -2 &lt;my-pid&gt;
-#
-use 5.014;    # includes strict
-use warnings;
-use autodie;
+<span style="color:#66d9ef">our</span> $shucks <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;            <span style="color:#75715e"># shuck - škrupina, šok?</span>
 
-our $shucks = 0;            # shuck - škrupina, šok?
-
-sub catch_zap {             # zap - šleha?
-    my $signame = shift();
-    $shucks++;
-    die &quot;Somebody sent me a SIG$signame!&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">catch_zap</span> {             <span style="color:#75715e"># zap - šleha?</span>
+    <span style="color:#66d9ef">my</span> $signame <span style="color:#f92672">=</span> shift();
+    $shucks<span style="color:#f92672">++</span>;
+    die <span style="color:#e6db74">&#34;Somebody sent me a SIG$signame!&#34;</span>;
 }
 
-$SIG{INT}   = \&amp;catch_zap;
-$SIG{QUIT}  = \&amp;catch_zap;  # catch another signal, too
+$SIG{INT}   <span style="color:#f92672">=</span> <span style="color:#f92672">\&amp;</span>catch_zap;
+$SIG{QUIT}  <span style="color:#f92672">=</span> <span style="color:#f92672">\&amp;</span>catch_zap;  <span style="color:#75715e"># catch another signal, too</span>
 
-$|++;
-print &quot;Going to sleep &quot;;
-while (1) {
-    print &quot;.&quot;;
-    sleep 1;
-}
-</code></pre>
-
+$|<span style="color:#f92672">++</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Going to sleep &#34;</span>;
+<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;.&#34;</span>;
+    sleep <span style="color:#ae81ff">1</span>;
+}</code></pre></div>
 <p>Catching a signal in Python:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
 
-<pre><code class="language-python">#!/usr/bin/env python
+<span style="color:#f92672">import</span> sys<span style="color:#f92672">,</span> signal<span style="color:#f92672">,</span> time
 
-import sys, signal, time
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">now</span>(): <span style="color:#66d9ef">return</span> time<span style="color:#f92672">.</span>ctime(time<span style="color:#f92672">.</span>time())       <span style="color:#75715e"># current time string</span>
 
-def now(): return time.ctime(time.time())       # current time string
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">onSignal</span>(signum, stackframe):               <span style="color:#75715e"># python signal handler</span>
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Got signal&#39;</span>, signum, <span style="color:#e6db74">&#39;at&#39;</span>, now())
 
-def onSignal(signum, stackframe):               # python signal handler
-    print('Got signal', signum, 'at', now())
+signum <span style="color:#f92672">=</span> int(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>])                       <span style="color:#75715e"># from the cmd line</span>
 
-signum = int(sys.argv[1])                       # from the cmd line
-
-signal.signal(signum, onSignal)                 # install signal handler
-while True: signal.pause()                      # wait for signals
-</code></pre>
-
+signal<span style="color:#f92672">.</span>signal(signum, onSignal)                 <span style="color:#75715e"># install signal handler</span>
+<span style="color:#66d9ef">while</span> True: signal<span style="color:#f92672">.</span>pause()                      <span style="color:#75715e"># wait for signals</span></code></pre></div>
 <p>Source:</p>
 
 <ul>

@@ -7,13 +7,13 @@
   <meta property="og:title" content="Reading from command line arguments or from STDIN - Notes" />
   <meta name="twitter:title" content="Reading from command line arguments or from STDIN - Notes" />
   <meta name="description" content="Go
-package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } }  Perl
-#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }  ">
+package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() { if len(os.Args) &gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN  stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } } Perl
+#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }">
   <meta property="og:description" content="Go
-package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } }  Perl
-#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }  ">
+package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() { if len(os.Args) &gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN  stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } } Perl
+#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }">
   <meta name="twitter:description" content="Go
-package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func main() { if len(os.Args) &gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } …">
+package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() { if len(os.Args) &gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/notes/posts/read-args-or-stdin/" />
@@ -70,43 +70,37 @@ package main import ( &quot;bufio&quot; &quot;os&quot; &quot;fmt&quot; ) func ma
       </ul>
       
       <p>Go</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code>package main
-
-import (
-    &quot;bufio&quot;
-    &quot;os&quot;
-    &quot;fmt&quot;
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;bufio&#34;</span>
+    <span style="color:#e6db74">&#34;os&#34;</span>
+    <span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-func main() {
-    if len(os.Args) &gt; 1 {               // we have command line args
-        for _, arg := range os.Args[1:] {
-            fmt.Println(arg)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>) &gt; <span style="color:#ae81ff">1</span> {               <span style="color:#75715e">// we have command line args
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">arg</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>:] {
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arg</span>)
         }
-    } else {                            // read from STDIN
-        stdin := bufio.NewScanner(os.Stdin)
-        for stdin.Scan() {
-            fmt.Println(stdin.Text())
+    } <span style="color:#66d9ef">else</span> {                            <span style="color:#75715e">// read from STDIN
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">stdin</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewScanner</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdin</span>)
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">stdin</span>.<span style="color:#a6e22e">Scan</span>() {
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">stdin</span>.<span style="color:#a6e22e">Text</span>())
         }
     }
-}
-</code></pre>
-
+}</code></pre></div>
 <p>Perl</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.014</span>;    <span style="color:#75715e"># includes strict</span>
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> autodie;
 
-<pre><code>#!/usr/bin/env perl
-use 5.014;    # includes strict
-use warnings;
-use autodie;
-
-if (@ARGV) {
-    say for @ARGV;
-} else {
-    print for &lt;STDIN&gt;;    # but all lines at once
-}
-</code></pre>
-
+<span style="color:#66d9ef">if</span> (@ARGV) {
+    say <span style="color:#66d9ef">for</span> @ARGV;
+} <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">print</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;    <span style="color:#75715e"># but all lines at once</span>
+}</code></pre></div>
     </article>
 
     

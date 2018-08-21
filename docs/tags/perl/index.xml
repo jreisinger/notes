@@ -29,8 +29,8 @@
       
       <guid>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</guid>
       <description>Go
-package main import ( &amp;quot;bufio&amp;quot; &amp;quot;os&amp;quot; &amp;quot;fmt&amp;quot; ) func main() { if len(os.Args) &amp;gt; 1 { // we have command line args for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } }  Perl
-#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &amp;lt;STDIN&amp;gt;; # but all lines at once }  </description>
+package main import ( &amp;#34;bufio&amp;#34; &amp;#34;os&amp;#34; &amp;#34;fmt&amp;#34; ) func main() { if len(os.Args) &amp;gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN  stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } } Perl
+#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &amp;lt;STDIN&amp;gt;; # but all lines at once }</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@ package main import ( &amp;quot;bufio&amp;quot; &amp;quot;os&amp;quot; &amp;quot
       <guid>https://jreisinger.github.io/notes/posts/signals/</guid>
       <description>Signal &amp;ndash; a message from the kernel (or a process) to a process. Used for:
  errors (kernel saying: &amp;ldquo;You can&amp;rsquo;t touch that area of memory!&amp;rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
-kill [-SIGNAL] PID # default signal is TERM  Selected signal types:
+kill [-SIGNAL] PID # default signal is TERM Selected signal types:
  TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.</description>
     </item>
     
