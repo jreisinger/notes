@@ -8,6 +8,9 @@ disqusShortname = "notes-4"
 googleAnalytics = "Toracking ID"
 publishDir = "docs"
 
+#pygmentsUseClassic = true
+pygmentsCodeFences = true
+
 # Copyright notice. This is displayer in the footer.
 #copyright = "&copy; Copyright 2018 Jozef Reisinger"
 
