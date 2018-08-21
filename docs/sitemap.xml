@@ -28,6 +28,11 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/signals/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/net-basics/</loc>
     <lastmod>2015-09-16T00:00:00+00:00</lastmod>
   </url>
@@ -154,7 +159,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/categories/os/</loc>
-    <lastmod>2015-06-01T00:00:00+00:00</lastmod>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -183,6 +188,12 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/tags/python/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/categories/sec/</loc>
     <lastmod>2018-08-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -190,6 +201,12 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/series/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/signals/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

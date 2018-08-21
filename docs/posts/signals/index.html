@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Signals - Notes</title>
+  <meta property="og:title" content="Signals - Notes" />
+  <meta name="twitter:title" content="Signals - Notes" />
+  <meta name="description" content="Signal &ndash; a message from the kernel (or a process) to a process. Used for:
+ errors (kernel saying: &ldquo;You can&rsquo;t touch that area of memory!&rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
+kill [-SIGNAL] PID # default signal is TERM  Selected signal types:
+ TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.">
+  <meta property="og:description" content="Signal &ndash; a message from the kernel (or a process) to a process. Used for:
+ errors (kernel saying: &ldquo;You can&rsquo;t touch that area of memory!&rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
+kill [-SIGNAL] PID # default signal is TERM  Selected signal types:
+ TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.">
+  <meta name="twitter:description" content="Signal &ndash; a message from the kernel (or a process) to a process. Used for:
+ errors (kernel saying: &ldquo;You can&rsquo;t touch that area of memory!&rdquo;) events (death of a child, interrupt …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/signals/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Signals</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>October 20, 2015</time></li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/os/">
+            <i class="fas fa-folder"></i>
+            os
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/signals/">
+            <i class="fas fa-tag"></i>
+            signals
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/perl/">
+            <i class="fas fa-tag"></i>
+            perl
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/python/">
+            <i class="fas fa-tag"></i>
+            python
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <p>Signal &ndash; a message from the kernel (or a process) to a process. Used for:</p>
+
+<ul>
+<li>errors (kernel saying: &ldquo;You can&rsquo;t touch that area of memory!&rdquo;)</li>
+<li>events (death of a child, interrupt with Ctrl-C)</li>
+</ul>
+
+<p>To ask the kernel to a send a signal:</p>
+
+<pre><code>kill [-SIGNAL] PID  # default signal is TERM
+</code></pre>
+
+<p>Selected signal types:</p>
+
+<ul>
+<li>TERM (15) - terminate a process (polite request to die, i.e. can and should be caught)</li>
+<li>KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored)</li>
+<li>INT (2) - interrupt, sent by the terminal driver on <code>Ctrl-C</code>. Simple programs usually just die, more important ones (ex. shells, editors) stop long-running operations.</li>
+<li>STOP - freeze the process (stays in memory ready to continue where it left
+off)</li>
+<li>CONT - continue running the STOPed process</li>
+<li>QUIT - similar to TERM but generates a core dump in not caugh (<code>Ctrl-\</code>)</li>
+<li>CHLD - one of the child processes stopped running - or, more likely, exited</li>
+<li><a href="http://world.std.com/~swmcd/steven/tech/daemon.html">HUP</a></li>
+<li>TSTP - pressing <code>Ctrl-Z</code> sends TSTP to a process</li>
+</ul>
+
+<p>Each process has a default disposition (what to do) for each possible signal. You may install your own handler or otherwise change the disposition of most signals. Only SIGKILL and SIGSTOP cannot be changed. The rest you can:</p>
+
+<ul>
+<li>ignore</li>
+<li>block (blocked signal is pending until it is later unblocked, i.e. removed from the signal mask)</li>
+<li>catch (trap)</li>
+</ul>
+
+<p>This is how you can catch signals in Perl:</p>
+
+<pre><code class="language-perl">#!/usr/bin/env perl
+#
+# signal-catcher -- send me a signal, e.g.:
+#
+# $ kill -2 &lt;my-pid&gt;
+#
+use 5.014;    # includes strict
+use warnings;
+use autodie;
+
+our $shucks = 0;            # shuck - škrupina, šok?
+
+sub catch_zap {             # zap - šleha?
+    my $signame = shift();
+    $shucks++;
+    die &quot;Somebody sent me a SIG$signame!&quot;;
+}
+
+$SIG{INT}   = \&amp;catch_zap;
+$SIG{QUIT}  = \&amp;catch_zap;  # catch another signal, too
+
+$|++;
+print &quot;Going to sleep &quot;;
+while (1) {
+    print &quot;.&quot;;
+    sleep 1;
+}
+</code></pre>
+
+<p>Catching a signal in Python:</p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+
+import sys, signal, time
+
+def now(): return time.ctime(time.time())       # current time string
+
+def onSignal(signum, stackframe):               # python signal handler
+    print('Got signal', signum, 'at', now())
+
+signum = int(sys.argv[1])                       # from the cmd line
+
+signal.signal(signum, onSignal)                 # install signal handler
+while True: signal.pause()                      # wait for signals
+</code></pre>
+
+<p>Source:</p>
+
+<ul>
+<li>How Linux Works, 2nd</li>
+<li>Perl Cookbook, 2nd</li>
+<li>The Linux Programming Interface</li>
+<li><code>man 7 signal</code> - overview of signals</li>
+<li>Programming Python</li>
+</ul>
+
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/notes/posts/tcpdump/" data-toggle="tooltip" data-placement="top" title="tcpdump">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="/notes/posts/net-basics/" data-toggle="tooltip" data-placement="top" title="Networking basics">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/notes/js/script.js"></script>
+<script src="/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'Toracking ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

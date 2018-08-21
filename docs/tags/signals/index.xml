@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Signals on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/signals/</link>
+    <description>Recent content in Signals on Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 20 Oct 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jreisinger.github.io/notes/tags/signals/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Signals</title>
+      <link>https://jreisinger.github.io/notes/posts/signals/</link>
+      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/signals/</guid>
+      <description>Signal &amp;ndash; a message from the kernel (or a process) to a process. Used for:
+ errors (kernel saying: &amp;ldquo;You can&amp;rsquo;t touch that area of memory!&amp;rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
+kill [-SIGNAL] PID # default signal is TERM  Selected signal types:
+ TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.</description>
+    </item>
+    
+  </channel>
+</rss>
