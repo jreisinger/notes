@@ -9,7 +9,7 @@ tags: [unix]
 * can sniff traffic on many network types (including 802.1Q VLAN)
 * de facto standard for command line packet analysis in Unix environment
 
-Useful options:
+# Useful options
 
 `-D` -- list available interfaces
 
@@ -31,38 +31,47 @@ bytes (default if version >= 4.0)
 
 Examples:
 
-    tcpdump -nni any -w packets.pcap
-    tcpdump -nnr packets.pcap
+```sh
+tcpdump -nni any -w packets.pcap
+tcpdump -nnr packets.pcap
+```
 
-Output format will vary based upon what protocols are in use:
+# Output format
 
-* TCP
+will vary based upon what protocols are in use ...
 
-        timestamp L3_protocol sIP.sPort > dIP.dPort: TCP_flags,
-        TCP_sequence_number, TCP_acknowledgement_number, TCP_windows_size,
-        data_length_in_bytes
+TCP:
 
-* UDP
+```plain
+timestamp L3_protocol sIP.sPort > dIP.dPort: TCP_flags,
+TCP_sequence_number, TCP_acknowledgement_number, TCP_windows_size,
+data_length_in_bytes
+```
 
-        timestamp L3_protocol sIP.sPort > dIP.dPort: L4_protocol, data_length
+UDP:
+
+```plain
+timestamp L3_protocol sIP.sPort > dIP.dPort: L4_protocol, data_length
+```
 
 * use up to `-vvv` to provide more information on headers
 * use `-x` to get entire packets (including data not just headers) in hex format
 * use `-A` to get entire packets in ASCII format
 * use `-X` to get entire packets in hex and ASCII format
 
-Packet Filtering
-================
+# Packet Filtering
 
 * utilizes the Berkeley Packet Filter (BPF) format
 * added to the end of the command (recommended to use single quotes)
 
-        tcpdump -nnr packets.pcap 'tcp dst port 8080' -w packets_tcp8080.pcap
-        tcpdump -nnr packets.pcap -F known_good_hosts.bpf
+```sh
+tcpdump -nnr packets.pcap 'tcp dst port 8080' -w packets_tcp8080.pcap
+tcpdump -nnr packets.pcap -F known_good_hosts.bpf
+```
 
-BPF
----
+## BPF
 
+```plain
                operator
      primitive   |      primitive
          |       |         |
@@ -72,6 +81,7 @@ BPF
      |        |
      |        value
     qualifier
+```
 
 Qualifiers
 
@@ -100,17 +110,17 @@ Examples
 * `icmp` - match all ICMP traffic
 * `!ip6` - match everything that is not IPv6
 
-Cookbook
-========
+# Cookbook
 
 [Show](https://serverfault.com/questions/504431/human-readable-format-for-http-headers-with-tcpdump) HTTP Host header:
-```
+
+```sh
 stdbuf -oL -eL /usr/sbin/tcpdump -nn -A -s 10240 \
 "tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)"
 ```
 
 ---
 
-Resources
+# Resources
 
 * Applied Network Security Monitoring

@@ -6,14 +6,12 @@
   <title>tcpdump - Notes</title>
   <meta property="og:title" content="tcpdump - Notes" />
   <meta name="twitter:title" content="tcpdump - Notes" />
-  <meta name="description" content="despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options:
--D &ndash; list available interfaces
+  <meta name="description" content="despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options -D &ndash; list available interfaces
 -i INTERFACE &ndash; listen on INTERFACE (default: lowest numbered interface)
 -w FILE &ndash; write raw packets to FILE
 -r FILE &ndash; read packets from FILE
 -nn &ndash; turn off host and protocol name resolution (to avoid generating DNS packets)">
-  <meta property="og:description" content="despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options:
--D &ndash; list available interfaces
+  <meta property="og:description" content="despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options -D &ndash; list available interfaces
 -i INTERFACE &ndash; listen on INTERFACE (default: lowest numbered interface)
 -w FILE &ndash; write raw packets to FILE
 -r FILE &ndash; read packets from FILE
@@ -77,11 +75,14 @@
 <aside class="toc">
   <nav id="TableOfContents">
 <ul>
+<li><a href="#useful-options">Useful options</a></li>
+<li><a href="#output-format">Output format</a></li>
 <li><a href="#packet-filtering">Packet Filtering</a>
 <ul>
 <li><a href="#bpf">BPF</a></li>
 </ul></li>
 <li><a href="#cookbook">Cookbook</a></li>
+<li><a href="#resources">Resources</a></li>
 </ul>
 </nav>
 </aside>
@@ -93,7 +94,7 @@
 <li>de facto standard for command line packet analysis in Unix environment</li>
 </ul>
 
-<p>Useful options:</p>
+<h1 id="useful-options">Useful options</h1>
 
 <p><code>-D</code> &ndash; list available interfaces</p>
 
@@ -114,60 +115,43 @@ bytes (default if version &gt;= 4.0)</p>
 <p><code>-c COUNT</code> &ndash; capture COUNT packets and stop</p>
 
 <p>Examples:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tcpdump -nni any -w packets.pcap
+tcpdump -nnr packets.pcap</code></pre></div>
+<h1 id="output-format">Output format</h1>
 
-<pre><code>tcpdump -nni any -w packets.pcap
-tcpdump -nnr packets.pcap
-</code></pre>
+<p>will vary based upon what protocols are in use &hellip;</p>
 
-<p>Output format will vary based upon what protocols are in use:</p>
-
-<ul>
-<li><p>TCP</p>
-
-<pre><code>timestamp L3_protocol sIP.sPort &gt; dIP.dPort: TCP_flags,
+<p>TCP:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">timestamp L3_protocol sIP.sPort &gt; dIP.dPort: TCP_flags,
 TCP_sequence_number, TCP_acknowledgement_number, TCP_windows_size,
-data_length_in_bytes
-</code></pre></li>
-
-<li><p>UDP</p>
-
-<pre><code>timestamp L3_protocol sIP.sPort &gt; dIP.dPort: L4_protocol, data_length
-</code></pre></li>
-
-<li><p>use up to <code>-vvv</code> to provide more information on headers</p></li>
-
-<li><p>use <code>-x</code> to get entire packets (including data not just headers) in hex format</p></li>
-
-<li><p>use <code>-A</code> to get entire packets in ASCII format</p></li>
-
-<li><p>use <code>-X</code> to get entire packets in hex and ASCII format</p></li>
+data_length_in_bytes</code></pre></div>
+<p>UDP:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">timestamp L3_protocol sIP.sPort &gt; dIP.dPort: L4_protocol, data_length</code></pre></div>
+<ul>
+<li>use up to <code>-vvv</code> to provide more information on headers</li>
+<li>use <code>-x</code> to get entire packets (including data not just headers) in hex format</li>
+<li>use <code>-A</code> to get entire packets in ASCII format</li>
+<li>use <code>-X</code> to get entire packets in hex and ASCII format</li>
 </ul>
 
 <h1 id="packet-filtering">Packet Filtering</h1>
 
 <ul>
 <li>utilizes the Berkeley Packet Filter (BPF) format</li>
-
-<li><p>added to the end of the command (recommended to use single quotes)</p>
-
-<pre><code>tcpdump -nnr packets.pcap 'tcp dst port 8080' -w packets_tcp8080.pcap
-tcpdump -nnr packets.pcap -F known_good_hosts.bpf
-</code></pre></li>
+<li>added to the end of the command (recommended to use single quotes)</li>
 </ul>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tcpdump -nnr packets.pcap <span style="color:#e6db74">&#39;tcp dst port 8080&#39;</span> -w packets_tcp8080.pcap
+tcpdump -nnr packets.pcap -F known_good_hosts.bpf</code></pre></div>
 <h2 id="bpf">BPF</h2>
-
-<pre><code>           operator
- primitive   |      primitive
-     |       |         |
-+---------+  | +----------------+
-|         |  | |                |
-udp port 53 &amp;&amp; dst host 192.0.2.2
- |        |
- |        value
-qualifier
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">               operator
+     primitive   |      primitive
+         |       |         |
+    +---------+  | +----------------+
+    |         |  | |                |
+    udp port 53 &amp;&amp; dst host 192.0.2.2
+     |        |
+     |        value
+    qualifier</code></pre></div>
 <p>Qualifiers</p>
 
 <ul>
@@ -204,14 +188,11 @@ qualifier
 <h1 id="cookbook">Cookbook</h1>
 
 <p><a href="https://serverfault.com/questions/504431/human-readable-format-for-http-headers-with-tcpdump">Show</a> HTTP Host header:</p>
-
-<pre><code>stdbuf -oL -eL /usr/sbin/tcpdump -nn -A -s 10240 \
-&quot;tcp port 80 and (((ip[2:2] - ((ip[0]&amp;0xf)&lt;&lt;2)) - ((tcp[12]&amp;0xf0)&gt;&gt;2)) != 0)&quot;
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">stdbuf -oL -eL /usr/sbin/tcpdump -nn -A -s <span style="color:#ae81ff">10240</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span><span style="color:#e6db74">&#34;tcp port 80 and (((ip[2:2] - ((ip[0]&amp;0xf)&lt;&lt;2)) - ((tcp[12]&amp;0xf0)&gt;&gt;2)) != 0)&#34;</span></code></pre></div>
 <hr />
 
-<p>Resources</p>
+<h1 id="resources">Resources</h1>
 
 <ul>
 <li>Applied Network Security Monitoring</li>
