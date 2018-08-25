@@ -74,15 +74,15 @@ tcpdump -nnr packets.pcap -F known_good_hosts.bpf
 ## BPF
 
 ```plain
-               operator
-     primitive   |      primitive
-         |       |         |
-    +---------+  | +----------------+
-    |         |  | |                |
-    udp port 53 && dst host 192.0.2.2
-     |        |
-     |        value
-    qualifier
+           operator
+ primitive   |      primitive
+     |       |         |
++---------+  | +----------------+
+|         |  | |                |
+udp port 53 && dst host 192.0.2.2
+ |        |
+ |        value
+qualifier
 ```
 
 Qualifiers

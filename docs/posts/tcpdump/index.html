@@ -148,15 +148,15 @@ data_length_in_bytes</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tcpdump -nnr packets.pcap <span style="color:#e6db74">&#39;tcp dst port 8080&#39;</span> -w packets_tcp8080.pcap
 tcpdump -nnr packets.pcap -F known_good_hosts.bpf</code></pre></div>
 <h2 id="bpf">BPF</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">               operator
-     primitive   |      primitive
-         |       |         |
-    +---------+  | +----------------+
-    |         |  | |                |
-    udp port 53 &amp;&amp; dst host 192.0.2.2
-     |        |
-     |        value
-    qualifier</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">           operator
+ primitive   |      primitive
+     |       |         |
++---------+  | +----------------+
+|         |  | |                |
+udp port 53 &amp;&amp; dst host 192.0.2.2
+ |        |
+ |        value
+qualifier</code></pre></div>
 <p>Qualifiers</p>
 
 <ul>
