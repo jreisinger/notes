@@ -32,7 +32,7 @@ Types
 
 Usage
 
-```
+``` sh
 $ perl -MDigest::SHA3=sha3_512_hex -E 'say sha3_512_hex( "plaintext" )'
 ```
 
