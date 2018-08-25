@@ -22,7 +22,7 @@ Stack
   <meta property="og:url" content="https://jreisinger.github.io/notes/posts/heap-vs-stack/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.47.1" />
   <link rel="stylesheet" href="/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
@@ -95,22 +95,18 @@ Stack
 </ul>
 
 <p>Go example:</p>
-
-<pre><code>var global *int     // &quot;global&quot; is the name :-)
-
-func f() {
-    var x int       // heap-allocated because escapes from f()
-    x = 1
-    global = &amp;x
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">global</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>     <span style="color:#75715e">// &#34;global&#34; is the name :-)
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">f</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>       <span style="color:#75715e">// heap-allocated because escapes from f()
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">1</span>
+    <span style="color:#a6e22e">global</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">x</span>
 }
 
-func g() {
-    y := new(int)   // allocated on the stack
-    *y = 1
-}
-
-</code></pre>
-
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">g</span>() {
+    <span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> new(<span style="color:#66d9ef">int</span>)   <span style="color:#75715e">// allocated on the stack
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">*</span><span style="color:#a6e22e">y</span> = <span style="color:#ae81ff">1</span>
+}</code></pre></div>
 <p>More</p>
 
 <ul>
@@ -124,7 +120,7 @@ func g() {
 
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -168,7 +164,7 @@ func g() {
 <script src="/notes/js/script.js"></script>
 <script src="/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

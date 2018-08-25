@@ -25,7 +25,7 @@ Heap
 
 Go example:
 
-```
+```go
 var global *int     // "global" is the name :-)
 
 func f() {
