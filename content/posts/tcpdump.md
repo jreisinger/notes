@@ -54,6 +54,8 @@ UDP:
 timestamp L3_protocol sIP.sPort > dIP.dPort: L4_protocol, data_length
 ```
 
+## Output options
+
 * use up to `-vvv` to provide more information on headers
 * use `-x` to get entire packets (including data not just headers) in hex format
 * use `-A` to get entire packets in ASCII format

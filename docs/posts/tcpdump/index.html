@@ -76,7 +76,10 @@
   <nav id="TableOfContents">
 <ul>
 <li><a href="#useful-options">Useful options</a></li>
-<li><a href="#output-format">Output format</a></li>
+<li><a href="#output-format">Output format</a>
+<ul>
+<li><a href="#output-options">Output options</a></li>
+</ul></li>
 <li><a href="#packet-filtering">Packet Filtering</a>
 <ul>
 <li><a href="#bpf">BPF</a></li>
@@ -127,6 +130,8 @@ TCP_sequence_number, TCP_acknowledgement_number, TCP_windows_size,
 data_length_in_bytes</code></pre></div>
 <p>UDP:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">timestamp L3_protocol sIP.sPort &gt; dIP.dPort: L4_protocol, data_length</code></pre></div>
+<h2 id="output-options">Output options</h2>
+
 <ul>
 <li>use up to <code>-vvv</code> to provide more information on headers</li>
 <li>use <code>-x</code> to get entire packets (including data not just headers) in hex format</li>
