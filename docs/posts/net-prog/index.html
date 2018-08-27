@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Network Programming - Notes</title>
+  <meta property="og:title" content="Network Programming - Notes" />
+  <meta name="twitter:title" content="Network Programming - Notes" />
+  <meta name="description" content="Sockets
+ a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types
+1) SOCK_STREAM - similar to pipes
+ bidirectional &ndash;&gt; full duplex (simultaneous communication in both directions) connection-oriented = like a phone call byte-stream = no concept of message boundaries reliable = data will be either delivered exactly as transmitted or we&rsquo;ll get notification of a failure  2) SOCK_DGRAM - only garantee that message borders will be preserverd when read (but lower overhead)">
+  <meta property="og:description" content="Sockets
+ a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types
+1) SOCK_STREAM - similar to pipes
+ bidirectional &ndash;&gt; full duplex (simultaneous communication in both directions) connection-oriented = like a phone call byte-stream = no concept of message boundaries reliable = data will be either delivered exactly as transmitted or we&rsquo;ll get notification of a failure  2) SOCK_DGRAM - only garantee that message borders will be preserverd when read (but lower overhead)">
+  <meta name="twitter:description" content="Sockets
+ a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types
+1) SOCK_STREAM - similar to pipes
+ bidirectional &ndash;&gt; full duplex …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/net-prog/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.47.1" />
+  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Network Programming</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>March 10, 2017</time></li>
+        <li class="article-meta-categories">
+          <a href="/notes/categories/net/">
+            <i class="fas fa-folder"></i>
+            net
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/notes/tags/sockets/">
+            <i class="fas fa-tag"></i>
+            sockets
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <p>Sockets</p>
+
+<ul>
+<li>a method for IPC</li>
+<li>endpoints for communication</li>
+<li>allow processes to communicate on a host or over a network</li>
+</ul>
+
+<p>Socket types</p>
+
+<p>1) <code>SOCK_STREAM</code> - similar to pipes</p>
+
+<ul>
+<li>bidirectional &ndash;&gt; full duplex (<em>simultaneous</em> communication in both directions)</li>
+<li>connection-oriented = like a phone call</li>
+<li>byte-stream = no concept of message boundaries</li>
+<li>reliable = data will be either delivered exactly as transmitted or we&rsquo;ll get notification of a failure</li>
+</ul>
+
+<p>2) <code>SOCK_DGRAM</code> - only garantee that message borders will be preserverd when read
+   (but lower overhead)</p>
+
+<p>Domains a.k.a. Protocol (or Address) Families - communication range and address format</p>
+
+<p>1) <code>PF_INET</code> - socket is identified by host (IP address) and port</p>
+
+<p>2) <code>PF_UNIX</code> - .. by filename (ex. <code>/tmp/mysock</code>)</p>
+
+<p>&hellip; domains and types are identified by symbolic names above (that are mapped
+to numeric constants) which are constants exported by <code>Socket</code> and <code>IO::Socket</code></p>
+
+<p>Protocols (there&rsquo;s rarely more than one protocol for the given domain and type
+of socket)</p>
+
+<p>1) <code>tcp</code></p>
+
+<p>2) <code>udp</code></p>
+
+<p>&hellip; protocols have names that correspond to numbers used by the OS.
+<code>getprotobyname()</code> (built into Perl) returns these numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">-</span><span style="color:#f92672">le</span> <span style="color:#e6db74">&#39;print &#34;$_ -&gt; &#34;, scalar getprotobyname $_ for qw(tcp udp)&#39;</span>
+tcp <span style="color:#f92672">-&gt;</span> <span style="color:#ae81ff">6</span>
+udp <span style="color:#f92672">-&gt;</span> <span style="color:#ae81ff">17</span></code></pre></div>
+<p>Perl&rsquo;s built-in functions</p>
+
+<ul>
+<li>low-level direct access to every part of the system</li>
+<li>on error return <code>undef</code> and set <code>$!</code></li>
+<li><code>socket()</code> - make a socket</li>
+<li><code>bind()</code> - give a socket a local name by binding it to an address</li>
+<li><code>connect()</code> - connect a local socket to a (possibly remote) one</li>
+<li><code>listen()</code> - ready a socket for connections from other sockets</li>
+<li><code>accept()</code> - receive the connections one by one creating new sockets</li>
+<li>use <code>print</code> and <code>&lt;&gt;</code> or <code>syswrite</code> or <code>sysread</code> to communicate over a stream
+socket</li>
+<li>.. <code>send</code> and <code>recv</code> for datagram socket</li>
+</ul>
+
+<p>Typical SERVER:</p>
+
+<ol>
+<li>socket()</li>
+<li>bind() and listen()</li>
+<li>loop in a blocking accept() waiting for incoming connections</li>
+</ol>
+
+<p>Typical CLIENT</p>
+
+<ol>
+<li>socket() and connect()</li>
+</ol>
+
+<p>.. datagram clients don&rsquo;t need to connect(); they specify the destination as argument to send()</p>
+
+<p>UDP client <code>bind()</code> vs <code>connect()</code></p>
+
+<ul>
+<li>bind() - grab a particular port</li>
+<li>connect() - limit received replies so they come only from a particular server</li>
+</ul>
+
+<p>Sources</p>
+
+<ul>
+<li><a href="https://github.com/brandon-rhodes/fopnp">Foundation of Python Network Programming</a> (2014)</li>
+<li>Black Hat Python (2014)</li>
+<li>The Linux Programming Interface, Ch. 56-61 (2010)</li>
+<li>Perl Cookbook, Ch. 17 Sockets (2003)</li>
+<li>Network Programming with Perl (2001)</li>
+</ul>
+
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/notes/posts/heap-vs-stack/" data-toggle="tooltip" data-placement="top" title="Heap vs Stack">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="/notes/posts/devops/" data-toggle="tooltip" data-placement="top" title="Devops">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="/notes/js/script.js"></script>
+<script src="/notes/js/custom.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'Toracking ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>
