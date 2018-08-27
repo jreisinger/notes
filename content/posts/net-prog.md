@@ -1,17 +1,18 @@
 ---
 title: "Network Programming"
 date: 2017-03-10
+lastmod: 2018-08-27
 categories: [net]
-tags: [sockets]
+tags: [sockets, IPC]
 ---
 
-Sockets
+## Sockets
 
 - a method for IPC
 - endpoints for communication
 - allow processes to communicate on a host or over a network
 
-Socket types
+## Socket types
 
 1) `SOCK_STREAM` - similar to pipes
 
@@ -23,23 +24,27 @@ Socket types
 2) `SOCK_DGRAM` - only garantee that message borders will be preserverd when read
    (but lower overhead)
 
-Domains a.k.a. Protocol (or Address) Families - communication range and address format
+## Domains
+
+* a.k.a. Protocol (or Address) Families
+* communication range and address format
 
 1) `PF_INET` - socket is identified by host (IP address) and port
 
 2) `PF_UNIX` - .. by filename (ex. `/tmp/mysock`)
 
-... domains and types are identified by symbolic names above (that are mapped
-to numeric constants) which are constants exported by `Socket` and `IO::Socket`
+Domains and types are identified by symbolic names above (that are mapped to
+numeric constants) which are constants exported by `Socket` and `IO::Socket`.
 
-Protocols (there's rarely more than one protocol for the given domain and type
-of socket)
+## Protocols 
+
+There's rarely more than one protocol for the given domain and type of socket.
 
 1) `tcp`
 
 2) `udp`
 
-... protocols have names that correspond to numbers used by the OS.
+Protocols have names that correspond to numbers used by the OS.
 `getprotobyname()` (built into Perl) returns these numbers:
 
 ``` perl
@@ -48,7 +53,7 @@ tcp -> 6
 udp -> 17
 ```
 
-Perl's built-in functions
+## Perl's built-in functions
 
 - low-level direct access to every part of the system
 - on error return `undef` and set `$!`
@@ -61,7 +66,9 @@ Perl's built-in functions
   socket
 - .. `send` and `recv` for datagram socket
 
-Typical SERVER: 
+## Workflows
+
+Typical SERVER
 
 1. socket()
 2. bind() and listen()
@@ -78,7 +85,7 @@ UDP client `bind()` vs `connect()`
 * bind() - grab a particular port
 * connect() - limit received replies so they come only from a particular server
 
-Sources
+## Sources
 
 - [Foundation of Python Network Programming](https://github.com/brandon-rhodes/fopnp) (2014)
 - Black Hat Python (2014)

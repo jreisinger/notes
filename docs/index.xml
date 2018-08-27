@@ -51,9 +51,7 @@ Stack
       <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/net-prog/</guid>
-      <description>Sockets
- a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types
-1) SOCK_STREAM - similar to pipes
+      <description>Sockets  a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types 1) SOCK_STREAM - similar to pipes
  bidirectional &amp;ndash;&amp;gt; full duplex (simultaneous communication in both directions) connection-oriented = like a phone call byte-stream = no concept of message boundaries reliable = data will be either delivered exactly as transmitted or we&amp;rsquo;ll get notification of a failure  2) SOCK_DGRAM - only garantee that message borders will be preserverd when read (but lower overhead)</description>
     </item>
     
