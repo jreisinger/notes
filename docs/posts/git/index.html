@@ -93,26 +93,17 @@ Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with
 <h1 id="first-time-git-setup">First-Time Git Setup</h1>
 
 <p>Introduce yourself to git with your name and public email address before doing any operation:</p>
-
-<pre><code>git config --global user.name &quot;Jeffrey Lebowski&quot;
-git config --global user.email &quot;jlebowski@dude.org&quot;
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global user.name <span style="color:#e6db74">&#34;Jeffrey Lebowski&#34;</span>
+git config --global user.email <span style="color:#e6db74">&#34;jlebowski@dude.org&#34;</span></code></pre></div>
 <p>You might also like to add some colors, alias(es), your editor and diff tool:</p>
-
-<pre><code>git config --global color.ui true
-git config alias.lol 'log --pretty=oneline --abbrev-commit --graph --decorate'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global color.ui true
+git config alias.lol <span style="color:#e6db74">&#39;log --pretty=oneline --abbrev-commit --graph --decorate&#39;</span>
 git config --global core.editor vim
-git config --global merge.tool vimdiff
-</code></pre>
-
+git config --global merge.tool vimdiff</code></pre></div>
 <p>You only need to do this <em>once</em>.</p>
 
 <p>You can see your configuration like this:</p>
-
-<pre><code>$ git config --list    # output depends on whether you're in a git repo directory or not
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git config --list    # output depends on whether you<span style="color:#960050;background-color:#1e0010">&#39;</span>re in a git repo directory or not</code></pre></div>
 <p>You can also manage you configuration via <a href="https://github.com/jreisinger/dotfiles/blob/master/.gitconfig">~/.gitconfig</a> file.</p>
 
 <p>If you want to manage the current repository configuration just leave out the <code>--global</code> option or use the local config file <code>.git/config</code>.</p>
@@ -120,34 +111,22 @@ git config --global merge.tool vimdiff
 <p>To start using git, you can either create a new project or get one from the Internet and start working on it.</p>
 
 <h1 id="starting-a-git-repository">Starting a git repository</h1>
-
-<pre><code>$ mkdir project
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir project
 $ cd project
-$ git init
-</code></pre>
-
+$ git init</code></pre></div>
 <p>You&rsquo;ve now initialized the working directory. You may notice a new directory created, named <code>.git</code>. Git stores all of its stuff in this hidden directory. If you want Git to stop tracking your files, just remove <code>.git</code>.</p>
 
 <p>Next, tell git to take a snapshot [in svk: momentka] of the contents of all files under the current directory (note the <code>.</code>), with git-add:</p>
-
-<pre><code>$ git add .     # add files in working directory to a temporary storage - index
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add .     # add files in working directory to a temporary storage - index</code></pre></div>
 <p>This snapshot is now stored in a <em>temporary staging area</em> which git calls the &ldquo;staging index&rdquo; or just &ldquo;index&rdquo;. You can permanently store the contents of the index in the repository with <code>git-commit</code>:</p>
-
-<pre><code>$ git commit    # add files in index to a permanent storage - repository (.git directory)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git commit    # add files in index to a permanent storage - repository <span style="color:#f92672">(</span>.git directory<span style="color:#f92672">)</span></code></pre></div>
 <p>This will prompt you for a commit message. You&rsquo;ve now stored the first version of your project in git.</p>
 
 <h1 id="getting-a-git-repository">Getting a git repository</h1>
-
-<pre><code>## the Linux kernel (approx. 150MB download):
-$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
-## any server with ssh and git
-$ git clone ssh://[user@]server.xy/path/to/repo.git/
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">## the Linux kernel (approx. 150MB download):
+</span><span style="color:#75715e"></span>$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+<span style="color:#75715e">## any server with ssh and git
+</span><span style="color:#75715e"></span>$ git clone ssh://<span style="color:#f92672">[</span>user@<span style="color:#f92672">]</span>server.xy/path/to/repo.git/</code></pre></div>
 <h1 id="making-changes">Making changes</h1>
 
 <p>When dealing with git, it&rsquo;s best to work in small bits. Rule of thumb: <em>if you can&rsquo;t summarise it in a sentence, you&rsquo;ve gone too long without committing</em>.</p>
@@ -199,11 +178,8 @@ $ git clone ssh://[user@]server.xy/path/to/repo.git/
 <p>To set certain files or patterns to be ignored by Git, you must either modify the <code>$GIT_DIR/info/exclude</code> file or create a file called <code>.gitignore</code> in your project’s root directory. The former is not shared between repositories (so you can set ignores for your specific environment), while the <code>.gitignore</code> is usually checked into Git and distributed along with everything else.</p>
 
 <p>For example if you don&rsquo;t want to track dot-files, setup <code>.gitignore</code> like this:</p>
-
-<pre><code>.*
-!/.gitignore
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">.*
+!/.gitignore</code></pre></div>
 <p>See more <a href="http://github.com/guides/ignore-for-git">here</a>.</p>
 
 <p>If some of your files is already beeing tracked by git, you can untrack it like this:</p>
@@ -214,34 +190,25 @@ $ git clone ssh://[user@]server.xy/path/to/repo.git/
 <h1 id="tips-and-tricks">Tips and Tricks</h1>
 
 <p>To to list tracked files:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># currently tracked files under master branch
+</span><span style="color:#75715e"></span>git ls-tree -r master --name-only
 
-<pre><code># currently tracked files under master branch
-git ls-tree -r master --name-only
-
-# files that ever existed (i.e. including deleted files)
-git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
-</code></pre>
-
+<span style="color:#75715e"># files that ever existed (i.e. including deleted files)
+</span><span style="color:#75715e"></span>git log --pretty<span style="color:#f92672">=</span>format: --name-only --diff-filter<span style="color:#f92672">=</span>A | sort - | sed <span style="color:#e6db74">&#39;/^$/d&#39;</span></code></pre></div>
 <p>To remove files not tracked by Git (like log files, zipped files, compiled files)</p>
-
-<pre><code>git clean -n  # dry-run
-git clean -f  # files removed!
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clean -n  <span style="color:#75715e"># dry-run
+</span><span style="color:#75715e"></span>git clean -f  # files removed!</code></pre></div>
 <p>Apply changes generated via <code>git diff [--binary]</code>:</p>
 
 <pre><code>git apply --ignore-space-change --ignore-whitespace
 </code></pre>
 
 <p>While in Git-tracked directory, print the filename followed by the author of the last commit:</p>
-
-<pre><code>for f in `find -type f`; do
-        git log -1 --date=iso -- $f |
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">for</span> f in <span style="color:#e6db74">`</span>find -type f<span style="color:#e6db74">`</span>; <span style="color:#66d9ef">do</span>
+        git log -1 --date<span style="color:#f92672">=</span>iso -- $f |
         grep ^Author |
-        perl -wnla -s -F: -e 'print &quot;$file --&quot; . $F[1]' -- -file=$f
-done
-</code></pre>
-
+        perl -wnla -s -F: -e <span style="color:#e6db74">&#39;print &#34;$file --&#34; . $F[1]&#39;</span> -- -file<span style="color:#f92672">=</span>$f
+<span style="color:#66d9ef">done</span></code></pre></div>
 <p>Ignore changes of the files&rsquo; mode (for current repo):</p>
 
 <pre><code>git config core.fileMode false

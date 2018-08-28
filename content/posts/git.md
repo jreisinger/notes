@@ -18,21 +18,27 @@ First-Time Git Setup
 
 Introduce yourself to git with your name and public email address before doing any operation:
 
-    git config --global user.name "Jeffrey Lebowski"
-    git config --global user.email "jlebowski@dude.org"
+```bash
+git config --global user.name "Jeffrey Lebowski"
+git config --global user.email "jlebowski@dude.org"
+```
 
 You might also like to add some colors, alias(es), your editor and diff tool:
 
-    git config --global color.ui true
-    git config alias.lol 'log --pretty=oneline --abbrev-commit --graph --decorate'
-    git config --global core.editor vim
-    git config --global merge.tool vimdiff
+```bash
+git config --global color.ui true
+git config alias.lol 'log --pretty=oneline --abbrev-commit --graph --decorate'
+git config --global core.editor vim
+git config --global merge.tool vimdiff
+```
 
 You only need to do this *once*.
 
 You can see your configuration like this:
 
-    $ git config --list    # output depends on whether you're in a git repo directory or not
+```bash
+$ git config --list    # output depends on whether you're in a git repo directory or not
+```
 
 You can also manage you configuration via [~/.gitconfig](https://github.com/jreisinger/dotfiles/blob/master/.gitconfig) file.
 
@@ -43,29 +49,37 @@ To start using git, you can either create a new project or get one from the Inte
 Starting a git repository
 =========================
 
-    $ mkdir project
-    $ cd project
-    $ git init
+```bash
+$ mkdir project
+$ cd project
+$ git init
+```
 
 You've now initialized the working directory. You may notice a new directory created, named `.git`. Git stores all of its stuff in this hidden directory. If you want Git to stop tracking your files, just remove `.git`.
 
 Next, tell git to take a snapshot [in svk: momentka] of the contents of all files under the current directory (note the `.`), with git-add:
 
-    $ git add .     # add files in working directory to a temporary storage - index
+```bash
+$ git add .     # add files in working directory to a temporary storage - index
+```
 
 This snapshot is now stored in a *temporary staging area* which git calls the "staging index" or just "index". You can permanently store the contents of the index in the repository with `git-commit`:
 
-    $ git commit    # add files in index to a permanent storage - repository (.git directory)
+```bash
+$ git commit    # add files in index to a permanent storage - repository (.git directory)
+```
 
 This will prompt you for a commit message. You've now stored the first version of your project in git.
 
 Getting a git repository
 ========================
 
-    ## the Linux kernel (approx. 150MB download):
-    $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
-    ## any server with ssh and git
-    $ git clone ssh://[user@]server.xy/path/to/repo.git/
+```bash
+## the Linux kernel (approx. 150MB download):
+$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+## any server with ssh and git
+$ git clone ssh://[user@]server.xy/path/to/repo.git/
+```
 
 Making changes
 ==============
@@ -112,8 +126,10 @@ To set certain files or patterns to be ignored by Git, you must either modify th
 
 For example if you don't want to track dot-files, setup `.gitignore` like this:
 
-    .*
-    !/.gitignore
+```bash
+.*
+!/.gitignore
+```
 
 See more [here](http://github.com/guides/ignore-for-git).
 
@@ -126,16 +142,20 @@ Tips and Tricks
 
 To to list tracked files:
 
-    # currently tracked files under master branch
-    git ls-tree -r master --name-only
+```bash
+# currently tracked files under master branch
+git ls-tree -r master --name-only
 
-    # files that ever existed (i.e. including deleted files)
-    git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
+# files that ever existed (i.e. including deleted files)
+git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
+```
 
 To remove files not tracked by Git (like log files, zipped files, compiled files)
 
-    git clean -n  # dry-run
-    git clean -f  # files removed!
+```bash
+git clean -n  # dry-run
+git clean -f  # files removed!
+```
 
 Apply changes generated via `git diff [--binary]`:
 
@@ -143,11 +163,13 @@ Apply changes generated via `git diff [--binary]`:
 
 While in Git-tracked directory, print the filename followed by the author of the last commit:
 
-    for f in `find -type f`; do
-            git log -1 --date=iso -- $f |
-            grep ^Author |
-            perl -wnla -s -F: -e 'print "$file --" . $F[1]' -- -file=$f
-    done
+```bash
+for f in `find -type f`; do
+        git log -1 --date=iso -- $f |
+        grep ^Author |
+        perl -wnla -s -F: -e 'print "$file --" . $F[1]' -- -file=$f
+done
+```
 
 Ignore changes of the files' mode (for current repo):
 
