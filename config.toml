@@ -5,14 +5,20 @@ languageCode = "en"
 # Disqus shortname
 disqusShortname = "notes-4"
 # google analytics tracking id
-googleAnalytics = "Toracking ID"
+googleAnalytics = "UA-124886160-1"
 publishDir = "docs"
+enableRobotsTXT = true
+canonifyURLs = true
 
 #pygmentsUseClassic = true
 pygmentsCodeFences = true
 
 # Copyright notice. This is displayer in the footer.
 #copyright = "&copy; Copyright 2018 Jozef Reisinger"
+
+# and if you think your md file names or locations might change:
+[permalinks]
+  post = "/blog/:title/"
 
 [params]
   # Date format
