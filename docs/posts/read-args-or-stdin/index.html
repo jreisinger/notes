@@ -16,13 +16,13 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
 package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() { if len(os.Args) &gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/read-args-or-stdin/" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/read-args-or-stdin/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.47.1" />
-  <link rel="stylesheet" href="/notes/css/style.css" media="all" />
-  <link rel="stylesheet" href="/notes/css/syntax.css" media="all" />
-  <link rel="stylesheet" href="/notes/css/custom.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
@@ -31,11 +31,11 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
 
 <header class="site-header">
   <nav class="site-navi">
-    <h1 class="site-title"><a href="/notes/">Notes</a></h1>
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
     <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
     <ul class="site-navi-items">
-      <li class="site-navi-item-categories"><a href="/notes/categories/" title="Categories">Categories</a></li>
-      <li class="site-navi-item-tags"><a href="/notes/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
     </ul>
   </nav>
 </header>
@@ -52,19 +52,19 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
       <ul class="article-meta">
         <li class="article-meta-date"><time>August 8, 2018</time></li>
         <li class="article-meta-categories">
-          <a href="/notes/categories/prog/">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
             <i class="fas fa-folder"></i>
             prog
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="/notes/tags/go/">
+          <a href="https://jreisinger.github.io/notes/tags/go/">
             <i class="fas fa-tag"></i>
             go
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="/notes/tags/perl/">
+          <a href="https://jreisinger.github.io/notes/tags/perl/">
             <i class="fas fa-tag"></i>
             perl
           </a>&nbsp;
@@ -158,10 +158,10 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="/notes/posts/hashes/" data-toggle="tooltip" data-placement="top" title="Hashes">&lt; Newer</a>
+          <a href="https://jreisinger.github.io/notes/posts/hashes/" data-toggle="tooltip" data-placement="top" title="Hashes">&lt; Newer</a>
       </li>
       <li class="pager-older">
-        <a href="/notes/posts/heap-vs-stack/" data-toggle="tooltip" data-placement="top" title="Heap vs Stack">Older &gt;</a>
+        <a href="https://jreisinger.github.io/notes/posts/heap-vs-stack/" data-toggle="tooltip" data-placement="top" title="Heap vs Stack">Older &gt;</a>
       </li>
     </ul>
   </div>
@@ -176,8 +176,8 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
-<script src="/notes/js/script.js"></script>
-<script src="/notes/js/custom.js"></script>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -186,7 +186,7 @@ if (!doNotTrack) {
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'Toracking ID', 'auto');
+	ga('create', 'UA-124886160-1', 'auto');
 	
 	ga('send', 'pageview');
 }
