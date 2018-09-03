@@ -1,246 +1,142 @@
 ---
 title: "Kubernetes"
-date: 2017-07-24
-draft: false
+date: 2018-06-27
 categories: [DevOps]
-tags: [docker]
+tags: [kubernetes, k8s]
 ---
 
-Docker is a container technology. It's a well timed fusion of
+Namespace
+---------
 
-* kernel features
-* filesystem tricks
-* networking hacks
-
-Think of a container not as a virtual machine but a very lightweight wrapper
-around a single Unix *process* (or multiple processes).
-
-Docker revision-controls:
-
-1. filesystem layers
-2. image tags
-
-# Architecture
-
-![docker architecture](https://raw.github.com/jreisinger/blog/master/files/docker_architecture.png "Docker architecture")
-
-# Terminology
-
-Docker *server* - the `docker` command run in daemon mode on a Linux host:
+* group of objects in a cluster
 
 ```bash
-$ sudo docker -d -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
+kubectl get namespaces
 ```
 
-Docker *image* - one or more filesystem layers and metadata that represent all
-the files required to run a Dockerized application:
+Context
+-------
 
-![docker images](https://raw.github.com/jreisinger/blog/master/files/docker_images.png "Docker images")
-
-Docker *container* - a Linux container that has been instantiated from a Docker
-image
-
-# Images
-
-Two ways to launch a container:
-
-* download a public image
-* create your own
-
-To create a custom image you need a `Dockerfile` - each line in a Dockerfile creates a new image layer that is stored by Docker
-
-Build an image:
+* to change the default namespace more permanently
+* to manage different clusters
+* to manage different users
 
 ```bash
-git clone https://github.com/spkane/docker-node-hello.git
-cd docker-node-hello
-docker build -t example/docker-node-hello:latest .
+# list contexts
+kubectl config view
+
+# switch context
+kubectl config use-context <context-name>
 ```
 
-Run an image (or a container?):
+Objects
+-------
+
+* everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object
+* each object exists at a unique HTTP path, e.g. `https://your-k8s.com/api/v1/namespaces/default/pods/my-pod`
+* the `kubectl` makes requests to these URLs to access the objects
 
 ```bash
-docker run -d -p 80:8080 example/docker-node-hello:latest
+# view Kubernetes objects
+kubectl get                       # all resource types
+kubectl get <resource>            # all resources in a namespace
+kubectl get <resource> <object>   # specific resource
+
+# details about an object
+kubectl describe <resource> <object>
+
+# output flags
+-o wide       # more details
+-o json       # complete object in JSON format
+-o yaml       # complete object in YAML format
+--v=6         # verbosity
+--no-headers
+
+# create, update objects
+kubectl apply -f obj.yaml
+
+# delete objects
+kubectl delete -f obj.yaml  # no additional prompting!
+
+# delete objects
+kubectl delete <resource> <object>
+
+# cleanup
+kubectl delete deployments --all
+
+# debugging
+kubectl logs <pod>
+kubectl exec -it <pod> -- bash  # or sh instead of bash
+kubectl cp <pod>:/path/to/remote/file /path/to/local/file
 ```
 
-* `-d, --detach` run container in background (daemon mode) and print container ID
-* `-p 80:8080` tells Docker to map host's port 80 to the container's port 8080 (port binding)
-* `example/docker-node-hello` image to derive the container from
-* `:latest` (default) tag specifying the image version
+Pod
+---
 
-Remove an image:
+* atomic unit of work in Kubernetes cluster
+* Pod = one or more containers working together symbiotically
+* all containers in a Pod always land on the same machine
+* each container runs its own cgroup but they share network, UTS (hostname) and IP namespaces
+* if you want to persist data across multiple instances of a Pod, you need to use `PersistentVolumes`
+
+Pod *manifest* - just a text-file representation of the Kubernetes API object:
 
 ```bash
-docker images
-docker rmi <image_id>
+kubectl apply -f quotes-pod.yml
 ```
 
-Remove all images on your Docker host:
+Port forwarding :cool:
 
 ```bash
-docker rmi $(docker images -q -)
+kubectl port-forward quotes 5000:5000
 ```
 
-# Containers
+What goes into a pod?
 
-A container is a self-contained execution environment that shares the kernel of
-the host system and which is isolated from other containers in the
-system.
-
-Containers are a *Linux only* technology.
-
-Create a container (see also "Run an image" above):
-
-```bash
-docker run --rm -it ubuntu /bin/bash
-```
-
-* `run` = `create` + `start`
-* `--rm` - delete the container when it exits
-* `-i` - interactive session, i.e. keep STDIN open
-* `-t` - allocate a pseudo-TTY
-* `/bin/bash` - executable to run within the container
-
-Get into a running container:
-
-```bash
-docker ps
-docker exec -it <container_id> /bin/bash
-```
-
-Stop a container:
-
-```bash
-docker stop <container_id>
-```
-
-Remove a container:
-
-```bash
-docker ps -a
-docker rm <container_id>
-```
-
-Remove all containers on your Docker host:
-
-```bash
-docker rm  $(docker ps -a -q)
-```
-
-# Volumes
-
-* heavy reliance on the read/write filesystem layer isn't the best storage solution (for data intensive apps like DBs)
-* the read/write filesystem layer gets removed when the container is removed (`docker rm ...`)
-* Docker has the notion of volumes that are maintained separately from the union
+* Will these containers work correctly if they land on different machines?
+* should go into a Pod: web server + git scynhronizer - they communicate via
     filesystem
-* volumes can be shared among containers
+* should go into separate Pods: Wordpress + DB - can communicate over net
 
-Add a volume to a container (`-v`):
+Deployment
+----------
 
-```bash
-$ docker run -v /data --rm --hostname web --name web -d nginx
-$ docker inspect -f '{{ json .Mounts }}' web | jq
-[
-  {
-    "Type": "volume",
-    "Name": "2d80bc1056787f16b71fb0edced98b3036252083044b1c8db536627c2544a121",
-    "Source": "/var/lib/docker/volumes/2d80bc1056787f16b71fb0edced98b3036252083044b1c8db536627c2544a121/_data",
-    "Destination": "/data",
-    "Driver": "local",
-    "Mode": "",
-    "RW": true,
-    "Propagation": ""
-  }
-]
-```
+* object of type controller
+* manages pods
 
-Add *bind volume* (mount volume on the host and in a container simultaneously):
+One way to create a deployment:
 
 ```bash
-$ docker run -v /mnt/data:/data --rm --name web -d nginx
-$ docker inspect -f '{{ json .Mounts }}' web
-[{"Type":"bind","Source":"/mnt/data","Destination":"/data","Mode":"","RW":true,"Propagation":"rprivate"}]
+kubectl run quotes-prod --image=reisinge/quotes \
+--replicas=3 --port=5000 --labels="ver=1,app=quotes,env=prod"
 ```
 
-Have a data volume container:
+Service
+-------
+
+* a way to create a named label selector - see `kubectl get service -o wide`
+* a service is assigned a VIP called a *cluster IP* -> load balanced across all
+    the pods identified by the selector
+
+One way to create a service:
 
 ```bash
-$ docker create -v /mnt/data:/data --name nginx-data nginx          # never runs
-$ docker run --volumes-from nginx-data -p80:80 --name web -d nginx
+kubectl expose deployment quotes-prod
 ```
 
-# Networks
+Looking beyond the cluster
+--------------------------
 
-During installation Docker creates three default networks:
+* exposing services outside of the cluster
 
-```bash
-$ docker network ls
-NETWORK ID          NAME                DRIVER              SCOPE
-0e07cd43ad1b        bridge              bridge              local
-1876373e07e4        host                host                local
-e3f087868688        none                null                local
-```
+NodePorts
 
-1. bridge (virtual switch) is the default --> private namespaced network within
-    the host
-2. with host networking no separate network namespace is used (`docker run --net
-    host ...`)
-3. none is for advanced use cases
+* it enhances a service (see above)
+* in addition to a cluster IP, a service gets a port (user defined or picked by
+    the system)
+* every node in the cluster forwards traffic to that port to the service
 
-![docker bridge network](https://raw.github.com/jreisinger/blog/master/files/docker_bridge.png "Docker bridge network")
+Resources
+---------
 
-When you use `-p` Docker creates `iptables` rules that route traffic from the host's public interface on the container's interface on the bridge network.
-
-# Monitoring and cleanup
-
-Containers' statistics:
-
-```bash
-docker stats [--no-stream]
-```
-
-Clean up:
-
-```bash
-# you will be asked to confirm
-docker system prune                                     # containers, images
-docker images prune                                     # only images
-
-# be careful!
-docker volume rm $(docker volume ls -qf dangling=true)  # volumes
-```
-
-# Limiting a container's resources
-
-* a container has no resource constraints by default
-* Docker provides a way to limit memory, CPU and block IO resources
-* your kernel must support Linux capabilities (`docker info | grep WARNING`)
-
-Memory
-
-* if the kernel detects that there is not enough memory, it throws an `Out of Memory Exception` and starts killing processes
-* any process is subject to killing (including Docker)
-* a process that uses lot of memory but has not been running for long time is a most likely candidate to get killed (see [OOMM](https://www.kernel.org/doc/gorman/html/understand/understand016.html) for more)
-* Docker adjusts OOM priority in the Docker daemon so it's less likely to get killed
-* the OOM priority on containers is not adjusted so they are more likely to be killed than the Docker daemon
-
-To limit the memory resource to 500 MB and forbid access to swap for a container:
-
-```bash
-docker run --rm --it --name mem-muncher --memory=500m --memory-swap=500m mem-muncher
-```
-
-See [mem-muncher](https://github.com/jreisinger/mem-muncher) and [Limit a container's resources](https://docs.docker.com/config/containers/resource_constraints/) for more.
-
-# Swarm
-
-* [tutorial](https://docs.docker.com/engine/swarm/swarm-tutorial/)
-* [service placement](https://docs.docker.com/engine/swarm/services/#control-service-placement) (affinity)
-* [monitoring](https://github.com/stefanprodan/swarmprom)
-* [setup](https://gist.github.com/jreisinger/a196f3e51e3a7069f7f91665025570cf) a simple cluster (in VirtualBox)
-
-# Sources
-
-* Docker: Up & Running (2015)
-* Unix and Linux System Administration Handbook, 5th ed. (2017)
-* [Building containers from scratch with Go](https://www.safaribooksonline.com/library/view/building-containers-from/9781491988404/) (2017, video)
+* Kubernetes: Up and Running (2017)

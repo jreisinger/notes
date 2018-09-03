@@ -6,18 +6,9 @@
   <title>Kubernetes - Notes</title>
   <meta property="og:title" content="Kubernetes - Notes" />
   <meta name="twitter:title" content="Kubernetes - Notes" />
-  <meta name="description" content="Docker is a container technology. It&rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around a single Unix process (or multiple processes).
-Docker revision-controls:
- filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
-$ sudo docker -d -H unix:///var/run/docker.">
-  <meta property="og:description" content="Docker is a container technology. It&rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around a single Unix process (or multiple processes).
-Docker revision-controls:
- filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
-$ sudo docker -d -H unix:///var/run/docker.">
-  <meta name="twitter:description" content="Docker is a container technology. It&rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper …">
+  <meta name="description" content="Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config view # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.g. https://your-k8s.com/api/v1/namespaces/default/pods/my-pod the kubectl makes requests to these URLs to access the objects  # view Kubernetes objects kubectl get # all resource types kubectl get &lt;resource&gt; # all resources in a namespace kubectl get &lt;resource&gt; &lt;object&gt; # specific resource  # details about an object kubectl describe &lt;resource&gt; &lt;object&gt; # output flags -o wide # more details -o json # complete object in JSON format -o yaml # complete object in YAML format --v=6 # verbosity --no-headers # create, update objects kubectl apply -f obj.">
+  <meta property="og:description" content="Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config view # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.g. https://your-k8s.com/api/v1/namespaces/default/pods/my-pod the kubectl makes requests to these URLs to access the objects  # view Kubernetes objects kubectl get # all resource types kubectl get &lt;resource&gt; # all resources in a namespace kubectl get &lt;resource&gt; &lt;object&gt; # specific resource  # details about an object kubectl describe &lt;resource&gt; &lt;object&gt; # output flags -o wide # more details -o json # complete object in JSON format -o yaml # complete object in YAML format --v=6 # verbosity --no-headers # create, update objects kubectl apply -f obj.">
+  <meta name="twitter:description" content="Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
@@ -54,7 +45,7 @@ $ sudo docker -d -H unix:///var/run/docker.">
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
-        <li class="article-meta-date"><time>July 24, 2017</time></li>
+        <li class="article-meta-date"><time>June 27, 2018</time></li>
         <li class="article-meta-categories">
           <a href="https://jreisinger.github.io/notes/categories/devops/">
             <i class="fas fa-folder"></i>
@@ -62,9 +53,15 @@ $ sudo docker -d -H unix:///var/run/docker.">
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/docker/">
+          <a href="https://jreisinger.github.io/notes/tags/kubernetes/">
             <i class="fas fa-tag"></i>
-            docker
+            kubernetes
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/k8s/">
+            <i class="fas fa-tag"></i>
+            k8s
           </a>&nbsp;
         </li>
       </ul>
@@ -72,212 +69,140 @@ $ sudo docker -d -H unix:///var/run/docker.">
 <aside class="toc">
   <nav id="TableOfContents">
 <ul>
-<li><a href="#architecture">Architecture</a></li>
-<li><a href="#terminology">Terminology</a></li>
-<li><a href="#images">Images</a></li>
-<li><a href="#containers">Containers</a></li>
-<li><a href="#volumes">Volumes</a></li>
-<li><a href="#networks">Networks</a></li>
-<li><a href="#monitoring-and-cleanup">Monitoring and cleanup</a></li>
-<li><a href="#limiting-a-container-s-resources">Limiting a container&rsquo;s resources</a></li>
-<li><a href="#swarm">Swarm</a></li>
-<li><a href="#sources">Sources</a></li>
+<li>
+<ul>
+<li><a href="#namespace">Namespace</a></li>
+<li><a href="#context">Context</a></li>
+<li><a href="#objects">Objects</a></li>
+<li><a href="#pod">Pod</a></li>
+<li><a href="#deployment">Deployment</a></li>
+<li><a href="#service">Service</a></li>
+<li><a href="#looking-beyond-the-cluster">Looking beyond the cluster</a></li>
+<li><a href="#resources">Resources</a></li>
+</ul></li>
 </ul>
 </nav>
 </aside>
       
 
-<p>Docker is a container technology. It&rsquo;s a well timed fusion of</p>
+<h2 id="namespace">Namespace</h2>
 
 <ul>
-<li>kernel features</li>
-<li>filesystem tricks</li>
-<li>networking hacks</li>
+<li>group of objects in a cluster</li>
 </ul>
-
-<p>Think of a container not as a virtual machine but a very lightweight wrapper
-around a single Unix <em>process</em> (or multiple processes).</p>
-
-<p>Docker revision-controls:</p>
-
-<ol>
-<li>filesystem layers</li>
-<li>image tags</li>
-</ol>
-
-<h1 id="architecture">Architecture</h1>
-
-<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_architecture.png" alt="docker architecture" title="Docker architecture" /></p>
-
-<h1 id="terminology">Terminology</h1>
-
-<p>Docker <em>server</em> - the <code>docker</code> command run in daemon mode on a Linux host:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo docker -d -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375</code></pre></div>
-<p>Docker <em>image</em> - one or more filesystem layers and metadata that represent all
-the files required to run a Dockerized application:</p>
-
-<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_images.png" alt="docker images" title="Docker images" /></p>
-
-<p>Docker <em>container</em> - a Linux container that has been instantiated from a Docker
-image</p>
-
-<h1 id="images">Images</h1>
-
-<p>Two ways to launch a container:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get namespaces</code></pre></div>
+<h2 id="context">Context</h2>
 
 <ul>
-<li>download a public image</li>
-<li>create your own</li>
+<li>to change the default namespace more permanently</li>
+<li>to manage different clusters</li>
+<li>to manage different users</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># list contexts
+</span><span style="color:#75715e"></span>kubectl config view
 
-<p>To create a custom image you need a <code>Dockerfile</code> - each line in a Dockerfile creates a new image layer that is stored by Docker</p>
-
-<p>Build an image:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/spkane/docker-node-hello.git
-cd docker-node-hello
-docker build -t example/docker-node-hello:latest .</code></pre></div>
-<p>Run an image (or a container?):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -d -p <span style="color:#ae81ff">80</span>:8080 example/docker-node-hello:latest</code></pre></div>
-<ul>
-<li><code>-d, --detach</code> run container in background (daemon mode) and print container ID</li>
-<li><code>-p 80:8080</code> tells Docker to map host&rsquo;s port 80 to the container&rsquo;s port 8080 (port binding)</li>
-<li><code>example/docker-node-hello</code> image to derive the container from</li>
-<li><code>:latest</code> (default) tag specifying the image version</li>
-</ul>
-
-<p>Remove an image:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker images
-docker rmi &lt;image_id&gt;</code></pre></div>
-<p>Remove all images on your Docker host:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker rmi <span style="color:#66d9ef">$(</span>docker images -q -<span style="color:#66d9ef">)</span></code></pre></div>
-<h1 id="containers">Containers</h1>
-
-<p>A container is a self-contained execution environment that shares the kernel of
-the host system and which is isolated from other containers in the
-system.</p>
-
-<p>Containers are a <em>Linux only</em> technology.</p>
-
-<p>Create a container (see also &ldquo;Run an image&rdquo; above):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --rm -it ubuntu /bin/bash</code></pre></div>
-<ul>
-<li><code>run</code> = <code>create</code> + <code>start</code></li>
-<li><code>--rm</code> - delete the container when it exits</li>
-<li><code>-i</code> - interactive session, i.e. keep STDIN open</li>
-<li><code>-t</code> - allocate a pseudo-TTY</li>
-<li><code>/bin/bash</code> - executable to run within the container</li>
-</ul>
-
-<p>Get into a running container:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps
-docker exec -it &lt;container_id&gt; /bin/bash</code></pre></div>
-<p>Stop a container:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stop &lt;container_id&gt;</code></pre></div>
-<p>Remove a container:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps -a
-docker rm &lt;container_id&gt;</code></pre></div>
-<p>Remove all containers on your Docker host:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker rm  <span style="color:#66d9ef">$(</span>docker ps -a -q<span style="color:#66d9ef">)</span></code></pre></div>
-<h1 id="volumes">Volumes</h1>
+<span style="color:#75715e"># switch context
+</span><span style="color:#75715e"></span>kubectl config use-context &lt;context-name&gt;</code></pre></div>
+<h2 id="objects">Objects</h2>
 
 <ul>
-<li>heavy reliance on the read/write filesystem layer isn&rsquo;t the best storage solution (for data intensive apps like DBs)</li>
-<li>the read/write filesystem layer gets removed when the container is removed (<code>docker rm ...</code>)</li>
-<li>Docker has the notion of volumes that are maintained separately from the union
-filesystem</li>
-<li>volumes can be shared among containers</li>
+<li>everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object</li>
+<li>each object exists at a unique HTTP path, e.g. <code>https://your-k8s.com/api/v1/namespaces/default/pods/my-pod</code></li>
+<li>the <code>kubectl</code> makes requests to these URLs to access the objects</li>
 </ul>
-
-<p>Add a volume to a container (<code>-v</code>):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -v /data --rm --hostname web --name web -d nginx
-$ docker inspect -f <span style="color:#e6db74">&#39;{{ json .Mounts }}&#39;</span> web | jq
-<span style="color:#f92672">[</span>
-  <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;Type&#34;</span>: <span style="color:#e6db74">&#34;volume&#34;</span>,
-    <span style="color:#e6db74">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;2d80bc1056787f16b71fb0edced98b3036252083044b1c8db536627c2544a121&#34;</span>,
-    <span style="color:#e6db74">&#34;Source&#34;</span>: <span style="color:#e6db74">&#34;/var/lib/docker/volumes/2d80bc1056787f16b71fb0edced98b3036252083044b1c8db536627c2544a121/_data&#34;</span>,
-    <span style="color:#e6db74">&#34;Destination&#34;</span>: <span style="color:#e6db74">&#34;/data&#34;</span>,
-    <span style="color:#e6db74">&#34;Driver&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>,
-    <span style="color:#e6db74">&#34;Mode&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-    <span style="color:#e6db74">&#34;RW&#34;</span>: true,
-    <span style="color:#e6db74">&#34;Propagation&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
-  <span style="color:#f92672">}</span>
-<span style="color:#f92672">]</span></code></pre></div>
-<p>Add <em>bind volume</em> (mount volume on the host and in a container simultaneously):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -v /mnt/data:/data --rm --name web -d nginx
-$ docker inspect -f <span style="color:#e6db74">&#39;{{ json .Mounts }}&#39;</span> web
-<span style="color:#f92672">[{</span><span style="color:#e6db74">&#34;Type&#34;</span>:<span style="color:#e6db74">&#34;bind&#34;</span>,<span style="color:#e6db74">&#34;Source&#34;</span>:<span style="color:#e6db74">&#34;/mnt/data&#34;</span>,<span style="color:#e6db74">&#34;Destination&#34;</span>:<span style="color:#e6db74">&#34;/data&#34;</span>,<span style="color:#e6db74">&#34;Mode&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#e6db74">&#34;RW&#34;</span>:true,<span style="color:#e6db74">&#34;Propagation&#34;</span>:<span style="color:#e6db74">&#34;rprivate&#34;</span><span style="color:#f92672">}]</span></code></pre></div>
-<p>Have a data volume container:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker create -v /mnt/data:/data --name nginx-data nginx          <span style="color:#75715e"># never runs
-</span><span style="color:#75715e"></span>$ docker run --volumes-from nginx-data -p80:80 --name web -d nginx</code></pre></div>
-<h1 id="networks">Networks</h1>
-
-<p>During installation Docker creates three default networks:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker network ls
-NETWORK ID          NAME                DRIVER              SCOPE
-0e07cd43ad1b        bridge              bridge              local
-1876373e07e4        host                host                local
-e3f087868688        none                null                local</code></pre></div>
-<ol>
-<li>bridge (virtual switch) is the default &ndash;&gt; private namespaced network within
-the host</li>
-<li>with host networking no separate network namespace is used (<code>docker run --net
-host ...</code>)</li>
-<li>none is for advanced use cases</li>
-</ol>
-
-<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_bridge.png" alt="docker bridge network" title="Docker bridge network" /></p>
-
-<p>When you use <code>-p</code> Docker creates <code>iptables</code> rules that route traffic from the host&rsquo;s public interface on the container&rsquo;s interface on the bridge network.</p>
-
-<h1 id="monitoring-and-cleanup">Monitoring and cleanup</h1>
-
-<p>Containers&rsquo; statistics:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stats <span style="color:#f92672">[</span>--no-stream<span style="color:#f92672">]</span></code></pre></div>
-<p>Clean up:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># you will be asked to confirm
-</span><span style="color:#75715e"></span>docker system prune                                     <span style="color:#75715e"># containers, images
-</span><span style="color:#75715e"></span>docker images prune                                     <span style="color:#75715e"># only images
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># view Kubernetes objects
+</span><span style="color:#75715e"></span>kubectl get                       <span style="color:#75715e"># all resource types
+</span><span style="color:#75715e"></span>kubectl get &lt;resource&gt;            <span style="color:#75715e"># all resources in a namespace
+</span><span style="color:#75715e"></span>kubectl get &lt;resource&gt; &lt;object&gt;   <span style="color:#75715e"># specific resource
 </span><span style="color:#75715e"></span>
-<span style="color:#75715e"># be careful!
-</span><span style="color:#75715e"></span>docker volume rm <span style="color:#66d9ef">$(</span>docker volume ls -qf dangling<span style="color:#f92672">=</span>true<span style="color:#66d9ef">)</span>  # volumes</code></pre></div>
-<h1 id="limiting-a-container-s-resources">Limiting a container&rsquo;s resources</h1>
+<span style="color:#75715e"># details about an object
+</span><span style="color:#75715e"></span>kubectl describe &lt;resource&gt; &lt;object&gt;
+
+<span style="color:#75715e"># output flags
+</span><span style="color:#75715e"></span>-o wide       <span style="color:#75715e"># more details
+</span><span style="color:#75715e"></span>-o json       <span style="color:#75715e"># complete object in JSON format
+</span><span style="color:#75715e"></span>-o yaml       <span style="color:#75715e"># complete object in YAML format
+</span><span style="color:#75715e"></span>--v<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>         <span style="color:#75715e"># verbosity
+</span><span style="color:#75715e"></span>--no-headers
+
+<span style="color:#75715e"># create, update objects
+</span><span style="color:#75715e"></span>kubectl apply -f obj.yaml
+
+<span style="color:#75715e"># delete objects
+</span><span style="color:#75715e"></span>kubectl delete -f obj.yaml  <span style="color:#75715e"># no additional prompting!
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># delete objects
+</span><span style="color:#75715e"></span>kubectl delete &lt;resource&gt; &lt;object&gt;
+
+<span style="color:#75715e"># cleanup
+</span><span style="color:#75715e"></span>kubectl delete deployments --all
+
+<span style="color:#75715e"># debugging
+</span><span style="color:#75715e"></span>kubectl logs &lt;pod&gt;
+kubectl exec -it &lt;pod&gt; -- bash  <span style="color:#75715e"># or sh instead of bash
+</span><span style="color:#75715e"></span>kubectl cp &lt;pod&gt;:/path/to/remote/file /path/to/local/file</code></pre></div>
+<h2 id="pod">Pod</h2>
 
 <ul>
-<li>a container has no resource constraints by default</li>
-<li>Docker provides a way to limit memory, CPU and block IO resources</li>
-<li>your kernel must support Linux capabilities (<code>docker info | grep WARNING</code>)</li>
+<li>atomic unit of work in Kubernetes cluster</li>
+<li>Pod = one or more containers working together symbiotically</li>
+<li>all containers in a Pod always land on the same machine</li>
+<li>each container runs its own cgroup but they share network, UTS (hostname) and IP namespaces</li>
+<li>if you want to persist data across multiple instances of a Pod, you need to use <code>PersistentVolumes</code></li>
 </ul>
 
-<p>Memory</p>
+<p>Pod <em>manifest</em> - just a text-file representation of the Kubernetes API object:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f quotes-pod.yml</code></pre></div>
+<p>Port forwarding :cool:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward quotes <span style="color:#ae81ff">5000</span>:5000</code></pre></div>
+<p>What goes into a pod?</p>
 
 <ul>
-<li>if the kernel detects that there is not enough memory, it throws an <code>Out of Memory Exception</code> and starts killing processes</li>
-<li>any process is subject to killing (including Docker)</li>
-<li>a process that uses lot of memory but has not been running for long time is a most likely candidate to get killed (see <a href="https://www.kernel.org/doc/gorman/html/understand/understand016.html">OOMM</a> for more)</li>
-<li>Docker adjusts OOM priority in the Docker daemon so it&rsquo;s less likely to get killed</li>
-<li>the OOM priority on containers is not adjusted so they are more likely to be killed than the Docker daemon</li>
+<li>Will these containers work correctly if they land on different machines?</li>
+<li>should go into a Pod: web server + git scynhronizer - they communicate via
+filesystem</li>
+<li>should go into separate Pods: Wordpress + DB - can communicate over net</li>
 </ul>
 
-<p>To limit the memory resource to 500 MB and forbid access to swap for a container:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --rm --it --name mem-muncher --memory<span style="color:#f92672">=</span>500m --memory-swap<span style="color:#f92672">=</span>500m mem-muncher</code></pre></div>
-<p>See <a href="https://github.com/jreisinger/mem-muncher">mem-muncher</a> and <a href="https://docs.docker.com/config/containers/resource_constraints/">Limit a container&rsquo;s resources</a> for more.</p>
-
-<h1 id="swarm">Swarm</h1>
+<h2 id="deployment">Deployment</h2>
 
 <ul>
-<li><a href="https://docs.docker.com/engine/swarm/swarm-tutorial/">tutorial</a></li>
-<li><a href="https://docs.docker.com/engine/swarm/services/#control-service-placement">service placement</a> (affinity)</li>
-<li><a href="https://github.com/stefanprodan/swarmprom">monitoring</a></li>
-<li><a href="https://gist.github.com/jreisinger/a196f3e51e3a7069f7f91665025570cf">setup</a> a simple cluster (in VirtualBox)</li>
+<li>object of type controller</li>
+<li>manages pods</li>
 </ul>
 
-<h1 id="sources">Sources</h1>
+<p>One way to create a deployment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl run quotes-prod --image<span style="color:#f92672">=</span>reisinge/quotes <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> --port<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span> --labels<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ver=1,app=quotes,env=prod&#34;</span></code></pre></div>
+<h2 id="service">Service</h2>
 
 <ul>
-<li>Docker: Up &amp; Running (2015)</li>
-<li>Unix and Linux System Administration Handbook, 5th ed. (2017)</li>
-<li><a href="https://www.safaribooksonline.com/library/view/building-containers-from/9781491988404/">Building containers from scratch with Go</a> (2017, video)</li>
+<li>a way to create a named label selector - see <code>kubectl get service -o wide</code></li>
+<li>a service is assigned a VIP called a <em>cluster IP</em> -&gt; load balanced across all
+the pods identified by the selector</li>
+</ul>
+
+<p>One way to create a service:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl expose deployment quotes-prod</code></pre></div>
+<h2 id="looking-beyond-the-cluster">Looking beyond the cluster</h2>
+
+<ul>
+<li>exposing services outside of the cluster</li>
+</ul>
+
+<p>NodePorts</p>
+
+<ul>
+<li>it enhances a service (see above)</li>
+<li>in addition to a cluster IP, a service gets a port (user defined or picked by
+the system)</li>
+<li>every node in the cluster forwards traffic to that port to the service</li>
+</ul>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li>Kubernetes: Up and Running (2017)</li>
 </ul>
 
     </article>
@@ -335,10 +260,10 @@ host ...</code>)</li>
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="https://jreisinger.github.io/notes/posts/docker/" data-toggle="tooltip" data-placement="top" title="Docker">&lt; Newer</a>
+          <a href="https://jreisinger.github.io/notes/posts/heap-vs-stack/" data-toggle="tooltip" data-placement="top" title="Heap vs Stack">&lt; Newer</a>
       </li>
       <li class="pager-older">
-        <a href="https://jreisinger.github.io/notes/posts/net-prog/" data-toggle="tooltip" data-placement="top" title="Network Programming">Older &gt;</a>
+        <a href="https://jreisinger.github.io/notes/posts/docker/" data-toggle="tooltip" data-placement="top" title="Docker">Older &gt;</a>
       </li>
     </ul>
   </div>

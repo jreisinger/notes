@@ -46,6 +46,15 @@ Stack
     </item>
     
     <item>
+      <title>Kubernetes</title>
+      <link>https://jreisinger.github.io/notes/posts/kubernetes/</link>
+      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
+      <description>Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config view # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.g. https://your-k8s.com/api/v1/namespaces/default/pods/my-pod the kubectl makes requests to these URLs to access the objects  # view Kubernetes objects kubectl get # all resource types kubectl get &amp;lt;resource&amp;gt; # all resources in a namespace kubectl get &amp;lt;resource&amp;gt; &amp;lt;object&amp;gt; # specific resource  # details about an object kubectl describe &amp;lt;resource&amp;gt; &amp;lt;object&amp;gt; # output flags -o wide # more details -o json # complete object in JSON format -o yaml # complete object in YAML format --v=6 # verbosity --no-headers # create, update objects kubectl apply -f obj.</description>
+    </item>
+    
+    <item>
       <title>Docker</title>
       <link>https://jreisinger.github.io/notes/posts/docker/</link>
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
@@ -55,19 +64,6 @@ Stack
  kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
 Docker revision-controls:
  filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:</description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://jreisinger.github.io/notes/posts/kubernetes/</link>
-      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
-      <description>Docker is a container technology. It&amp;rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around a single Unix process (or multiple processes).
-Docker revision-controls:
- filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
-$ sudo docker -d -H unix:///var/run/docker.</description>
     </item>
     
     <item>

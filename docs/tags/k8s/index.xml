@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Devops on Notes</title>
-    <link>https://jreisinger.github.io/notes/categories/devops/</link>
-    <description>Recent content in Devops on Notes</description>
+    <title>K8s on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/k8s/</link>
+    <description>Recent content in K8s on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 27 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/notes/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/notes/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,18 +18,6 @@
       
       <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
       <description>Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config view # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.g. https://your-k8s.com/api/v1/namespaces/default/pods/my-pod the kubectl makes requests to these URLs to access the objects  # view Kubernetes objects kubectl get # all resource types kubectl get &amp;lt;resource&amp;gt; # all resources in a namespace kubectl get &amp;lt;resource&amp;gt; &amp;lt;object&amp;gt; # specific resource  # details about an object kubectl describe &amp;lt;resource&amp;gt; &amp;lt;object&amp;gt; # output flags -o wide # more details -o json # complete object in JSON format -o yaml # complete object in YAML format --v=6 # verbosity --no-headers # create, update objects kubectl apply -f obj.</description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://jreisinger.github.io/notes/posts/docker/</link>
-      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/docker/</guid>
-      <description>Docker is a container technology. Cointainers standardize software packaging. It&amp;rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
-Docker revision-controls:
- filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:</description>
     </item>
     
   </channel>
