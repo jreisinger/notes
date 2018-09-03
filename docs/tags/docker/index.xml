@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/docker/</link>
+    <description>Recent content in Docker on Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 24 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jreisinger.github.io/notes/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker</title>
+      <link>https://jreisinger.github.io/notes/posts/docker/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/docker/</guid>
+      <description>Docker is a container technology. It&amp;rsquo;s a well timed fusion of
+ kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around a single Unix process (or multiple processes).
+Docker revision-controls:
+ filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
+$ sudo docker -d -H unix:///var/run/docker.</description>
+    </item>
+    
+  </channel>
+</rss>

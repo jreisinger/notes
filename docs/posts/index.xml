@@ -46,6 +46,19 @@ Stack
     </item>
     
     <item>
+      <title>Docker</title>
+      <link>https://jreisinger.github.io/notes/posts/docker/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/docker/</guid>
+      <description>Docker is a container technology. It&amp;rsquo;s a well timed fusion of
+ kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around a single Unix process (or multiple processes).
+Docker revision-controls:
+ filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
+$ sudo docker -d -H unix:///var/run/docker.</description>
+    </item>
+    
+    <item>
       <title>Network Programming</title>
       <link>https://jreisinger.github.io/notes/posts/net-prog/</link>
       <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>

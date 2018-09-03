@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/docker/</loc>
+    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/net-prog/</loc>
     <lastmod>2018-08-27T00:00:00+00:00</lastmod>
   </url>
@@ -97,8 +102,20 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/categories/devops/</loc>
+    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/tags/devops/</loc>
     <lastmod>2016-11-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/docker/</loc>
+    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
