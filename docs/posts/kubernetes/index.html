@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Docker - Notes</title>
-  <meta property="og:title" content="Docker - Notes" />
-  <meta name="twitter:title" content="Docker - Notes" />
-  <meta name="description" content="Docker is a container technology. Cointainers standardize software packaging. It&rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
+  <title>Kubernetes - Notes</title>
+  <meta property="og:title" content="Kubernetes - Notes" />
+  <meta name="twitter:title" content="Kubernetes - Notes" />
+  <meta name="description" content="Docker is a container technology. It&rsquo;s a well timed fusion of
+ kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around a single Unix process (or multiple processes).
 Docker revision-controls:
- filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:">
-  <meta property="og:description" content="Docker is a container technology. Cointainers standardize software packaging. It&rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
+ filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
+$ sudo docker -d -H unix:///var/run/docker.">
+  <meta property="og:description" content="Docker is a container technology. It&rsquo;s a well timed fusion of
+ kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around a single Unix process (or multiple processes).
 Docker revision-controls:
- filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:">
-  <meta name="twitter:description" content="Docker is a container technology. Cointainers standardize software packaging. It&rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a …">
+ filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
+$ sudo docker -d -H unix:///var/run/docker.">
+  <meta name="twitter:description" content="Docker is a container technology. It&rsquo;s a well timed fusion of
+ kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/posts/docker/" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.47.1" />
@@ -48,7 +50,7 @@ Docker revision-controls:
     <article class="article">
       
       
-      <h1 class="article-title">Docker</h1>
+      <h1 class="article-title">Kubernetes</h1>
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
@@ -85,8 +87,7 @@ Docker revision-controls:
 </aside>
       
 
-<p>Docker is a container technology. Cointainers standardize software packaging.
-It&rsquo;s a well timed fusion of</p>
+<p>Docker is a container technology. It&rsquo;s a well timed fusion of</p>
 
 <ul>
 <li>kernel features</li>
@@ -95,8 +96,7 @@ It&rsquo;s a well timed fusion of</p>
 </ul>
 
 <p>Think of a container not as a virtual machine but a very lightweight wrapper
-around an isolated group of processes. These processes are restricted to private
-root filesystem and process namespace.</p>
+around a single Unix <em>process</em> (or multiple processes).</p>
 
 <p>Docker revision-controls:</p>
 
@@ -170,7 +170,7 @@ system.</p>
 
 <p>Get into a running container:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps
-docker exec -it &lt;container_id&gt; /bin/bash # new process created in the container</code></pre></div>
+docker exec -it &lt;container_id&gt; /bin/bash</code></pre></div>
 <p>Stop a container:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stop &lt;container_id&gt;</code></pre></div>
 <p>Remove a container:</p>
@@ -219,8 +219,8 @@ NETWORK ID          NAME                DRIVER              SCOPE
 1876373e07e4        host                host                local
 e3f087868688        none                null                local</code></pre></div>
 <ol>
-<li>bridge (virtual switch, poor man&rsquo;s router) is the default &ndash;&gt; private
-namespaced network within the host</li>
+<li>bridge (virtual switch) is the default &ndash;&gt; private namespaced network within
+the host</li>
 <li>with host networking no separate network namespace is used (<code>docker run --net
 host ...</code>)</li>
 <li>none is for advanced use cases</li>
@@ -288,7 +288,7 @@ host ...</code>)</li>
     <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </li>
   <li>
-    <div class="fb-share-button" data-href="https://jreisinger.github.io/notes/posts/docker/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div class="fb-share-button" data-href="https://jreisinger.github.io/notes/posts/kubernetes/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -335,10 +335,10 @@ host ...</code>)</li>
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="https://jreisinger.github.io/notes/posts/heap-vs-stack/" data-toggle="tooltip" data-placement="top" title="Heap vs Stack">&lt; Newer</a>
+          <a href="https://jreisinger.github.io/notes/posts/docker/" data-toggle="tooltip" data-placement="top" title="Docker">&lt; Newer</a>
       </li>
       <li class="pager-older">
-        <a href="https://jreisinger.github.io/notes/posts/kubernetes/" data-toggle="tooltip" data-placement="top" title="Kubernetes">Older &gt;</a>
+        <a href="https://jreisinger.github.io/notes/posts/net-prog/" data-toggle="tooltip" data-placement="top" title="Network Programming">Older &gt;</a>
       </li>
     </ul>
   </div>

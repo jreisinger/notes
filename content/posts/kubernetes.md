@@ -1,21 +1,19 @@
 ---
-title: "Docker"
+title: "Kubernetes"
 date: 2017-07-24
 draft: false
 categories: [DevOps]
 tags: [docker]
 ---
 
-Docker is a container technology. Cointainers standardize software packaging.
-It's a well timed fusion of
+Docker is a container technology. It's a well timed fusion of
 
 * kernel features
 * filesystem tricks
 * networking hacks
 
 Think of a container not as a virtual machine but a very lightweight wrapper
-around an isolated group of processes. These processes are restricted to private
-root filesystem and process namespace.
+around a single Unix *process* (or multiple processes).
 
 Docker revision-controls:
 
@@ -107,7 +105,7 @@ Get into a running container:
 
 ```bash
 docker ps
-docker exec -it <container_id> /bin/bash # new process created in the container
+docker exec -it <container_id> /bin/bash
 ```
 
 Stop a container:
@@ -183,10 +181,10 @@ NETWORK ID          NAME                DRIVER              SCOPE
 e3f087868688        none                null                local
 ```
 
-1. bridge (virtual switch, poor man's router) is the default --> private
-namespaced network within the host
+1. bridge (virtual switch) is the default --> private namespaced network within
+    the host
 2. with host networking no separate network namespace is used (`docker run --net
-host ...`)
+    host ...`)
 3. none is for advanced use cases
 
 ![docker bridge network](https://raw.github.com/jreisinger/blog/master/files/docker_bridge.png "Docker bridge network")
