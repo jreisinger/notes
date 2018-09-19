@@ -5,6 +5,15 @@ categories: [DevOps]
 tags: [kubernetes, k8s]
 ---
 
+Configuration
+-------------
+
+```bash
+cat ~/.kube/config
+# or
+kubectl config view
+```
+
 Namespace
 ---------
 
@@ -22,8 +31,11 @@ Context
 * to manage different users
 
 ```bash
+# show current context
+kubectl config current-context
+
 # list contexts
-kubectl config view
+kubectl config get-contexts
 
 # switch context
 kubectl config use-context <context-name>

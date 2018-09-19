@@ -6,15 +6,15 @@
   <title>Kubernetes - Notes</title>
   <meta property="og:title" content="Kubernetes - Notes" />
   <meta name="twitter:title" content="Kubernetes - Notes" />
-  <meta name="description" content="Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config view # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.g. https://your-k8s.com/api/v1/namespaces/default/pods/my-pod the kubectl makes requests to these URLs to access the objects  # view Kubernetes objects kubectl get # all resource types kubectl get &lt;resource&gt; # all resources in a namespace kubectl get &lt;resource&gt; &lt;object&gt; # specific resource  # details about an object kubectl describe &lt;resource&gt; &lt;object&gt; # output flags -o wide # more details -o json # complete object in JSON format -o yaml # complete object in YAML format --v=6 # verbosity --no-headers # create, update objects kubectl apply -f obj.">
-  <meta property="og:description" content="Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config view # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.g. https://your-k8s.com/api/v1/namespaces/default/pods/my-pod the kubectl makes requests to these URLs to access the objects  # view Kubernetes objects kubectl get # all resource types kubectl get &lt;resource&gt; # all resources in a namespace kubectl get &lt;resource&gt; &lt;object&gt; # specific resource  # details about an object kubectl describe &lt;resource&gt; &lt;object&gt; # output flags -o wide # more details -o json # complete object in JSON format -o yaml # complete object in YAML format --v=6 # verbosity --no-headers # create, update objects kubectl apply -f obj.">
-  <meta name="twitter:description" content="Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts …">
+  <meta name="description" content="Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # show current context kubectl config current-context # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.">
+  <meta property="og:description" content="Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # show current context kubectl config current-context # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.">
+  <meta name="twitter:description" content="Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.47.1" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -71,6 +71,7 @@
 <ul>
 <li>
 <ul>
+<li><a href="#configuration">Configuration</a></li>
 <li><a href="#namespace">Namespace</a></li>
 <li><a href="#context">Context</a></li>
 <li><a href="#objects">Objects</a></li>
@@ -85,6 +86,10 @@
 </aside>
       
 
+<h2 id="configuration">Configuration</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat ~/.kube/config
+<span style="color:#75715e"># or
+</span><span style="color:#75715e"></span>kubectl config view</code></pre></div>
 <h2 id="namespace">Namespace</h2>
 
 <ul>
@@ -98,8 +103,11 @@
 <li>to manage different clusters</li>
 <li>to manage different users</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># list contexts
-</span><span style="color:#75715e"></span>kubectl config view
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># show current context
+</span><span style="color:#75715e"></span>kubectl config current-context
+
+<span style="color:#75715e"># list contexts
+</span><span style="color:#75715e"></span>kubectl config get-contexts
 
 <span style="color:#75715e"># switch context
 </span><span style="color:#75715e"></span>kubectl config use-context &lt;context-name&gt;</code></pre></div>
@@ -210,7 +218,7 @@ the system)</li>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -254,7 +262,7 @@ the system)</li>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
