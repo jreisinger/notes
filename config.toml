@@ -23,6 +23,7 @@ pygmentsCodeFences = true
 [params]
   # Date format
   #dateFormat = "January 2, 2006"
+  editURL = "https://github.com/jreisinger/notes/tree/master/content/"
 
 # This is displayer in About page.
 [params.author]
