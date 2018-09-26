@@ -116,5 +116,5 @@ perl -le 'print "<a href=\"$ARGV[1]\">$ARGV[0]</a>"' 'perldoc' http://perldoc.pe
 Greet user (stolen from [Utilitarian](http://perlmonks.org/?node_id=681898) (-:
 
 ```bash
-perl -E 'say "Good " . qw(night morning afternoon evening)[(localtime)[2]/6] . ", $ENV{USER}!"'
+perl -E 'say "Good ".qw(night morning afternoon evening)[(localtime)[2]/6].", $ENV{USER}"'
 ```
