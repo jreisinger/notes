@@ -89,18 +89,6 @@ find /opt/splunk/syslog/ -iname "*log*" -type f -mtime +30 | \
 perl -lne '$sum += (stat)[7]}{print $sum'
 ```
 
-Find big palindromes:
-
-```bash
-perl -lne 'print if $_ eq reverse and length >= 5' /usr/share/dict/words
-```
-
-Print a file system tree on UNIX like systems ([source](http://www.perlmonks.org/?node_id=1050343)):
-
-```bash
-ls -R | perl -ne'if(s/:$//){s{[^/]*/}{--}g;s/^-/\t|/;print}'
-```
-
 Remove comments and compress all consecutive blank lines into one ([more](http://www.catonmat.net/blog/perl-one-liners-explained-part-one/)):
 
 ```bash
@@ -111,6 +99,20 @@ Create HTML anchor element:
 
 ```bash
 perl -le 'print "<a href=\"$ARGV[1]\">$ARGV[0]</a>"' 'perldoc' http://perldoc.perl.org/
+```
+
+## Fun
+
+Find big palindromes:
+
+```bash
+perl -lne 'print if $_ eq reverse and length >= 5' /usr/share/dict/words
+```
+
+Print a file system tree on UNIX like systems ([source](http://www.perlmonks.org/?node_id=1050343)):
+
+```bash
+ls -R | perl -ne'if(s/:$//){s{[^/]*/}{--}g;s/^-/\t|/;print}'
 ```
 
 Greet user (stolen from [Utilitarian](http://perlmonks.org/?node_id=681898) (-:
