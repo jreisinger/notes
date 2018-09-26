@@ -82,7 +82,7 @@ perl -i -pe 's/$/\r/' <file1> <file2> ...  # unix-to-dos
 
 ## Various
 
-Total size of files (using the [Eskimo Greeting Operator](http://www.catonmat.net/blog/secret-perl-operators/#eskimo) as suggested by [PerlMonks](http://www.perlmonks.org/?node_id=1172707):
+Total size of files (using the [Eskimo Greeting Operator](http://www.catonmat.net/blog/secret-perl-operators/#eskimo) as suggested by [PerlMonks](http://www.perlmonks.org/?node_id=1172707)):
 
 ```bash
 find /opt/splunk/syslog/ -iname "*log*" -type f -mtime +30 | \

@@ -141,7 +141,7 @@ $ perl -lane <span style="color:#e6db74">&#39;print &#34;@F[1,0]&#34;&#39;</span
 </span><span style="color:#75715e"></span>perl -i -pe <span style="color:#e6db74">&#39;s/$/\r/&#39;</span> &lt;file1&gt; &lt;file2&gt; ...  # unix-to-dos</code></pre></div>
 <h2 id="various">Various</h2>
 
-<p>Total size of files (using the <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> as suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>:</p>
+<p>Total size of files (using the <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> as suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /opt/splunk/syslog/ -iname <span style="color:#e6db74">&#34;*log*&#34;</span> -type f -mtime +30 | <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>perl -lne <span style="color:#e6db74">&#39;$sum += (stat)[7]}{print $sum&#39;</span></code></pre></div>
 <p>Find big palindromes:</p>
