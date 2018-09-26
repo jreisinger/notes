@@ -6,10 +6,20 @@
     <description>Recent content in Prog on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/categories/prog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Perl One Liners</title>
+      <link>https://jreisinger.github.io/notes/posts/perl-one-liners/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/perl-one-liners/</guid>
+      <description>I think Perl one liners are super useful. They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book, have a look at Minimal Perl for UNIX and Linux People.
+Perl command line switches  -e &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; -E &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; enabling feature bundle (like use 5.</description>
+    </item>
     
     <item>
       <title>Reading from command line arguments or from STDIN</title>
