@@ -97,4 +97,4 @@ pygmentsCodeFences = true
   name = "About"
   weight = 1
   identifier = "about"
-  url = "http://jreisinger.github.io"
+  url = "https://jreisinger.github.io/about"
