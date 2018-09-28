@@ -1,0 +1,50 @@
+#!/usr/bin/perl -s
+use strict;
+use warnings;
+use 5.010;
+use autodie;
+use File::Find;
+use File::Basename;
+
+use lib 'lib';
+use Local::Display;
+
+our ($h, $l); # cmdline switches
+
+# Usage
+if ($h) {
+    print << 'EOF';
+Show posts ($POSTSDIR/*.md) that are not listed in README.md.
+
+Usage: ./bin/wild-posts
+    -h  help
+EOF
+    exit;
+}
+
+my $POSTSDIR = 'content/posts';
+
+my @posts;
+find( sub { push @posts, $File::Find::name if -f && ! -l && /\.(md|pl|py|sh|c)$/ }, $POSTSDIR );
+
+my @readme_links;
+open my $fh, "<", "README.md";
+while (<$fh>) {
+    if ( /\(($POSTSDIR\/[^\)]+)\)/ ) {
+        push @readme_links, $1
+    }
+}
+
+my $problems;
+for my $post ( sort @posts ) {
+    my $post_in_readme = grep $post eq $_, @readme_links;
+
+    my $readme_line = make_readme_line($post);
+
+    if (not $post_in_readme) {
+        say $readme_line if $readme_line;
+        $problems++;
+    }
+}
+
+exit 1 if $problems;

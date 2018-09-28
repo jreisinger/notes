@@ -1,0 +1,52 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use 5.010;
+use autodie;
+use Getopt::Long;
+use Pod::Usage;
+
+# Command line options
+GetOptions(
+    "h|?|help"   => \my $help,
+    "p|post=s"   => \my $post,
+    "i|inpost=s" => \my $inpost,
+) or pod2usage(1);
+
+# Help
+pod2usage( -exitval => 0, -verbose => 2, -noperldoc => 1 ) if $help;
+
+my $POSTSDIR = 'content/posts';
+
+if ($post) {
+    print sort `find $POSTSDIR -type f -iname "*$post*"`;
+} elsif ($inpost) {
+    my @posts = `grep --color=never -l -R -i -E '$inpost' $POSTSDIR | sort | uniq`;
+
+    # Don't print categories (subdirectories)
+    for (@posts) {
+        chomp;
+        my $n_slashes = () = /\//g;
+        say if $n_slashes == 1;
+    }
+} else {
+    print sort `find $POSTSDIR -type d | sort`;
+}
+
+__END__
+
+=head1 NAME
+
+findp - search through my blog posts
+
+=head1 SYNOPSIS
+
+findp [options]
+
+  List available areas (topics) if no option is used. Searches are case
+  insensitive.
+
+  options:
+    -h, -?, --help      brief help message
+    -p, --post STRING   find posts with titles containing STRING
+    -i, --inpost REGEX  find posts matching egrep REGEX
