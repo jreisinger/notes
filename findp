@@ -19,8 +19,7 @@ pod2usage( -exitval => 0, -verbose => 2, -noperldoc => 1 ) if $help;
 my $POSTSDIR = 'content/posts';
 
 if ($inpost) {
-    my @posts = `grep --color=never -l -R -i -E '$inpost' $POSTSDIR | sort | uniq`;
-    print for @posts;
+    print `grep --color=never -l -R -i -E '$inpost' $POSTSDIR | sort | uniq`;
 } elsif ($post) {
     print sort `find $POSTSDIR -type f -iname "*$post*"`;
 } else {
@@ -41,5 +40,5 @@ findp [options]
 
   options:
     -h, -?, --help      brief help message
-    -p, --post STRING   find posts with titles containing STRING
-    -i, --inpost REGEX  find posts matching egrep REGEX
+    -p, --post STRING   find posts with title containing STRING
+    -i, --inpost REGEX  find posts with body matching egrep REGEX
