@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>HTTP protocol - Notes</title>
+  <meta property="og:title" content="HTTP protocol - Notes" />
+  <meta name="twitter:title" content="HTTP protocol - Notes" />
+  <meta name="description" content="Intro What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
+ urllib - client in Standard Library, for simple use
+from urllib.request import urlopen import urllib.error r = urlopen(&#39;http://httpbin.org/headers&#39;) # you need to instruct urllib how to turn raw bytes into text print(r.read().decode(&#39;ascii&#39;)) requests - the go-to tool">
+  <meta property="og:description" content="Intro What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
+ urllib - client in Standard Library, for simple use
+from urllib.request import urlopen import urllib.error r = urlopen(&#39;http://httpbin.org/headers&#39;) # you need to instruct urllib how to turn raw bytes into text print(r.read().decode(&#39;ascii&#39;)) requests - the go-to tool">
+  <meta name="twitter:description" content="Intro What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
+ urllib - …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/http-protocol/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.49" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">HTTP protocol</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>January 11, 2018</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/net/">
+            <i class="fas fa-folder"></i>
+            net
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/http/">
+            <i class="fas fa-tag"></i>
+            http
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/web/">
+            <i class="fas fa-tag"></i>
+            web
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#encoding">Encoding</a></li>
+<li><a href="#authentication-and-cookies">Authentication and cookies</a></li>
+<li><a href="#keep-alive">Keep-Alive</a></li>
+<li><a href="#various">Various</a></li>
+<li><a href="#sources">Sources</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      
+
+<h2 id="intro">Intro</h2>
+
+<p>What for</p>
+
+<ul>
+<li>used to fetch network resources (documents) based on their hostname and path</li>
+<li>dominant document type - WWW of hypertext documents</li>
+<li>dominant version - HTTP/1.1</li>
+</ul>
+
+<p>Python libraries</p>
+
+<ul>
+<li><p><code>urllib</code> - client in Standard Library, for simple use</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> urllib.request <span style="color:#f92672">import</span> urlopen
+<span style="color:#f92672">import</span> urllib.error
+r <span style="color:#f92672">=</span> urlopen(<span style="color:#e6db74">&#39;http://httpbin.org/headers&#39;</span>)
+<span style="color:#75715e"># you need to instruct urllib how to turn raw bytes into text</span>
+<span style="color:#66d9ef">print</span>(r<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;ascii&#39;</span>))</code></pre></div></li>
+
+<li><p><code>requests</code> - the go-to tool</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;http://httpbin.org/headers&#39;</span>)
+<span style="color:#66d9ef">print</span>(r<span style="color:#f92672">.</span>text)</code></pre></div></li>
+</ul>
+
+<p>HTTP message format (both request <code>&gt;</code> and response <code>&lt;</code>)</p>
+
+<ul>
+<li>line of information (method, resource, protocol, status code) + zero or more of <code>name:value</code> headers</li>
+<li>blank line - server/client call <code>recv()</code> until <code>CR-LF-CR-LF</code> to find out the headers&rsquo; end</li>
+<li>optional body - its length (framing) is defined by the <code>Content-Lenght</code> header</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ curl reisinge.net -v
+* Rebuilt URL to: reisinge.net/
+*   Trying 109.230.20.210...
+* Connected to reisinge.net (109.230.20.210) port 80 (#0)
+&gt; GET / HTTP/1.1
+&gt; Host: reisinge.net
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 302 Moved Temporarily
+&lt; Server: nginx/1.12.2
+&lt; Date: Thu, 11 Jan 2018 07:51:16 GMT
+&lt; Content-Type: text/html
+&lt; Content-Length: 161
+&lt; Connection: keep-alive
+&lt; Location: http://jreisinger.github.io
+&lt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;302 Found&lt;/title&gt;&lt;/head&gt;
+&lt;body bgcolor=&#34;white&#34;&gt;
+&lt;center&gt;&lt;h1&gt;302 Found&lt;/h1&gt;&lt;/center&gt;
+&lt;hr&gt;&lt;center&gt;nginx/1.12.2&lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+* Connection #0 to host reisinge.net left intact</code></pre></div>
+<p>The client can&rsquo;t issue another request over the same socket until the response
+is finished.</p>
+
+<h2 id="methods">Methods</h2>
+
+<ul>
+<li>actions; what the server should do</li>
+</ul>
+
+<p>GET</p>
+
+<ul>
+<li>&ldquo;read&rdquo;, fetch a resource</li>
+<li>cannot include a body</li>
+<li>can only modify the document being returned (ex. <code>?q=python</code> or <code>?result=10</code>)</li>
+</ul>
+
+<p>POST</p>
+
+<ul>
+<li>&ldquo;write&rdquo;, update resource on a server</li>
+<li>the result of POST can&rsquo;t be cached</li>
+<li>can&rsquo;t be retried automatically if the response does not arrive</li>
+</ul>
+
+<h2 id="encoding">Encoding</h2>
+
+<p>HTTP transfer encoding &lt;-&gt; content encoding</p>
+
+<p>Transfer encoding (Content-Length or chunked encoding, raw or compressed)</p>
+
+<ul>
+<li>wrapper used for data delivery, not a change in the underlying data itself</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET / HTTP/1.1
+Accept-Encoding: gzip
+...
+
+HTTP/1.1 200 OK
+Content-Length: 3913
+Transfer-Encoding: gzip
+...</code></pre></div>
+<p>Content type - what format will be selected to represent a given resource</p>
+
+<ul>
+<li><code>application/octet-stream</code> - a plain sequence of bytes for which server can guarantee no more specific interpretation</li>
+<li><code>text/html</code></li>
+</ul>
+
+<p>Content encoding - if the format ^ is text, what encoding will be used to turn text code points into bytes</p>
+
+<ul>
+<li><code>charset=utf-8</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Content-Type: text/html; charset=utf-8</code></pre></div>
+<h2 id="authentication-and-cookies">Authentication and cookies</h2>
+
+<p>Basic Auth (HTTP-mediated authentication)</p>
+
+<ul>
+<li>poor design initially, then fixed by SSL/TLS but still ugly</li>
+<li>still used by simple APIs</li>
+</ul>
+
+<p>TLS/SSL</p>
+
+<ul>
+<li>server authentication and transfer encryption layer around HTTP</li>
+</ul>
+
+<p>Cookies</p>
+
+<ul>
+<li>every request is independent of all other requests (from the point of the
+view of the protocol)</li>
+<li>-&gt; authentication info must be carried in every request</li>
+<li>cookie = key-value pair sent by the server and then inserted in all
+further requests:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /login HTTP/1.1
+...
+
+HTTP/1.1 200 OK
+Set-Cookie: session-id=d41d8cd98f00b204e9800998ecf8427e; Path=/
+...
+
+GET /login HTTP/1.1
+Cookie: session-id=d41d8cd98f00b204e9800998ecf8427e
+...</code></pre></div>
+<ul>
+<li>cookie should be opaque - random UUID mapped to the username on the
+server or encrypted string that server alone can decrypt</li>
+<li>some servers give you cookie simply for visiting to track how you move
+through the site</li>
+</ul>
+
+<h2 id="keep-alive">Keep-Alive</h2>
+
+<ul>
+<li>the three-way TCP handshake can be avoided if a connection is already open</li>
+<li>HTTP/1.1 - default to keep HTTP connection open after a request to re-use a
+single TCP connection</li>
+<li>server/client can specify <code>Connection: close</code> if they plan on hanging up once
+a request is completed</li>
+<li>web browsers often create four or more simultaneous TCP connections per site
+to get the resources in parallel</li>
+</ul>
+
+<h2 id="various">Various</h2>
+
+<p>Minimally correct request nowadays (otherwise 404):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /html/rfc7230 HTTP/1.1
+Host: tools.ietf.org</code></pre></div>
+<p>Status codes - returned by a server with each response</p>
+
+<ul>
+<li>200 - OK</li>
+<li>3xx - redirects; not expected to carry a body</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> r <span style="color:#f92672">=</span> urlopen(<span style="color:#e6db74">&#39;http://httpbin.org/status/301&#39;</span>)
+<span style="color:#f92672">&gt;&gt;&gt;</span> r<span style="color:#f92672">.</span>status, r<span style="color:#f92672">.</span>url
+(<span style="color:#ae81ff">200</span>, <span style="color:#e6db74">&#39;http://httpbin.org/get&#39;</span>)
+<span style="color:#f92672">&gt;&gt;&gt;</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;http://httpbin.org/status/301&#39;</span>)
+<span style="color:#f92672">&gt;&gt;&gt;</span> (r<span style="color:#f92672">.</span>status_code, r<span style="color:#f92672">.</span>url)
+(<span style="color:#ae81ff">200</span>, <span style="color:#e6db74">&#39;http://httpbin.org/get&#39;</span>)
+<span style="color:#f92672">&gt;&gt;&gt;</span> r<span style="color:#f92672">.</span>history
+[<span style="color:#f92672">&lt;</span>Response [<span style="color:#ae81ff">301</span>]<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Response [<span style="color:#ae81ff">302</span>]<span style="color:#f92672">&gt;</span>]</code></pre></div>
+<ul>
+<li>4xx - client request is unintelligible or illegal</li>
+<li>5xx - server errors</li>
+<li>502 Bad Gateway - the server is a proxy but it cannot contact the server
+behind it</li>
+</ul>
+
+<p>Caching headers</p>
+
+<ul>
+<li>allow client to cache and reuse resources locally</li>
+<li>let server skip redelivering an unchanged resource</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+
+<p>Foundations of Python Network Programming (2014) - <a href="https://www.safaribooksonline.com/library/view/foundations-of-python/9781430258551/9781430258544_Ch09.xhtml">ch. 9</a></p>
+
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="https://jreisinger.github.io/notes/posts/kubernetes/" data-toggle="tooltip" data-placement="top" title="Kubernetes">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/docker/" data-toggle="tooltip" data-placement="top" title="Docker">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="http://jreisinger.github.io" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

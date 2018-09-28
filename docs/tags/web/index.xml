@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/web/</link>
+    <description>Recent content in Web on Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 11 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jreisinger.github.io/notes/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HTTP protocol</title>
+      <link>https://jreisinger.github.io/notes/posts/http-protocol/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/http-protocol/</guid>
+      <description>Intro What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
+ urllib - client in Standard Library, for simple use
+from urllib.request import urlopen import urllib.error r = urlopen(&amp;#39;http://httpbin.org/headers&amp;#39;) # you need to instruct urllib how to turn raw bytes into text print(r.read().decode(&amp;#39;ascii&amp;#39;)) requests - the go-to tool</description>
+    </item>
+    
+  </channel>
+</rss>

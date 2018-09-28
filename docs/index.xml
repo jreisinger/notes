@@ -65,6 +65,18 @@ Stack
     </item>
     
     <item>
+      <title>HTTP protocol</title>
+      <link>https://jreisinger.github.io/notes/posts/http-protocol/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/http-protocol/</guid>
+      <description>Intro What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
+ urllib - client in Standard Library, for simple use
+from urllib.request import urlopen import urllib.error r = urlopen(&amp;#39;http://httpbin.org/headers&amp;#39;) # you need to instruct urllib how to turn raw bytes into text print(r.read().decode(&amp;#39;ascii&amp;#39;)) requests - the go-to tool</description>
+    </item>
+    
+    <item>
       <title>Docker</title>
       <link>https://jreisinger.github.io/notes/posts/docker/</link>
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
