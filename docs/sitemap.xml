@@ -88,6 +88,11 @@
   </url>
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/terms/</loc>
+    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/tags/basics/</loc>
     <lastmod>2015-09-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -117,14 +122,14 @@
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/devops/</loc>
-    <lastmod>2016-11-20T00:00:00+00:00</lastmod>
+    <loc>https://jreisinger.github.io/notes/categories/devops/</loc>
+    <lastmod>2018-06-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/categories/devops/</loc>
-    <lastmod>2018-06-27T00:00:00+00:00</lastmod>
+    <loc>https://jreisinger.github.io/notes/tags/devops/</loc>
+    <lastmod>2016-11-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -286,6 +291,12 @@
   <url>
     <loc>https://jreisinger.github.io/notes/tags/</loc>
     <lastmod>2015-09-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/categories/terms/</loc>
+    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

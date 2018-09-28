@@ -202,5 +202,16 @@ First-Time Git Setup Introduce yourself to git with your name and public email a
       <description> Know how things work. Plan it before you do it. Make it reversible (backups help a lot with this one). Make changes incrementally. Test, test, test, before you unleash it on the world.  </description>
     </item>
     
+    <item>
+      <title>Terms</title>
+      <link>https://jreisinger.github.io/notes/posts/terms/</link>
+      <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/terms/</guid>
+      <description>big data The idea that large databases of seemingly random data (ex. purchasing habits, location information) about people are valueable.
+block size The POSIX standard defines a block size of 512 bytes. However, this size is harder to read, so by default, the df and du output in most Linux distributions is in 1024-byte blocks.
+caching means that data likely to be used in the future is kept &amp;ldquo;nearby&amp;rdquo;</description>
+    </item>
+    
   </channel>
 </rss>

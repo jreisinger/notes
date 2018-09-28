@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Terms on Notes</title>
+    <link>https://jreisinger.github.io/notes/categories/terms/</link>
+    <description>Recent content in Terms on Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Jan 1970 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jreisinger.github.io/notes/categories/terms/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Terms</title>
+      <link>https://jreisinger.github.io/notes/posts/terms/</link>
+      <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/terms/</guid>
+      <description>big data The idea that large databases of seemingly random data (ex. purchasing habits, location information) about people are valueable.
+block size The POSIX standard defines a block size of 512 bytes. However, this size is harder to read, so by default, the df and du output in most Linux distributions is in 1024-byte blocks.
+caching means that data likely to be used in the future is kept &amp;ldquo;nearby&amp;rdquo;</description>
+    </item>
+    
+  </channel>
+</rss>
