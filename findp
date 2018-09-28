@@ -18,33 +18,26 @@ pod2usage( -exitval => 0, -verbose => 2, -noperldoc => 1 ) if $help;
 
 my $POSTSDIR = 'content/posts';
 
-if ($post) {
-    print sort `find $POSTSDIR -type f -iname "*$post*"`;
-} elsif ($inpost) {
+if ($inpost) {
     my @posts = `grep --color=never -l -R -i -E '$inpost' $POSTSDIR | sort | uniq`;
-
-    # Don't print categories (subdirectories)
-    for (@posts) {
-        chomp;
-        my $n_slashes = () = /\//g;
-        say if $n_slashes == 1;
-    }
+    print for @posts;
+} elsif ($post) {
+    print sort `find $POSTSDIR -type f -iname "*$post*"`;
 } else {
-    print sort `find $POSTSDIR -type d | sort`;
+    print sort `find $POSTSDIR -type f`;
 }
 
 __END__
 
 =head1 NAME
 
-findp - search through my blog posts
+findp - search through my posts
 
 =head1 SYNOPSIS
 
 findp [options]
 
-  List available areas (topics) if no option is used. Searches are case
-  insensitive.
+  List all posts if no option is used. Searches are case insensitive.
 
   options:
     -h, -?, --help      brief help message
