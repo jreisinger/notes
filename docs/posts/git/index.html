@@ -77,6 +77,8 @@ Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with
 <li><a href="#getting-a-git-repository">Getting a git repository</a></li>
 <li><a href="#making-changes">Making changes</a></li>
 <li><a href="#excluding-some-files">Excluding some files</a></li>
+<li><a href="#undo-redo">Undo/Redo</a></li>
+<li><a href="#branching-and-merging">Branching and merging</a></li>
 <li><a href="#tips-and-tricks">Tips and Tricks</a></li>
 <li><a href="#more">More</a></li>
 </ul>
@@ -185,10 +187,37 @@ $ git init</code></pre></div>
 <p>See more <a href="http://github.com/guides/ignore-for-git">here</a>.</p>
 
 <p>If some of your files is already beeing tracked by git, you can untrack it like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git rm --cached &lt;filename&gt;</code></pre></div>
+<h1 id="undo-redo">Undo/Redo</h1>
 
-<pre><code>git rm --cached &lt;filename&gt;
-</code></pre>
+<p>Go back and forget about every change past a certain point</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git reset --hard SHA1_HASH  # all newer commits get erased forever!!!</code></pre></div>
+<p>Travel back in time</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout SHA1_HASH      # newer commits are preserved</code></pre></div>
+<p>&hellip; if you now edit and commit, you will be in an alternate reality (called a branch)</p>
 
+<h1 id="branching-and-merging">Branching and merging</h1>
+
+<p>Branch is a separate line of development.</p>
+
+<p>To stop Git complaining, always commit or reset your changes before running checkout.</p>
+
+<p>Create and switch to a new branch</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout -b experimental_idea</code></pre></div>
+<p>Compare two branches</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># from within e.g. experimental_idea branch
+</span><span style="color:#75715e"></span>git diff ..master
+git diff master..
+git log ..master
+git log master..</code></pre></div>
+<p>Merge two branches</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout master
+git merge experimental_idea</code></pre></div>
+<p>Delete a branch</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git branch -d experimental_idea <span style="color:#75715e"># you might need -D if not merged
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># delete a remote branch
+</span><span style="color:#75715e"></span>git push origin --delete experimental_idea</code></pre></div>
 <h1 id="tips-and-tricks">Tips and Tricks</h1>
 
 <p>To to list tracked files:</p>
@@ -198,13 +227,10 @@ $ git init</code></pre></div>
 <span style="color:#75715e"># files that ever existed (i.e. including deleted files)
 </span><span style="color:#75715e"></span>git log --pretty<span style="color:#f92672">=</span>format: --name-only --diff-filter<span style="color:#f92672">=</span>A | sort - | sed <span style="color:#e6db74">&#39;/^$/d&#39;</span></code></pre></div>
 <p>To remove files not tracked by Git (like log files, zipped files, compiled files)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clean -n  <span style="color:#75715e"># dry-run
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clean -n  <span style="color:#75715e"># dry-run ...
 </span><span style="color:#75715e"></span>git clean -f  # files removed!</code></pre></div>
 <p>Apply changes generated via <code>git diff [--binary]</code>:</p>
-
-<pre><code>git apply --ignore-space-change --ignore-whitespace
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git apply --ignore-space-change --ignore-whitespace</code></pre></div>
 <p>While in Git-tracked directory, print the filename followed by the author of the last commit:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">for</span> f in <span style="color:#e6db74">`</span>find -type f<span style="color:#e6db74">`</span>; <span style="color:#66d9ef">do</span>
         git log -1 --date<span style="color:#f92672">=</span>iso -- $f |
@@ -212,10 +238,7 @@ $ git init</code></pre></div>
         perl -wnla -s -F: -e <span style="color:#e6db74">&#39;print &#34;$file --&#34; . $F[1]&#39;</span> -- -file<span style="color:#f92672">=</span>$f
 <span style="color:#66d9ef">done</span></code></pre></div>
 <p>Ignore changes of the files&rsquo; mode (for current repo):</p>
-
-<pre><code>git config core.fileMode false
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config core.fileMode false</code></pre></div>
 <h1 id="more">More</h1>
 
 <ul>
