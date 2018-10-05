@@ -135,7 +135,65 @@ See more [here](http://github.com/guides/ignore-for-git).
 
 If some of your files is already beeing tracked by git, you can untrack it like this:
 
-    git rm --cached <filename>
+```bash
+git rm --cached <filename>
+```
+
+Undo/Redo
+=========
+
+Go back and forget about every change past a certain point
+
+```sh
+git reset --hard SHA1_HASH  # all newer commits get erased forever!!!
+```
+
+Travel back in time
+
+```sh
+git checkout SHA1_HASH      # newer commits are preserved
+```
+
+... if you now edit and commit, you will be in an alternate reality (called a branch)
+
+Branching and merging
+=====================
+
+Branch is a separate line of development.
+
+To stop Git complaining, always commit or reset your changes before running checkout.
+
+Create and switch to a new branch
+
+```sh
+git checkout -b experimental_idea
+```
+
+Compare two branches
+
+```sh
+# from within e.g. experimental_idea branch
+git diff ..master
+git diff master..
+git log ..master
+git log master..
+```
+
+Merge two branches
+
+```sh
+git checkout master
+git merge experimental_idea
+```
+
+Delete a branch
+
+```sh
+git branch -d experimental_idea # you might need -D if not merged
+
+# delete a remote branch
+git push origin --delete experimental_idea
+```
 
 Tips and Tricks
 ===============
@@ -153,13 +211,15 @@ git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
 To remove files not tracked by Git (like log files, zipped files, compiled files)
 
 ```bash
-git clean -n  # dry-run
+git clean -n  # dry-run ...
 git clean -f  # files removed!
 ```
 
 Apply changes generated via `git diff [--binary]`:
 
-    git apply --ignore-space-change --ignore-whitespace
+```bash
+git apply --ignore-space-change --ignore-whitespace
+```
 
 While in Git-tracked directory, print the filename followed by the author of the last commit:
 
@@ -173,7 +233,9 @@ done
 
 Ignore changes of the files' mode (for current repo):
 
-    git config core.fileMode false
+```bash
+git config core.fileMode false
+```
 
 More
 ====
