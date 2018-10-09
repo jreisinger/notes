@@ -34,8 +34,8 @@ transformed manufacturing.
 
 DevOps has been formed by:
 
-* Lean principles
-* Agile Community
+* [Lean](https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898/ref=sr_1_3?ie=UTF8&qid=1539069703&sr=8-3&keywords=lean+startup&dpID=51T-sMqSMiL&preST=_SY291_BO1,204,203,200_QL40_&dpSrc=srch) principles
+* [Agile](http://agilemanifesto.org/) Community
 * Infrastructure as Code
 * CI, CD
 * Innovation Culture
@@ -44,15 +44,15 @@ DevOps has been formed by:
 "The Three ways" are the underpinning principles that all the DevOps patterns
 can be derived from.
 
-The First Way - workflow
-------------------------
+The First Way - systems thinking
+--------------------------------
 
-To maximaze left-to-right flow of work (from Dev to Ops to the customer) we need:
+To maximaze left-to-right flow of work (from Dev to Ops to the customer) we need
 
+* emphasize the performance of the entire system, as opposed to the performance of a specific silo of work or department
 * each step is done in a repeatable way
 * small batch sizes and intervals of works
 * never passing defects to downstream work centers
-* local optimization must not degrade global performance (optimmize for global goals)
 
 Necessary practices:
 
@@ -79,7 +79,7 @@ Practices:
 The Third Way - experimentation & repetition
 --------------------------------------------
 
-Create culture that fosters:
+To have a healthy work environment we need a culture that fosters:
 
 * *continual* experimentation (risk taking and learning from success and failure)
 * understanding that repetition and practice is the prerequisite to mastery (kata)
