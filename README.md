@@ -2,6 +2,7 @@ This repo is rendered at https://jreisinger.github.io/notes/.
 
 Typical workcycle:
 
+0) `git pull`
 1) Add/edit `content`
 2) `./wild-posts`
 3) `./publish.sh`
