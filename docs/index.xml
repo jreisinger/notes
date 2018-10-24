@@ -23,6 +23,15 @@
     </item>
     
     <item>
+      <title>Sorting with Go</title>
+      <link>https://jreisinger.github.io/notes/posts/sorting-with-go/</link>
+      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/sorting-with-go/</guid>
+      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sort&amp;#34; ) // A type with the three methods required for sorting. type StringSlice []string func (p StringSlice) Len() int { return len(p) } func (p StringSlice) Less(i, j int) bool { return p[i] &amp;lt; p[j] } func (p StringSlice) Swap(i, j int) { p[i], p[j] = p[j], p[i] } func main() { names := []string{&amp;#34;Xavier&amp;#34;, &amp;#34;John&amp;#34;, &amp;#34;Eve&amp;#34;, &amp;#34;Adam&amp;#34;} // sort.Strings(names) has the same effect 	sort.</description>
+    </item>
+    
+    <item>
       <title>Perl One Liners</title>
       <link>https://jreisinger.github.io/notes/posts/perl-one-liners/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
