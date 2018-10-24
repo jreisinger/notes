@@ -6,12 +6,15 @@ Typical workcycle:
 2) `./wild-posts`
 3) `./publish.sh`
 
+[TERMS](content/posts/TERMS.md)
+
 ## Posts
 
 * [Devops](content/posts/devops.md)
 * [Docker](content/posts/docker.md)
 * [Gen Rand File](content/posts/gen_rand_file.md)
 * [Git](content/posts/git.md)
+* [Go Directory Structure](content/posts/go-directory-structure.md)
 * [Grub2](content/posts/grub2.md)
 * [Hashes](content/posts/hashes.md)
 * [HTTP Protocol](content/posts/http-protocol.md)

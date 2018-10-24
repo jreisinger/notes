@@ -6,10 +6,21 @@
     <description>Recent content on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 26 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 24 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go directory structure</title>
+      <link>https://jreisinger.github.io/notes/posts/go-directory-structure/</link>
+      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/go-directory-structure/</guid>
+      <description>Go has a strong opinion about directory structure.
+## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
+## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello $ tree . ├── bin │ └── hello # hello binary that has been built and installed └── src └── hello └── main.</description>
+    </item>
     
     <item>
       <title>Perl One Liners</title>
