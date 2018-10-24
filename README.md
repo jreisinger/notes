@@ -6,8 +6,6 @@ Typical workcycle:
 2) `./wild-posts`
 3) `./publish.sh`
 
-[TERMS](content/posts/TERMS.md)
-
 ## Posts
 
 * [Devops](content/posts/devops.md)
@@ -28,3 +26,4 @@ Typical workcycle:
 * [Signals](content/posts/signals.md)
 * [Sysadmin Philosophy](content/posts/sysadmin-philosophy.md)
 * [Tcpdump](content/posts/tcpdump.md)
+* [TERMS](content/posts/TERMS.md)
