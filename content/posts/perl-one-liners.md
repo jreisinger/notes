@@ -5,7 +5,7 @@ categories: [prog]
 tags: [perl, sysadmin]
 ---
 
-I think Perl one liners are super useful. They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see [Famous Perl One-Liners Explained](http://www.catonmat.net/blog/perl-one-liners-explained-part-one/). If you want a book, have a look at [Minimal Perl for UNIX and Linux People](http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&qid=1358096838&sr=8-1&keywords=minimal+perl+for+unix).
+I think Perl one liners are super useful. Even Kubernetes people like them to their [jobs](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job) :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see [Famous Perl One-Liners Explained](http://www.catonmat.net/blog/perl-one-liners-explained-part-one/). If you want a book have a look at [Minimal Perl for UNIX and Linux People](http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&qid=1358096838&sr=8-1&keywords=minimal+perl+for+unix).
 
 ## Perl command line switches
 
@@ -28,7 +28,7 @@ See [perlrun](http://perldoc.perl.org/perlrun.html) for more.
 find lines containing `<regex>`:
 
 ```bash
-perl -lne 'print if /<regex>/'
+perl -lne 'print if /<regex>/' aFile
 ```
 
 find DNS resource records of type A:
@@ -82,7 +82,7 @@ perl -i -pe 's/$/\r/' <file1> <file2> ...  # unix-to-dos
 
 ## Various
 
-Total size of files (using the [Eskimo Greeting Operator](http://www.catonmat.net/blog/secret-perl-operators/#eskimo) as suggested by [PerlMonks](http://www.perlmonks.org/?node_id=1172707)):
+Total size of found files (using the [Eskimo Greeting Operator](http://www.catonmat.net/blog/secret-perl-operators/#eskimo) as suggested by [PerlMonks](http://www.perlmonks.org/?node_id=1172707)):
 
 ```bash
 find /opt/splunk/syslog/ -iname "*log*" -type f -mtime +30 | \

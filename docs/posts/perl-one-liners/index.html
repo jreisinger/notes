@@ -6,11 +6,11 @@
   <title>Perl One Liners - Notes</title>
   <meta property="og:title" content="Perl One Liners - Notes" />
   <meta name="twitter:title" content="Perl One Liners - Notes" />
-  <meta name="description" content="I think Perl one liners are super useful. They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book, have a look at Minimal Perl for UNIX and Linux People.
+  <meta name="description" content="I think Perl one liners are super useful. Even Kubernetes people like them to their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
 Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
-  <meta property="og:description" content="I think Perl one liners are super useful. They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book, have a look at Minimal Perl for UNIX and Linux People.
+  <meta property="og:description" content="I think Perl one liners are super useful. Even Kubernetes people like them to their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
 Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
-  <meta name="twitter:description" content="I think Perl one liners are super useful. They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If …">
+  <meta name="twitter:description" content="I think Perl one liners are super useful. Even Kubernetes people like them to their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/perl-one-liners/" />
@@ -89,7 +89,7 @@ Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
 </aside>
       
 
-<p>I think Perl one liners are super useful. They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see <a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">Famous Perl One-Liners Explained</a>. If you want a book, have a look at <a href="http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&amp;qid=1358096838&amp;sr=8-1&amp;keywords=minimal+perl+for+unix">Minimal Perl for UNIX and Linux People</a>.</p>
+<p>I think Perl one liners are super useful. Even Kubernetes people like them to their <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">jobs</a> :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see <a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">Famous Perl One-Liners Explained</a>. If you want a book have a look at <a href="http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&amp;qid=1358096838&amp;sr=8-1&amp;keywords=minimal+perl+for+unix">Minimal Perl for UNIX and Linux People</a>.</p>
 
 <h2 id="perl-command-line-switches">Perl command line switches</h2>
 
@@ -112,7 +112,7 @@ Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
 <h3 id="grep-replacement"><code>grep</code> replacement</h3>
 
 <p>find lines containing <code>&lt;regex&gt;</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="color:#e6db74">&#39;print if /&lt;regex&gt;/&#39;</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="color:#e6db74">&#39;print if /&lt;regex&gt;/&#39;</span> aFile</code></pre></div>
 <p>find DNS resource records of type A:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /etc/bind -type f | xargs perl -ne <span style="color:#e6db74">&#39;/\s+A\s+/ and print &#34;$ARGV: $_&#34;&#39;</span></code></pre></div>
 <h3 id="sed-replacement"><code>sed</code> replacement</h3>
@@ -142,7 +142,7 @@ $ perl -lane <span style="color:#e6db74">&#39;print &#34;@F[1,0]&#34;&#39;</span
 </span><span style="color:#75715e"></span>perl -i -pe <span style="color:#e6db74">&#39;s/$/\r/&#39;</span> &lt;file1&gt; &lt;file2&gt; ...  # unix-to-dos</code></pre></div>
 <h2 id="various">Various</h2>
 
-<p>Total size of files (using the <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> as suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>):</p>
+<p>Total size of found files (using the <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> as suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /opt/splunk/syslog/ -iname <span style="color:#e6db74">&#34;*log*&#34;</span> -type f -mtime +30 | <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>perl -lne <span style="color:#e6db74">&#39;$sum += (stat)[7]}{print $sum&#39;</span></code></pre></div>
 <p>Remove comments and compress all consecutive blank lines into one (<a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">more</a>):</p>

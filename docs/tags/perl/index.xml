@@ -17,7 +17,7 @@
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/perl-one-liners/</guid>
-      <description>I think Perl one liners are super useful. They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book, have a look at Minimal Perl for UNIX and Linux People.
+      <description>I think Perl one liners are super useful. Even Kubernetes people like them to their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
 Perl command line switches  -e &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; -E &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; enabling feature bundle (like use 5.</description>
     </item>
     

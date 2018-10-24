@@ -1,5 +1,5 @@
 ---
-title: "System administration philosophy of AE. Frish"
+title: "System administration philosophy of Æ. Frish"
 date: 2014-03-01
 categories: [mngmt]
 tags: [sysadmin, philosophy]
