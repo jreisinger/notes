@@ -1,4 +1,2 @@
-language: perl
-install:
-#    - cpanm --quiet --notest Text::Autoformat
+language: bash
 script: perl ./wild-posts
