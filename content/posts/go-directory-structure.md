@@ -27,7 +27,7 @@ $ tree
 2 directories, 1 file
 
 ## Install the program
-$ go install hello
+$ go install hello      # compile and install *.go files in $GOPATH/src/hello 
 $ tree
 .
 ├── bin
