@@ -1,5 +1,4 @@
-# https://docs.travis-ci.com/user/languages/minimal-and-generic/
-language: bash
+language: perl
 install:
     - cpanm --quiet --notest Text::Autoformat
 script: perl ./wild-posts
