@@ -2,3 +2,5 @@ language: perl
 install:
     - cpanm --quiet --notest Text::Autoformat
 script: perl ./wild-posts
+
+# consider this https://gist.github.com/willprice/e07efd73fb7f13f917ea
