@@ -8,10 +8,10 @@
   <meta name="twitter:title" content="Go directory structure - Notes" />
   <meta name="description" content="Go has a strong opinion about directory structure.
 ## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello $ tree . ├── bin │ └── hello # hello binary that has been built and installed └── src └── hello └── main.">
+## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.go files in $GOPATH/src/hello $ tree .">
   <meta property="og:description" content="Go has a strong opinion about directory structure.
 ## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello $ tree . ├── bin │ └── hello # hello binary that has been built and installed └── src └── hello └── main.">
+## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.go files in $GOPATH/src/hello $ tree .">
   <meta name="twitter:description" content="Go has a strong opinion about directory structure.
 ## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
 ## Create a program $ tree . └── src └── …">
@@ -33,7 +33,7 @@
 <header class="site-header">
   <nav class="site-navi">
     <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
-    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
     <ul class="site-navi-items">
       <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
       <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
@@ -82,7 +82,7 @@ $ tree
 2 directories, 1 file
 
 ## Install the program
-$ go install hello
+$ go install hello      # compile and install *.go files in $GOPATH/src/hello 
 $ tree
 .
 ├── bin

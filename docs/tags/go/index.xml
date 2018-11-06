@@ -19,7 +19,7 @@
       <guid>https://jreisinger.github.io/notes/posts/go-directory-structure/</guid>
       <description>Go has a strong opinion about directory structure.
 ## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello $ tree . ├── bin │ └── hello # hello binary that has been built and installed └── src └── hello └── main.</description>
+## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.go files in $GOPATH/src/hello $ tree .</description>
     </item>
     
     <item>
