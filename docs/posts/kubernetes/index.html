@@ -6,15 +6,15 @@
   <title>Kubernetes - Notes</title>
   <meta property="og:title" content="Kubernetes - Notes" />
   <meta name="twitter:title" content="Kubernetes - Notes" />
-  <meta name="description" content="Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # show current context kubectl config current-context # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.">
-  <meta property="og:description" content="Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # show current context kubectl config current-context # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object each object exists at a unique HTTP path, e.">
-  <meta name="twitter:description" content="Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster  kubectl get namespaces Context  to change the default namespace more permanently to manage different …">
+  <meta name="description" content="Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource (a.k.a. a Kubernetes object) each object exists at a unique HTTP path, e.">
+  <meta property="og:description" content="Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource (a.k.a. a Kubernetes object) each object exists at a unique HTTP path, e.">
+  <meta name="twitter:description" content="Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -71,6 +71,7 @@
 <ul>
 <li>
 <ul>
+<li><a href="#components">Components</a></li>
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#namespace">Namespace</a></li>
 <li><a href="#context">Context</a></li>
@@ -86,6 +87,10 @@
 </aside>
       
 
+<h2 id="components">Components</h2>
+
+<p><img src="https://lh6.googleusercontent.com/obUWmfsfwjDiGHSJyKI4y4wgBrTLad31YXN_o_dNsmWg8802OJwrhx8_UE18zCwMuHoGRasG4RVejw=w1920-h1079" alt="" /></p>
+
 <h2 id="configuration">Configuration</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat ~/.kube/config
 <span style="color:#75715e"># or
@@ -94,6 +99,7 @@
 
 <ul>
 <li>group of objects in a cluster</li>
+<li>similar to a filesystem folder</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get namespaces</code></pre></div>
 <h2 id="context">Context</h2>
@@ -103,10 +109,7 @@
 <li>to manage different clusters</li>
 <li>to manage different users</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># show current context
-</span><span style="color:#75715e"></span>kubectl config current-context
-
-<span style="color:#75715e"># list contexts
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># list contexts
 </span><span style="color:#75715e"></span>kubectl config get-contexts
 
 <span style="color:#75715e"># switch context
@@ -114,12 +117,12 @@
 <h2 id="objects">Objects</h2>
 
 <ul>
-<li>everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object</li>
+<li>everything in Kubernetes is represented by a RESTful resource (a.k.a. a Kubernetes object)</li>
 <li>each object exists at a unique HTTP path, e.g. <code>https://your-k8s.com/api/v1/namespaces/default/pods/my-pod</code></li>
 <li>the <code>kubectl</code> makes requests to these URLs to access the objects</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># view Kubernetes objects
-</span><span style="color:#75715e"></span>kubectl get                       <span style="color:#75715e"># all resource types
+</span><span style="color:#75715e"></span>kubectl get all <span style="color:#f92672">[</span>-l app<span style="color:#f92672">=</span>nginx<span style="color:#f92672">]</span>    <span style="color:#75715e"># all resources [with a label app=nginx]
 </span><span style="color:#75715e"></span>kubectl get &lt;resource&gt;            <span style="color:#75715e"># all resources in a namespace
 </span><span style="color:#75715e"></span>kubectl get &lt;resource&gt; &lt;object&gt;   <span style="color:#75715e"># specific resource
 </span><span style="color:#75715e"></span>
@@ -155,13 +158,14 @@ kubectl exec -it &lt;pod&gt; -- bash  <span style="color:#75715e"># or sh instea
 <li>atomic unit of work in Kubernetes cluster</li>
 <li>Pod = one or more containers working together symbiotically</li>
 <li>all containers in a Pod always land on the same machine</li>
-<li>each container runs its own cgroup but they share network, UTS (hostname) and IP namespaces</li>
+<li>each container runs its own cgroup but they <em>share</em> network, hostname and filesystem</li>
+<li>like a logical host</li>
 <li>if you want to persist data across multiple instances of a Pod, you need to use <code>PersistentVolumes</code></li>
 </ul>
 
 <p>Pod <em>manifest</em> - just a text-file representation of the Kubernetes API object:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f quotes-pod.yml</code></pre></div>
-<p>Port forwarding :cool:</p>
+<p>Port forwarding:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward quotes <span style="color:#ae81ff">5000</span>:5000</code></pre></div>
 <p>What goes into a pod?</p>
 
@@ -176,11 +180,11 @@ filesystem</li>
 
 <ul>
 <li>object of type controller</li>
-<li>manages pods</li>
+<li>manages replicasets/pods</li>
 </ul>
 
 <p>One way to create a deployment:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl run quotes-prod --image<span style="color:#f92672">=</span>reisinge/quotes <span style="color:#ae81ff">\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create deployment quotes-prod --image<span style="color:#f92672">=</span>reisinge/quotes <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>--replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> --port<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span> --labels<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ver=1,app=quotes,env=prod&#34;</span></code></pre></div>
 <h2 id="service">Service</h2>
 
@@ -210,7 +214,8 @@ the system)</li>
 <h2 id="resources">Resources</h2>
 
 <ul>
-<li>Kubernetes: Up and Running (2017)</li>
+<li><a href="https://www.safaribooksonline.com/library/view/kubernetes-up-and/9781491935668/">Kubernetes: Up and Running</a> (2017)</li>
+<li><a href="https://www.safaribooksonline.com/videos/getting-started-with/9780135237823">Getting Started with Kubernetes</a> (video, 2018)</li>
 </ul>
 
     </article>
@@ -218,7 +223,7 @@ the system)</li>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -262,7 +267,7 @@ the system)</li>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
