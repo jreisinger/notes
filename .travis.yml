@@ -3,8 +3,8 @@ perl:
 - "5.26"
 install:
 - cpanm --quiet --notest Text::Autoformat
-- sudo  apt-get install jq curl wget
-- export HUGO_VERSION=$(curl -L -s https://api.github.com/repos/spf13/hugo/releases/latest | jq -r ".assets[] | select(.name | test(\"hugo_[0-9.]+_Linux-64bit.tar.gz\")) | .browser_download_url" | perl -ne '/v([\d.]+)/ && print $1')
+- sudo  apt-get install wget
+- export HUGO_VERSION="0.52"
 - echo $HUGO_VERSION
 - wget -q -O ${HUGO_VERSION}.tar.gz https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
 - tar xf ${HUGO_VERSION}.tar.gz && sudo mv hugo* /usr/bin/hugo
