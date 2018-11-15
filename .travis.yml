@@ -5,7 +5,7 @@ install:
 - echo $HUGO_VERSION
 - wget -q -O ${HUGO_VERSION}.tar.gz https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
 - test -z "$HUGO_SHA" || echo "${HUGO_SHA} ${HUGO_VERSION}.tar.gz" | sha256sum -c
-- tar xf ${HUGO_VERSION}.tar.gz && mv hugo* /usr/bin/hugo
+- tar xf ${HUGO_VERSION}.tar.gz && sudo mv hugo* /usr/bin/hugo
 - hugo version
 
 script: perl ./wild-posts
