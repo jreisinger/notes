@@ -1,4 +1,6 @@
 language: perl
+perl:
+- "5.26"
 install:
 - cpanm --quiet --notest Text::Autoformat
 - sudo  apt-get install jq curl wget
