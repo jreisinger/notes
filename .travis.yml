@@ -8,7 +8,9 @@ install:
 - tar xf ${HUGO_VERSION}.tar.gz && sudo mv hugo* /usr/bin/hugo
 - hugo version
 
-script: perl ./wild-posts
+script:
+- perl ./wild-posts
+- bash ./publish-travis.sh
 
 # https://gist.github.com/willprice/e07efd73fb7f13f917ea
 env:
