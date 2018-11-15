@@ -1,6 +1,8 @@
 language: perl
 install:
-    - cpanm --quiet --notest Text::Autoformat
+- cpanm --quiet --notest Text::Autoformat
 script: perl ./wild-posts
-
 # consider this https://gist.github.com/willprice/e07efd73fb7f13f917ea
+env:
+  global:
+    secure: vYZN2sHkYowlHJueqoteOmusAbp5smODa6CJtEiTBANrMs5/NHhWov7VXS6iMtZASD1kR0Kzo9XBDayO4XhohumGZQXM1Wja6BzNqjZ4W15VMI+kN5gpgEbPvaso5DqY18gmRnkJUZDWrAeSVqRB6AfWuAvpa5NIksm4kXF7wMgcNgReOX4W0NC0GLcy/sqpQsKj45o8vg+tu6ARSIVGASB4uiGIrRBeTxzrFJYatDdEp6h6KlhIDuUfpF8IiC4Lwwe0R1LdR9rFd9A6dutsziwF2SqbBBCpHKYoBpr/oJ4ClIMBepJS9rrVgLdAsgdoxvporCvUev4GwwOULt6YnN0/n/tqGPU2eHdOFkGmLUjbYM7JH1uZr/NWfvi6ETPs1ivz8TG4vJc0TPhRuoDerkeqThtqIA2uaidGLwFZEH1TK5jHPIqwVYRYVQDO3MvWRZ5KX3SVujwXX6KyAboaF/G9hFBiLRjOw4VbhSqj1ZMNXPGeLnWyJlW2sPyHKyZ8xuwDaau2+M/iHdMfCQV85IVlFM1/Tjbkg7cVzjt4EwbYmVsEDBobXfjS+s8iZiQNefiqoJiBiv1W18K+JhH2R3PrOtb8/O3SOPTpoh9n+5XKGU59DrcphMrgTZLWnw/dQUi8ZGOtW6PTUJ9503igHwdrqRlv/bVaK63GpwB9UhA=
