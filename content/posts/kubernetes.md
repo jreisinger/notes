@@ -5,6 +5,9 @@ categories: [DevOps]
 tags: [kubernetes, k8s]
 ---
 
+Components
+----------
+
 ![](https://lh6.googleusercontent.com/obUWmfsfwjDiGHSJyKI4y4wgBrTLad31YXN_o_dNsmWg8802OJwrhx8_UE18zCwMuHoGRasG4RVejw=w1920-h1079)
 
 Configuration
@@ -20,6 +23,7 @@ Namespace
 ---------
 
 * group of objects in a cluster
+* similar to a filesystem folder
 
 ```bash
 kubectl get namespaces
@@ -33,9 +37,6 @@ Context
 * to manage different users
 
 ```bash
-# show current context
-kubectl config current-context
-
 # list contexts
 kubectl config get-contexts
 
@@ -46,13 +47,13 @@ kubectl config use-context <context-name>
 Objects
 -------
 
-* everything in Kubernetes is represented by a RESTful resource - [Kubernetes] object
+* everything in Kubernetes is represented by a RESTful resource (a.k.a. a Kubernetes object)
 * each object exists at a unique HTTP path, e.g. `https://your-k8s.com/api/v1/namespaces/default/pods/my-pod`
 * the `kubectl` makes requests to these URLs to access the objects
 
 ```bash
 # view Kubernetes objects
-kubectl get                       # all resource types
+kubectl get all [-l app=nginx]    # all resources [with a label app=nginx]
 kubectl get <resource>            # all resources in a namespace
 kubectl get <resource> <object>   # specific resource
 
@@ -90,7 +91,8 @@ Pod
 * atomic unit of work in Kubernetes cluster
 * Pod = one or more containers working together symbiotically
 * all containers in a Pod always land on the same machine
-* each container runs its own cgroup but they share network, UTS (hostname) and IP namespaces
+* each container runs its own cgroup but they *share* network, hostname and filesystem
+* like a logical host
 * if you want to persist data across multiple instances of a Pod, you need to use `PersistentVolumes`
 
 Pod *manifest* - just a text-file representation of the Kubernetes API object:
@@ -99,7 +101,7 @@ Pod *manifest* - just a text-file representation of the Kubernetes API object:
 kubectl apply -f quotes-pod.yml
 ```
 
-Port forwarding :cool:
+Port forwarding:
 
 ```bash
 kubectl port-forward quotes 5000:5000
@@ -116,12 +118,12 @@ Deployment
 ----------
 
 * object of type controller
-* manages pods
+* manages replicasets/pods
 
 One way to create a deployment:
 
 ```bash
-kubectl run quotes-prod --image=reisinge/quotes \
+kubectl create deployment quotes-prod --image=reisinge/quotes \
 --replicas=3 --port=5000 --labels="ver=1,app=quotes,env=prod"
 ```
 
