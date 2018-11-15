@@ -6,12 +6,12 @@ install:
 - sudo  apt-get install curl
 - export HUGO_VERSION="0.51"
 - echo $HUGO_VERSION
-- curl -L "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz" -o "${HUGO_VERSION}.tar.gz"
-- tar xf ${HUGO_VERSION}.tar.gz && sudo mv hugo* /usr/bin/hugo
+- curl -L "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz" -o "hugo_${HUGO_VERSION}.tar.gz"
+- tar xf hugo_${HUGO_VERSION}.tar.gz && sudo mv hugo* /usr/bin/hugo
 - hugo version
 
 script:
-- perl ./wild-posts
+#- perl ./wild-posts
 - bash ./publish-travis.sh
 
 # https://gist.github.com/willprice/e07efd73fb7f13f917ea
