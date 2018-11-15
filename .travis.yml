@@ -1,10 +1,10 @@
 language: perl
 install:
 - cpanm --quiet --notest Text::Autoformat
-- test -z "$HUGO_VERSION" && sudo apt-get install jq -y && export HUGO_VERSION=$(curl -L -s https://api.github.com/repos/spf13/hugo/releases/latest | jq -r ".assets[] | select(.name | test(\"hugo_[0-9.]+_Linux-64bit.tar.gz\")) | .browser_download_url" | perl -ne '/v([\d.]+)/ && print $1')
+- sudo  apt-get install jq curl wget
+- export HUGO_VERSION=$(curl -L -s https://api.github.com/repos/spf13/hugo/releases/latest | jq -r ".assets[] | select(.name | test(\"hugo_[0-9.]+_Linux-64bit.tar.gz\")) | .browser_download_url" | perl -ne '/v([\d.]+)/ && print $1')
 - echo $HUGO_VERSION
 - wget -q -O ${HUGO_VERSION}.tar.gz https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
-- test -z "$HUGO_SHA" || echo "${HUGO_SHA} ${HUGO_VERSION}.tar.gz" | sha256sum -c
 - tar xf ${HUGO_VERSION}.tar.gz && sudo mv hugo* /usr/bin/hugo
 - hugo version
 
