@@ -1,8 +1,16 @@
 language: perl
 install:
 - cpanm --quiet --notest Text::Autoformat
+- test -z "$HUGO_VERSION" && apt-get install jq -y && export HUGO_VERSION=$(curl -L -s https://api.github.com/repos/spf13/hugo/releases/latest | jq -r ".assets[] | select(.name | test(\"hugo_[0-9.]+_Linux-64bit.tar.gz\")) | .browser_download_url" | perl -ne '/v([\d.]+)/ && print $1')
+- echo $HUGO_VERSION
+- wget -q -O ${HUGO_VERSION}.tar.gz https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
+- test -z "$HUGO_SHA" || echo "${HUGO_SHA} ${HUGO_VERSION}.tar.gz" | sha256sum -c
+- tar xf ${HUGO_VERSION}.tar.gz && mv hugo* /usr/bin/hugo
+- hugo version
+
 script: perl ./wild-posts
-# consider this https://gist.github.com/willprice/e07efd73fb7f13f917ea
+
+# https://gist.github.com/willprice/e07efd73fb7f13f917ea
 env:
   global:
     secure: vYZN2sHkYowlHJueqoteOmusAbp5smODa6CJtEiTBANrMs5/NHhWov7VXS6iMtZASD1kR0Kzo9XBDayO4XhohumGZQXM1Wja6BzNqjZ4W15VMI+kN5gpgEbPvaso5DqY18gmRnkJUZDWrAeSVqRB6AfWuAvpa5NIksm4kXF7wMgcNgReOX4W0NC0GLcy/sqpQsKj45o8vg+tu6ARSIVGASB4uiGIrRBeTxzrFJYatDdEp6h6KlhIDuUfpF8IiC4Lwwe0R1LdR9rFd9A6dutsziwF2SqbBBCpHKYoBpr/oJ4ClIMBepJS9rrVgLdAsgdoxvporCvUev4GwwOULt6YnN0/n/tqGPU2eHdOFkGmLUjbYM7JH1uZr/NWfvi6ETPs1ivz8TG4vJc0TPhRuoDerkeqThtqIA2uaidGLwFZEH1TK5jHPIqwVYRYVQDO3MvWRZ5KX3SVujwXX6KyAboaF/G9hFBiLRjOw4VbhSqj1ZMNXPGeLnWyJlW2sPyHKyZ8xuwDaau2+M/iHdMfCQV85IVlFM1/Tjbkg7cVzjt4EwbYmVsEDBobXfjS+s8iZiQNefiqoJiBiv1W18K+JhH2R3PrOtb8/O3SOPTpoh9n+5XKGU59DrcphMrgTZLWnw/dQUi8ZGOtW6PTUJ9503igHwdrqRlv/bVaK63GpwB9UhA=
