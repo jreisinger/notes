@@ -8,7 +8,7 @@ tags: [kubernetes, k8s]
 Components
 ----------
 
-![](https://lh6.googleusercontent.com/obUWmfsfwjDiGHSJyKI4y4wgBrTLad31YXN_o_dNsmWg8802OJwrhx8_UE18zCwMuHoGRasG4RVejw=w1920-h1079)
+![](/kubernetes.png)
 
 Configuration
 -------------
