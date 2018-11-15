@@ -5,7 +5,7 @@ categories: [DevOps]
 tags: [kubernetes, k8s]
 ---
 
-![](https://lh5.googleusercontent.com/rYHtF47PRqTAtZCqKACVQqY4ZFhlotOcXH9wHO6OhDyMviTjX8ZxYrmMjPZY2ucuXGsisS6mWcpabA=w1920-h1079)
+![](https://drive.google.com/file/d/1ArFSfvnhSIPKO8B9LOXFNUO-8BHawr-f/view?usp=sharing)
 
 Configuration
 -------------
