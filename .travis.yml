@@ -9,6 +9,7 @@ install:
 - curl -L "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz" -o "hugo_${HUGO_VERSION}.tar.gz"
 - mkdir /tmp/hugo_${HUGO_VERSION}
 - tar xf hugo_${HUGO_VERSION}.tar.gz -C /tmp/hugo_${HUGO_VERSION}
+- rm hugo_${HUGO_VERSION}.tar.gz
 - sudo mv /tmp/hugo_${HUGO_VERSION}/hugo /usr/bin/
 - hugo version
 
