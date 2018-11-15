@@ -3,10 +3,10 @@ perl:
 - "5.26"
 install:
 - cpanm --quiet --notest Text::Autoformat
-- sudo  apt-get install wget
+- sudo  apt-get install curl
 - export HUGO_VERSION="0.52"
 - echo $HUGO_VERSION
-- wget -q -O ${HUGO_VERSION}.tar.gz https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
+- curl -L -s -o ${HUGO_VERSION}.tar.gz "https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz"
 - tar xf ${HUGO_VERSION}.tar.gz && sudo mv hugo* /usr/bin/hugo
 - hugo version
 
