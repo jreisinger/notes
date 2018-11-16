@@ -123,8 +123,9 @@ Deployment
 One way to create a deployment:
 
 ```bash
-kubectl create deployment quotes-prod --image=reisinge/quotes \
---replicas=3 --port=5000 --labels="ver=1,app=quotes,env=prod"
+kubectl create deployment quotes-dev --image=reisinge/quotes
+kubectl scale deployment quotes-dev --replicas=3
+kubectl label deployment quotes-dev ver=1 env=dev
 ```
 
 Service
