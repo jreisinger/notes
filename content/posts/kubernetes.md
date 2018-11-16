@@ -123,9 +123,9 @@ Deployment
 One way to create a deployment:
 
 ```bash
-kubectl create deployment quotes-dev --image=reisinge/quotes
-kubectl scale deployment quotes-dev --replicas=3
-kubectl label deployment quotes-dev ver=1 env=dev
+kubectl create deployment quotes-prod --image=reisinge/quotes
+kubectl scale deployment quotes-prod --replicas=3
+kubectl label deployment quotes-prod ver=1 env=prod
 ```
 
 Service
