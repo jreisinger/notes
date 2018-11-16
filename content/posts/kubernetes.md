@@ -132,14 +132,14 @@ Service
 -------
 
 * object that solves the service discovery problem (i.e. finding things in K8s cluster)
-* a way to create a named label selector (`--selector`) - see `kubectl get service -o wide`
-* a service is assigned a VIP called a *cluster IP* -> load balanced across all
-    the pods identified by the selector
+* a way to create a named label selector (see `kubectl get service -o wide`)
+* a service is assigned a VIP called a *cluster IP* -> load balanced across all the
+  pods identified by the selector
 
 One way to create a service:
 
 ```bash
-kubectl expose deployment quotes-prod
+kubectl expose deployment quotes-prod --port=80 --target-port=5000
 ```
 
 Looking beyond the cluster
