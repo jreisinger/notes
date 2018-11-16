@@ -130,7 +130,8 @@ kubectl create deployment quotes-prod --image=reisinge/quotes \
 Service
 -------
 
-* a way to create a named label selector - see `kubectl get service -o wide`
+* object that solves the service discovery problem (i.e. finding things in K8s cluster)
+* a way to create a named label selector (`--selector`) - see `kubectl get service -o wide`
 * a service is assigned a VIP called a *cluster IP* -> load balanced across all
     the pods identified by the selector
 
