@@ -77,7 +77,7 @@ kubectl delete -f obj.yaml  # no additional prompting!
 kubectl delete <resource> <object>
 
 # cleanup
-kubectl delete deployments --all
+kubectl delete deployments --all [--selector="app=myapp,env=dev"]
 
 # debugging
 kubectl logs <pod>
