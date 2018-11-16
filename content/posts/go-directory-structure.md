@@ -50,8 +50,8 @@ A multiple file (and multiple package) program:
 $ tree
 .
 └── src
-    ├── hello               # this directory name is the program name
-    │   └── main.go         # package main; imports package shuffler
+    ├── hello
+    │   └── main.go         # package main imports package shuffler
     └── shuffler            # this directory name is the package name
         └── shuffle.go      # package shuffler
 
