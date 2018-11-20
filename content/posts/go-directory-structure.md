@@ -5,10 +5,12 @@ categories: [prog]
 tags: [go]
 ---
 
+*NOTE*: See [How to Write Go Code](https://golang.org/doc/code.html) for official tutorial.
+
 Go has a strong opinion about directory structure.
 
 ```bash
-## Set path for go tools
+## Set location of your workspace (It's used by the go tools)
 $ export GOPATH=`pwd`
 $ echo $GOPATH
 /Users/reisinge/temp/go
