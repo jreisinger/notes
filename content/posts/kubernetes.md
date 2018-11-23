@@ -8,7 +8,7 @@ tags: [kubernetes, k8s]
 Components
 ----------
 
-![](/kubernetes.png)
+![](https://github.com/jreisinger/notes/raw/master/static/kubernetes.png)
 
 Configuration
 -------------
