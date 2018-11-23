@@ -149,10 +149,12 @@ Looking beyond the cluster
 
 NodePorts
 
-* it enhances a service (see above)
+* it enhances a service
 * in addition to a cluster IP, a service gets a port (user defined or picked by
     the system)
 * every node in the cluster forwards traffic to that port to the service
+* if you can reach any node in the cluster you can get to the service
+* this can be intergrated with HW/SW load balancers to expose the service even furher
 
 Resources
 ---------
