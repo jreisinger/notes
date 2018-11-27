@@ -6,15 +6,17 @@
   <title>Go directory structure - Notes</title>
   <meta property="og:title" content="Go directory structure - Notes" />
   <meta name="twitter:title" content="Go directory structure - Notes" />
-  <meta name="description" content="Go has a strong opinion about directory structure.
-## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.go files in $GOPATH/src/hello $ tree .">
-  <meta property="og:description" content="Go has a strong opinion about directory structure.
-## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.go files in $GOPATH/src/hello $ tree .">
-  <meta name="twitter:description" content="Go has a strong opinion about directory structure.
-## Set path for go tools $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── …">
+  <meta name="description" content="NOTE: See How to Write Go Code for official tutorial.
+Go has a strong opinion about directory structure.
+## Set location of your workspace (It&#39;s used by the go tools) $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
+## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.">
+  <meta property="og:description" content="NOTE: See How to Write Go Code for official tutorial.
+Go has a strong opinion about directory structure.
+## Set location of your workspace (It&#39;s used by the go tools) $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
+## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.">
+  <meta name="twitter:description" content="NOTE: See How to Write Go Code for official tutorial.
+Go has a strong opinion about directory structure.
+## Set location of your workspace (It&#39;s used by the go tools) $ export GOPATH=`pwd` $ echo …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-directory-structure/" />
@@ -66,8 +68,10 @@
         </li>
       </ul>
       
-      <p>Go has a strong opinion about directory structure.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">## Set path for go tools
+      <p><em>NOTE</em>: See <a href="https://golang.org/doc/code.html">How to Write Go Code</a> for official tutorial.</p>
+
+<p>Go has a strong opinion about directory structure.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">## Set location of your workspace (It&#39;s used by the go tools)
 </span><span style="color:#75715e"></span>$ export GOPATH<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>
 $ echo $GOPATH
 /Users/reisinge/temp/go</code></pre></div>
@@ -101,8 +105,8 @@ Hello, world!</code></pre></div>
 $ tree
 .
 └── src
-    ├── hello               # this directory name is the program name
-    │   └── main.go         # package main; imports package shuffler
+    ├── hello
+    │   └── main.go         # package main imports package shuffler
     └── shuffler            # this directory name is the package name
         └── shuffle.go      # package shuffler
 

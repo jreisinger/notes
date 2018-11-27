@@ -89,7 +89,7 @@
 
 <h2 id="components">Components</h2>
 
-<p><img src="https://jreisinger.github.io/notes/kubernetes.png" alt="" /></p>
+<p><img src="https://github.com/jreisinger/notes/raw/master/static/kubernetes.png" alt="" /></p>
 
 <h2 id="configuration">Configuration</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat ~/.kube/config
@@ -146,7 +146,7 @@
 </span><span style="color:#75715e"></span>kubectl delete &lt;resource&gt; &lt;object&gt;
 
 <span style="color:#75715e"># cleanup
-</span><span style="color:#75715e"></span>kubectl delete deployments --all
+</span><span style="color:#75715e"></span>kubectl delete deployments --all <span style="color:#f92672">[</span>--selector<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app=myapp,env=dev&#34;</span><span style="color:#f92672">]</span>
 
 <span style="color:#75715e"># debugging
 </span><span style="color:#75715e"></span>kubectl logs &lt;pod&gt;
@@ -158,22 +158,35 @@ kubectl exec -it &lt;pod&gt; -- bash  <span style="color:#75715e"># or sh instea
 <li>atomic unit of work in Kubernetes cluster</li>
 <li>Pod = one or more containers working together symbiotically</li>
 <li>all containers in a Pod always land on the same machine</li>
+<li>once scheduled to a node, Pods don&rsquo;t move</li>
 <li>each container runs its own cgroup but they <em>share</em> network, hostname and filesystem</li>
 <li>like a logical host</li>
 <li>if you want to persist data across multiple instances of a Pod, you need to use <code>PersistentVolumes</code></li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Pod manifest - just a text-file representation of the Kubernetes API object
+</span><span style="color:#75715e"></span>$ cat kuard-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard
+spec:
+  containers:
+    - image: gcr.io/kuar-demo/kuard-amd64:1
+      name: kuard
+      ports:
+        - containerPort: <span style="color:#ae81ff">8080</span>
+          name: http
+          protocol: TCP</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Creating a Pod
+</span><span style="color:#75715e"></span>kubectl apply -f kuard-pod.yaml
 
-<p>Pod <em>manifest</em> - just a text-file representation of the Kubernetes API object:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f quotes-pod.yml</code></pre></div>
-<p>Port forwarding:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward quotes <span style="color:#ae81ff">5000</span>:5000</code></pre></div>
-<p>What goes into a pod?</p>
+<span style="color:#75715e"># Accessing a Pod via port forwarding
+</span><span style="color:#75715e"></span>kubectl port-forward kuard <span style="color:#ae81ff">8080</span>:8080 # tunnel: localhost -&gt; k8s master -&gt; k8s worker node</code></pre></div>
+<p>What should I put into a single pod?</p>
 
 <ul>
-<li>Will these containers work correctly if they land on different machines?</li>
-<li>should go into a Pod: web server + git scynhronizer - they communicate via
-filesystem</li>
-<li>should go into separate Pods: Wordpress + DB - can communicate over net</li>
+<li>&ldquo;Will these containers work correctly if they land on different machines?&rdquo;</li>
+<li>should go into a Pod: web server + git scynhronizer - they communicate via filesystem</li>
+<li>should go into separate Pods: Wordpress + DB - they can communicate over net</li>
 </ul>
 
 <h2 id="deployment">Deployment</h2>
@@ -184,18 +197,20 @@ filesystem</li>
 </ul>
 
 <p>One way to create a deployment:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create deployment quotes-prod --image<span style="color:#f92672">=</span>reisinge/quotes <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> --port<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span> --labels<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ver=1,app=quotes,env=prod&#34;</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create deployment quotes-prod --image<span style="color:#f92672">=</span>reisinge/quotes
+kubectl scale deployment quotes-prod --replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+kubectl label deployment quotes-prod ver<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> env<span style="color:#f92672">=</span>prod</code></pre></div>
 <h2 id="service">Service</h2>
 
 <ul>
-<li>a way to create a named label selector - see <code>kubectl get service -o wide</code></li>
-<li>a service is assigned a VIP called a <em>cluster IP</em> -&gt; load balanced across all
-the pods identified by the selector</li>
+<li>object that solves the service discovery problem (i.e. finding things in K8s cluster)</li>
+<li>a way to create a named label selector (see <code>kubectl get service -o wide</code>)</li>
+<li>a service is assigned a VIP called a <em>cluster IP</em> -&gt; load balanced across all the
+pods identified by the selector</li>
 </ul>
 
 <p>One way to create a service:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl expose deployment quotes-prod</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl expose deployment quotes-prod --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span> --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span></code></pre></div>
 <h2 id="looking-beyond-the-cluster">Looking beyond the cluster</h2>
 
 <ul>
@@ -205,10 +220,12 @@ the pods identified by the selector</li>
 <p>NodePorts</p>
 
 <ul>
-<li>it enhances a service (see above)</li>
+<li>it enhances a service</li>
 <li>in addition to a cluster IP, a service gets a port (user defined or picked by
 the system)</li>
 <li>every node in the cluster forwards traffic to that port to the service</li>
+<li>if you can reach any node in the cluster you can get to the service</li>
+<li>this can be intergrated with HW/SW load balancers to expose the service even furher</li>
 </ul>
 
 <h2 id="resources">Resources</h2>

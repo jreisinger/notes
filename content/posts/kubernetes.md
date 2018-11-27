@@ -91,28 +91,41 @@ Pod
 * atomic unit of work in Kubernetes cluster
 * Pod = one or more containers working together symbiotically
 * all containers in a Pod always land on the same machine
+* once scheduled to a node, Pods don't move
 * each container runs its own cgroup but they *share* network, hostname and filesystem
 * like a logical host
 * if you want to persist data across multiple instances of a Pod, you need to use `PersistentVolumes`
 
-Pod *manifest* - just a text-file representation of the Kubernetes API object:
-
-```bash
-kubectl apply -f quotes-pod.yml
+```sh
+# Pod manifest - just a text-file representation of the Kubernetes API object
+$ cat kuard-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard
+spec:
+  containers:
+    - image: gcr.io/kuar-demo/kuard-amd64:1
+      name: kuard
+      ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
 ```
 
-Port forwarding:
+```sh
+# Creating a Pod
+kubectl apply -f kuard-pod.yaml
 
-```bash
-kubectl port-forward quotes 5000:5000
+# Accessing a Pod via port forwarding
+kubectl port-forward kuard 8080:8080 # tunnel: localhost -> k8s master -> k8s worker node
 ```
 
-What goes into a pod?
+What should I put into a single pod?
 
-* Will these containers work correctly if they land on different machines?
-* should go into a Pod: web server + git scynhronizer - they communicate via
-    filesystem
-* should go into separate Pods: Wordpress + DB - can communicate over net
+* "Will these containers work correctly if they land on different machines?"
+* should go into a Pod: web server + git scynhronizer - they communicate via filesystem
+* should go into separate Pods: Wordpress + DB - they can communicate over net
 
 Deployment
 ----------
