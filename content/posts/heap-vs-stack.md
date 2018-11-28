@@ -29,9 +29,9 @@ Go example:
 var global *int     // "global" is the name :-)
 
 func f() {
-    var x int       // heap-allocated because escapes from f()
+    var x int       // heap-allocated because ...
     x = 1
-    global = &x
+    global = &x     // ... escapes from f()
 }
 
 func g() {
