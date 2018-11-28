@@ -7,15 +7,15 @@ tags: [c, go]
 
 Both are memory regions.
 
-Stack
+Stack (temporary to a function)
 
-* stores temporarary variables created by functions
+* stores temporary variables created by functions
 * LIFO data structure with push/pop operations
 * all vars are popped off when function exits
 * very fast
 * limited in size
 
-Heap
+Heap (global)
 
 * not as tightly managed by CPU
 * in C you have to manage it yourself via `malloc()`, `calloc()` or `realloc()`
