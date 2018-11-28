@@ -26,22 +26,49 @@ Heap (global)
 Go example:
 
 ```go
+package main
+
+import (
+    "fmt"
+    "runtime"
+    "time"
+)
+
 var global *int     // "global" is the name :-)
 
 func f() {
     var x int       // heap-allocated because ...
-    x = 1
+    x = 1 
     global = &x     // ... escapes from f()
 }
 
 func g() {
     y := new(int)   // allocated on the stack
-    *y = 1
+    *y = 1 
 }
 
+func main() {
+
+    start := time.Now()
+    for {
+        // Run once per second
+        if time.Since(start) > time.Second {
+            var r runtime.MemStats
+            runtime.ReadMemStats(&r)
+            fmt.Printf("Heap size %d\n", r.HeapAlloc)
+            fmt.Printf("Stack size %d\n", r.StackInuse)
+            fmt.Printf("NumGC %d\n", r.NumGC)
+            start = time.Now()
+        }   
+
+        f() 
+        g()
+    }   
+}
 ```
 
 More
 
+* [Garbage collection and garbage reduction](https://www.safaribooksonline.com/videos/intermediate-go-programming/9781491944073/9781491944073-video234746)
 * https://www.gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html
 * https://www.gopl.io/, ch. 2.3
