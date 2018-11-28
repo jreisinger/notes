@@ -26,6 +26,7 @@ Heap (global)
 Go example:
 
 ```go
+// x.go
 package main
 
 import (
@@ -65,6 +66,10 @@ func main() {
         g()
     }   
 }
+```
+
+```sh
+go run -gcflags="-m" x.go
 ```
 
 More
