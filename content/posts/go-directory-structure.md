@@ -10,7 +10,7 @@ tags: [go]
 Go has a strong opinion about directory structure.
 
 ```bash
-## Set location of your workspace (It's used by the go tools)
+## Set location of your workspace (It's used by the `go` tool)
 $ export GOPATH=`pwd`
 $ echo $GOPATH
 /Users/reisinge/temp/go
