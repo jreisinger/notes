@@ -169,6 +169,16 @@ NodePorts
 * if you can reach any node in the cluster you can get to the service
 * this can be intergrated with HW/SW load balancers to expose the service even furher
 
+Tips and tricks
+---------------
+
+Create a proxy server between localhost and K8s API server:
+
+```
+kubectl proxy &                  # create proxy
+curl localhost:8001/api/v1/pods  # get list of pods
+```
+
 Resources
 ---------
 
