@@ -35,7 +35,7 @@ Disadvantages
 
 Advantages
 
-* lower costs (less people needed than with syadmin approach)
+* lower costs (less people needed than with sysadmin approach)
 * no dev/ops split dysfunctionality
 * rapid innovation
 
