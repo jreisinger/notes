@@ -28,6 +28,7 @@ Typical workcycle:
 * [Read Args or Stdin](content/posts/read-args-or-stdin.md)
 * [Signals](content/posts/signals.md)
 * [Sorting with Go](content/posts/sorting-with-go.md)
+* [SRE](content/posts/sre.md)
 * [Sysadmin Philosophy](content/posts/sysadmin-philosophy.md)
 * [Tcpdump](content/posts/tcpdump.md)
 * [TERMS](content/posts/TERMS.md)

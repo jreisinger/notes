@@ -19,7 +19,7 @@
       <guid>https://jreisinger.github.io/notes/posts/go-directory-structure/</guid>
       <description>NOTE: See How to Write Go Code for official tutorial.
 Go has a strong opinion about directory structure.
-## Set location of your workspace (It&amp;#39;s used by the go tools) $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
+## Set location of your workspace (It&amp;#39;s used by the `go` tool) $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
 ## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.</description>
     </item>
     
@@ -50,8 +50,8 @@ package main import ( &amp;#34;bufio&amp;#34; &amp;#34;os&amp;#34; &amp;#34;fmt&
       
       <guid>https://jreisinger.github.io/notes/posts/heap-vs-stack/</guid>
       <description>Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap
+Stack (temporary to a function)
+ stores temporary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap (global)
  not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:</description>
     </item>
     

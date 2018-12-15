@@ -18,8 +18,8 @@
       
       <guid>https://jreisinger.github.io/notes/posts/heap-vs-stack/</guid>
       <description>Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap
+Stack (temporary to a function)
+ stores temporary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap (global)
  not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:</description>
     </item>
     

@@ -7,22 +7,22 @@
   <meta property="og:title" content="Heap vs Stack - Notes" />
   <meta name="twitter:title" content="Heap vs Stack - Notes" />
   <meta name="description" content="Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap
+Stack (temporary to a function)
+ stores temporary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap (global)
  not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:">
   <meta property="og:description" content="Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap
+Stack (temporary to a function)
+ stores temporary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap (global)
  not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:">
   <meta name="twitter:description" content="Both are memory regions.
-Stack
- stores temporarary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size …">
+Stack (temporary to a function)
+ stores temporary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/heap-vs-stack/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -76,17 +76,17 @@ Stack
       
       <p>Both are memory regions.</p>
 
-<p>Stack</p>
+<p>Stack (temporary to a function)</p>
 
 <ul>
-<li>stores temporarary variables created by functions</li>
+<li>stores temporary variables created by functions</li>
 <li>LIFO data structure with push/pop operations</li>
 <li>all vars are popped off when function exits</li>
 <li>very fast</li>
 <li>limited in size</li>
 </ul>
 
-<p>Heap</p>
+<p>Heap (global)</p>
 
 <ul>
 <li>not as tightly managed by CPU</li>
@@ -97,21 +97,50 @@ Stack
 </ul>
 
 <p>Go example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">global</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>     <span style="color:#75715e">// &#34;global&#34; is the name :-)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// x.go
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;fmt&#34;</span>
+    <span style="color:#e6db74">&#34;runtime&#34;</span>
+    <span style="color:#e6db74">&#34;time&#34;</span>
+)
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">global</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>     <span style="color:#75715e">// &#34;global&#34; is the name :-)
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">f</span>() {
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>       <span style="color:#75715e">// heap-allocated because escapes from f()
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">1</span>
-    <span style="color:#a6e22e">global</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">x</span>
-}
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>       <span style="color:#75715e">// heap-allocated because ...
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">1</span> 
+    <span style="color:#a6e22e">global</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">x</span>     <span style="color:#75715e">// ... escapes from f()
+</span><span style="color:#75715e"></span>}
 
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">g</span>() {
     <span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> new(<span style="color:#66d9ef">int</span>)   <span style="color:#75715e">// allocated on the stack
-</span><span style="color:#75715e"></span>    <span style="color:#f92672">*</span><span style="color:#a6e22e">y</span> = <span style="color:#ae81ff">1</span>
-}</code></pre></div>
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">*</span><span style="color:#a6e22e">y</span> = <span style="color:#ae81ff">1</span> 
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+
+    <span style="color:#a6e22e">start</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+    <span style="color:#66d9ef">for</span> {
+        <span style="color:#75715e">// Run once per second
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Since</span>(<span style="color:#a6e22e">start</span>) &gt; <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span> {
+            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">r</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">MemStats</span>
+            <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">ReadMemStats</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">r</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Heap size %d\n&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">HeapAlloc</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Stack size %d\n&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">StackInuse</span>)
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;NumGC %d\n&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">NumGC</span>)
+            <span style="color:#a6e22e">start</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+        }   
+
+        <span style="color:#a6e22e">f</span>() 
+        <span style="color:#a6e22e">g</span>()
+    }   
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go run -gcflags<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-m&#34;</span> x.go</code></pre></div>
 <p>More</p>
 
 <ul>
+<li><a href="https://www.safaribooksonline.com/videos/intermediate-go-programming/9781491944073/9781491944073-video234746">Garbage collection and garbage reduction</a></li>
 <li><a href="https://www.gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html">https://www.gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html</a></li>
 <li><a href="https://www.gopl.io/">https://www.gopl.io/</a>, ch. 2.3</li>
 </ul>
@@ -121,7 +150,7 @@ Stack
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -165,7 +194,7 @@ Stack
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

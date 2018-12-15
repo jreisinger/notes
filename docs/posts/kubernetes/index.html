@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -80,6 +80,7 @@
 <li><a href="#deployment">Deployment</a></li>
 <li><a href="#service">Service</a></li>
 <li><a href="#looking-beyond-the-cluster">Looking beyond the cluster</a></li>
+<li><a href="#tips-and-tricks">Tips and tricks</a></li>
 <li><a href="#resources">Resources</a></li>
 </ul></li>
 </ul>
@@ -228,10 +229,20 @@ the system)</li>
 <li>this can be intergrated with HW/SW load balancers to expose the service even furher</li>
 </ul>
 
+<h2 id="tips-and-tricks">Tips and tricks</h2>
+
+<p>Create a proxy server between localhost and K8s API server:</p>
+
+<pre><code>kubectl proxy &amp;                  # create proxy
+curl localhost:8001/api/v1/pods  # get list of pods
+</code></pre>
+
 <h2 id="resources">Resources</h2>
 
 <ul>
 <li><a href="https://www.safaribooksonline.com/library/view/kubernetes-up-and/9781491935668/">Kubernetes: Up and Running</a> (2017)</li>
+<li>Managing Kubernetes (2018)</li>
+<li>Cloud Native DevOps with Kubernetes (2019)</li>
 <li><a href="https://www.safaribooksonline.com/videos/getting-started-with/9780135237823">Getting Started with Kubernetes</a> (video, 2018)</li>
 </ul>
 
@@ -240,7 +251,7 @@ the system)</li>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -284,7 +295,7 @@ the system)</li>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
