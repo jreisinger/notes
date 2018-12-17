@@ -51,6 +51,7 @@ Disadvantages
 
 * DevOps term - late 2008
 * DevOps is a generalization of several SRE core principles
+* [class SRE implements DevOps](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends)
 
 ## Source
 
