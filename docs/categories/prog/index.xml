@@ -20,7 +20,7 @@
       <description>NOTE: See How to Write Go Code for official tutorial.
 Go has a strong opinion about directory structure.
 ## Set location of your workspace (It&amp;#39;s used by the `go` tool) $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install *.</description>
+## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install all *.</description>
     </item>
     
     <item>

@@ -29,7 +29,7 @@ $ tree
 2 directories, 1 file
 
 ## Install the program
-$ go install hello      # compile and install *.go files in $GOPATH/src/hello 
+$ go install hello      # compile and install all *.go files in $GOPATH/src/hello 
 $ tree
 .
 ├── bin
@@ -60,7 +60,9 @@ $ tree
 3 directories, 2 files
 
 ## Install the program
-$ go install hello
+$ go install hello          # Compile and install all *.go files in 
+                            # $GOPATH/src/hello and all *.go files in the
+                            # imported packages.
 $ tree
 .
 ├── bin
