@@ -125,6 +125,7 @@ Basic Auth (HTTP-mediated authentication)
 TLS/SSL
 
 * server authentication and transfer encryption layer around HTTP
+* the only stuff that's NOT encrypted: IP addresses, ports (and probably DNS traffic)
 
 Cookies
 
