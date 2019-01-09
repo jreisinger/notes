@@ -155,12 +155,19 @@ One way to create a service:
 kubectl expose deployment quotes-prod --port=80 --target-port=5000
 ```
 
+Ingress
+-------
+
+https://kubernetes.io/docs/concepts/services-networking/ingress/
+
 Looking beyond the cluster
 --------------------------
 
 * exposing services outside of the cluster
+* for HTTP or HTTP use [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+* for other ports use service of type NodePort or LoadBalancer
 
-NodePorts
+NodePort
 
 * it enhances a service
 * in addition to a cluster IP, a service gets a port (user defined or picked by
