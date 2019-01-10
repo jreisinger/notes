@@ -153,6 +153,8 @@ Cookie: session-id=d41d8cd98f00b204e9800998ecf8427e
     server or encrypted string that server alone can decrypt
 * some servers give you cookie simply for visiting to track how you move
     through the site
+* later when you log in, your browsing history can be copied into your 
+    permanent account history :-/
 
 ## Keep-Alive
 
