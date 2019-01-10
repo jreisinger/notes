@@ -121,6 +121,7 @@ Basic Auth (HTTP-mediated authentication)
 
 * poor design initially, then fixed by SSL/TLS but still ugly
 * still used by simple APIs
+* Cookies are much more used for authentication today
 
 TLS/SSL
 
