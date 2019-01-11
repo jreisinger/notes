@@ -32,8 +32,9 @@ print(r.text)
 
 HTTP message format (both request `>` and response `<`)
 
-* line of information (method, resource, protocol, status code) + zero or more of `name:value` headers
-* blank line - server/client call `recv()` until `CR-LF-CR-LF` to find out the headers' end
+* line of information (method, resource, protocol, status code)
+* zero or more of `name: value` headers
+* blank line - server/client calls `recv()` until `CR-LF-CR-LF` to find out the headers' end
 * optional body - its length (framing) is defined by the `Content-Lenght` header
 
 ```plain
