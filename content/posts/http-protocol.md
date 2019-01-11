@@ -179,19 +179,11 @@ Host: tools.ietf.org
 Status codes - returned by a server with each response
 
 * 200 - OK
-* 3xx - redirects; not expected to carry a body
-
+* 3xx - redirects; not expected to carry a body; new location is in the `Location` header
 ```python
->>> r = urlopen('http://httpbin.org/status/301')
->>> r.status, r.url
-(200, 'http://httpbin.org/get')
->>>
->>> r = requests.get('http://httpbin.org/status/301')
->>> (r.status_code, r.url)
-(200, 'http://httpbin.org/get')
->>> r.history
-[<Response [301]>, <Response [302]>]
-
+>>> r = requests.get('http://httpbin.org/status/301', allow_redirects=False)
+>>> (r.status_code, r.url, r.headers['Location'])
+(301, 'http://httpbin.org/status/301', '/redirect/1')
 ```
 * 4xx - client request is unintelligible or illegal
 * 5xx - server errors
