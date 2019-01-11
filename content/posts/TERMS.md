@@ -39,6 +39,16 @@ tions within processor registers). Computers rarely modify individual bits for
 performance reasons. Instead, data is accessed in groups of 1 word (4 bytes) for
 32-bit systems and 2 words for 64-bit systems.
 
+### declaration
+
+(in Go) names a program entity and specifies some or all of its properties, e.g.:
+
+```go
+const boilingF = 212.0
+var x int
+y := 1
+```
+
 ### directory permissions
 
 You can list the contents of a directory if it's readable (`r`), but you can only access a file in a directory if the directory is executable (`x`). Typical (absolute) permission modes for directories: `755`, `700`, `711`.
@@ -147,6 +157,10 @@ DBES - decode bytes encode strings:
 >>> utf_string.encode()  # ES
 b'\xe6\x96\x80'
 ```
+
+### variable
+
+(in Go) is a piece of storage containing a value
 
 ### xor
 
