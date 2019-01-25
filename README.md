@@ -7,7 +7,7 @@ Typical workcycle:
 0) `git pull`
 1) Add/edit `content`
 2) `./wild-posts`
-3) `./publish.sh`
+3) `./publi.sh`
 
 ## Posts
 
