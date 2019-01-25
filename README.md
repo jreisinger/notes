@@ -16,6 +16,7 @@ Typical workcycle:
 * [Gen Rand File](content/posts/gen_rand_file.md)
 * [Git](content/posts/git.md)
 * [Go Directory Structure](content/posts/go-directory-structure.md)
+* [Go TCP Socket](content/posts/go-tcp-socket.md)
 * [Grub2](content/posts/grub2.md)
 * [Hashes](content/posts/hashes.md)
 * [HTTP Protocol](content/posts/http-protocol.md)
