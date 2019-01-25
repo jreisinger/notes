@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>TCP sockets with Go - Notes</title>
+  <meta property="og:title" content="TCP sockets with Go - Notes" />
+  <meta name="twitter:title" content="TCP sockets with Go - Notes" />
+  <meta name="description" content="This is an HTTP client implemented using socket-level programming:
+// Usage: go run getHeadInfo.go reisinge.net:80 package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net&#34; &#34;os&#34; ) func main() { service := os.Args[1] tcpAddr, err := net.ResolveTCPAddr(&#34;tcp&#34;, service) checkError(err) conn, err := net.DialTCP(&#34;tcp&#34;, nil, tcpAddr) checkError(err) _, err = conn.Write([]byte(&#34;HEAD / HTTP/1.0\r\n\r\n&#34;)) checkError(err) result, err := ioutil.ReadAll(conn) checkError(err) fmt.Printf(&#34;%s\n&#34;, result) } func checkError(err error) { if err != nil { fmt.Fprintf(os.Stderr, &#34;%v\n&#34;, err.Error()) os.">
+  <meta property="og:description" content="This is an HTTP client implemented using socket-level programming:
+// Usage: go run getHeadInfo.go reisinge.net:80 package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net&#34; &#34;os&#34; ) func main() { service := os.Args[1] tcpAddr, err := net.ResolveTCPAddr(&#34;tcp&#34;, service) checkError(err) conn, err := net.DialTCP(&#34;tcp&#34;, nil, tcpAddr) checkError(err) _, err = conn.Write([]byte(&#34;HEAD / HTTP/1.0\r\n\r\n&#34;)) checkError(err) result, err := ioutil.ReadAll(conn) checkError(err) fmt.Printf(&#34;%s\n&#34;, result) } func checkError(err error) { if err != nil { fmt.Fprintf(os.Stderr, &#34;%v\n&#34;, err.Error()) os.">
+  <meta name="twitter:description" content="This is an HTTP client implemented using socket-level programming:
+// Usage: go run getHeadInfo.go reisinge.net:80 package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net&#34; &#34;os&#34; ) …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/go-tcp-sockets/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.49.2" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">TCP sockets with Go</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>January 25, 2019</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/net/">
+            <i class="fas fa-folder"></i>
+            net
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/tcp/">
+            <i class="fas fa-tag"></i>
+            tcp
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/socket/">
+            <i class="fas fa-tag"></i>
+            socket
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/go/">
+            <i class="fas fa-tag"></i>
+            go
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <p>This is an HTTP client implemented using socket-level programming:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Usage: go run getHeadInfo.go reisinge.net:80
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
+	<span style="color:#e6db74">&#34;net&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">service</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>]
+
+	<span style="color:#a6e22e">tcpAddr</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">ResolveTCPAddr</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">service</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+
+	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">DialTCP</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">tcpAddr</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+
+	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+
+	<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">conn</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">result</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+	}
+}</code></pre></div>
+<p>To add a timeout you can use the <code>Dialer</code> structure:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
+	<span style="color:#e6db74">&#34;net&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+	<span style="color:#e6db74">&#34;time&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">service</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>]
+
+	<span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Dialer</span>{<span style="color:#a6e22e">Timeout</span>: <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>}
+	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">service</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+
+	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+
+	<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">conn</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">result</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+	}
+}</code></pre></div>
+<p>This time you don&rsquo;t need to resolve the TCP address (e.g. <code>reisinge.net:80</code>).</p>
+
+<p>It&rsquo;s normal to have a lot of error checking in network programming because lot
+of things can go wrong (e.g. syntax error in the address, service not running,
+hardware failing).</p>
+
+<p>More: <a href="https://www.apress.com/gp/book/9781484226919">Network programming with
+Go</a>: 3. Socket-level programming</p>
+
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/sre/" data-toggle="tooltip" data-placement="top" title="SRE">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>
