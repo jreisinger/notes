@@ -19,7 +19,7 @@ block size The POSIX standard defines a block size of 512 …">
   <meta property="og:url" content="https://jreisinger.github.io/posts/terms/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -72,6 +72,7 @@ block size The POSIX standard defines a block size of 512 …">
 <li><a href="#cgroups">cgroups</a></li>
 <li><a href="#concurrency">concurrency</a></li>
 <li><a href="#data">data</a></li>
+<li><a href="#declaration">declaration</a></li>
 <li><a href="#directory-permissions">directory permissions</a></li>
 <li><a href="#filesystem">filesystem</a></li>
 <li><a href="#fstab-fields">fstab fields</a></li>
@@ -87,6 +88,7 @@ block size The POSIX standard defines a block size of 512 …">
 <li><a href="#servlets">servlets</a></li>
 <li><a href="#stateless-protocol">stateless protocol</a></li>
 <li><a href="#unicode">unicode</a></li>
+<li><a href="#variable">variable</a></li>
 <li><a href="#xor">xor</a></li>
 </ul></li>
 </ul></li>
@@ -133,6 +135,12 @@ tions within processor registers). Computers rarely modify individual bits for
 performance reasons. Instead, data is accessed in groups of 1 word (4 bytes) for
 32-bit systems and 2 words for 64-bit systems.</p>
 
+<h3 id="declaration">declaration</h3>
+
+<p>(in Go) names a program entity and specifies some or all of its properties, e.g.:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">boilingF</span> = <span style="color:#ae81ff">212.0</span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>
+<span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span></code></pre></div>
 <h3 id="directory-permissions">directory permissions</h3>
 
 <p>You can list the contents of a directory if it&rsquo;s readable (<code>r</code>), but you can only access a file in a directory if the directory is executable (<code>x</code>). Typical (absolute) permission modes for directories: <code>755</code>, <code>700</code>, <code>711</code>.</p>
@@ -244,6 +252,10 @@ needed</li>
 b'\xe6\x96\x80'
 </code></pre>
 
+<h3 id="variable">variable</h3>
+
+<p>(in Go) is a piece of storage containing a value</p>
+
 <h3 id="xor">xor</h3>
 
 <p>Exclusive or - the opposite of inlusive (the normal) or, which allows both
@@ -277,7 +289,7 @@ False
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -319,7 +331,7 @@ False
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

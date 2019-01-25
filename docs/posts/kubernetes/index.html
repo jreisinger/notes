@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -79,6 +79,7 @@
 <li><a href="#pod">Pod</a></li>
 <li><a href="#deployment">Deployment</a></li>
 <li><a href="#service">Service</a></li>
+<li><a href="#ingress">Ingress</a></li>
 <li><a href="#looking-beyond-the-cluster">Looking beyond the cluster</a></li>
 <li><a href="#tips-and-tricks">Tips and tricks</a></li>
 <li><a href="#resources">Resources</a></li>
@@ -212,13 +213,19 @@ pods identified by the selector</li>
 
 <p>One way to create a service:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl expose deployment quotes-prod --port<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span> --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span></code></pre></div>
+<h2 id="ingress">Ingress</h2>
+
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">https://kubernetes.io/docs/concepts/services-networking/ingress/</a></p>
+
 <h2 id="looking-beyond-the-cluster">Looking beyond the cluster</h2>
 
 <ul>
 <li>exposing services outside of the cluster</li>
+<li>for HTTP or HTTP use <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">ingress</a></li>
+<li>for other ports use service of type NodePort or LoadBalancer</li>
 </ul>
 
-<p>NodePorts</p>
+<p>NodePort</p>
 
 <ul>
 <li>it enhances a service</li>
@@ -251,7 +258,7 @@ curl localhost:8001/api/v1/pods  # get list of pods
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -295,7 +302,7 @@ curl localhost:8001/api/v1/pods  # get list of pods
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
