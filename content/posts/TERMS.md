@@ -100,6 +100,10 @@ a Linux kernel feature that connects two network segments (poor man's router)
 
 (or serializing, or just encoding) convert non-bytes data into bytes
 
+A program will typically build a complex data structure to hold the current
+program state. To transfer this data outside of the program's own address space
+(e.g. to another application over the network) it needs to be serialized.
+
 ### newline
 
 Set of characters indicating the end of a line
