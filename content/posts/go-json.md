@@ -126,3 +126,5 @@ func checkError(err error) {
 	}
 }
 ```
+
+More: [Network programming with Go](https://www.apress.com/gp/book/9781484226919): 4. Data Serialization
