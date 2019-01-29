@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>JSON Serialization with Go - Notes</title>
+  <meta property="og:title" content="JSON Serialization with Go - Notes" />
+  <meta name="twitter:title" content="JSON Serialization with Go - Notes" />
+  <meta name="description" content="Networked programs need to exchange information via messages. TCP and UDP provide a transport mechanism to do this. However, at transport level the messages are just sequences of bytes with no structure.
+A program will typically build a complex data structure to hold the current program state. To transfer this data outside of the program&rsquo;s own address space (e.g. to another application over the network) it needs to be serialized. This process is also called marshalling or encoding.">
+  <meta property="og:description" content="Networked programs need to exchange information via messages. TCP and UDP provide a transport mechanism to do this. However, at transport level the messages are just sequences of bytes with no structure.
+A program will typically build a complex data structure to hold the current program state. To transfer this data outside of the program&rsquo;s own address space (e.g. to another application over the network) it needs to be serialized. This process is also called marshalling or encoding.">
+  <meta name="twitter:description" content="Networked programs need to exchange information via messages. TCP and UDP provide a transport mechanism to do this. However, at transport level the messages are just sequences of bytes with no …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/go-json/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">JSON Serialization with Go</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>January 29, 2019</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/net/">
+            <i class="fas fa-folder"></i>
+            net
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/json/">
+            <i class="fas fa-tag"></i>
+            json
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/go/">
+            <i class="fas fa-tag"></i>
+            go
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <p>Networked programs need to exchange information via messages. TCP and UDP
+provide a transport mechanism to do this. However, at transport level the
+messages are just sequences of bytes with no structure.</p>
+
+<p>A program will typically build a complex data structure to hold the current
+program state. To transfer this data outside of the program&rsquo;s own address space
+(e.g. to another application over the network) it needs to be serialized. This
+process is also called marshalling or encoding.</p>
+
+<p>JSON is a text-based format used for serialization by many programming
+languages.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// SaveJSON.go
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Name</span>  <span style="color:#a6e22e">Name</span>
+	<span style="color:#a6e22e">Email</span> []<span style="color:#a6e22e">Email</span>
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Family</span>   <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Personal</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Kind</span>    <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Address</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">person</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{
+		<span style="color:#a6e22e">Name</span>: <span style="color:#a6e22e">Name</span>{<span style="color:#a6e22e">Family</span>: <span style="color:#e6db74">&#34;Newmarch&#34;</span>, <span style="color:#a6e22e">Personal</span>: <span style="color:#e6db74">&#34;Jan&#34;</span>},
+		<span style="color:#a6e22e">Email</span>: []<span style="color:#a6e22e">Email</span>{<span style="color:#a6e22e">Email</span>{<span style="color:#a6e22e">Kind</span>: <span style="color:#e6db74">&#34;home&#34;</span>, <span style="color:#a6e22e">Address</span>: <span style="color:#e6db74">&#34;jan@newmarch.name&#34;</span>},
+			<span style="color:#a6e22e">Email</span>{<span style="color:#a6e22e">Kind</span>: <span style="color:#e6db74">&#34;work&#34;</span>, <span style="color:#a6e22e">Address</span>: <span style="color:#e6db74">&#34;j.newmarch@boxhill.edu.au&#34;</span>}},
+	}
+
+	<span style="color:#a6e22e">saveJSON</span>(<span style="color:#e6db74">&#34;person.json&#34;</span>, <span style="color:#a6e22e">person</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">saveJSON</span>(<span style="color:#a6e22e">fileName</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#a6e22e">outFile</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Create</span>(<span style="color:#a6e22e">fileName</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	<span style="color:#a6e22e">encoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewEncoder</span>(<span style="color:#a6e22e">outFile</span>)
+	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">Encode</span>(<span style="color:#a6e22e">key</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	<span style="color:#a6e22e">outFile</span>.<span style="color:#a6e22e">Close</span>()
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+	}
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// LoadJSON.go
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Name</span>  <span style="color:#a6e22e">Name</span>
+	<span style="color:#a6e22e">Email</span> []<span style="color:#a6e22e">Email</span>
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Family</span>   <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Personal</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Kind</span>    <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Address</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Person</span>) <span style="color:#a6e22e">String</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>.<span style="color:#a6e22e">Personal</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>.<span style="color:#a6e22e">Family</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Email</span> {
+		<span style="color:#a6e22e">s</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">Kind</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">Address</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">s</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">person</span> <span style="color:#a6e22e">Person</span>
+	<span style="color:#a6e22e">loadJSON</span>(<span style="color:#e6db74">&#34;person.json&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">person</span>)
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Person&#34;</span>, <span style="color:#a6e22e">person</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">loadJSON</span>(<span style="color:#a6e22e">fileName</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#a6e22e">inFile</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Open</span>(<span style="color:#a6e22e">fileName</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	<span style="color:#a6e22e">decoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewDecoder</span>(<span style="color:#a6e22e">inFile</span>)
+	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">Decode</span>(<span style="color:#a6e22e">key</span>)
+	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	<span style="color:#a6e22e">inFile</span>.<span style="color:#a6e22e">Close</span>()
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+	}
+}</code></pre></div>
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/go-tcp-sockets/" data-toggle="tooltip" data-placement="top" title="TCP sockets with Go">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

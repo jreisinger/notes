@@ -6,10 +6,20 @@
     <description>Recent content in Go on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JSON Serialization with Go</title>
+      <link>https://jreisinger.github.io/notes/posts/go-json/</link>
+      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/go-json/</guid>
+      <description>Networked programs need to exchange information via messages. TCP and UDP provide a transport mechanism to do this. However, at transport level the messages are just sequences of bytes with no structure.
+A program will typically build a complex data structure to hold the current program state. To transfer this data outside of the program&amp;rsquo;s own address space (e.g. to another application over the network) it needs to be serialized. This process is also called marshalling or encoding.</description>
+    </item>
     
     <item>
       <title>TCP sockets with Go</title>
