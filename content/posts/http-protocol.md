@@ -7,6 +7,13 @@ tags: [http, web]
 
 ## Intro
 
+What
+
+* stateless, connectionless, reliable protocol
+* HTTP versions: 0.9 ('91), 1.0 ('96), **1.1** ('99), 2 ('15)
+* HTTP < 1.1 needed a separate TCP connection for each HTTP request
+* HTTP < 2 are text based, HTTP 2 is binary
+
 What for
 
 * used to fetch network resources (documents) based on their hostname and path
@@ -197,4 +204,5 @@ Caching headers
 
 ## Sources
 
-Foundations of Python Network Programming (2014) - [ch. 9](https://www.safaribooksonline.com/library/view/foundations-of-python/9781430258551/9781430258544_Ch09.xhtml)
+* Foundations of Python Network Programming (2014) - [ch. 9](https://www.safaribooksonline.com/library/view/foundations-of-python/9781430258551/9781430258544_Ch09.xhtml)
+* Network Programming with Go - ch. 8
