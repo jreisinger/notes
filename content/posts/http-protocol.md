@@ -195,6 +195,7 @@ Status codes - returned by a server with each response
 (301, 'http://httpbin.org/status/301', '/redirect/1')
 ```
 * 4xx - Client errors; client request is unintelligible or illegal
+* 404 Not Found - the resource is not at the given URL
 * 5xx - Server errors
 * 502 Bad Gateway - the server is a proxy but it cannot contact the server
     behind it
