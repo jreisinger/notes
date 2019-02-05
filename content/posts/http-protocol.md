@@ -185,15 +185,17 @@ Host: tools.ietf.org
 
 Status codes - returned by a server with each response
 
-* 200 - OK
-* 3xx - redirects; not expected to carry a body; new location is in the `Location` header
+* 1xx - Informational
+* 2xx - Success
+* 200 OK
+* 3xx - Redirects; not expected to carry a body; new location is in the `Location` header
 ```python
 >>> r = requests.get('http://httpbin.org/status/301', allow_redirects=False)
 >>> (r.status_code, r.url, r.headers['Location'])
 (301, 'http://httpbin.org/status/301', '/redirect/1')
 ```
-* 4xx - client request is unintelligible or illegal
-* 5xx - server errors
+* 4xx - Client errors; client request is unintelligible or illegal
+* 5xx - Server errors
 * 502 Bad Gateway - the server is a proxy but it cannot contact the server
     behind it
 
