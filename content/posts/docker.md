@@ -183,10 +183,8 @@ NETWORK ID          NAME                DRIVER              SCOPE
 e3f087868688        none                null                local
 ```
 
-1. bridge (virtual switch, poor man's router) is the default --> private
-namespaced network within the host
-2. with host networking no separate network namespace is used (`docker run --net
-host ...`)
+1. bridge (virtual switch) is the default --> private namespaced network within the host (which acts as poor man's router)
+2. with host networking no separate network namespace is used (`docker run --net host ...`)
 3. none is for advanced use cases
 
 ![docker bridge network](https://raw.github.com/jreisinger/blog/master/files/docker_bridge.png "Docker bridge network")
