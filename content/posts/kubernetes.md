@@ -116,9 +116,6 @@ spec:
 ```sh
 # Creating a Pod
 kubectl apply -f kuard-pod.yaml
-
-# Accessing a Pod via port forwarding
-kubectl port-forward kuard 8080:8080 # tunnel: localhost -> k8s master -> k8s worker node
 ```
 
 What should I put into a single pod?
@@ -164,7 +161,7 @@ Looking beyond the cluster
 --------------------------
 
 * exposing services outside of the cluster
-* for HTTP or HTTP use [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+* for HTTP or HTTPS use [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 * for other ports use service of type NodePort or LoadBalancer
 
 NodePort
@@ -178,6 +175,12 @@ NodePort
 
 Tips and tricks
 ---------------
+
+Access a Pod via port forwarding:
+
+```
+kubectl port-forward kuard 8080:8080  # tunnel: localhost -> k8s master -> k8s worker node
+```
 
 Create a proxy server between localhost and K8s API server:
 
