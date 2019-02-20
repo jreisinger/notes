@@ -9,9 +9,9 @@ tags: [docker]
 Docker is a container technology. Cointainers standardize software packaging.
 It's a well timed fusion of
 
-* kernel features
-* filesystem tricks
-* networking hacks
+* kernel features (cgroups)
+* filesystem tricks (UnionFS)
+* networking hacks (iptables)
 
 Think of a container not as a virtual machine but a very lightweight wrapper
 around an isolated group of processes. These processes are restricted to private
@@ -98,7 +98,7 @@ docker run --rm -it ubuntu /bin/bash
 ```
 
 * `run` = `create` + `start`
-* `--rm` - delete the container when it exits
+* `--rm` - delete the container (the read/write filesystem layer) when it exits
 * `-i` - interactive session, i.e. keep STDIN open
 * `-t` - allocate a pseudo-TTY
 * `/bin/bash` - executable to run within the container
@@ -131,6 +131,7 @@ docker rm  $(docker ps -a -q)
 
 # Volumes
 
+* the read/write filesystem layer is a copy-on-write snapshot of an image
 * heavy reliance on the read/write filesystem layer isn't the best storage solution (for data intensive apps like DBs)
 * the read/write filesystem layer gets removed when the container is removed (`docker rm ...`)
 * Docker has the notion of volumes that are maintained separately from the union
