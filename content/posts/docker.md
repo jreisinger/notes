@@ -9,7 +9,7 @@ tags: [docker]
 Docker is a container technology. Cointainers standardize software packaging.
 It's a well timed fusion of
 
-* kernel features (cgroups)
+* kernel features (cgroups, namespaces)
 * filesystem tricks (UnionFS)
 * networking hacks (iptables)
 
