@@ -178,16 +178,26 @@ Tips and tricks
 
 Access a Pod via port forwarding:
 
-```
+```bash
 kubectl port-forward kuard 8080:8080  # tunnel: localhost -> k8s master -> k8s worker node
 ```
 
 Create a proxy server between localhost and K8s API server:
 
-```
+```bash
 kubectl proxy &                  # create proxy
 curl localhost:8001/api/v1/pods  # get list of pods
 ```
+
+Run containers for troubleshooting:
+
+```bash
+kubectl run demo --image=cloudnatived/demo:hello --expose --port 8888 # pod to troubleshoot
+kubectl run nslookup --image=busybox:1.28 --rm -it --restart=Never --command -- nslookup demo
+kubectl run wget --image=busybox:1.28 --rm -it -restart=Never --command -- wget -qO- http://demo:8888
+```
+
+* `--command` -- command to run instead of container's default entrypoint
 
 Resources
 ---------

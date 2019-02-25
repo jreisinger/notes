@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -179,10 +179,7 @@ spec:
         - containerPort: <span style="color:#ae81ff">8080</span>
           name: http
           protocol: TCP</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Creating a Pod
-</span><span style="color:#75715e"></span>kubectl apply -f kuard-pod.yaml
-
-<span style="color:#75715e"># Accessing a Pod via port forwarding
-</span><span style="color:#75715e"></span>kubectl port-forward kuard <span style="color:#ae81ff">8080</span>:8080 # tunnel: localhost -&gt; k8s master -&gt; k8s worker node</code></pre></div>
+</span><span style="color:#75715e"></span>kubectl apply -f kuard-pod.yaml</code></pre></div>
 <p>What should I put into a single pod?</p>
 
 <ul>
@@ -221,7 +218,7 @@ pods identified by the selector</li>
 
 <ul>
 <li>exposing services outside of the cluster</li>
-<li>for HTTP or HTTP use <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">ingress</a></li>
+<li>for HTTP or HTTPS use <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">ingress</a></li>
 <li>for other ports use service of type NodePort or LoadBalancer</li>
 </ul>
 
@@ -238,11 +235,18 @@ the system)</li>
 
 <h2 id="tips-and-tricks">Tips and tricks</h2>
 
+<p>Access a Pod via port forwarding:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward kuard <span style="color:#ae81ff">8080</span>:8080  # tunnel: localhost -&gt; k8s master -&gt; k8s worker node</code></pre></div>
 <p>Create a proxy server between localhost and K8s API server:</p>
-
-<pre><code>kubectl proxy &amp;                  # create proxy
-curl localhost:8001/api/v1/pods  # get list of pods
-</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl proxy &amp;                  <span style="color:#75715e"># create proxy
+</span><span style="color:#75715e"></span>curl localhost:8001/api/v1/pods  # get list of pods</code></pre></div>
+<p>Run containers for troubleshooting:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl run demo --image<span style="color:#f92672">=</span>cloudnatived/demo:hello --expose --port <span style="color:#ae81ff">8888</span> <span style="color:#75715e"># pod to troubleshoot
+</span><span style="color:#75715e"></span>kubectl run nslookup --image<span style="color:#f92672">=</span>busybox:1.28 --rm -it --restart<span style="color:#f92672">=</span>Never --command -- nslookup demo
+kubectl run wget --image<span style="color:#f92672">=</span>busybox:1.28 --rm -it -restart<span style="color:#f92672">=</span>Never --command -- wget -qO- http://demo:8888</code></pre></div>
+<ul>
+<li><code>--command</code> &ndash; command to run instead of container&rsquo;s default entrypoint</li>
+</ul>
 
 <h2 id="resources">Resources</h2>
 
@@ -258,7 +262,7 @@ curl localhost:8001/api/v1/pods  # get list of pods
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -302,7 +306,7 @@ curl localhost:8001/api/v1/pods  # get list of pods
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -124,10 +124,9 @@ Stack (temporary to a function)
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/http-protocol/</guid>
-      <description>Intro What for
- used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
- urllib - client in Standard Library, for simple use
-from urllib.request import urlopen import urllib.error r = urlopen(&amp;#39;http://httpbin.org/headers&amp;#39;) # you need to instruct urllib how to turn raw bytes into text print(r.read().decode(&amp;#39;ascii&amp;#39;)) requests - the go-to tool</description>
+      <description>Intro What
+ stateless, connectionless, reliable protocol HTTP versions: 0.9 (&amp;lsquo;91), 1.0 (&amp;lsquo;96), 1.1 (&amp;lsquo;99), 2 (&amp;lsquo;15) HTTP &amp;lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &amp;lt; 2 are text based, HTTP 2 is binary  What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries</description>
     </item>
     
     <item>
@@ -137,7 +136,7 @@ from urllib.request import urlopen import urllib.error r = urlopen(&amp;#39;http
       
       <guid>https://jreisinger.github.io/notes/posts/docker/</guid>
       <description>Docker is a container technology. Cointainers standardize software packaging. It&amp;rsquo;s a well timed fusion of
- kernel features filesystem tricks networking hacks  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
+ kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks (iptables)  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
 Docker revision-controls:
  filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:</description>
     </item>

@@ -6,23 +6,20 @@
   <title>HTTP protocol - Notes</title>
   <meta property="og:title" content="HTTP protocol - Notes" />
   <meta name="twitter:title" content="HTTP protocol - Notes" />
-  <meta name="description" content="Intro What for
- used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
- urllib - client in Standard Library, for simple use
-from urllib.request import urlopen import urllib.error r = urlopen(&#39;http://httpbin.org/headers&#39;) # you need to instruct urllib how to turn raw bytes into text print(r.read().decode(&#39;ascii&#39;)) requests - the go-to tool">
-  <meta property="og:description" content="Intro What for
- used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
- urllib - client in Standard Library, for simple use
-from urllib.request import urlopen import urllib.error r = urlopen(&#39;http://httpbin.org/headers&#39;) # you need to instruct urllib how to turn raw bytes into text print(r.read().decode(&#39;ascii&#39;)) requests - the go-to tool">
-  <meta name="twitter:description" content="Intro What for
- used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries
- urllib - …">
+  <meta name="description" content="Intro What
+ stateless, connectionless, reliable protocol HTTP versions: 0.9 (&lsquo;91), 1.0 (&lsquo;96), 1.1 (&lsquo;99), 2 (&lsquo;15) HTTP &lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &lt; 2 are text based, HTTP 2 is binary  What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries">
+  <meta property="og:description" content="Intro What
+ stateless, connectionless, reliable protocol HTTP versions: 0.9 (&lsquo;91), 1.0 (&lsquo;96), 1.1 (&lsquo;99), 2 (&lsquo;15) HTTP &lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &lt; 2 are text based, HTTP 2 is binary  What for
+ used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries">
+  <meta name="twitter:description" content="Intro What
+ stateless, connectionless, reliable protocol HTTP versions: 0.9 (&lsquo;91), 1.0 (&lsquo;96), 1.1 (&lsquo;99), 2 (&lsquo;15) HTTP &lt; 1.1 needed a separate TCP connection for each HTTP …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/http-protocol/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -93,6 +90,15 @@ from urllib.request import urlopen import urllib.error r = urlopen(&#39;http://h
       
 
 <h2 id="intro">Intro</h2>
+
+<p>What</p>
+
+<ul>
+<li>stateless, connectionless, reliable protocol</li>
+<li>HTTP versions: 0.9 (&lsquo;91), 1.0 (&lsquo;96), <strong>1.1</strong> (&lsquo;99), 2 (&lsquo;15)</li>
+<li>HTTP &lt; 1.1 needed a separate TCP connection for each HTTP request</li>
+<li>HTTP &lt; 2 are text based, HTTP 2 is binary</li>
+</ul>
 
 <p>What for</p>
 
@@ -271,15 +277,18 @@ Host: tools.ietf.org</code></pre></div>
 <p>Status codes - returned by a server with each response</p>
 
 <ul>
-<li>200 - OK</li>
-<li>3xx - redirects; not expected to carry a body; new location is in the <code>Location</code> header
+<li>1xx - Informational</li>
+<li>2xx - Success</li>
+<li>200 OK</li>
+<li>3xx - Redirects; not expected to carry a body; new location is in the <code>Location</code> header
 <code>python
 &gt;&gt;&gt; r = requests.get('http://httpbin.org/status/301', allow_redirects=False)
 &gt;&gt;&gt; (r.status_code, r.url, r.headers['Location'])
 (301, 'http://httpbin.org/status/301', '/redirect/1')
 </code></li>
-<li>4xx - client request is unintelligible or illegal</li>
-<li>5xx - server errors</li>
+<li>4xx - Client errors; client request is unintelligible or illegal</li>
+<li>404 Not Found - the resource is not at the given URL</li>
+<li>5xx - Server errors</li>
 <li>502 Bad Gateway - the server is a proxy but it cannot contact the server
 behind it</li>
 </ul>
@@ -293,14 +302,17 @@ behind it</li>
 
 <h2 id="sources">Sources</h2>
 
-<p>Foundations of Python Network Programming (2014) - <a href="https://www.safaribooksonline.com/library/view/foundations-of-python/9781430258551/9781430258544_Ch09.xhtml">ch. 9</a></p>
+<ul>
+<li>Foundations of Python Network Programming (2014) - <a href="https://www.safaribooksonline.com/library/view/foundations-of-python/9781430258551/9781430258544_Ch09.xhtml">ch. 9</a></li>
+<li>Network Programming with Go - ch. 8</li>
+</ul>
 
     </article>
 
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -344,7 +356,7 @@ behind it</li>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
