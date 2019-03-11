@@ -199,6 +199,12 @@ kubectl run wget --image=busybox:1.28 --rm -it -restart=Never --command -- wget 
 
 * `--command` -- command to run instead of container's default entrypoint
 
+Explain resource types:
+
+```bash
+kubectl explain svc
+```
+
 Resources
 ---------
 
