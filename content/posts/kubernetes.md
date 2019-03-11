@@ -54,7 +54,7 @@ Objects
 ```bash
 # view Kubernetes objects
 kubectl get all [-l app=nginx]    # all resources [with a label app=nginx]
-kubectl get <resource>            # all resources in a namespace
+kubectl get <resource>            # all resources of given type
 kubectl get <resource> <object>   # specific resource
 
 # details about an object
