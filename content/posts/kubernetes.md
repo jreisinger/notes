@@ -81,7 +81,7 @@ kubectl delete <resource> <object>
 kubectl delete deployments --all [--selector="app=myapp,env=dev"]
 
 # debugging
-kubectl logs <pod>
+kubectl logs [-f] <pod>
 kubectl exec -it <pod> -- bash  # or sh instead of bash
 kubectl cp <pod>:/path/to/remote/file /path/to/local/file
 ```
