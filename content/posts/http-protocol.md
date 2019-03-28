@@ -17,6 +17,7 @@ What
 What for
 
 * used to fetch network resources (documents) based on their hostname and path
+* user agents actually get a *representation* of the given resource (e.g. a copy of a static file)
 * dominant document type - WWW of hypertext documents
 * dominant version - HTTP/1.1
 
