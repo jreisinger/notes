@@ -155,7 +155,7 @@ $ perl -lane <span style="font-style:italic">&#39;print &#34;@F[1,0]&#34;&#39;</
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="font-style:italic">&#39;print if $_ eq reverse and length &gt;= 5&#39;</span> /usr/share/dict/words</code></pre></div>
 <p>Print a file system tree on UNIX like systems (<a href="http://www.perlmonks.org/?node_id=1050343">source</a>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls -R | perl -ne<span style="font-style:italic">&#39;if(s/:$//){s{[^/]*/}{--}g;s/^-/\t|/;print}&#39;</span></code></pre></div>
-<p>Greet user (stolen from <a href="http://perlmonks.org/?node_id=681898">Utilitarian</a> (-:</p>
+<p>Greet user (stolen from <a href="http://perlmonks.org/?node_id=681898">Utilitarian</a>) (-:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -E <span style="font-style:italic">&#39;say &#34;Good &#34;.qw(night morning afternoon evening)[(localtime)[2]/6].&#34;, $ENV{USER}&#34;&#39;</span></code></pre></div>
     </article>
 

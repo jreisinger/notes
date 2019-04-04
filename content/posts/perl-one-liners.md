@@ -115,7 +115,7 @@ Print a file system tree on UNIX like systems ([source](http://www.perlmonks.org
 ls -R | perl -ne'if(s/:$//){s{[^/]*/}{--}g;s/^-/\t|/;print}'
 ```
 
-Greet user (stolen from [Utilitarian](http://perlmonks.org/?node_id=681898) (-:
+Greet user (stolen from [Utilitarian](http://perlmonks.org/?node_id=681898)) (-:
 
 ```bash
 perl -E 'say "Good ".qw(night morning afternoon evening)[(localtime)[2]/6].", $ENV{USER}"'
