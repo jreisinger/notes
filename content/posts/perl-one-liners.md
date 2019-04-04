@@ -5,13 +5,13 @@ categories: [prog]
 tags: [perl, sysadmin]
 ---
 
-I think Perl one liners are super useful. Even Kubernetes people like them to do their [jobs](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job) :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see [Famous Perl One-Liners Explained](http://www.catonmat.net/blog/perl-one-liners-explained-part-one/). If you want a book have a look at [Minimal Perl for UNIX and Linux People](http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&qid=1358096838&sr=8-1&keywords=minimal+perl+for+unix).
+I think Perl one liners are still super useful (even Kubernetes people like them to do their [jobs](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job) :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see [Famous Perl One-Liners Explained](http://www.catonmat.net/blog/perl-one-liners-explained-part-one/). If you want a book have a look at [Minimal Perl for UNIX and Linux People](http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&qid=1358096838&sr=8-1&keywords=minimal+perl+for+unix).
 
-## Perl command line switches
+## `perl` command line switches
 
 * `-e '<code>'` (execute) -- execute `<code>`
 * `-E '<code>'` (execute) -- execute `<code>` enabling [feature](http://perldoc.perl.org/feature.html) bundle (like `use 5.010`) for your version of Perl
-* `-p` (printing) -- loop through lines, reading and printing them (in-script equivalent: `while (<>) { [<code>;] print; }`)
+* `-p` (printing) -- loop through lines, reading and printing them (in-script equivalent: `while (<>) { [<code>] print }`)
 * `-w` (warnings) -- enable warnings (generally advisable)
 * `-n` (nonautoprinting) -- loop through lines, reading but not printing them
 * `-l` (line) -- print a newline (`$/` actually) after each line of output and chomp newline if used with `-n` or `-p`
@@ -25,13 +25,13 @@ See [perlrun](http://perldoc.perl.org/perlrun.html) for more.
 
 ### `grep` replacement
 
-find lines containing `<regex>`:
+Find lines containing `<regex>`:
 
 ```bash
 perl -lne 'print if /<regex>/' aFile
 ```
 
-find DNS resource records of type A:
+Find DNS resource records of type A:
 
 ```bash
 find /etc/bind -type f | xargs perl -ne '/\s+A\s+/ and print "$ARGV: $_"'
@@ -39,13 +39,13 @@ find /etc/bind -type f | xargs perl -ne '/\s+A\s+/ and print "$ARGV: $_"'
 
 ### `sed` replacement
 
-emit the transformed passwd file to STDOUT:
+Emit the transformed passwd file to STDOUT:
 
 ```bash
 perl -pe 's#/bin/sh$#/bin/bash#' /etc/passwd
 ```
 
-in-place editing with backups:
+In-place editing with backups:
 
 ```bash
 perl -i.bak -pe 's/colour/color/g' *.txt
@@ -53,7 +53,7 @@ perl -i.bak -pe 's/colour/color/g' *.txt
 
 ### `awk` replacement
 
-switch columns:
+Switch columns:
 
 ```bash
 $ cat birthdays.txt
@@ -63,7 +63,7 @@ $ cat birthdays.txt
 $ perl -lane 'print "@F[1,0]"' birthdays.txt
 ```
 
-leave out the first column:
+Leave out the first column:
 
 ```bash
 history | perl -anE 'say join " ", @F[1 .. $#F]' | sort | uniq
@@ -73,7 +73,7 @@ history | perl -anE 'say join " ", @F[1 .. $#F]' | sort | uniq
 
 ### `dos2unix` replacement
 
-convert DOS files to Unix files:
+Convert DOS files to Unix files:
 
 ```bash
 perl -i -pe 's/\r//' <file1> <file2> ...   # dos-to-unix

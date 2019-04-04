@@ -6,11 +6,11 @@
   <title>Perl One Liners - Notes</title>
   <meta property="og:title" content="Perl One Liners - Notes" />
   <meta name="twitter:title" content="Perl One Liners - Notes" />
-  <meta name="description" content="I think Perl one liners are super useful. Even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
-Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
-  <meta property="og:description" content="I think Perl one liners are super useful. Even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
-Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
-  <meta name="twitter:description" content="I think Perl one liners are super useful. Even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For …">
+  <meta name="description" content="I think Perl one liners are still super useful (even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
+perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
+  <meta property="og:description" content="I think Perl one liners are still super useful (even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
+perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
+  <meta name="twitter:description" content="I think Perl one liners are still super useful (even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/perl-one-liners/" />
@@ -73,7 +73,7 @@ Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
 <ul>
 <li>
 <ul>
-<li><a href="#perl-command-line-switches">Perl command line switches</a></li>
+<li><a href="#perl-command-line-switches"><code>perl</code> command line switches</a></li>
 <li><a href="#unix-tools-replacements">Unix tools replacements</a>
 <ul>
 <li><a href="#grep-replacement"><code>grep</code> replacement</a></li>
@@ -89,14 +89,14 @@ Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
 </aside>
       
 
-<p>I think Perl one liners are super useful. Even Kubernetes people like them to do their <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">jobs</a> :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see <a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">Famous Perl One-Liners Explained</a>. If you want a book have a look at <a href="http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&amp;qid=1358096838&amp;sr=8-1&amp;keywords=minimal+perl+for+unix">Minimal Perl for UNIX and Linux People</a>.</p>
+<p>I think Perl one liners are still super useful (even Kubernetes people like them to do their <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">jobs</a> :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see <a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">Famous Perl One-Liners Explained</a>. If you want a book have a look at <a href="http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&amp;qid=1358096838&amp;sr=8-1&amp;keywords=minimal+perl+for+unix">Minimal Perl for UNIX and Linux People</a>.</p>
 
-<h2 id="perl-command-line-switches">Perl command line switches</h2>
+<h2 id="perl-command-line-switches"><code>perl</code> command line switches</h2>
 
 <ul>
 <li><code>-e '&lt;code&gt;'</code> (execute) &ndash; execute <code>&lt;code&gt;</code></li>
 <li><code>-E '&lt;code&gt;'</code> (execute) &ndash; execute <code>&lt;code&gt;</code> enabling <a href="http://perldoc.perl.org/feature.html">feature</a> bundle (like <code>use 5.010</code>) for your version of Perl</li>
-<li><code>-p</code> (printing) &ndash; loop through lines, reading and printing them (in-script equivalent: <code>while (&lt;&gt;) { [&lt;code&gt;;] print; }</code>)</li>
+<li><code>-p</code> (printing) &ndash; loop through lines, reading and printing them (in-script equivalent: <code>while (&lt;&gt;) { [&lt;code&gt;] print }</code>)</li>
 <li><code>-w</code> (warnings) &ndash; enable warnings (generally advisable)</li>
 <li><code>-n</code> (nonautoprinting) &ndash; loop through lines, reading but not printing them</li>
 <li><code>-l</code> (line) &ndash; print a newline (<code>$/</code> actually) after each line of output and chomp newline if used with <code>-n</code> or <code>-p</code></li>
@@ -111,25 +111,25 @@ Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
 
 <h3 id="grep-replacement"><code>grep</code> replacement</h3>
 
-<p>find lines containing <code>&lt;regex&gt;</code>:</p>
+<p>Find lines containing <code>&lt;regex&gt;</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="font-style:italic">&#39;print if /&lt;regex&gt;/&#39;</span> aFile</code></pre></div>
-<p>find DNS resource records of type A:</p>
+<p>Find DNS resource records of type A:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /etc/bind -type f | xargs perl -ne <span style="font-style:italic">&#39;/\s+A\s+/ and print &#34;$ARGV: $_&#34;&#39;</span></code></pre></div>
 <h3 id="sed-replacement"><code>sed</code> replacement</h3>
 
-<p>emit the transformed passwd file to STDOUT:</p>
+<p>Emit the transformed passwd file to STDOUT:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -pe <span style="font-style:italic">&#39;s#/bin/sh$#/bin/bash#&#39;</span> /etc/passwd</code></pre></div>
-<p>in-place editing with backups:</p>
+<p>In-place editing with backups:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i.bak -pe <span style="font-style:italic">&#39;s/colour/color/g&#39;</span> *.txt</code></pre></div>
 <h3 id="awk-replacement"><code>awk</code> replacement</h3>
 
-<p>switch columns:</p>
+<p>Switch columns:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat birthdays.txt
 03/30/45 Eric Clapton
 11/27/42 Jimi Hendrix
 06/24/44 Jeff Beck
 $ perl -lane <span style="font-style:italic">&#39;print &#34;@F[1,0]&#34;&#39;</span> birthdays.txt</code></pre></div>
-<p>leave out the first column:</p>
+<p>Leave out the first column:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">history | perl -anE <span style="font-style:italic">&#39;say join &#34; &#34;, @F[1 .. $#F]&#39;</span> | sort | uniq</code></pre></div>
 <ul>
 <li>see <a href="http://www.perlmonks.org/?node_id=739305">http://www.perlmonks.org/?node_id=739305</a> for why you can&rsquo;t use -1 as array index here</li>
@@ -137,7 +137,7 @@ $ perl -lane <span style="font-style:italic">&#39;print &#34;@F[1,0]&#34;&#39;</
 
 <h3 id="dos2unix-replacement"><code>dos2unix</code> replacement</h3>
 
-<p>convert DOS files to Unix files:</p>
+<p>Convert DOS files to Unix files:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i -pe <span style="font-style:italic">&#39;s/\r//&#39;</span> &lt;file1&gt; &lt;file2&gt; ...   <span style="font-style:italic"># dos-to-unix
 </span><span style="font-style:italic"></span>perl -i -pe <span style="font-style:italic">&#39;s/$/\r/&#39;</span> &lt;file1&gt; &lt;file2&gt; ...  # unix-to-dos</code></pre></div>
 <h2 id="various">Various</h2>
