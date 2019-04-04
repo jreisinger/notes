@@ -112,25 +112,25 @@ Perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
 <h3 id="grep-replacement"><code>grep</code> replacement</h3>
 
 <p>find lines containing <code>&lt;regex&gt;</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="color:#e6db74">&#39;print if /&lt;regex&gt;/&#39;</span> aFile</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="font-style:italic">&#39;print if /&lt;regex&gt;/&#39;</span> aFile</code></pre></div>
 <p>find DNS resource records of type A:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /etc/bind -type f | xargs perl -ne <span style="color:#e6db74">&#39;/\s+A\s+/ and print &#34;$ARGV: $_&#34;&#39;</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /etc/bind -type f | xargs perl -ne <span style="font-style:italic">&#39;/\s+A\s+/ and print &#34;$ARGV: $_&#34;&#39;</span></code></pre></div>
 <h3 id="sed-replacement"><code>sed</code> replacement</h3>
 
 <p>emit the transformed passwd file to STDOUT:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -pe <span style="color:#e6db74">&#39;s#/bin/sh$#/bin/bash#&#39;</span> /etc/passwd</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -pe <span style="font-style:italic">&#39;s#/bin/sh$#/bin/bash#&#39;</span> /etc/passwd</code></pre></div>
 <p>in-place editing with backups:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i.bak -pe <span style="color:#e6db74">&#39;s/colour/color/g&#39;</span> *.txt</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i.bak -pe <span style="font-style:italic">&#39;s/colour/color/g&#39;</span> *.txt</code></pre></div>
 <h3 id="awk-replacement"><code>awk</code> replacement</h3>
 
 <p>switch columns:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat birthdays.txt
-<span style="color:#ae81ff">03</span>/30/45 Eric Clapton
-<span style="color:#ae81ff">11</span>/27/42 Jimi Hendrix
-<span style="color:#ae81ff">06</span>/24/44 Jeff Beck
-$ perl -lane <span style="color:#e6db74">&#39;print &#34;@F[1,0]&#34;&#39;</span> birthdays.txt</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat birthdays.txt
+03/30/45 Eric Clapton
+11/27/42 Jimi Hendrix
+06/24/44 Jeff Beck
+$ perl -lane <span style="font-style:italic">&#39;print &#34;@F[1,0]&#34;&#39;</span> birthdays.txt</code></pre></div>
 <p>leave out the first column:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">history | perl -anE <span style="color:#e6db74">&#39;say join &#34; &#34;, @F[1 .. $#F]&#39;</span> | sort | uniq</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">history | perl -anE <span style="font-style:italic">&#39;say join &#34; &#34;, @F[1 .. $#F]&#39;</span> | sort | uniq</code></pre></div>
 <ul>
 <li>see <a href="http://www.perlmonks.org/?node_id=739305">http://www.perlmonks.org/?node_id=739305</a> for why you can&rsquo;t use -1 as array index here</li>
 </ul>
@@ -138,25 +138,25 @@ $ perl -lane <span style="color:#e6db74">&#39;print &#34;@F[1,0]&#34;&#39;</span
 <h3 id="dos2unix-replacement"><code>dos2unix</code> replacement</h3>
 
 <p>convert DOS files to Unix files:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i -pe <span style="color:#e6db74">&#39;s/\r//&#39;</span> &lt;file1&gt; &lt;file2&gt; ...   <span style="color:#75715e"># dos-to-unix
-</span><span style="color:#75715e"></span>perl -i -pe <span style="color:#e6db74">&#39;s/$/\r/&#39;</span> &lt;file1&gt; &lt;file2&gt; ...  # unix-to-dos</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i -pe <span style="font-style:italic">&#39;s/\r//&#39;</span> &lt;file1&gt; &lt;file2&gt; ...   <span style="font-style:italic"># dos-to-unix
+</span><span style="font-style:italic"></span>perl -i -pe <span style="font-style:italic">&#39;s/$/\r/&#39;</span> &lt;file1&gt; &lt;file2&gt; ...  # unix-to-dos</code></pre></div>
 <h2 id="various">Various</h2>
 
 <p>Total size of found files (using the <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> as suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /opt/splunk/syslog/ -iname <span style="color:#e6db74">&#34;*log*&#34;</span> -type f -mtime +30 | <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>perl -lne <span style="color:#e6db74">&#39;$sum += (stat)[7]}{print $sum&#39;</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /opt/splunk/syslog/ -iname <span style="font-style:italic">&#34;*log*&#34;</span> -type f -mtime +30 | <span style="font-weight:bold;font-style:italic">\
+</span><span style="font-weight:bold;font-style:italic"></span>perl -lne <span style="font-style:italic">&#39;$sum += (stat)[7]}{print $sum&#39;</span></code></pre></div>
 <p>Remove comments and compress all consecutive blank lines into one (<a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">more</a>):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/ssh/sshd_config | perl -lne <span style="color:#e6db74">&#39;!/^#/ and print&#39;</span> | perl -00 -pe <span style="color:#e6db74">&#39;&#39;</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/ssh/sshd_config | perl -lne <span style="font-style:italic">&#39;!/^#/ and print&#39;</span> | perl -00 -pe <span style="font-style:italic">&#39;&#39;</span></code></pre></div>
 <p>Create HTML anchor element:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -le <span style="color:#e6db74">&#39;print &#34;&lt;a href=\&#34;$ARGV[1]\&#34;&gt;$ARGV[0]&lt;/a&gt;&#34;&#39;</span> <span style="color:#e6db74">&#39;perldoc&#39;</span> http://perldoc.perl.org/</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -le <span style="font-style:italic">&#39;print &#34;&lt;a href=\&#34;$ARGV[1]\&#34;&gt;$ARGV[0]&lt;/a&gt;&#34;&#39;</span> <span style="font-style:italic">&#39;perldoc&#39;</span> http://perldoc.perl.org/</code></pre></div>
 <h2 id="fun">Fun</h2>
 
 <p>Find big palindromes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="color:#e6db74">&#39;print if $_ eq reverse and length &gt;= 5&#39;</span> /usr/share/dict/words</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="font-style:italic">&#39;print if $_ eq reverse and length &gt;= 5&#39;</span> /usr/share/dict/words</code></pre></div>
 <p>Print a file system tree on UNIX like systems (<a href="http://www.perlmonks.org/?node_id=1050343">source</a>):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls -R | perl -ne<span style="color:#e6db74">&#39;if(s/:$//){s{[^/]*/}{--}g;s/^-/\t|/;print}&#39;</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls -R | perl -ne<span style="font-style:italic">&#39;if(s/:$//){s{[^/]*/}{--}g;s/^-/\t|/;print}&#39;</span></code></pre></div>
 <p>Greet user (stolen from <a href="http://perlmonks.org/?node_id=681898">Utilitarian</a> (-:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -E <span style="color:#e6db74">&#39;say &#34;Good &#34;.qw(night morning afternoon evening)[(localtime)[2]/6].&#34;, $ENV{USER}&#34;&#39;</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -E <span style="font-style:italic">&#39;say &#34;Good &#34;.qw(night morning afternoon evening)[(localtime)[2]/6].&#34;, $ENV{USER}&#34;&#39;</span></code></pre></div>
     </article>
 
     

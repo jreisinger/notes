@@ -82,71 +82,71 @@
       </ul>
       
       <p>This is an HTTP client implemented using socket-level programming:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Usage: go run getHeadInfo.go reisinge.net:80
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run getHeadInfo.go reisinge.net:80
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
-	<span style="color:#e6db74">&#34;net&#34;</span>
-	<span style="color:#e6db74">&#34;os&#34;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;fmt&#34;</span>
+	<span style="font-style:italic">&#34;io/ioutil&#34;</span>
+	<span style="font-style:italic">&#34;net&#34;</span>
+	<span style="font-style:italic">&#34;os&#34;</span>
 )
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">service</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>]
+<span style="font-weight:bold">func</span> main() {
+	service := os.Args[1]
 
-	<span style="color:#a6e22e">tcpAddr</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">ResolveTCPAddr</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">service</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	tcpAddr, err := net.ResolveTCPAddr(<span style="font-style:italic">&#34;tcp&#34;</span>, service)
+	checkError(err)
 
-	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">DialTCP</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">tcpAddr</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	conn, err := net.DialTCP(<span style="font-style:italic">&#34;tcp&#34;</span>, <span style="font-weight:bold">nil</span>, tcpAddr)
+	checkError(err)
 
-	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	_, err = conn.Write([]byte(<span style="font-style:italic">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
+	checkError(err)
 
-	<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">conn</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	result, err := ioutil.ReadAll(conn)
+	checkError(err)
 
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">result</span>)
+	fmt.Printf(<span style="font-style:italic">&#34;%s\n&#34;</span>, result)
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+<span style="font-weight:bold">func</span> checkError(err <span style="">error</span>) {
+	<span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+		fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
+		os.Exit(1)
 	}
 }</code></pre></div>
 <p>To add a timeout you can use the <code>Dialer</code> structure:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
-	<span style="color:#e6db74">&#34;net&#34;</span>
-	<span style="color:#e6db74">&#34;os&#34;</span>
-	<span style="color:#e6db74">&#34;time&#34;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;fmt&#34;</span>
+	<span style="font-style:italic">&#34;io/ioutil&#34;</span>
+	<span style="font-style:italic">&#34;net&#34;</span>
+	<span style="font-style:italic">&#34;os&#34;</span>
+	<span style="font-style:italic">&#34;time&#34;</span>
 )
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">service</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>]
+<span style="font-weight:bold">func</span> main() {
+	service := os.Args[1]
 
-	<span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Dialer</span>{<span style="color:#a6e22e">Timeout</span>: <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>}
-	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">service</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	d := net.Dialer{Timeout: 2 * time.Second}
+	conn, err := d.Dial(<span style="font-style:italic">&#34;tcp&#34;</span>, service)
+	checkError(err)
 
-	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	_, err = conn.Write([]byte(<span style="font-style:italic">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
+	checkError(err)
 
-	<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">conn</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
+	result, err := ioutil.ReadAll(conn)
+	checkError(err)
 
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">result</span>)
+	fmt.Printf(<span style="font-style:italic">&#34;%s\n&#34;</span>, result)
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+<span style="font-weight:bold">func</span> checkError(err <span style="">error</span>) {
+	<span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+		fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
+		os.Exit(1)
 	}
 }</code></pre></div>
 <p>This time you don&rsquo;t need to resolve the TCP address (e.g. <code>reisinge.net:80</code>).</p>

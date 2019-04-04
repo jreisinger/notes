@@ -85,106 +85,106 @@ process is also called marshalling or encoding.</p>
 
 <p>JSON is a text-based format used for serialization by many programming
 languages.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// SaveJSON.go
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// SaveJSON.go
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;os&#34;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;encoding/json&#34;</span>
+	<span style="font-style:italic">&#34;fmt&#34;</span>
+	<span style="font-style:italic">&#34;os&#34;</span>
 )
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Name</span>  <span style="color:#a6e22e">Name</span>
-	<span style="color:#a6e22e">Email</span> []<span style="color:#a6e22e">Email</span>
+<span style="font-weight:bold">type</span> Person <span style="font-weight:bold">struct</span> {
+	Name  Name
+	Email []Email
 }
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Family</span>   <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">Personal</span> <span style="color:#66d9ef">string</span>
+<span style="font-weight:bold">type</span> Name <span style="font-weight:bold">struct</span> {
+	Family   <span style="">string</span>
+	Personal <span style="">string</span>
 }
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Kind</span>    <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">Address</span> <span style="color:#66d9ef">string</span>
+<span style="font-weight:bold">type</span> Email <span style="font-weight:bold">struct</span> {
+	Kind    <span style="">string</span>
+	Address <span style="">string</span>
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">person</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{
-		<span style="color:#a6e22e">Name</span>: <span style="color:#a6e22e">Name</span>{<span style="color:#a6e22e">Family</span>: <span style="color:#e6db74">&#34;Newmarch&#34;</span>, <span style="color:#a6e22e">Personal</span>: <span style="color:#e6db74">&#34;Jan&#34;</span>},
-		<span style="color:#a6e22e">Email</span>: []<span style="color:#a6e22e">Email</span>{<span style="color:#a6e22e">Email</span>{<span style="color:#a6e22e">Kind</span>: <span style="color:#e6db74">&#34;home&#34;</span>, <span style="color:#a6e22e">Address</span>: <span style="color:#e6db74">&#34;jan@newmarch.name&#34;</span>},
-			<span style="color:#a6e22e">Email</span>{<span style="color:#a6e22e">Kind</span>: <span style="color:#e6db74">&#34;work&#34;</span>, <span style="color:#a6e22e">Address</span>: <span style="color:#e6db74">&#34;j.newmarch@boxhill.edu.au&#34;</span>}},
+<span style="font-weight:bold">func</span> main() {
+	person := Person{
+		Name: Name{Family: <span style="font-style:italic">&#34;Newmarch&#34;</span>, Personal: <span style="font-style:italic">&#34;Jan&#34;</span>},
+		Email: []Email{Email{Kind: <span style="font-style:italic">&#34;home&#34;</span>, Address: <span style="font-style:italic">&#34;jan@newmarch.name&#34;</span>},
+			Email{Kind: <span style="font-style:italic">&#34;work&#34;</span>, Address: <span style="font-style:italic">&#34;j.newmarch@boxhill.edu.au&#34;</span>}},
 	}
 
-	<span style="color:#a6e22e">saveJSON</span>(<span style="color:#e6db74">&#34;person.json&#34;</span>, <span style="color:#a6e22e">person</span>)
+	saveJSON(<span style="font-style:italic">&#34;person.json&#34;</span>, person)
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">saveJSON</span>(<span style="color:#a6e22e">fileName</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">interface</span>{}) {
-	<span style="color:#a6e22e">outFile</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Create</span>(<span style="color:#a6e22e">fileName</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
-	<span style="color:#a6e22e">encoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewEncoder</span>(<span style="color:#a6e22e">outFile</span>)
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">Encode</span>(<span style="color:#a6e22e">key</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
-	<span style="color:#a6e22e">outFile</span>.<span style="color:#a6e22e">Close</span>()
+<span style="font-weight:bold">func</span> saveJSON(fileName <span style="">string</span>, key <span style="font-weight:bold">interface</span>{}) {
+	outFile, err := os.Create(fileName)
+	checkError(err)
+	encoder := json.NewEncoder(outFile)
+	err = encoder.Encode(key)
+	checkError(err)
+	outFile.Close()
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+<span style="font-weight:bold">func</span> checkError(err <span style="">error</span>) {
+	<span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+		fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
+		os.Exit(1)
 	}
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// LoadJSON.go
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// LoadJSON.go
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;os&#34;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;encoding/json&#34;</span>
+	<span style="font-style:italic">&#34;fmt&#34;</span>
+	<span style="font-style:italic">&#34;os&#34;</span>
 )
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Name</span>  <span style="color:#a6e22e">Name</span>
-	<span style="color:#a6e22e">Email</span> []<span style="color:#a6e22e">Email</span>
+<span style="font-weight:bold">type</span> Person <span style="font-weight:bold">struct</span> {
+	Name  Name
+	Email []Email
 }
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Family</span>   <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">Personal</span> <span style="color:#66d9ef">string</span>
+<span style="font-weight:bold">type</span> Name <span style="font-weight:bold">struct</span> {
+	Family   <span style="">string</span>
+	Personal <span style="">string</span>
 }
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Kind</span>    <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">Address</span> <span style="color:#66d9ef">string</span>
+<span style="font-weight:bold">type</span> Email <span style="font-weight:bold">struct</span> {
+	Kind    <span style="">string</span>
+	Address <span style="">string</span>
 }
 
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Person</span>) <span style="color:#a6e22e">String</span>() <span style="color:#66d9ef">string</span> {
-	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>.<span style="color:#a6e22e">Personal</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Name</span>.<span style="color:#a6e22e">Family</span>
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Email</span> {
-		<span style="color:#a6e22e">s</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">Kind</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">Address</span>
+<span style="font-weight:bold">func</span> (p Person) String() <span style="">string</span> {
+	s := p.Name.Personal + <span style="font-style:italic">&#34; &#34;</span> + p.Name.Family
+	<span style="font-weight:bold">for</span> _, v := <span style="font-weight:bold">range</span> p.Email {
+		s += <span style="font-style:italic">&#34;\n&#34;</span> + v.Kind + <span style="font-style:italic">&#34;: &#34;</span> + v.Address
 	}
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">s</span>
+	<span style="font-weight:bold">return</span> s
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">person</span> <span style="color:#a6e22e">Person</span>
-	<span style="color:#a6e22e">loadJSON</span>(<span style="color:#e6db74">&#34;person.json&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">person</span>)
+<span style="font-weight:bold">func</span> main() {
+	<span style="font-weight:bold">var</span> person Person
+	loadJSON(<span style="font-style:italic">&#34;person.json&#34;</span>, &amp;person)
 
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Person&#34;</span>, <span style="color:#a6e22e">person</span>)
+	fmt.Println(<span style="font-style:italic">&#34;Person&#34;</span>, person)
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">loadJSON</span>(<span style="color:#a6e22e">fileName</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">interface</span>{}) {
-	<span style="color:#a6e22e">inFile</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Open</span>(<span style="color:#a6e22e">fileName</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
-	<span style="color:#a6e22e">decoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewDecoder</span>(<span style="color:#a6e22e">inFile</span>)
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">Decode</span>(<span style="color:#a6e22e">key</span>)
-	<span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span>)
-	<span style="color:#a6e22e">inFile</span>.<span style="color:#a6e22e">Close</span>()
+<span style="font-weight:bold">func</span> loadJSON(fileName <span style="">string</span>, key <span style="font-weight:bold">interface</span>{}) {
+	inFile, err := os.Open(fileName)
+	checkError(err)
+	decoder := json.NewDecoder(inFile)
+	err = decoder.Decode(key)
+	checkError(err)
+	inFile.Close()
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-		<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+<span style="font-weight:bold">func</span> checkError(err <span style="">error</span>) {
+	<span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+		fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
+		os.Exit(1)
 	}
 }</code></pre></div>
 <p>More: <a href="https://www.apress.com/gp/book/9781484226919">Network programming with Go</a>: 4. Data Serialization</p>

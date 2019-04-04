@@ -71,12 +71,12 @@ Go has a strong opinion about directory structure.
       <p><em>NOTE</em>: See <a href="https://golang.org/doc/code.html">How to Write Go Code</a> for official tutorial.</p>
 
 <p>Go has a strong opinion about directory structure.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">## Set location of your workspace (It&#39;s used by the `go` tool)
-</span><span style="color:#75715e"></span>$ export GOPATH<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic">## Set location of your workspace (It&#39;s used by the `go` tool)
+</span><span style="font-style:italic"></span>$ export GOPATH=<span style="font-style:italic">`</span>pwd<span style="font-style:italic">`</span>
 $ echo $GOPATH
 /Users/reisinge/temp/go</code></pre></div>
 <p>A single file program:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">## Create a program
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">## Create a program
 $ tree
 .
 └── src
@@ -101,7 +101,7 @@ $ tree
 $ bin/hello
 Hello, world!</code></pre></div>
 <p>A multiple file (and multiple package) program:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">## Create a program
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">## Create a program
 $ tree
 .
 └── src
@@ -137,43 +137,43 @@ $ bin/hello
 <p>The actual source code of the multifile program:</p>
 
 <p><code>src/hello/main.go</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;shuffler&#34;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;fmt&#34;</span>
+	<span style="font-style:italic">&#34;shuffler&#34;</span>
 )
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">intSlice</span> []<span style="color:#66d9ef">int</span>
+<span style="font-weight:bold">type</span> intSlice []<span style="">int</span>
 
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">is</span> <span style="color:#a6e22e">intSlice</span>) <span style="color:#a6e22e">Len</span>() <span style="color:#66d9ef">int</span> {
-	<span style="color:#66d9ef">return</span> len(<span style="color:#a6e22e">is</span>)
+<span style="font-weight:bold">func</span> (is intSlice) Len() <span style="">int</span> {
+	<span style="font-weight:bold">return</span> len(is)
 }
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">is</span> <span style="color:#a6e22e">intSlice</span>) <span style="color:#a6e22e">Swap</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) {
-	<span style="color:#a6e22e">is</span>[<span style="color:#a6e22e">i</span>], <span style="color:#a6e22e">is</span>[<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">is</span>[<span style="color:#a6e22e">j</span>], <span style="color:#a6e22e">is</span>[<span style="color:#a6e22e">i</span>]
+<span style="font-weight:bold">func</span> (is intSlice) Swap(i, j <span style="">int</span>) {
+	is[i], is[j] = is[j], is[i]
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">intSlice</span>{<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">9</span>}
-	<span style="color:#a6e22e">shuffler</span>.<span style="color:#a6e22e">Shuffle</span>(<span style="color:#a6e22e">i</span>)
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+<span style="font-weight:bold">func</span> main() {
+	i := intSlice{3,1,4,1,5,9}
+	shuffler.Shuffle(i)
+	fmt.Println(i)
 }</code></pre></div>
 <p><code>src/shuffler/shuffle.go</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">shuffler</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> shuffler
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;math/rand&#34;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;math/rand&#34;</span>
 )
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Shuffleable</span> <span style="color:#66d9ef">interface</span> {
-	<span style="color:#a6e22e">Len</span>() <span style="color:#66d9ef">int</span>
-	<span style="color:#a6e22e">Swap</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>)
+<span style="font-weight:bold">type</span> Shuffleable <span style="font-weight:bold">interface</span> {
+	Len() <span style="">int</span>
+	Swap(i, j <span style="">int</span>)
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Shuffle</span>(<span style="color:#a6e22e">s</span> <span style="color:#a6e22e">Shuffleable</span>) {
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Len</span>(); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-		<span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Len</span>() <span style="color:#f92672">-</span> <span style="color:#a6e22e">i</span>)
-		<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Swap</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>)
+<span style="font-weight:bold">func</span> Shuffle(s Shuffleable) {
+	<span style="font-weight:bold">for</span> i := 0; i &lt; s.Len(); i++ {
+		j := rand.Intn(s.Len() - i)
+		s.Swap(i, j)
 	}
 }</code></pre></div>
     </article>

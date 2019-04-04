@@ -108,18 +108,15 @@ for known OSs and create the required entries).</p>
 <h2 id="adding-a-menu-entry">Adding a Menu Entry</h2>
 
 <p>Custom startup script to boot the System Rescue CD from the hard disk:</p>
-
-<pre><code>01 echo &quot;Modified entry for launching a Rescue CD as an Image&quot; &gt;&amp;2
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">01 echo &#34;Modified entry for launching a Rescue CD as an Image&#34; &gt;&amp;2
 02 cat &lt;&lt; EOF
 03
-04 menuentry &quot;Starting System Rescue CD from hard disc&quot; {
+04 menuentry &#34;Starting System Rescue CD from hard disc&#34; {
 05         set root=(hd0,10)
 06         linux   /sysrcd/rescuecd subdir=sysrcd setkmap=de
 07         initrd  /sysrcd/initram.igz
 08 }
-09 EOF
-</code></pre>
-
+09 EOF</pre></div>
 <ul>
 <li>05 - the 10th partition of the first hard disk is the root filesystem
 (partition numbering starts from 1, not from 0 as in GRUB Legacy)</li>
@@ -132,22 +129,16 @@ for known OSs and create the required entries).</p>
 <p>If you see <code>grub rescue&gt;</code> that means it couldn&rsquo;t find <code>normal.mod</code>, so it probably couldn&rsquo;t find any of your boot files.</p>
 
 <p>How does this happen? The kernel might have changed drive assignments or you moved your hard drives, you changed some partitions, or installed a new operating system and moved things around. In these scenarios your boot files are still there, but GRUB can&rsquo;t find them. So you can look for your boot files at the GRUB prompt, set their locations, and then boot your system and fix your GRUB configuration.</p>
-
-<pre><code>grub rescue&gt; ls
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">grub rescue&gt; ls
 grub rescue&gt; set prefix=(hd0,1)/boot/grub
 grub rescue&gt; set root=(hd0,1)
 grub rescue&gt; insmod normal
-grub rescue&gt; normal
-</code></pre>
-
+grub rescue&gt; normal</pre></div>
 <h2 id="making-permanent-repairs">Making Permanent Repairs</h2>
 
 <p>When you have successfully booted your system, run these commands to fix GRUB permanently:</p>
-
-<pre><code># update-grub
-# grub-install /dev/sdc
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># update-grub
+# grub-install /dev/sdc</pre></div>
 <p>When you run <code>grub-install</code> remember you&rsquo;re installing it to the boot sector of your hard drive and not to a partition, so do not use a partition number like <code>/dev/sdc1</code>.</p>
 
 <h2 id="source">Source</h2>

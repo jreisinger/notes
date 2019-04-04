@@ -97,46 +97,46 @@ Stack (temporary to a function)
 </ul>
 
 <p>Go example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// x.go
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// x.go
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
-<span style="color:#f92672">import</span> (
-    <span style="color:#e6db74">&#34;fmt&#34;</span>
-    <span style="color:#e6db74">&#34;runtime&#34;</span>
-    <span style="color:#e6db74">&#34;time&#34;</span>
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;runtime&#34;</span>
+    <span style="font-style:italic">&#34;time&#34;</span>
 )
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">global</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>     <span style="color:#75715e">// &#34;global&#34; is the name :-)
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">f</span>() {
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>       <span style="color:#75715e">// heap-allocated because ...
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">1</span> 
-    <span style="color:#a6e22e">global</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">x</span>     <span style="color:#75715e">// ... escapes from f()
-</span><span style="color:#75715e"></span>}
+<span style="font-weight:bold">var</span> global *<span style="">int</span>     <span style="font-style:italic">// &#34;global&#34; is the name :-)
+</span><span style="font-style:italic"></span>
+<span style="font-weight:bold">func</span> f() {
+    <span style="font-weight:bold">var</span> x <span style="">int</span>       <span style="font-style:italic">// heap-allocated because ...
+</span><span style="font-style:italic"></span>    x = 1 
+    global = &amp;x     <span style="font-style:italic">// ... escapes from f()
+</span><span style="font-style:italic"></span>}
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">g</span>() {
-    <span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> new(<span style="color:#66d9ef">int</span>)   <span style="color:#75715e">// allocated on the stack
-</span><span style="color:#75715e"></span>    <span style="color:#f92672">*</span><span style="color:#a6e22e">y</span> = <span style="color:#ae81ff">1</span> 
+<span style="font-weight:bold">func</span> g() {
+    y := new(<span style="">int</span>)   <span style="font-style:italic">// allocated on the stack
+</span><span style="font-style:italic"></span>    *y = 1 
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+<span style="font-weight:bold">func</span> main() {
 
-    <span style="color:#a6e22e">start</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
-    <span style="color:#66d9ef">for</span> {
-        <span style="color:#75715e">// Run once per second
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Since</span>(<span style="color:#a6e22e">start</span>) &gt; <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span> {
-            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">r</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">MemStats</span>
-            <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">ReadMemStats</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">r</span>)
-            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Heap size %d\n&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">HeapAlloc</span>)
-            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Stack size %d\n&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">StackInuse</span>)
-            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;NumGC %d\n&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">NumGC</span>)
-            <span style="color:#a6e22e">start</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+    start := time.Now()
+    <span style="font-weight:bold">for</span> {
+        <span style="font-style:italic">// Run once per second
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">if</span> time.Since(start) &gt; time.Second {
+            <span style="font-weight:bold">var</span> r runtime.MemStats
+            runtime.ReadMemStats(&amp;r)
+            fmt.Printf(<span style="font-style:italic">&#34;Heap size %d\n&#34;</span>, r.HeapAlloc)
+            fmt.Printf(<span style="font-style:italic">&#34;Stack size %d\n&#34;</span>, r.StackInuse)
+            fmt.Printf(<span style="font-style:italic">&#34;NumGC %d\n&#34;</span>, r.NumGC)
+            start = time.Now()
         }   
 
-        <span style="color:#a6e22e">f</span>() 
-        <span style="color:#a6e22e">g</span>()
+        f() 
+        g()
     }   
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go run -gcflags<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-m&#34;</span> x.go</code></pre></div>
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go run -gcflags=<span style="font-style:italic">&#34;-m&#34;</span> x.go</code></pre></div>
 <p>More</p>
 
 <ul>

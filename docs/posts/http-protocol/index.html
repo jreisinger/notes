@@ -8,10 +8,10 @@
   <meta name="twitter:title" content="HTTP protocol - Notes" />
   <meta name="description" content="Intro What
  stateless, connectionless, reliable protocol HTTP versions: 0.9 (&lsquo;91), 1.0 (&lsquo;96), 1.1 (&lsquo;99), 2 (&lsquo;15) HTTP &lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &lt; 2 are text based, HTTP 2 is binary  What for
- used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries">
+ used to fetch network resources (documents) based on their hostname and path user agents actually get a representation of the given resource (e.g. a copy of a static file) dominant document type - WWW of hypertext documents dominant version - HTTP/1.">
   <meta property="og:description" content="Intro What
  stateless, connectionless, reliable protocol HTTP versions: 0.9 (&lsquo;91), 1.0 (&lsquo;96), 1.1 (&lsquo;99), 2 (&lsquo;15) HTTP &lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &lt; 2 are text based, HTTP 2 is binary  What for
- used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries">
+ used to fetch network resources (documents) based on their hostname and path user agents actually get a representation of the given resource (e.g. a copy of a static file) dominant document type - WWW of hypertext documents dominant version - HTTP/1.">
   <meta name="twitter:description" content="Intro What
  stateless, connectionless, reliable protocol HTTP versions: 0.9 (&lsquo;91), 1.0 (&lsquo;96), 1.1 (&lsquo;99), 2 (&lsquo;15) HTTP &lt; 1.1 needed a separate TCP connection for each HTTP …">
   <meta name="author" content="Jozef Reisinger"/>
@@ -104,6 +104,7 @@
 
 <ul>
 <li>used to fetch network resources (documents) based on their hostname and path</li>
+<li>user agents actually get a <em>representation</em> of the given resource (e.g. a copy of a static file)</li>
 <li>dominant document type - WWW of hypertext documents</li>
 <li>dominant version - HTTP/1.1</li>
 </ul>
@@ -112,16 +113,16 @@
 
 <ul>
 <li><p><code>urllib</code> - client in Standard Library, for simple use</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> urllib.request <span style="color:#f92672">import</span> urlopen
-<span style="color:#f92672">import</span> urllib.error
-r <span style="color:#f92672">=</span> urlopen(<span style="color:#e6db74">&#39;http://httpbin.org/headers&#39;</span>)
-<span style="color:#75715e"># you need to instruct urllib how to turn raw bytes into text</span>
-<span style="color:#66d9ef">print</span>(r<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;ascii&#39;</span>))</code></pre></div></li>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">from</span> <span style="font-weight:bold">urllib.request</span> <span style="font-weight:bold">import</span> urlopen
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">urllib.error</span>
+r = urlopen(<span style="font-style:italic">&#39;http://httpbin.org/headers&#39;</span>)
+<span style="font-style:italic"># you need to instruct urllib how to turn raw bytes into text</span>
+<span style="font-weight:bold">print</span>(r.read().decode(<span style="font-style:italic">&#39;ascii&#39;</span>))</code></pre></div></li>
 
 <li><p><code>requests</code> - the go-to tool</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
-r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;http://httpbin.org/headers&#39;</span>)
-<span style="color:#66d9ef">print</span>(r<span style="color:#f92672">.</span>text)</code></pre></div></li>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">import</span> <span style="font-weight:bold">requests</span>
+r = requests.get(<span style="font-style:italic">&#39;http://httpbin.org/headers&#39;</span>)
+<span style="font-weight:bold">print</span>(r.text)</code></pre></div></li>
 </ul>
 
 <p>HTTP message format (both request <code>&gt;</code> and response <code>&lt;</code>)</p>
@@ -132,7 +133,7 @@ r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</sp
 <li>blank line - server/client calls <code>recv()</code> until <code>CR-LF-CR-LF</code> to find out the headers&rsquo; end</li>
 <li>optional body - its length (framing) is defined by the <code>Content-Lenght</code> header</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ curl reisinge.net -v
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ curl reisinge.net -v
 * Rebuilt URL to: reisinge.net/
 *   Trying 109.230.20.210...
 * Connected to reisinge.net (109.230.20.210) port 80 (#0)
@@ -191,7 +192,7 @@ is finished.</p>
 <ul>
 <li>wrapper used for data delivery, not a change in the underlying data itself</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET / HTTP/1.1
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET / HTTP/1.1
 Accept-Encoding: gzip
 ...
 
@@ -211,7 +212,7 @@ Transfer-Encoding: gzip
 <ul>
 <li><code>charset=utf-8</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Content-Type: text/html; charset=utf-8</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Content-Type: text/html; charset=utf-8</code></pre></div>
 <h2 id="authentication-and-cookies">Authentication and cookies</h2>
 
 <p>Basic Auth (HTTP-mediated authentication)</p>
@@ -238,7 +239,7 @@ view of the protocol)</li>
 <li>cookie = key-value pair sent by the server and then inserted in all
 further requests:</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /login HTTP/1.1
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /login HTTP/1.1
 ...
 
 HTTP/1.1 200 OK
@@ -272,7 +273,7 @@ to get the resources in parallel</li>
 <h2 id="various">Various</h2>
 
 <p>Minimally correct request nowadays (otherwise 404):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /html/rfc7230 HTTP/1.1
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /html/rfc7230 HTTP/1.1
 Host: tools.ietf.org</code></pre></div>
 <p>Status codes - returned by a server with each response</p>
 

@@ -93,7 +93,7 @@ kill [-SIGNAL] PID # default signal is TERM Selected signal types:
 </ul>
 
 <p>To ask the kernel to a send a signal:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kill <span style="color:#f92672">[</span>-SIGNAL<span style="color:#f92672">]</span> PID  # default signal is TERM</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kill [-SIGNAL] PID  # default signal is TERM</code></pre></div>
 <p>Selected signal types:</p>
 
 <ul>
@@ -118,47 +118,47 @@ off)</li>
 </ul>
 
 <p>This is how you can catch signals in Perl:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># signal-catcher -- send me a signal, e.g.:</span>
-<span style="color:#75715e">#</span>
-<span style="color:#75715e"># $ kill -2 &lt;my-pid&gt;</span>
-<span style="color:#75715e">#</span>
-<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.014</span>;    <span style="color:#75715e"># includes strict</span>
-<span style="color:#66d9ef">use</span> warnings;
-<span style="color:#66d9ef">use</span> autodie;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="font-style:italic">#!/usr/bin/env perl</span>
+<span style="font-style:italic">#</span>
+<span style="font-style:italic"># signal-catcher -- send me a signal, e.g.:</span>
+<span style="font-style:italic">#</span>
+<span style="font-style:italic"># $ kill -2 &lt;my-pid&gt;</span>
+<span style="font-style:italic">#</span>
+<span style="font-weight:bold">use</span> 5.014;    <span style="font-style:italic"># includes strict</span>
+<span style="font-weight:bold">use</span> <span style="font-weight:bold">warnings</span>;
+<span style="font-weight:bold">use</span> <span style="font-weight:bold">autodie</span>;
 
-<span style="color:#66d9ef">our</span> $shucks <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;            <span style="color:#75715e"># shuck - škrupina, šok?</span>
+<span style="font-weight:bold">our</span> $shucks = 0;            <span style="font-style:italic"># shuck - škrupina, šok?</span>
 
-<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">catch_zap</span> {             <span style="color:#75715e"># zap - šleha?</span>
-    <span style="color:#66d9ef">my</span> $signame <span style="color:#f92672">=</span> shift();
-    $shucks<span style="color:#f92672">++</span>;
-    die <span style="color:#e6db74">&#34;Somebody sent me a SIG$signame!&#34;</span>;
+<span style="font-weight:bold">sub</span> catch_zap {             <span style="font-style:italic"># zap - šleha?</span>
+    <span style="font-weight:bold">my</span> $signame = shift();
+    $shucks++;
+    die <span style="font-style:italic">&#34;Somebody sent me a SIG$signame!&#34;</span>;
 }
 
-$SIG{INT}   <span style="color:#f92672">=</span> <span style="color:#f92672">\&amp;</span>catch_zap;
-$SIG{QUIT}  <span style="color:#f92672">=</span> <span style="color:#f92672">\&amp;</span>catch_zap;  <span style="color:#75715e"># catch another signal, too</span>
+$SIG{INT}   = \&amp;catch_zap;
+$SIG{QUIT}  = \&amp;catch_zap;  <span style="font-style:italic"># catch another signal, too</span>
 
-$|<span style="color:#f92672">++</span>;
-<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Going to sleep &#34;</span>;
-<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;.&#34;</span>;
-    sleep <span style="color:#ae81ff">1</span>;
+$|++;
+<span style="font-weight:bold">print</span> <span style="font-style:italic">&#34;Going to sleep &#34;</span>;
+<span style="font-weight:bold">while</span> (1) {
+    <span style="font-weight:bold">print</span> <span style="font-style:italic">&#34;.&#34;</span>;
+    sleep 1;
 }</code></pre></div>
 <p>Catching a signal in Python:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic">#!/usr/bin/env python</span>
 
-<span style="color:#f92672">import</span> sys<span style="color:#f92672">,</span> signal<span style="color:#f92672">,</span> time
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">sys</span>, <span style="font-weight:bold">signal</span>, <span style="font-weight:bold">time</span>
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">now</span>(): <span style="color:#66d9ef">return</span> time<span style="color:#f92672">.</span>ctime(time<span style="color:#f92672">.</span>time())       <span style="color:#75715e"># current time string</span>
+<span style="font-weight:bold">def</span> now(): <span style="font-weight:bold">return</span> time.ctime(time.time())       <span style="font-style:italic"># current time string</span>
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">onSignal</span>(signum, stackframe):               <span style="color:#75715e"># python signal handler</span>
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Got signal&#39;</span>, signum, <span style="color:#e6db74">&#39;at&#39;</span>, now())
+<span style="font-weight:bold">def</span> onSignal(signum, stackframe):               <span style="font-style:italic"># python signal handler</span>
+    <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#39;Got signal&#39;</span>, signum, <span style="font-style:italic">&#39;at&#39;</span>, now())
 
-signum <span style="color:#f92672">=</span> int(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>])                       <span style="color:#75715e"># from the cmd line</span>
+signum = int(sys.argv[1])                       <span style="font-style:italic"># from the cmd line</span>
 
-signal<span style="color:#f92672">.</span>signal(signum, onSignal)                 <span style="color:#75715e"># install signal handler</span>
-<span style="color:#66d9ef">while</span> True: signal<span style="color:#f92672">.</span>pause()                      <span style="color:#75715e"># wait for signals</span></code></pre></div>
+signal.signal(signum, onSignal)                 <span style="font-style:italic"># install signal handler</span>
+<span style="font-weight:bold">while</span> True: signal.pause()                      <span style="font-style:italic"># wait for signals</span></code></pre></div>
 <p>Source:</p>
 
 <ul>

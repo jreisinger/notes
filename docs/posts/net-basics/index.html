@@ -8,10 +8,10 @@
   <meta name="twitter:title" content="Networking basics - Notes" />
   <meta name="description" content="Networking models OSI layering provides for standard interfaces between layers and has these benefits:
  higher layers are shielded from the complexity of the lower layers application &ldquo;thinks&rdquo; it&rsquo;s directly communicating with another application through the standard sockets API one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&rsquo;s built-in TCP/IP SW)  OSI and TCP/IP models:
- OSI TCP/IP TCP/IP Sample original updated protocol &#43;------------&#43; &#43;------------&#43; &#43;------------&#43; &#43;----------------&#43; Contains the &quot;language&quot; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------&#43; | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------&#43; | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------&#43; | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.">
+OSI TCP/IP TCP/IP Sample original updated protocol &#43;------------&#43; &#43;------------&#43; &#43;------------&#43; &#43;----------------&#43; Contains the &#34;language&#34; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------&#43; | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------&#43; | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------&#43; | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.">
   <meta property="og:description" content="Networking models OSI layering provides for standard interfaces between layers and has these benefits:
  higher layers are shielded from the complexity of the lower layers application &ldquo;thinks&rdquo; it&rsquo;s directly communicating with another application through the standard sockets API one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&rsquo;s built-in TCP/IP SW)  OSI and TCP/IP models:
- OSI TCP/IP TCP/IP Sample original updated protocol &#43;------------&#43; &#43;------------&#43; &#43;------------&#43; &#43;----------------&#43; Contains the &quot;language&quot; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------&#43; | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------&#43; | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------&#43; | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.">
+OSI TCP/IP TCP/IP Sample original updated protocol &#43;------------&#43; &#43;------------&#43; &#43;------------&#43; &#43;----------------&#43; Contains the &#34;language&#34; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------&#43; | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------&#43; | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------&#43;- - -&#43;------------&#43;- - -&#43;------------&#43;- - -&#43;----------------&#43; 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------&#43; | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.">
   <meta name="twitter:description" content="Networking models OSI layering provides for standard interfaces between layers and has these benefits:
  higher layers are shielded from the complexity of the lower layers application …">
   <meta name="author" content="Jozef Reisinger"/>
@@ -103,10 +103,9 @@
 </ul>
 
 <p>OSI and TCP/IP models:</p>
-
-<pre><code>       OSI              TCP/IP             TCP/IP             Sample
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">       OSI              TCP/IP             TCP/IP             Sample
                         original           updated            protocol
-  +------------+     +------------+     +------------+     +----------------+ Contains the &quot;language&quot; that
+  +------------+     +------------+     +------------+     +----------------+ Contains the &#34;language&#34; that
 7 |Application |     |            |     |            |     |Telnet HTTP     | apps and servers use to
   |------------+     |            |     |            |     |FTP SMTP        | communicate
 6 |Presentation|     |Application | 5-7 |Application |     |POP3 VoIP       |
@@ -120,9 +119,7 @@
 2 |Data link   |     |Network     |  2  |Data link   |     |Eth HDLC PPP ARP|  
   |------------+     |            |- - -|------------|- - -|----------------| how to send raw data
 1 |Physical    |     |access      |  1  |Physical    |     |Eth RJ-45 V.35  | across a physical medium
-  +------------+     +------------+     +------------+     +----------------+
-</code></pre>
-
+  +------------+     +------------+     +------------+     +----------------+</pre></div>
 <ul>
 <li>Please Do Not Throw Sausage Pizza Away</li>
 </ul>
@@ -142,8 +139,7 @@
 <h2 id="binary-math">Binary math</h2>
 
 <p>Binary to hexadecimal conversion:</p>
-
-<pre><code>                 01101110   Binary (representation of) byte
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">                 01101110   Binary (representation of) byte
 
                   +    +
                   |    |
@@ -161,9 +157,7 @@
                   |    |
                   v    v
 
-                  6    E    Hexadecimal byte
-</code></pre>
-
+                  6    E    Hexadecimal byte</pre></div>
 <h2 id="lans">LANs</h2>
 
 <p>Most common Ethernet types</p>
@@ -253,8 +247,7 @@
 </ul>
 
 <p>LAN headers</p>
-
-<pre><code>      DIX
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">      DIX
      +--------+-----------+------+------+----------+---+
      |Preamble|Destination|Source| Type |Data + pad|FCS|
 Bytes|   8    |     6     |  6   |  2   | 46-1500  | 4 |
@@ -270,9 +263,7 @@ Bytes|   8    |     6     |  6   |  2   | 46-1500  | 4 |
      +----+---+-----------+------+------+----------+---+
      |Pre.|SFD|Destination|Source|Len./ |Data + pad|FCS|
      | 7  | 1 |     6     |  6   |type 2| 46-1500  | 4 |
-     +----+---+-----------+------+------+----------+---+
-</code></pre>
-
+     +----+---+-----------+------+------+----------+---+</pre></div>
 <ul>
 <li>IEEE 802.3 Ethernet header/trailer fields
 
@@ -300,8 +291,7 @@ Bytes|   8    |     6     |  6   |  2   | 46-1500  | 4 |
 </ul>
 
 <p>LEASED LINE COMPONENTS</p>
-
-<pre><code>                  |                                               |
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">                  |                                               |
                   |      T   E   L   C   O        N  E  T         |
                   |                                               |
                   |           CO                                  |
@@ -314,9 +304,7 @@ Bytes|   8    |     6     |  6   |  2   | 46-1500  | 4 |
     |             |                                          |    |
     |           Demarc                                       |  Demarc
     |                                                        |
-   CPE                                                Long cable (KMs)
-</code></pre>
-
+   CPE                                                Long cable (KMs)</pre></div>
 <p>WAN connectors:</p>
 
 <p><IMG SRC="https://raw.github.com/jreisinger/blog/master/files/ccna/wan_serial_cables.jpg" ALT="WAN connectors" WIDTH=600></p>
@@ -345,8 +333,7 @@ Bytes|   8    |     6     |  6   |  2   | 46-1500  | 4 |
 <p>Most popular protocols: HDLC, PPP</p>
 
 <p>HDLC</p>
-
-<pre><code>HDLC framing
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">HDLC framing
 
        Standard
       +----+-------+-------+--------+---+
@@ -358,9 +345,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
       +----+-------+-------+----+--------+---+
       |Flag|Address|Control|Type|  Data  |FCS|
       | 1  |   1   |   1   | 2  |Variable| 2 |
-      +----+-------+-------+----+--------+---+
-</code></pre>
-
+      +----+-------+-------+----+--------+---+</pre></div>
 <ul>
 <li>Address field is not really needed</li>
 <li>since point-to-point links are relatively simple, HDLC only does
@@ -403,8 +388,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 </ul>
 
 <p>Standard 20-byte IPv4 header:</p>
-
-<pre><code> 0                   1                   2                   3
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> 0                   1                   2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |Version|  IHL  |   DS Field    |        Packet Length          |
@@ -416,9 +400,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 |                       Source Address                          |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |                    Destination Address                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</code></pre>
-
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre></div>
 <ul>
 <li>IHL &ndash; IP header length (including optional fields)</li>
 <li>DS Field &ndash; differentiated services field (QoS)</li>
@@ -484,8 +466,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 </ul>
 
 <p>TCP header format (fields):</p>
-
-<pre><code> 0                   1                   2                   3
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> 0                   1                   2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ -----
 |          Source Port          |       Destination Port        |    |
@@ -503,9 +484,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 |                    Options                    |    Padding    |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |                             data                              |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</code></pre>
-
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</pre></div>
 <p>Window field &ndash; maximum number of unacknowledged bytes</p>
 
 <ul>
@@ -521,8 +500,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 </ul>
 
 <p>TCP connection establishment (three-way handshake):</p>
-
-<pre><code> +-------+             SEQ=200                 +------+
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> +-------+             SEQ=200                 +------+
  |Web    |     SYN, DPORT=80, SPORT=1027       |Web   |
  |browser| ----------------------------------&gt; |server|
  +-------+                                     +------+
@@ -532,9 +510,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 
                   SEQ=201, ACK=1451
                ACK, DPORT=80, SPORT=1027
-           ----------------------------------&gt;
-</code></pre>
-
+           ----------------------------------&gt;</pre></div>
 <p>Maximum transmission unit (MTU) - size of the largest L3 packet that can sit inside a frame&rsquo;s data field (it&rsquo;s 1500 bytes for many L2 protocols, including Ethernet)</p>
 
 <ul>
@@ -562,8 +538,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 </ul>
 
 <p>UDP header format:</p>
-
-<pre><code> 0      7 8     15 16    23 24    31
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"> 0      7 8     15 16    23 24    31
 +--------+--------+--------+--------+
 |     Source      |   Destination   |
 |      Port       |      Port       |
@@ -573,9 +548,7 @@ Bytes | 1  |   1   |   1   |Variable| 2 |
 +--------+--------+--------+--------+
 |
 |          data octets ...
-+---------------- ...
-</code></pre>
-
++---------------- ...</pre></div>
 <h2 id="tcp-ip-applications">TCP/IP applications</h2>
 
 <p>QoS &ndash; application&rsquo;s requirements from the network service</p>

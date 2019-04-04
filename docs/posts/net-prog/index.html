@@ -117,9 +117,9 @@ numeric constants) which are constants exported by <code>Socket</code> and <code
 
 <p>Protocols have names that correspond to numbers used by the OS.
 <code>getprotobyname()</code> (built into Perl) returns these numbers:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl <span style="color:#f92672">-</span><span style="color:#f92672">le</span> <span style="color:#e6db74">&#39;print &#34;$_ -&gt; &#34;, scalar getprotobyname $_ for qw(tcp udp)&#39;</span>
-tcp <span style="color:#f92672">-&gt;</span> <span style="color:#ae81ff">6</span>
-udp <span style="color:#f92672">-&gt;</span> <span style="color:#ae81ff">17</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl -<span style="font-weight:bold">le</span> <span style="font-style:italic">&#39;print &#34;$_ -&gt; &#34;, scalar getprotobyname $_ for qw(tcp udp)&#39;</span>
+<span style="font-weight:bold">tcp</span> -&gt; 6
+<span style="font-weight:bold">udp</span> -&gt; 17</code></pre></div>
 <h2 id="perl-s-built-in-functions">Perl&rsquo;s built-in functions</h2>
 
 <ul>

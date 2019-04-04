@@ -115,7 +115,7 @@ Stack (temporary to a function)
       <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
-      <description>Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects  everything in Kubernetes is represented by a RESTful resource (a.k.a. a Kubernetes object) each object exists at a unique HTTP path, e.</description>
+      <description>Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects  everything in Kubernetes is represented by a RESTful resource aka. a Kubernetes object (resources vs objects) each object exists at a unique HTTP path, e.</description>
     </item>
     
     <item>
@@ -126,7 +126,7 @@ Stack (temporary to a function)
       <guid>https://jreisinger.github.io/notes/posts/http-protocol/</guid>
       <description>Intro What
  stateless, connectionless, reliable protocol HTTP versions: 0.9 (&amp;lsquo;91), 1.0 (&amp;lsquo;96), 1.1 (&amp;lsquo;99), 2 (&amp;lsquo;15) HTTP &amp;lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &amp;lt; 2 are text based, HTTP 2 is binary  What for
- used to fetch network resources (documents) based on their hostname and path dominant document type - WWW of hypertext documents dominant version - HTTP/1.1  Python libraries</description>
+ used to fetch network resources (documents) based on their hostname and path user agents actually get a representation of the given resource (e.g. a copy of a static file) dominant document type - WWW of hypertext documents dominant version - HTTP/1.</description>
     </item>
     
     <item>
@@ -197,7 +197,7 @@ kill [-SIGNAL] PID # default signal is TERM Selected signal types:
       <guid>https://jreisinger.github.io/notes/posts/net-basics/</guid>
       <description>Networking models OSI layering provides for standard interfaces between layers and has these benefits:
  higher layers are shielded from the complexity of the lower layers application &amp;ldquo;thinks&amp;rdquo; it&amp;rsquo;s directly communicating with another application through the standard sockets API one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&amp;rsquo;s built-in TCP/IP SW)  OSI and TCP/IP models:
- OSI TCP/IP TCP/IP Sample original updated protocol +------------+ +------------+ +------------+ +----------------+ Contains the &amp;quot;language&amp;quot; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------+ | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------+ | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------+- - -+------------+- - -+------------+- - -+----------------+ data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------+- - -+------------+- - -+------------+- - -+----------------+ how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------+- - -+------------+- - -+------------+- - -+----------------+ 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------+ | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.</description>
+OSI TCP/IP TCP/IP Sample original updated protocol +------------+ +------------+ +------------+ +----------------+ Contains the &amp;#34;language&amp;#34; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------+ | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------+ | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------+- - -+------------+- - -+------------+- - -+----------------+ data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------+- - -+------------+- - -+------------+- - -+----------------+ how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------+- - -+------------+- - -+------------+- - -+----------------+ 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------+ | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.</description>
     </item>
     
     <item>
@@ -229,8 +229,8 @@ This is the essence of the meaning of life Once you read it, you will never be a
       
       <guid>https://jreisinger.github.io/notes/posts/gen_rand_file/</guid>
       <description> How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  </description>
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100 or
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`  bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock  base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100</description>
     </item>
     
     <item>

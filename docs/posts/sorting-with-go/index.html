@@ -60,27 +60,27 @@
         </li>
       </ul>
       
-      <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+      <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;sort&#34;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;fmt&#34;</span>
+	<span style="font-style:italic">&#34;sort&#34;</span>
 )
 
-<span style="color:#75715e">// A type with the three methods required for sorting.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StringSlice</span> []<span style="color:#66d9ef">string</span>
+<span style="font-style:italic">// A type with the three methods required for sorting.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">type</span> StringSlice []<span style="">string</span>
 
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">StringSlice</span>) <span style="color:#a6e22e">Len</span>() <span style="color:#66d9ef">int</span>           { <span style="color:#66d9ef">return</span> len(<span style="color:#a6e22e">p</span>) }
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">StringSlice</span>) <span style="color:#a6e22e">Less</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>[<span style="color:#a6e22e">i</span>] &lt; <span style="color:#a6e22e">p</span>[<span style="color:#a6e22e">j</span>] }
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">StringSlice</span>) <span style="color:#a6e22e">Swap</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>)      { <span style="color:#a6e22e">p</span>[<span style="color:#a6e22e">i</span>], <span style="color:#a6e22e">p</span>[<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">p</span>[<span style="color:#a6e22e">j</span>], <span style="color:#a6e22e">p</span>[<span style="color:#a6e22e">i</span>] }
+<span style="font-weight:bold">func</span> (p StringSlice) Len() <span style="">int</span>           { <span style="font-weight:bold">return</span> len(p) }
+<span style="font-weight:bold">func</span> (p StringSlice) Less(i, j <span style="">int</span>) <span style="">bool</span> { <span style="font-weight:bold">return</span> p[i] &lt; p[j] }
+<span style="font-weight:bold">func</span> (p StringSlice) Swap(i, j <span style="">int</span>)      { p[i], p[j] = p[j], p[i] }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">names</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;Xavier&#34;</span>, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Eve&#34;</span>, <span style="color:#e6db74">&#34;Adam&#34;</span>}
+<span style="font-weight:bold">func</span> main() {
+	names := []<span style="">string</span>{<span style="font-style:italic">&#34;Xavier&#34;</span>, <span style="font-style:italic">&#34;John&#34;</span>, <span style="font-style:italic">&#34;Eve&#34;</span>, <span style="font-style:italic">&#34;Adam&#34;</span>}
 
-	<span style="color:#75715e">// sort.Strings(names) has the same effect
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">sort</span>.<span style="color:#a6e22e">Sort</span>(<span style="color:#a6e22e">StringSlice</span>(<span style="color:#a6e22e">names</span>))
+	<span style="font-style:italic">// sort.Strings(names) has the same effect
+</span><span style="font-style:italic"></span>	sort.Sort(StringSlice(names))
 
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">names</span>)
+	fmt.Printf(<span style="font-style:italic">&#34;%v\n&#34;</span>, names)
 }</code></pre></div>
     </article>
 

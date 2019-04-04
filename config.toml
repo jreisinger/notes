@@ -10,8 +10,12 @@ publishDir = "docs"
 enableRobotsTXT = true
 canonifyURLs = true
 
-#pygmentsUseClassic = true
-pygmentsCodeFences = true
+# Code syntax highlighting.
+pygmentsUseClassic            = false
+pygmentsCodeFences            = true
+pygmentsCodeFencesGuessSyntax = true
+# https://help.farbox.com/pygments.html
+pygmentsstyle                 = "bw"
 
 # Copyright notice. This is displayer in the footer.
 #copyright = "&copy; Copyright 2018 Jozef Reisinger"

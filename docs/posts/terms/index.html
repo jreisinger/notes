@@ -138,9 +138,9 @@ performance reasons. Instead, data is accessed in groups of 1 word (4 bytes) for
 <h3 id="declaration">declaration</h3>
 
 <p>(in Go) names a program entity and specifies some or all of its properties, e.g.:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">boilingF</span> = <span style="color:#ae81ff">212.0</span>
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>
-<span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> boilingF = 212.0
+<span style="font-weight:bold">var</span> x <span style="">int</span>
+y := 1</code></pre></div>
 <h3 id="directory-permissions">directory permissions</h3>
 
 <p>You can list the contents of a directory if it&rsquo;s readable (<code>r</code>), but you can only access a file in a directory if the directory is executable (<code>x</code>). Typical (absolute) permission modes for directories: <code>755</code>, <code>700</code>, <code>711</code>.</p>
@@ -150,10 +150,7 @@ performance reasons. Instead, data is accessed in groups of 1 word (4 bytes) for
 <p>A form of database; it supplies the structure to transform a simple block device into the sophisticated hierachy of files and subdirectories that users can understand.</p>
 
 <h3 id="fstab-fields">fstab fields</h3>
-
-<pre><code>&lt;...&gt; 0 1
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;...&gt; 0 1</pre></div>
 <ul>
 <li>backup information for use by the dump command - should be always 0</li>
 <li>the filesystem (FS) integrity test order - 1 for the root FS, 2 for any other FS on a hard disk, 0 to disable the bootup check (ex. CD-ROM, swap, proc)</li>
@@ -168,15 +165,15 @@ performance reasons. Instead, data is accessed in groups of 1 word (4 bytes) for
 <h3 id="instantiate">instantiate</h3>
 
 <p>create an object from the class, ex.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Eyes</span>(object):
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">class</span> <span style="font-weight:bold">Eyes</span>(object):
 
-    <span style="color:#66d9ef">def</span> __init__(self, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;brown&#39;</span>):
-        self<span style="color:#f92672">.</span>color <span style="color:#f92672">=</span> color
+    <span style="font-weight:bold">def</span> __init__(self, color=<span style="font-style:italic">&#39;brown&#39;</span>):
+        self.color = color
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">print_color</span>(self):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Eyes are&#34;</span>, self<span style="color:#f92672">.</span>color)
+    <span style="font-weight:bold">def</span> print_color(self):
+        <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;Eyes are&#34;</span>, self.color)
 
-eyes_obj <span style="color:#f92672">=</span> Eyes(color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blue&#39;</span>)  <span style="color:#75715e"># instantiation</span></code></pre></div>
+eyes_obj = Eyes(color=<span style="font-style:italic">&#39;blue&#39;</span>)  <span style="font-style:italic"># instantiation</span></code></pre></div>
 <h3 id="ldd">ldd</h3>
 
 <p>list dynamic dependencies</p>
@@ -247,15 +244,12 @@ needed</li>
 </ul>
 
 <p>DBES - decode bytes encode strings:</p>
-
-<pre><code>&gt;&gt;&gt; raw_bytes = b'\xe6\x96\x80'
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; raw_bytes = b&#39;\xe6\x96\x80&#39;
 &gt;&gt;&gt; raw_bytes.decode()   # DB
-'斀'
-&gt;&gt;&gt; utf_string = '斀'
+&#39;斀&#39;
+&gt;&gt;&gt; utf_string = &#39;斀&#39;
 &gt;&gt;&gt; utf_string.encode()  # ES
-b'\xe6\x96\x80'
-</code></pre>
-
+b&#39;\xe6\x96\x80&#39;</pre></div>
 <h3 id="variable">variable</h3>
 
 <p>(in Go) is a piece of storage containing a value</p>
@@ -264,30 +258,24 @@ b'\xe6\x96\x80'
 
 <p>Exclusive or - the opposite of inlusive (the normal) or, which allows both
 possibilities as well as either:</p>
-
-<pre><code>&gt;&gt;&gt; True or True
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; True or True
 True
 &gt;&gt;&gt; True or False
 True
 &gt;&gt;&gt; False or True
 True
 &gt;&gt;&gt; False or False
-False
-</code></pre>
-
+False</pre></div>
 <p>Example of exlusive or in English: &ldquo;You can have pizza or chicken&rdquo; - you probably
 don&rsquo;t mean you can have both. Exclusive or expression in Python:</p>
-
-<pre><code>&gt;&gt;&gt; True != True
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; True != True
 False
 &gt;&gt;&gt; True != False
 True
 &gt;&gt;&gt; False != True
 True
 &gt;&gt;&gt; False != False
-False
-</code></pre>
-
+False</pre></div>
     </article>
 
     
