@@ -191,8 +191,8 @@ filesystem</li>
 
 <p>Add a volume to a container (<code>-v</code>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -v /data --rm --hostname web --name web -d nginx
-$ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;</span> web | jq
-[
+$ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;</span> web | jq <span style="font-style:italic"># note source and destionation keys
+</span><span style="font-style:italic"></span>[
   {
     <span style="font-style:italic">&#34;Type&#34;</span>: <span style="font-style:italic">&#34;volume&#34;</span>,
     <span style="font-style:italic">&#34;Name&#34;</span>: <span style="font-style:italic">&#34;2d80bc1056787f16b71fb0edced98b3036252083044b1c8db536627c2544a121&#34;</span>,
