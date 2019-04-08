@@ -142,7 +142,7 @@ Add a volume to a container (`-v`):
 
 ```bash
 $ docker run -v /data --rm --hostname web --name web -d nginx
-$ docker inspect -f '{{ json .Mounts }}' web | jq
+$ docker inspect -f '{{ json .Mounts }}' web | jq # note source and destionation keys
 [
   {
     "Type": "volume",
