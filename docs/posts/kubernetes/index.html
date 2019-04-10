@@ -6,9 +6,12 @@
   <title>Kubernetes - Notes</title>
   <meta property="og:title" content="Kubernetes - Notes" />
   <meta name="twitter:title" content="Kubernetes - Notes" />
-  <meta name="description" content="Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource aka. a Kubernetes object (resources vs objects) each object exists at a unique HTTP path, e.">
-  <meta property="og:description" content="Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource aka. a Kubernetes object (resources vs objects) each object exists at a unique HTTP path, e.">
-  <meta name="twitter:description" content="Components Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default …">
+  <meta name="description" content="Kubernetes is the operating system for cloud-native applications.
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource aka.">
+  <meta property="og:description" content="Kubernetes is the operating system for cloud-native applications.
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects  everything in Kubernetes is represented by a RESTful resource aka.">
+  <meta name="twitter:description" content="Kubernetes is the operating system for cloud-native applications.
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
@@ -82,7 +85,6 @@
 <ul>
 <li>
 <ul>
-<li><a href="#components">Components</a></li>
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#namespace">Namespace</a></li>
 <li><a href="#context">Context</a></li>
@@ -100,9 +102,7 @@
 </aside>
       
 
-<h2 id="components">Components</h2>
-
-<p><img src="https://github.com/jreisinger/notes/raw/master/static/kubernetes.png" alt="" /></p>
+<p>Kubernetes is the operating system for cloud-native applications.</p>
 
 <h2 id="configuration">Configuration</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat ~/.kube/config
@@ -166,6 +166,10 @@
 </span><span style="font-style:italic"></span>kubectl logs [-f] &lt;pod&gt;
 kubectl exec -it &lt;pod&gt; -- bash  <span style="font-style:italic"># or sh instead of bash
 </span><span style="font-style:italic"></span>kubectl cp &lt;pod&gt;:/path/to/remote/file /path/to/local/file</code></pre></div>
+<p>Basic objects</p>
+
+<p><img src="https://github.com/jreisinger/notes/raw/master/static/kubernetes.png" alt="Basic objects" /></p>
+
 <h2 id="pod">Pod</h2>
 
 <ul>
@@ -218,6 +222,7 @@ kubectl label deployment quotes-prod ver=1 env=prod</code></pre></div>
 <li>a way to create a named label selector (see <code>kubectl get service -o wide</code>)</li>
 <li>a service is assigned a VIP called a <em>cluster IP</em> -&gt; load balanced across all the
 pods identified by the selector</li>
+<li>good for identifying services inside a cluster</li>
 </ul>
 
 <p>One way to create a service:</p>
