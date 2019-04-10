@@ -156,13 +156,6 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
 <span style="font-style:italic"># details about an object
 </span><span style="font-style:italic"></span>kubectl describe &lt;type&gt; &lt;object&gt;
 
-<span style="font-style:italic"># output flags
-</span><span style="font-style:italic"></span>-o wide       <span style="font-style:italic"># more details
-</span><span style="font-style:italic"></span>-o json       <span style="font-style:italic"># complete object in JSON format
-</span><span style="font-style:italic"></span>-o yaml       <span style="font-style:italic"># complete object in YAML format
-</span><span style="font-style:italic"></span>--v=6         <span style="font-style:italic"># verbosity
-</span><span style="font-style:italic"></span>--no-headers
-
 <span style="font-style:italic"># create, update objects
 </span><span style="font-style:italic"></span>kubectl apply -f obj.yaml
 
@@ -251,6 +244,12 @@ the system)</li>
 
 <h1 id="tips-and-tricks">Tips and tricks</h1>
 
+<p>Useful output flags:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">-o wide       <span style="font-style:italic"># more details
+</span><span style="font-style:italic"></span>-o json       <span style="font-style:italic"># complete object in JSON format
+</span><span style="font-style:italic"></span>-o yaml       <span style="font-style:italic"># complete object in YAML format
+</span><span style="font-style:italic"></span>--v=6         <span style="font-style:italic"># verbosity
+</span><span style="font-style:italic"></span>--no-headers</code></pre></div>
 <p>Clean up objecs:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl delete deployments --all [--selector=<span style="font-style:italic">&#34;app=myapp,env=dev&#34;</span>]</code></pre></div>
 <p>Create a proxy server between localhost and K8s API server:</p>

@@ -65,13 +65,6 @@ kubectl get <type> <object>    # specific resource
 # details about an object
 kubectl describe <type> <object>
 
-# output flags
--o wide       # more details
--o json       # complete object in JSON format
--o yaml       # complete object in YAML format
---v=6         # verbosity
---no-headers
-
 # create, update objects
 kubectl apply -f obj.yaml
 
@@ -171,6 +164,16 @@ NodePort
 
 Tips and tricks
 ===============
+
+Useful output flags:
+
+```sh
+-o wide       # more details
+-o json       # complete object in JSON format
+-o yaml       # complete object in YAML format
+--v=6         # verbosity
+--no-headers
+```
 
 Clean up objecs:
 
