@@ -5,11 +5,6 @@ categories: [DevOps]
 tags: [kubernetes, k8s]
 ---
 
-Components
-----------
-
-![](https://github.com/jreisinger/notes/raw/master/static/kubernetes.png)
-
 Configuration
 -------------
 
@@ -85,6 +80,12 @@ kubectl logs [-f] <pod>
 kubectl exec -it <pod> -- bash  # or sh instead of bash
 kubectl cp <pod>:/path/to/remote/file /path/to/local/file
 ```
+
+
+Basic objects
+-------------
+
+![](https://github.com/jreisinger/notes/raw/master/static/kubernetes.png)
 
 Pod
 ---
