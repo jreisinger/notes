@@ -5,6 +5,8 @@ categories: [DevOps]
 tags: [kubernetes, k8s]
 ---
 
+Kubernetes is the operating system for cloud-native applications.
+
 Configuration
 -------------
 
@@ -81,11 +83,9 @@ kubectl exec -it <pod> -- bash  # or sh instead of bash
 kubectl cp <pod>:/path/to/remote/file /path/to/local/file
 ```
 
-
 Basic objects
--------------
 
-![](https://github.com/jreisinger/notes/raw/master/static/kubernetes.png)
+![Basic objects](https://github.com/jreisinger/notes/raw/master/static/kubernetes.png)
 
 Pod
 ---
