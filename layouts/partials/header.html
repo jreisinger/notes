@@ -1,4 +1,3 @@
-
 <header class="site-header">
   <nav class="site-navi">
     <h1 class="site-title"><a href="{{ "/" | relURL }}">{{ .Site.Title }}</a></h1>
@@ -8,6 +7,18 @@
       <li class="site-navi-item-{{ .Identifier }}"><a href="{{ .URL | safeURL }}" title="{{ .Name }}">{{ .Name }}</a></li>
       {{- end }}
     </ul>
+
+    <!-- Edit on Gitlab button -->
+    <ul>
+      {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
+        {{ $File := .File }}
+        {{ $Site := .Site }}
+        {{with $File.Path }}
+        <a href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}">Edit on Gitlab</a>
+        {{ end }}
+      {{ end }}
+    </ul>
+
   </nav>
 </header>
 <hr class="site-header-bottom">
