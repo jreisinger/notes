@@ -1,5 +1,5 @@
 ---
-title: "Reading from command line arguments or from STDIN"
+title: "Reading command line arguments or STDIN"
 date: 2018-08-08
 categories: [prog]
 tags: [go, perl]
@@ -7,7 +7,7 @@ tags: [go, perl]
 
 Go
 
-``` go
+```go
 package main
 
 import (
@@ -32,7 +32,7 @@ func main() {
 
 Perl
 
-``` perl
+```perl
 #!/usr/bin/env perl
 use 5.014;    # includes strict
 use warnings;
