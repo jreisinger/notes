@@ -5,6 +5,9 @@ categories: [DevOps]
 tags: [kubernetes, k8s]
 ---
 
+Basics
+======
+
 Kubernetes is the operating system for cloud-native applications.
 
 Configuration
@@ -42,21 +45,25 @@ kubectl config use-context <context-name>
 ```
 
 Objects
--------
+=======
+
+Basic objects
+
+![Basic objects](https://github.com/jreisinger/notes/raw/master/static/kubernetes.png)
 
 * everything in Kubernetes is represented by a RESTful resource aka. a Kubernetes object ([resources vs objects](https://stackoverflow.com/questions/52309496/difference-between-kubernetes-objects-and-resources))
 * each object exists at a unique HTTP path, e.g. `https://your-k8s.com/api/v1/namespaces/default/pods/my-pod`
 * the `kubectl` makes requests to these URLs to access the objects
 * `get` is conceptually similar to `ps`
 
-```bash
-# view Kubernetes objects
-kubectl get all [-l app=nginx]    # all resources [with a label app=nginx]
-kubectl get <resource>            # all resources of given type
-kubectl get <resource> <object>   # specific resource
+```sh
+# view Kubernetes objects/resources
+kubectl get all [-l app=nginx] # all resources [with a label app=nginx]
+kubectl get <type>             # all resources of given type
+kubectl get <type> <object>    # specific resource
 
 # details about an object
-kubectl describe <resource> <object>
+kubectl describe <type> <object>
 
 # output flags
 -o wide       # more details
@@ -70,22 +77,8 @@ kubectl apply -f obj.yaml
 
 # delete objects
 kubectl delete -f obj.yaml  # no additional prompting!
-
-# delete objects
-kubectl delete <resource> <object>
-
-# cleanup
-kubectl delete deployments --all [--selector="app=myapp,env=dev"]
-
-# debugging
-kubectl logs [-f] <pod>
-kubectl exec -it <pod> -- bash  # or sh instead of bash
-kubectl cp <pod>:/path/to/remote/file /path/to/local/file
+kubectl delete <type> <object>
 ```
-
-Basic objects
-
-![Basic objects](https://github.com/jreisinger/notes/raw/master/static/kubernetes.png)
 
 Pod
 ---
@@ -161,7 +154,7 @@ Ingress
 https://kubernetes.io/docs/concepts/services-networking/ingress/
 
 Looking beyond the cluster
---------------------------
+==========================
 
 * exposing services outside of the cluster
 * for HTTP or HTTPS use [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
@@ -177,24 +170,52 @@ NodePort
 * this can be intergrated with HW/SW load balancers to expose the service even furher
 
 Tips and tricks
----------------
+===============
 
-Access a Pod via port forwarding:
+Clean up objecs:
 
-```bash
-kubectl port-forward kuard 8080:8080  # tunnel: localhost -> k8s master -> k8s worker node
+```sh
+kubectl delete deployments --all [--selector="app=myapp,env=dev"]
 ```
 
 Create a proxy server between localhost and K8s API server:
 
-```bash
+```sh
 kubectl proxy &                  # create proxy
 curl localhost:8001/api/v1/pods  # get list of pods
 ```
 
-Run containers for troubleshooting:
+Explain resource types:
 
-```bash
+```sh
+kubectl explain svc
+```
+
+Debugging
+---------
+
+Seeing logs:
+
+```sh
+kubectl logs [-f] <pod>
+kubectl exec -it <pod> -- bash  # or sh instead of bash
+```
+
+Copying files:
+
+```sh
+kubectl cp <pod>:/path/to/remote/file /path/to/local/file
+```
+
+Access a Pod via port forwarding:
+
+```sh
+kubectl port-forward kuard 8080:8080  # tunnel: localhost -> k8s master -> k8s worker node
+```
+
+Running containers for troubleshooting:
+
+```sh
 kubectl run demo --image=cloudnatived/demo:hello --expose --port 8888 # pod to troubleshoot
 kubectl run nslookup --image=busybox:1.28 --rm -it --restart=Never --command -- nslookup demo
 kubectl run wget --image=busybox:1.28 --rm -it -restart=Never --command -- wget -qO- http://demo:8888
@@ -202,14 +223,8 @@ kubectl run wget --image=busybox:1.28 --rm -it -restart=Never --command -- wget 
 
 * `--command` -- command to run instead of container's default entrypoint
 
-Explain resource types:
-
-```bash
-kubectl explain svc
-```
-
 Resources
----------
+=========
 
 * [Kubernetes: Up and Running](https://www.safaribooksonline.com/library/view/kubernetes-up-and/9781491935668/) (2017)
 * Managing Kubernetes (2018)

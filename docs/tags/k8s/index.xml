@@ -17,8 +17,9 @@
       <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
-      <description>Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects  everything in Kubernetes is represented by a RESTful resource aka.</description>
+      <description>Basics Kubernetes is the operating system for cloud-native applications.
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects Basic objects
+ everything in Kubernetes is represented by a RESTful resource aka.</description>
     </item>
     
   </channel>
