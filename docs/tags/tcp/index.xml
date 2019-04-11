@@ -18,7 +18,7 @@
       
       <guid>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</guid>
       <description>This is an HTTP client implemented using socket-level programming:
-// Usage: go run getHeadInfo.go reisinge.net:80 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;io/ioutil&amp;#34; &amp;#34;net&amp;#34; &amp;#34;os&amp;#34; ) func main() { service := os.Args[1] tcpAddr, err := net.ResolveTCPAddr(&amp;#34;tcp&amp;#34;, service) checkError(err) conn, err := net.DialTCP(&amp;#34;tcp&amp;#34;, nil, tcpAddr) checkError(err) _, err = conn.Write([]byte(&amp;#34;HEAD / HTTP/1.0\r\n\r\n&amp;#34;)) checkError(err) result, err := ioutil.ReadAll(conn) checkError(err) fmt.Printf(&amp;#34;%s\n&amp;#34;, result) } func checkError(err error) { if err != nil { fmt.Fprintf(os.Stderr, &amp;#34;%v\n&amp;#34;, err.Error()) os.</description>
+// Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure:</description>
     </item>
     
   </channel>

@@ -9,39 +9,21 @@ tags: [tcp,socket,go]
 This is an HTTP client implemented using socket-level programming:
 
 ```go
-// Usage: go run getHeadInfo.go reisinge.net:80
+// Usage: go run telnet.go
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net"
-	"os"
+    "bufio"
+    "fmt"
+    "net"
 )
 
 func main() {
-	service := os.Args[1]
-
-	tcpAddr, err := net.ResolveTCPAddr("tcp", service)
-	checkError(err)
-
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
-	checkError(err)
-
-	_, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
-	checkError(err)
-
-	result, err := ioutil.ReadAll(conn)
-	checkError(err)
-
-	fmt.Printf("%s\n", result)
-}
-
-func checkError(err error) {
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err.Error())
-		os.Exit(1)
-	}
+    // NOTE: ignoring errors by storing them into _
+    conn, _ := net.Dial("tcp", "golang.org:80") // Connect over TCP
+    fmt.Fprintf(conn, "GET / HTTP/1.0\r\n\r\n") // Send string over the connection
+    status, _ := bufio.NewReader(conn).ReadString('\n')
+    fmt.Print(status) // Print the first response line
 }
 ```
 
@@ -51,34 +33,34 @@ To add a timeout you can use the `Dialer` structure:
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net"
-	"os"
-	"time"
+    "fmt"
+    "io/ioutil"
+    "net"
+    "os"
+    "time"
 )
 
 func main() {
-	service := os.Args[1]
+    service := os.Args[1]
 
-	d := net.Dialer{Timeout: 2 * time.Second}
-	conn, err := d.Dial("tcp", service)
-	checkError(err)
+    d := net.Dialer{Timeout: 2 * time.Second}
+    conn, err := d.Dial("tcp", service)
+    checkError(err)
 
-	_, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
-	checkError(err)
+    _, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
+    checkError(err)
 
-	result, err := ioutil.ReadAll(conn)
-	checkError(err)
+    result, err := ioutil.ReadAll(conn)
+    checkError(err)
 
-	fmt.Printf("%s\n", result)
+    fmt.Printf("%s\n", result)
 }
 
 func checkError(err error) {
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err.Error())
-		os.Exit(1)
-	}
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "%v\n", err.Error())
+        os.Exit(1)
+    }
 }
 ```
 

@@ -7,17 +7,17 @@
   <meta property="og:title" content="TCP sockets with Go - Notes" />
   <meta name="twitter:title" content="TCP sockets with Go - Notes" />
   <meta name="description" content="This is an HTTP client implemented using socket-level programming:
-// Usage: go run getHeadInfo.go reisinge.net:80 package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net&#34; &#34;os&#34; ) func main() { service := os.Args[1] tcpAddr, err := net.ResolveTCPAddr(&#34;tcp&#34;, service) checkError(err) conn, err := net.DialTCP(&#34;tcp&#34;, nil, tcpAddr) checkError(err) _, err = conn.Write([]byte(&#34;HEAD / HTTP/1.0\r\n\r\n&#34;)) checkError(err) result, err := ioutil.ReadAll(conn) checkError(err) fmt.Printf(&#34;%s\n&#34;, result) } func checkError(err error) { if err != nil { fmt.Fprintf(os.Stderr, &#34;%v\n&#34;, err.Error()) os.">
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure:">
   <meta property="og:description" content="This is an HTTP client implemented using socket-level programming:
-// Usage: go run getHeadInfo.go reisinge.net:80 package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net&#34; &#34;os&#34; ) func main() { service := os.Args[1] tcpAddr, err := net.ResolveTCPAddr(&#34;tcp&#34;, service) checkError(err) conn, err := net.DialTCP(&#34;tcp&#34;, nil, tcpAddr) checkError(err) _, err = conn.Write([]byte(&#34;HEAD / HTTP/1.0\r\n\r\n&#34;)) checkError(err) result, err := ioutil.ReadAll(conn) checkError(err) fmt.Printf(&#34;%s\n&#34;, result) } func checkError(err error) { if err != nil { fmt.Fprintf(os.Stderr, &#34;%v\n&#34;, err.Error()) os.">
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure:">
   <meta name="twitter:description" content="This is an HTTP client implemented using socket-level programming:
-// Usage: go run getHeadInfo.go reisinge.net:80 package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net&#34; &#34;os&#34; ) …">
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-tcp-sockets/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -93,72 +93,54 @@
       </ul>
       
       <p>This is an HTTP client implemented using socket-level programming:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run getHeadInfo.go reisinge.net:80
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run telnet.go
 </span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
-	<span style="font-style:italic">&#34;fmt&#34;</span>
-	<span style="font-style:italic">&#34;io/ioutil&#34;</span>
-	<span style="font-style:italic">&#34;net&#34;</span>
-	<span style="font-style:italic">&#34;os&#34;</span>
+    <span style="font-style:italic">&#34;bufio&#34;</span>
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;net&#34;</span>
 )
 
 <span style="font-weight:bold">func</span> main() {
-	service := os.Args[1]
-
-	tcpAddr, err := net.ResolveTCPAddr(<span style="font-style:italic">&#34;tcp&#34;</span>, service)
-	checkError(err)
-
-	conn, err := net.DialTCP(<span style="font-style:italic">&#34;tcp&#34;</span>, <span style="font-weight:bold">nil</span>, tcpAddr)
-	checkError(err)
-
-	_, err = conn.Write([]byte(<span style="font-style:italic">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
-	checkError(err)
-
-	result, err := ioutil.ReadAll(conn)
-	checkError(err)
-
-	fmt.Printf(<span style="font-style:italic">&#34;%s\n&#34;</span>, result)
-}
-
-<span style="font-weight:bold">func</span> checkError(err <span style="">error</span>) {
-	<span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
-		fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
-		os.Exit(1)
-	}
-}</code></pre></div>
+    <span style="font-style:italic">// NOTE: ignoring errors by storing them into _
+</span><span style="font-style:italic"></span>    conn, _ := net.Dial(<span style="font-style:italic">&#34;tcp&#34;</span>, <span style="font-style:italic">&#34;golang.org:80&#34;</span>) <span style="font-style:italic">// Connect over TCP
+</span><span style="font-style:italic"></span>    fmt.Fprintf(conn, <span style="font-style:italic">&#34;GET / HTTP/1.0\r\n\r\n&#34;</span>) <span style="font-style:italic">// Send string over the connection
+</span><span style="font-style:italic"></span>    status, _ := bufio.NewReader(conn).ReadString(<span style="font-style:italic">&#39;\n&#39;</span>)
+    fmt.Print(status) <span style="font-style:italic">// Print the first response line
+</span><span style="font-style:italic"></span>}</code></pre></div>
 <p>To add a timeout you can use the <code>Dialer</code> structure:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
-	<span style="font-style:italic">&#34;fmt&#34;</span>
-	<span style="font-style:italic">&#34;io/ioutil&#34;</span>
-	<span style="font-style:italic">&#34;net&#34;</span>
-	<span style="font-style:italic">&#34;os&#34;</span>
-	<span style="font-style:italic">&#34;time&#34;</span>
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;io/ioutil&#34;</span>
+    <span style="font-style:italic">&#34;net&#34;</span>
+    <span style="font-style:italic">&#34;os&#34;</span>
+    <span style="font-style:italic">&#34;time&#34;</span>
 )
 
 <span style="font-weight:bold">func</span> main() {
-	service := os.Args[1]
+    service := os.Args[1]
 
-	d := net.Dialer{Timeout: 2 * time.Second}
-	conn, err := d.Dial(<span style="font-style:italic">&#34;tcp&#34;</span>, service)
-	checkError(err)
+    d := net.Dialer{Timeout: 2 * time.Second}
+    conn, err := d.Dial(<span style="font-style:italic">&#34;tcp&#34;</span>, service)
+    checkError(err)
 
-	_, err = conn.Write([]byte(<span style="font-style:italic">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
-	checkError(err)
+    _, err = conn.Write([]byte(<span style="font-style:italic">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
+    checkError(err)
 
-	result, err := ioutil.ReadAll(conn)
-	checkError(err)
+    result, err := ioutil.ReadAll(conn)
+    checkError(err)
 
-	fmt.Printf(<span style="font-style:italic">&#34;%s\n&#34;</span>, result)
+    fmt.Printf(<span style="font-style:italic">&#34;%s\n&#34;</span>, result)
 }
 
 <span style="font-weight:bold">func</span> checkError(err <span style="">error</span>) {
-	<span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
-		fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
-		os.Exit(1)
-	}
+    <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+        fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
+        os.Exit(1)
+    }
 }</code></pre></div>
 <p>This time you don&rsquo;t need to resolve the TCP address (e.g. <code>reisinge.net:80</code>).</p>
 
@@ -174,7 +156,7 @@ Go</a>: 3. Socket-level programming</p>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -218,7 +200,7 @@ Go</a>: 3. Socket-level programming</p>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
