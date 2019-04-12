@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Linux Performance Analysis - Notes</title>
+  <meta property="og:title" content="Linux Performance Analysis - Notes" />
+  <meta name="twitter:title" content="Linux Performance Analysis - Notes" />
+  <meta name="description" content="Taking stock of hardware Sources of hardware information:
+lscpu /proc/cpuinfo # one entry for each core seen by the OS free -m /proc/meminfo hpacucli ctrl all show config [detail] # HP physical RAID lsblk [-o KNAME,TYPE,SIZE,MODEL] # installed on RHEL/CentOS parted -l # supports both MBR (msdos) and GPT fdisk -l # only traditional MBR partition table cat /proc/diskstats dmsetup ls # LVM device mapper udevadm info --query=all --name=/dev/sda Desktop Management Interface (DMI, aka SMBIOS):">
+  <meta property="og:description" content="Taking stock of hardware Sources of hardware information:
+lscpu /proc/cpuinfo # one entry for each core seen by the OS free -m /proc/meminfo hpacucli ctrl all show config [detail] # HP physical RAID lsblk [-o KNAME,TYPE,SIZE,MODEL] # installed on RHEL/CentOS parted -l # supports both MBR (msdos) and GPT fdisk -l # only traditional MBR partition table cat /proc/diskstats dmsetup ls # LVM device mapper udevadm info --query=all --name=/dev/sda Desktop Management Interface (DMI, aka SMBIOS):">
+  <meta name="twitter:description" content="Taking stock of hardware Sources of hardware information:
+lscpu /proc/cpuinfo # one entry for each core seen by the OS free -m /proc/meminfo hpacucli ctrl all show config [detail] # HP physical RAID …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/linux-performance-analysis/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.49.2" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+
+    
+    <ul>
+      
+        
+        
+        
+        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/linux-performance-analysis.md">Edit on Gitlab</a>
+        
+      
+    </ul>
+
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Linux Performance Analysis</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>June 14, 2015</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/os/">
+            <i class="fas fa-folder"></i>
+            os
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/linux/">
+            <i class="fas fa-tag"></i>
+            linux
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/sysadmin/">
+            <i class="fas fa-tag"></i>
+            sysadmin
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#taking-stock-of-hardware">Taking stock of hardware</a></li>
+<li><a href="#cpu">CPU</a>
+<ul>
+<li><a href="#overall-utilization">Overall utilization</a></li>
+<li><a href="#load-average">Load average</a></li>
+<li><a href="#per-process-consumption">Per process consumption</a></li>
+<li><a href="#threads">Threads</a></li>
+</ul></li>
+<li><a href="#memory">Memory</a></li>
+<li><a href="#storage-i-o">Storage I/O</a></li>
+<li><a href="#network-i-o">Network I/O</a>
+<ul>
+<li><a href="#lsof-network-connections-filtering">lsof network connections filtering</a></li>
+</ul></li>
+<li><a href="#other-tools">Other tools</a></li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+</nav>
+</aside>
+      
+
+<h1 id="taking-stock-of-hardware">Taking stock of hardware</h1>
+
+<p>Sources of hardware information:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">lscpu
+/proc/cpuinfo       # one entry for each core seen by the OS
+
+free -m
+/proc/meminfo
+
+hpacucli ctrl all show config [detail]  # HP physical RAID
+lsblk [-o KNAME,TYPE,SIZE,MODEL]        # installed on RHEL/CentOS
+parted -l                               # supports both MBR (msdos) and GPT
+fdisk -l                                # only traditional MBR partition table
+cat /proc/diskstats
+dmsetup ls                              # LVM device mapper
+udevadm info --query=all --name=/dev/sda</pre></div>
+<p>Desktop Management Interface (DMI, aka SMBIOS):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">dmidecode -t &lt;type&gt;    # see &#34;DMI TYPES&#34; in manpage</pre></div>
+<p>Network:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">ifconfig -a
+ip a s</pre></div>
+<h1 id="cpu">CPU</h1>
+
+<h2 id="overall-utilization">Overall utilization</h2>
+
+<p>Is CPU the bottleneck?</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ vmstat 5 5 -S M    # in MB
+procs -----------memory---------- ---swap-- -----io---- -system-- ----cpu----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa
+ 1  0      0    230    687  44366    0    0  2923  3037    1    0  4  3 85  7
+ 0  0      0    218    687  44380    0    0 76160    10 2814 4233  3  1 96  0
+ 0  0      0    224    687  44377    0    0 79462     0 3253 5979  3  2 95  0
+ 0  0      0    230    687  44374    0    0 82432    18 3069 5674  3  1 95  0
+ 1  0      0    233    687  44372    0    0 86400    18 3705 5215  3  2 95  0</pre></div>
+<ul>
+<li>first line reports averages since system&rsquo;s boot (the entire uptime), subsequent lines are averages within the previous sample period (default is 5 seconds)</li>
+<li><code>r</code>  - runnable processes</li>
+<li><code>b</code>  - processes blocked for I/O</li>
+<li><code>in</code> - interrupts</li>
+<li><code>cs</code> - context switches (number of times the kernel switches into kernel code; i.e. changing which process is running)</li>
+<li><code>us</code> - user time (the percentage of time the CPU is spending on user tasks)</li>
+<li><code>sy</code> - system (kernel) time</li>
+<li><code>id</code> - idle time</li>
+<li><code>wa</code> - waiting for I/O</li>
+</ul>
+
+<p>On multiprocessor machines, most tools present an average of processor statistics across all processors.</p>
+
+<p>High <code>us</code> numbers generally indicate computation, high <code>sy</code> numbers mean that processes are doing lot of syscalls or I/O. A rule of thumb for a general server is that the system should spend 50% in user space and 50% in system space; the overall idle time should be 0.</p>
+
+<p>Extremely high <code>cs</code> or <code>in</code> values typically indicate a misbehaving or misconfigured hardware device.</p>
+
+<h2 id="load-average">Load average</h2>
+
+<p>How many pieces is the CPU divided into?</p>
+
+<p>Average number of runnable (ready to run) processes:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ uptime 
+ 13:03:23 up 8 days, 13:06,  2 users,  load average: 1.13, 1.31, 1.38</pre></div>
+<ul>
+<li>5, 10, and 15-minute averages</li>
+<li>processes waiting for input (from keyboard, network) are not considered
+ready to run - only processes that are actually doing something
+(including wating for disk I/O) contribute to load average</li>
+<li>on a single-core system - 1 means that the CPU is exactly at capacity, i.e. the CPU has
+just enough to do all the time</li>
+<li>on a multi-core system - if number of cores = load average all cores are exactly at capacity</li>
+</ul>
+
+<p>If your load average is high and your system still responds well, don&rsquo;t panic. The system just has a lot of processes sharing the CPU.</p>
+
+<p>The system load average is an excellent metric to track as part of a system baseline. If you know your system’s load average on a normal day and it is in that same range on a bad day, this is a hint that you should look elsewhere (such as the network) for performance problems. A load average above the expected norm suggests that you should look at the processes running on the system itself.</p>
+
+<p>Search for &ldquo;/proc/loadavg&rdquo; in <code>man 5 proc</code>.</p>
+
+<p><a href="http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html">http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html</a></p>
+
+<h2 id="per-process-consumption">Per process consumption</h2>
+
+<p>Which processes are hogging resources?</p>
+
+<p>Snapshot of current processes:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ps auxw    # BSD style options (other styles: Unix, GNU)</pre></div>
+<ul>
+<li><code>x</code> - show all your running processes</li>
+<li><code>ax</code> - all processes on the system, not just yours</li>
+<li><code>u</code> - more detailed info</li>
+<li><code>w</code> - show full command names</li>
+<li><code>m</code> - show threads</li>
+</ul>
+
+<p>Processes and other system information regularly updated:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ top</pre></div>
+<ul>
+<li><code>z</code>, <code>x</code>   - turn on colors and highlight sort column</li>
+<li><code>Spacebar</code> - update display immediately</li>
+<li><code>M</code>        - sort by current resident memory usage</li>
+<li><code>T</code>        - sort by total (cumulative) CPU usage</li>
+<li><code>H</code>        - toggle threads/processes display</li>
+<li><code>u</code>        - display only one user&rsquo;s processes</li>
+<li><code>f</code>        - select statistics to display</li>
+</ul>
+
+<p>On a busy system, at least 70% of the CPU is often consumed by just one or two processes. Deferring the execution of the CPU hogs or reducing their priority makes the CPU more available to other processes.</p>
+
+<p>How much CPU time a process uses:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ time ls    # or /usr/bin/time</pre></div>
+<ul>
+<li>user time - time the CPU spent running the program&rsquo;s <em>own</em> code</li>
+<li>system time - time the CPU spent running kernel code doing the process&rsquo;s work (ex. reading files or directories)</li>
+<li>real/elapsed time - total time it took to run the process, including the time
+the CPU spent running other tasks</li>
+</ul>
+
+<h2 id="threads">Threads</h2>
+
+<p>Some processes can be divided into pieces called <em>threads</em>:</p>
+
+<ul>
+<li>very similar to processes: have TID, are scheduled and run by the kernel</li>
+<li>processes don&rsquo;t share system resources</li>
+<li>all threads inside a single process share system resources (I/O connections,
+memory)</li>
+</ul>
+
+<p>Many processes have only one thread - <em>single-threaded</em> processes (usually
+called just processes).</p>
+
+<p>All processes start out single-threaded. This starting thread is called <em>main
+thread</em>. The main thread then starts new threads in similar fashion a process
+calls <code>fork()</code> to start a new process.</p>
+
+<p>Threads are useful when process has a lot to do because threads can run
+simultaneously on multiple processors and <em>start faster</em> than processes and
+<em>intercommunicate more efficiently</em> (via shared memory) than processes (via
+network connection or pipe).</p>
+
+<p>It&rsquo;s usually not a good idea to interact with individual threads as you would
+with processes.</p>
+
+<h1 id="memory">Memory</h1>
+
+<p>See also <a href="https://github.com/jreisinger/blog/blob/master/posts/linux-ate-my-memory.md">posts/linux-ate-my-memory</a>.</p>
+
+<p>Amount of paging (swap) space that&rsquo;s currently used:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># swapon -s
+Filename                Type        Size    Used    Priority
+/dev/sdb2               partition   7815616 0       -1</pre></div>
+<ul>
+<li>in kilobytes</li>
+</ul>
+
+<p><code>vmstat</code> (see above) fields:</p>
+
+<ul>
+<li><code>si</code> - swapped in (from the disk)</li>
+<li><code>so</code> - swapped out (to the disk) =&gt; if your system has constant stream of page outs, buy more memory</li>
+</ul>
+
+<h1 id="storage-i-o">Storage I/O</h1>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ iostat 5 5 [-d sda]
+Linux 3.2.0-4-amd64 (backup2)   06/14/2015  _x86_64_    (16 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.80    0.34    3.17    7.49    0.00   85.20
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+sdb              49.61      1852.45       349.64 1369392967  258461851
+sdc             301.74     21510.91     24545.93 15901546498 18145130448
+sdd              75.02      6184.17      6195.25 4571531985 4579724644
+sda             307.37     16906.94     17127.65 12498149921 12661307662
+dm-0            131.14      8082.58      9533.25 5974897325 7047285056
+dm-1            172.96     13428.25     15012.67 9926593437 11097845392
+dm-2            107.96      1612.16       347.05 1191762057  256547336</pre></div>
+<ul>
+<li>the first report provides statistics since the system was booted, subsequent reports cover the time since the previous report</li>
+<li><code>tps</code> - number of transfers per second (IOPS?)</li>
+<li><code>kB_read/s</code> - average number of kilobytes read per second</li>
+<li><code>kB_read</code> - total kilobytes read</li>
+</ul>
+
+<p>Processes using file or directory on <code>/usr</code> filesystem (mount point):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ sudo fuser -cv /usr
+                     USER        PID ACCESS COMMAND
+/usr:                root     kernel mount /
+                     root          1 .rce. init
+                     root          2 .rc.. kthreadd</pre></div>
+<p>.. ACCESS:
+* <code>f</code>,<code>o</code>  - the process has a file open for reading or writing
+* <code>c</code>      - the process&rsquo;s current directory is on the filesystem
+* <code>e</code>, <code>t</code> - the process is currently executing a file
+* <code>r</code>      - the process&rsquo;s root directory (set with <code>chroot</code>) in on the filesystem
+* <code>m</code>, <code>s</code> - the process has mapped a file or shared library</p>
+
+<p>List all open files:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ lsof    # pipe output to pager, grep or use options</pre></div>
+<h1 id="network-i-o">Network I/O</h1>
+
+<p>To see info on network connections:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># netstat -tulpan</pre></div>
+<ul>
+<li><code>-t</code> - print TCP ports info</li>
+<li><code>-u</code> - print UDP ports info</li>
+<li><code>-l</code> - print listening ports</li>
+<li><code>-p</code> - print name and PID of the program owning the socket</li>
+<li><code>-a</code> - print all active ports</li>
+<li><code>-n</code> - don&rsquo;t reverse-resolve IP addresses</li>
+<li><code>Recv-Q</code> and <code>Send-Q</code> columns show the number of bytes in the sockets&rsquo; read and write buffers, respectively.</li>
+</ul>
+
+<p>To list all programs using or listening to ports (when run as regular user, only shows user&rsquo;s processes):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># lsof -i -nP</pre></div>
+<ul>
+<li><code>-i</code> - list all Internet and x.25 (HP-UX) network files</li>
+<li><code>-n</code> - don&rsquo;t reverse-resolve IP addresses</li>
+<li><code>-P</code> - disable /etc/services port name lookups</li>
+</ul>
+
+<p>To list Unix domain sockets (not to be confused with network sockets although similar) currently in use on your system:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># lsof -U    # unnamed sockets have &#34;socket&#34; in NAME column</pre></div>
+<h2 id="lsof-network-connections-filtering">lsof network connections filtering</h2>
+
+<p>by protocol, host and port:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">lsof -i[&lt;protocol&gt;@&lt;host&gt;]:&lt;port&gt;</pre></div>
+<p>.. ex.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">lsof -i:22
+lsof -iTCP:80</pre></div>
+<p>by connection status:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">lsof -iTCP -sTCP:LISTEN</pre></div>
+<h1 id="other-tools">Other tools</h1>
+
+<p>iotop - per process I/O utilization and monitoring</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ iotop</pre></div>
+<p>pidstat - per process monitoring</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ pidstat -p &lt;PID&gt; &lt;interval&gt;</pre></div>
+<p>dstat - versatile replacement for vmstat, iostat and ifstat</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ dstat</pre></div>
+<p>sar - record resource utilization over time</p>
+
+<h1 id="resources">Resources</h1>
+
+<ul>
+<li>ULSAH, 4th, Ch. 29</li>
+<li>How Linux Works, 2nd, Ch. 8</li>
+<li>Corresponding <code>man</code> pages</li>
+</ul>
+
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="https://jreisinger.github.io/notes/posts/net-basics/" data-toggle="tooltip" data-placement="top" title="Networking basics">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/grub2/" data-toggle="tooltip" data-placement="top" title="GRUB 2">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

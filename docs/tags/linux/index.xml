@@ -6,10 +6,20 @@
     <description>Recent content in Linux on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jun 2015 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux Performance Analysis</title>
+      <link>https://jreisinger.github.io/notes/posts/linux-performance-analysis/</link>
+      <pubDate>Sun, 14 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/linux-performance-analysis/</guid>
+      <description>Taking stock of hardware Sources of hardware information:
+lscpu /proc/cpuinfo # one entry for each core seen by the OS free -m /proc/meminfo hpacucli ctrl all show config [detail] # HP physical RAID lsblk [-o KNAME,TYPE,SIZE,MODEL] # installed on RHEL/CentOS parted -l # supports both MBR (msdos) and GPT fdisk -l # only traditional MBR partition table cat /proc/diskstats dmsetup ls # LVM device mapper udevadm info --query=all --name=/dev/sda Desktop Management Interface (DMI, aka SMBIOS):</description>
+    </item>
     
     <item>
       <title>GRUB 2</title>
