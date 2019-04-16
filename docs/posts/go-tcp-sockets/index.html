@@ -6,12 +6,12 @@
   <title>TCP sockets with Go - Notes</title>
   <meta property="og:title" content="TCP sockets with Go - Notes" />
   <meta name="twitter:title" content="TCP sockets with Go - Notes" />
-  <meta name="description" content="This is an HTTP client implemented using socket-level programming:
+  <meta name="description" content="Client This is an HTTP client implemented using socket-level programming:
 // Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure:">
-  <meta property="og:description" content="This is an HTTP client implemented using socket-level programming:
+  <meta property="og:description" content="Client This is an HTTP client implemented using socket-level programming:
 // Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure:">
-  <meta name="twitter:description" content="This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors …">
+  <meta name="twitter:description" content="Client This is an HTTP client implemented using socket-level programming:
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-tcp-sockets/" />
@@ -79,9 +79,9 @@
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/socket/">
+          <a href="https://jreisinger.github.io/notes/tags/sockets/">
             <i class="fas fa-tag"></i>
-            socket
+            sockets
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
@@ -92,7 +92,11 @@
         </li>
       </ul>
       
-      <p>This is an HTTP client implemented using socket-level programming:</p>
+      
+
+<h2 id="client">Client</h2>
+
+<p>This is an HTTP client implemented using socket-level programming:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run telnet.go
 </span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
@@ -121,10 +125,10 @@
 )
 
 <span style="font-weight:bold">func</span> main() {
-    service := os.Args[1]
-
+    addr := os.Args[1] <span style="font-style:italic">// e.g. &#34;reisinge.net:80&#34;
+</span><span style="font-style:italic"></span>
     d := net.Dialer{Timeout: 2 * time.Second}
-    conn, err := d.Dial(<span style="font-style:italic">&#34;tcp&#34;</span>, service)
+    conn, err := d.Dial(<span style="font-style:italic">&#34;tcp&#34;</span>, addr)
     checkError(err)
 
     _, err = conn.Write([]byte(<span style="font-style:italic">&#34;HEAD / HTTP/1.0\r\n\r\n&#34;</span>))
@@ -142,14 +146,64 @@
         os.Exit(1)
     }
 }</code></pre></div>
-<p>This time you don&rsquo;t need to resolve the TCP address (e.g. <code>reisinge.net:80</code>).</p>
-
 <p>It&rsquo;s normal to have a lot of error checking in network programming because lot
 of things can go wrong (e.g. syntax error in the address, service not running,
 hardware failing).</p>
 
-<p>More: <a href="https://www.apress.com/gp/book/9781484226919">Network programming with
-Go</a>: 3. Socket-level programming</p>
+<h2 id="server">Server</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run tcp_server.go
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+        <span style="font-style:italic">&#34;bufio&#34;</span>
+        <span style="font-style:italic">&#34;fmt&#34;</span>
+        <span style="font-style:italic">&#34;net&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+        <span style="font-style:italic">// listen on a port
+</span><span style="font-style:italic"></span>        ln, err := net.Listen(<span style="font-style:italic">&#34;tcp&#34;</span>, <span style="font-style:italic">&#34;:9999&#34;</span>)
+        <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+                fmt.Println(err)
+                <span style="font-weight:bold">return</span>
+        }
+
+        <span style="font-weight:bold">for</span> {
+                <span style="font-style:italic">// accept a connection
+</span><span style="font-style:italic"></span>                c, err := ln.Accept()
+                <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+                        fmt.Println(err)
+                        <span style="font-weight:bold">continue</span>
+                }
+
+                <span style="font-style:italic">// handle the connection
+</span><span style="font-style:italic"></span>                <span style="font-weight:bold">go</span> handleServerConnection(c)
+        }
+}
+
+<span style="font-weight:bold">func</span> handleServerConnection(c net.Conn) {
+        remoteAddr := c.RemoteAddr().String()
+        fmt.Println(<span style="font-style:italic">&#34;--&gt; Client connected from&#34;</span>, remoteAddr)
+
+        <span style="font-style:italic">// echo received messages
+</span><span style="font-style:italic"></span>        scanner := bufio.NewScanner(c)
+        <span style="font-weight:bold">for</span> {
+                ok := scanner.Scan()
+                <span style="font-weight:bold">if</span> !ok {
+                        <span style="font-weight:bold">break</span>
+                }
+                fmt.Println(scanner.Text())
+        }
+
+        fmt.Println(<span style="font-style:italic">&#34;--&gt; Client at&#34;</span>, remoteAddr, <span style="font-style:italic">&#34;disconnected&#34;</span>)
+}</code></pre></div>
+<h2 id="sources">Sources</h2>
+
+<ul>
+<li><a href="https://www.apress.com/gp/book/9781484226919">Network programming with
+Go</a>: Ch 3. Socket-level programming</li>
+<li><a href="https://learning.oreilly.com/library/view/introducing-go/9781491941997/ch08.html">Introducing Go: Ch. 8.</a></li>
+</ul>
 
     </article>
 

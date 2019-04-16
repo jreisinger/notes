@@ -3,8 +3,10 @@ title: "TCP sockets with Go"
 date: 2019-01-25
 draft: false
 categories: [net,prog]
-tags: [tcp,socket,go]
+tags: [tcp,sockets,go]
 ---
+
+## Client
 
 This is an HTTP client implemented using socket-level programming:
 
@@ -41,10 +43,10 @@ import (
 )
 
 func main() {
-    service := os.Args[1]
+    addr := os.Args[1] // e.g. "reisinge.net:80"
 
     d := net.Dialer{Timeout: 2 * time.Second}
-    conn, err := d.Dial("tcp", service)
+    conn, err := d.Dial("tcp", addr)
     checkError(err)
 
     _, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
@@ -64,11 +66,63 @@ func checkError(err error) {
 }
 ```
 
-This time you don't need to resolve the TCP address (e.g. `reisinge.net:80`).
-
 It's normal to have a lot of error checking in network programming because lot
 of things can go wrong (e.g. syntax error in the address, service not running,
 hardware failing).
 
-More: [Network programming with
-Go](https://www.apress.com/gp/book/9781484226919): 3. Socket-level programming
+## Server
+
+```go
+// Usage: go run tcp_server.go
+package main
+
+import (
+        "bufio"
+        "fmt"
+        "net"
+)
+
+func main() {
+        // listen on a port
+        ln, err := net.Listen("tcp", ":9999")
+        if err != nil {
+                fmt.Println(err)
+                return
+        }
+
+        for {
+                // accept a connection
+                c, err := ln.Accept()
+                if err != nil {
+                        fmt.Println(err)
+                        continue
+                }
+
+                // handle the connection
+                go handleServerConnection(c)
+        }
+}
+
+func handleServerConnection(c net.Conn) {
+        remoteAddr := c.RemoteAddr().String()
+        fmt.Println("--> Client connected from", remoteAddr)
+
+        // echo received messages
+        scanner := bufio.NewScanner(c)
+        for {
+                ok := scanner.Scan()
+                if !ok {
+                        break
+                }
+                fmt.Println(scanner.Text())
+        }
+
+        fmt.Println("--> Client at", remoteAddr, "disconnected")
+}
+```
+
+## Sources
+
+* [Network programming with
+Go](https://www.apress.com/gp/book/9781484226919): Ch 3. Socket-level programming
+* [Introducing Go: Ch. 8.](https://learning.oreilly.com/library/view/introducing-go/9781491941997/ch08.html)
