@@ -1,46 +1,56 @@
 ---
-title: "Reading command line arguments or STDIN"
+title: "Reading from STDIN or from command line arguments"
 date: 2018-08-08
 categories: [prog]
-tags: [go, perl]
+tags: [go]
 ---
 
-Go
-
 ```go
+// Dup2 prints the count and text of lines that appear more than once
+// in the input. It reads from stdin or from a list of named files.
 package main
 
 import (
     "bufio"
-    "os"
     "fmt"
+    "os"
 )
 
 func main() {
-    if len(os.Args) > 1 {               // we have command line args
-        for _, arg := range os.Args[1:] {
-            fmt.Println(arg)
+    counts := make(map[string]int)
+
+    files := os.Args[1:]
+    if len(files) == 0 {    // STDIN
+        countLines(os.Stdin, counts)
+    } else {                // command line args
+        for _, arg := range files {
+            f, err := os.Open(arg)
+            if err != nil {
+                fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
+                continue
+            }
+            countLines(f, counts)
+            f.Close()
         }
-    } else {                            // read from STDIN
-        stdin := bufio.NewScanner(os.Stdin)
-        for stdin.Scan() {
-            fmt.Println(stdin.Text())
+    }
+
+    // print report
+    for line, n := range counts {
+        if n > 1 {
+            fmt.Printf("%d\t%s\n", n, line)
         }
     }
 }
-```
 
-Perl
-
-```perl
-#!/usr/bin/env perl
-use 5.014;    # includes strict
-use warnings;
-use autodie;
-
-if (@ARGV) {
-    say for @ARGV;
-} else {
-    print for <STDIN>;    # but all lines at once
+func countLines(f *os.File, counts map[string]int) {
+    input := bufio.NewScanner(f)
+    for input.Scan() {
+        counts[input.Text()]++
+    }
+    // NOTE: ignoring potential errors from input.Err(). See
+    // https://golang.org/pkg/bufio/#example_Scanner_lines
 }
 ```
+
+Source: [The Go Programming
+Language](https://learning.oreilly.com/library/view/the-go-programming/9780134190570/ebook_split_013.html)

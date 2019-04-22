@@ -3,23 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Reading command line arguments or STDIN - Notes</title>
-  <meta property="og:title" content="Reading command line arguments or STDIN - Notes" />
-  <meta name="twitter:title" content="Reading command line arguments or STDIN - Notes" />
-  <meta name="description" content="Go
-package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() { if len(os.Args) &gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN  stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } } Perl
-#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }">
-  <meta property="og:description" content="Go
-package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() { if len(os.Args) &gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN  stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } } Perl
-#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &lt;STDIN&gt;; # but all lines at once }">
-  <meta name="twitter:description" content="Go
-package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() { if len(os.Args) &gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { …">
+  <title>Reading from STDIN or from command line arguments - Notes</title>
+  <meta property="og:title" content="Reading from STDIN or from command line arguments - Notes" />
+  <meta name="twitter:title" content="Reading from STDIN or from command line arguments - Notes" />
+  <meta name="description" content="// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;os&#34; ) func main() { counts := make(map[string]int) files := os.Args[1:] if len(files) == 0 { // STDIN  countLines(os.Stdin, counts) } else { // command line args  for _, arg := range files { f, err := os.">
+  <meta property="og:description" content="// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;os&#34; ) func main() { counts := make(map[string]int) files := os.Args[1:] if len(files) == 0 { // STDIN  countLines(os.Stdin, counts) } else { // command line args  for _, arg := range files { f, err := os.">
+  <meta name="twitter:description" content="// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &#34;bufio&#34; &#34;fmt&#34; …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/read-args-or-stdin/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -57,7 +52,7 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
     <article class="article">
       
       
-      <h1 class="article-title">Reading command line arguments or STDIN</h1>
+      <h1 class="article-title">Reading from STDIN or from command line arguments</h1>
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
@@ -74,52 +69,61 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
             go
           </a>&nbsp;
         </li>
-        <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/perl/">
-            <i class="fas fa-tag"></i>
-            perl
-          </a>&nbsp;
-        </li>
       </ul>
       
-      <p>Go</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+      <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Dup2 prints the count and text of lines that appear more than once
+</span><span style="font-style:italic">// in the input. It reads from stdin or from a list of named files.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
     <span style="font-style:italic">&#34;bufio&#34;</span>
-    <span style="font-style:italic">&#34;os&#34;</span>
     <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;os&#34;</span>
 )
 
 <span style="font-weight:bold">func</span> main() {
-    <span style="font-weight:bold">if</span> len(os.Args) &gt; 1 {               <span style="font-style:italic">// we have command line args
-</span><span style="font-style:italic"></span>        <span style="font-weight:bold">for</span> _, arg := <span style="font-weight:bold">range</span> os.Args[1:] {
-            fmt.Println(arg)
-        }
-    } <span style="font-weight:bold">else</span> {                            <span style="font-style:italic">// read from STDIN
-</span><span style="font-style:italic"></span>        stdin := bufio.NewScanner(os.Stdin)
-        <span style="font-weight:bold">for</span> stdin.Scan() {
-            fmt.Println(stdin.Text())
+    counts := make(<span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">int</span>)
+
+    files := os.Args[1:]
+    <span style="font-weight:bold">if</span> len(files) == 0 {    <span style="font-style:italic">// STDIN
+</span><span style="font-style:italic"></span>        countLines(os.Stdin, counts)
+    } <span style="font-weight:bold">else</span> {                <span style="font-style:italic">// command line args
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">for</span> _, arg := <span style="font-weight:bold">range</span> files {
+            f, err := os.Open(arg)
+            <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+                fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;dup2: %v\n&#34;</span>, err)
+                <span style="font-weight:bold">continue</span>
+            }
+            countLines(f, counts)
+            f.Close()
         }
     }
-}</code></pre></div>
-<p>Perl</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="font-style:italic">#!/usr/bin/env perl</span>
-<span style="font-weight:bold">use</span> 5.014;    <span style="font-style:italic"># includes strict</span>
-<span style="font-weight:bold">use</span> <span style="font-weight:bold">warnings</span>;
-<span style="font-weight:bold">use</span> <span style="font-weight:bold">autodie</span>;
 
-<span style="font-weight:bold">if</span> (@ARGV) {
-    say <span style="font-weight:bold">for</span> @ARGV;
-} <span style="font-weight:bold">else</span> {
-    <span style="font-weight:bold">print</span> <span style="font-weight:bold">for</span> <span style="font-style:italic">&lt;STDIN&gt;</span>;    <span style="font-style:italic"># but all lines at once</span>
-}</code></pre></div>
+    <span style="font-style:italic">// print report
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">for</span> line, n := <span style="font-weight:bold">range</span> counts {
+        <span style="font-weight:bold">if</span> n &gt; 1 {
+            fmt.Printf(<span style="font-style:italic">&#34;%d\t%s\n&#34;</span>, n, line)
+        }
+    }
+}
+
+<span style="font-weight:bold">func</span> countLines(f *os.File, counts <span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">int</span>) {
+    input := bufio.NewScanner(f)
+    <span style="font-weight:bold">for</span> input.Scan() {
+        counts[input.Text()]++
+    }
+    <span style="font-style:italic">// NOTE: ignoring potential errors from input.Err(). See
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">// https://golang.org/pkg/bufio/#example_Scanner_lines
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<p>Source: <a href="https://learning.oreilly.com/library/view/the-go-programming/9780134190570/ebook_split_013.html">The Go Programming
+Language</a></p>
+
     </article>
 
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -163,7 +167,7 @@ package main import ( &#34;bufio&#34; &#34;os&#34; &#34;fmt&#34; ) func main() {
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

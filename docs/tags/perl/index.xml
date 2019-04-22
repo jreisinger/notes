@@ -33,17 +33,6 @@ perl command line switches  -e &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;nda
     </item>
     
     <item>
-      <title>Reading command line arguments or STDIN</title>
-      <link>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</link>
-      <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</guid>
-      <description>Go
-package main import ( &amp;#34;bufio&amp;#34; &amp;#34;os&amp;#34; &amp;#34;fmt&amp;#34; ) func main() { if len(os.Args) &amp;gt; 1 { // we have command line args  for _, arg := range os.Args[1:] { fmt.Println(arg) } } else { // read from STDIN  stdin := bufio.NewScanner(os.Stdin) for stdin.Scan() { fmt.Println(stdin.Text()) } } } Perl
-#!/usr/bin/env perl use 5.014; # includes strict use warnings; use autodie; if (@ARGV) { say for @ARGV; } else { print for &amp;lt;STDIN&amp;gt;; # but all lines at once }</description>
-    </item>
-    
-    <item>
       <title>Signals</title>
       <link>https://jreisinger.github.io/notes/posts/signals/</link>
       <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
