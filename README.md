@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/jreisinger/notes.svg?branch=master)](https://travis-ci.org/jreisinger/notes)
 
-This repo is rendered at https://jreisinger.github.io/notes/.
+This repo is rendered at https://jreisinger.github.io/notes/. The older version
+of this repo lives at https://github.com/jreisinger/blog.
 
 Typical workcycle:
 
