@@ -23,6 +23,7 @@ Typical workcycle:
 * [HTTP Protocol](content/posts/http-protocol.md)
 * [Heap Vs Stack](content/posts/heap-vs-stack.md)
 * [Kubernetes](content/posts/kubernetes.md)
+* [Linux Performance Analysis](content/posts/linux-performance-analysis.md)
 * [Meaning of Life by Zentara](content/posts/meaning-of-life-by-zentara.md)
 * [Net Basics](content/posts/net-basics.md)
 * [Net Prog](content/posts/net-prog.md)
