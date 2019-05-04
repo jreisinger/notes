@@ -29,7 +29,7 @@ Typical workcycle:
 * [Net Basics](content/posts/net-basics.md)
 * [Net Prog](content/posts/net-prog.md)
 * [Perl One Liners](content/posts/perl-one-liners.md)
-* [Read Args or Stdin](content/posts/read-args-or-stdin.md)
+* [Read Stdin or Args](content/posts/read-stdin-or-args.md)
 * [Signals](content/posts/signals.md)
 * [Sorting with Go](content/posts/sorting-with-go.md)
 * [SRE](content/posts/sre.md)
