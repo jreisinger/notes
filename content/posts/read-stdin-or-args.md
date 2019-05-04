@@ -52,5 +52,4 @@ func countLines(f *os.File, counts map[string]int) {
 }
 ```
 
-Source: [The Go Programming
-Language](https://learning.oreilly.com/library/view/the-go-programming/9780134190570/ebook_split_013.html)
+Taken from [The Go Programming Language](https://learning.oreilly.com/library/view/the-go-programming/9780134190570/ebook_split_013.html). See also [Read a file (stdin) line by line](https://yourbasic.org/golang/read-file-line-by-line/).
