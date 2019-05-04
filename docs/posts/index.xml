@@ -88,10 +88,10 @@ perl command line switches  -e &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;nda
     
     <item>
       <title>Reading from STDIN or from command line arguments</title>
-      <link>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</link>
+      <link>https://jreisinger.github.io/notes/posts/read-stdin-or-args/</link>
       <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/notes/posts/read-args-or-stdin/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/read-stdin-or-args/</guid>
       <description>// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;os&amp;#34; ) func main() { counts := make(map[string]int) files := os.Args[1:] if len(files) == 0 { // STDIN  countLines(os.Stdin, counts) } else { // command line args  for _, arg := range files { f, err := os.</description>
     </item>
     

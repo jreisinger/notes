@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Reading from STDIN or from command line arguments - Notes</title>
+  <meta property="og:title" content="Reading from STDIN or from command line arguments - Notes" />
+  <meta name="twitter:title" content="Reading from STDIN or from command line arguments - Notes" />
+  <meta name="description" content="// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;os&#34; ) func main() { counts := make(map[string]int) files := os.Args[1:] if len(files) == 0 { // STDIN  countLines(os.Stdin, counts) } else { // command line args  for _, arg := range files { f, err := os.">
+  <meta property="og:description" content="// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;os&#34; ) func main() { counts := make(map[string]int) files := os.Args[1:] if len(files) == 0 { // STDIN  countLines(os.Stdin, counts) } else { // command line args  for _, arg := range files { f, err := os.">
+  <meta name="twitter:description" content="// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &#34;bufio&#34; &#34;fmt&#34; …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/read-stdin-or-args/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+
+    
+    <ul>
+      
+        
+        
+        
+        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/read-stdin-or-args.md">Edit on Gitlab</a>
+        
+      
+    </ul>
+
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Reading from STDIN or from command line arguments</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>August 8, 2018</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/go/">
+            <i class="fas fa-tag"></i>
+            go
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Dup2 prints the count and text of lines that appear more than once
+</span><span style="font-style:italic">// in the input. It reads from stdin or from a list of named files.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;bufio&#34;</span>
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;os&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    counts := make(<span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">int</span>)
+
+    files := os.Args[1:]
+    <span style="font-weight:bold">if</span> len(files) == 0 {    <span style="font-style:italic">// STDIN
+</span><span style="font-style:italic"></span>        countLines(os.Stdin, counts)
+    } <span style="font-weight:bold">else</span> {                <span style="font-style:italic">// command line args
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">for</span> _, arg := <span style="font-weight:bold">range</span> files {
+            f, err := os.Open(arg)
+            <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+                fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;dup2: %v\n&#34;</span>, err)
+                <span style="font-weight:bold">continue</span>
+            }
+            countLines(f, counts)
+            f.Close()
+        }
+    }
+
+    <span style="font-style:italic">// print report
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">for</span> line, n := <span style="font-weight:bold">range</span> counts {
+        <span style="font-weight:bold">if</span> n &gt; 1 {
+            fmt.Printf(<span style="font-style:italic">&#34;%d\t%s\n&#34;</span>, n, line)
+        }
+    }
+}
+
+<span style="font-weight:bold">func</span> countLines(f *os.File, counts <span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">int</span>) {
+    input := bufio.NewScanner(f)
+    <span style="font-weight:bold">for</span> input.Scan() {
+        counts[input.Text()]++
+    }
+    <span style="font-style:italic">// NOTE: ignoring potential errors from input.Err(). See
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">// https://golang.org/pkg/bufio/#example_Scanner_lines
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<p>Taken from <a href="https://learning.oreilly.com/library/view/the-go-programming/9780134190570/ebook_split_013.html">The Go Programming Language</a>. See also <a href="https://yourbasic.org/golang/read-file-line-by-line/">Read a file (stdin) line by line</a>.</p>
+
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="https://jreisinger.github.io/notes/posts/hashes/" data-toggle="tooltip" data-placement="top" title="Hashes">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/heap-vs-stack/" data-toggle="tooltip" data-placement="top" title="Heap vs Stack">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>
