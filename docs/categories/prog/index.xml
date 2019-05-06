@@ -6,10 +6,22 @@
     <description>Recent content in Prog on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/categories/prog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Concurrency and Channels</title>
+      <link>https://jreisinger.github.io/notes/posts/concurrency-and-channels/</link>
+      <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/concurrency-and-channels/</guid>
+      <description>A goroutine is a function capable of running concurrently with other functions. Create a gouroutine with the go keyword.
+A channel is a way for gouroutines to communicate with each other and synchronize their execution.
+When pinger or ponger attempts to send a message on the channel, it will wait until printer is ready to receive the message (blocking):
+package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch := make(chan string) go pinger(ch) go ponger(ch) go printer(ch) // Wait for Enter to exit.</description>
+    </item>
     
     <item>
       <title>JSON Serialization with Go</title>
