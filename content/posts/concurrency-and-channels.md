@@ -44,4 +44,51 @@ func printer(ch chan string) {
 }
 ```
 
+`select` statement is like a switch but for channels. `select` picks the first channel that is ready a receives from it. If more than one of the channels are ready, then it randomly picks which one to receive from. The default case happens immediately if none of the channels are ready.
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    ch1 := make(chan string)
+    ch2 := make(chan string)
+
+    go func() {
+        for {
+            ch1<- "from 1"
+            time.Sleep(time.Second * 2)
+        }
+    }()
+
+    go func() {
+        for {
+            ch2<- "from 2"
+            time.Sleep(time.Second * 3)
+        }
+    }()
+
+    go func() {
+        for {
+            select {
+            case msg1 := <-ch1:
+                fmt.Println(msg1)
+            case msg2 := <-ch2:
+                fmt.Println(msg2)
+            default:
+                fmt.Println("nothing ready")
+                time.Sleep(time.Second * 1)
+            }
+        }
+    }()
+
+    var input string
+    fmt.Scanln(&input)
+}
+```
+
 Taken from "Introducing Go". See also [fetchall.go](https://github.com/jreisinger/go/blob/master/http/fetchall.go) and [fetchall2.go](https://github.com/jreisinger/go/blob/master/http/fetchall2.go).

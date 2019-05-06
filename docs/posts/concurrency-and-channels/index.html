@@ -112,6 +112,49 @@ wait until <code>printer</code> is ready to receive the message (blocking):</p>
         time.Sleep(time.Second * 1)
     }
 }</code></pre></div>
+<p><code>select</code> statement is like a switch but for channels. <code>select</code> picks the first channel that is ready a receives from it. If more than one of the channels are ready, then it randomly picks which one to receive from. The default case happens immediately if none of the channels are ready.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;time&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    ch1 := make(<span style="font-weight:bold">chan</span> <span style="">string</span>)
+    ch2 := make(<span style="font-weight:bold">chan</span> <span style="">string</span>)
+
+    <span style="font-weight:bold">go</span> <span style="font-weight:bold">func</span>() {
+        <span style="font-weight:bold">for</span> {
+            ch1&lt;- <span style="font-style:italic">&#34;from 1&#34;</span>
+            time.Sleep(time.Second * 2)
+        }
+    }()
+
+    <span style="font-weight:bold">go</span> <span style="font-weight:bold">func</span>() {
+        <span style="font-weight:bold">for</span> {
+            ch2&lt;- <span style="font-style:italic">&#34;from 2&#34;</span>
+            time.Sleep(time.Second * 3)
+        }
+    }()
+
+    <span style="font-weight:bold">go</span> <span style="font-weight:bold">func</span>() {
+        <span style="font-weight:bold">for</span> {
+            <span style="font-weight:bold">select</span> {
+            <span style="font-weight:bold">case</span> msg1 := &lt;-ch1:
+                fmt.Println(msg1)
+            <span style="font-weight:bold">case</span> msg2 := &lt;-ch2:
+                fmt.Println(msg2)
+            <span style="font-weight:bold">default</span>:
+                fmt.Println(<span style="font-style:italic">&#34;nothing ready&#34;</span>)
+                time.Sleep(time.Second * 1)
+            }
+        }
+    }()
+
+    <span style="font-weight:bold">var</span> input <span style="">string</span>
+    fmt.Scanln(&amp;input)
+}</code></pre></div>
 <p>Taken from &ldquo;Introducing Go&rdquo;. See also <a href="https://github.com/jreisinger/go/blob/master/http/fetchall.go">fetchall.go</a> and <a href="https://github.com/jreisinger/go/blob/master/http/fetchall2.go">fetchall2.go</a>.</p>
 
     </article>
