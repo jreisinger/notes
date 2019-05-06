@@ -8,13 +8,13 @@
       {{- end }}
     </ul>
 
-    <!-- Edit on Gitlab button -->
+    <!-- See on GitHub button -->
     <ul>
       {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
         {{ $File := .File }}
         {{ $Site := .Site }}
         {{with $File.Path }}
-        <a href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}">Edit on Gitlab</a>
+        <a href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}">See on GitHub</a>
         {{ end }}
       {{ end }}
     </ul>
