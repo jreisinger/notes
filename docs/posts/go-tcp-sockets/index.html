@@ -7,9 +7,9 @@
   <meta property="og:title" content="TCP sockets with Go - Notes" />
   <meta name="twitter:title" content="TCP sockets with Go - Notes" />
   <meta name="description" content="Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure:">
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&rsquo;ve also added error checking &#43; reading from command line arguments):">
   <meta property="og:description" content="Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure:">
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&rsquo;ve also added error checking &#43; reading from command line arguments):">
   <meta name="twitter:description" content="Client This is an HTTP client implemented using socket-level programming:
 // Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring …">
   <meta name="author" content="Jozef Reisinger"/>
@@ -113,7 +113,8 @@
 </span><span style="font-style:italic"></span>    status, _ := bufio.NewReader(conn).ReadString(<span style="font-style:italic">&#39;\n&#39;</span>)
     fmt.Print(status) <span style="font-style:italic">// Print the first response line
 </span><span style="font-style:italic"></span>}</code></pre></div>
-<p>To add a timeout you can use the <code>Dialer</code> structure:</p>
+<p>To add a timeout you can use the <code>Dialer</code> structure (I&rsquo;ve also added error
+checking + reading from command line arguments):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
@@ -151,51 +152,53 @@ of things can go wrong (e.g. syntax error in the address, service not running,
 hardware failing).</p>
 
 <h2 id="server">Server</h2>
+
+<p>Concurrent TCP server that prints (echoes) what it receives:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run tcp_server.go
 </span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
-        <span style="font-style:italic">&#34;bufio&#34;</span>
-        <span style="font-style:italic">&#34;fmt&#34;</span>
-        <span style="font-style:italic">&#34;net&#34;</span>
+    <span style="font-style:italic">&#34;bufio&#34;</span>
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;log&#34;</span>
+    <span style="font-style:italic">&#34;net&#34;</span>
 )
 
 <span style="font-weight:bold">func</span> main() {
-        <span style="font-style:italic">// listen on a port
-</span><span style="font-style:italic"></span>        ln, err := net.Listen(<span style="font-style:italic">&#34;tcp&#34;</span>, <span style="font-style:italic">&#34;:9999&#34;</span>)
+    <span style="font-style:italic">// listen on a port
+</span><span style="font-style:italic"></span>    ln, err := net.Listen(<span style="font-style:italic">&#34;tcp&#34;</span>, <span style="font-style:italic">&#34;127.0.0.1:9999&#34;</span>)
+    <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+        log.Fatalln(err)
+    }
+
+    <span style="font-weight:bold">for</span> {
+        <span style="font-style:italic">// accept a connection
+</span><span style="font-style:italic"></span>        c, err := ln.Accept()
         <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
-                fmt.Println(err)
-                <span style="font-weight:bold">return</span>
+            log.Println(err)
+            <span style="font-weight:bold">continue</span>
         }
 
-        <span style="font-weight:bold">for</span> {
-                <span style="font-style:italic">// accept a connection
-</span><span style="font-style:italic"></span>                c, err := ln.Accept()
-                <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
-                        fmt.Println(err)
-                        <span style="font-weight:bold">continue</span>
-                }
-
-                <span style="font-style:italic">// handle the connection
-</span><span style="font-style:italic"></span>                <span style="font-weight:bold">go</span> handleServerConnection(c)
-        }
+        <span style="font-style:italic">// handle the connection
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">go</span> handleServerConnection(c)
+    }
 }
 
 <span style="font-weight:bold">func</span> handleServerConnection(c net.Conn) {
-        remoteAddr := c.RemoteAddr().String()
-        fmt.Println(<span style="font-style:italic">&#34;--&gt; Client connected from&#34;</span>, remoteAddr)
+    remoteAddr := c.RemoteAddr().String()
+    log.Println(<span style="font-style:italic">&#34;Client connected from&#34;</span>, remoteAddr)
 
-        <span style="font-style:italic">// echo received messages
-</span><span style="font-style:italic"></span>        scanner := bufio.NewScanner(c)
-        <span style="font-weight:bold">for</span> {
-                ok := scanner.Scan()
-                <span style="font-weight:bold">if</span> !ok {
-                        <span style="font-weight:bold">break</span>
-                }
-                fmt.Println(scanner.Text())
+    <span style="font-style:italic">// echo received messages
+</span><span style="font-style:italic"></span>    scanner := bufio.NewScanner(c)
+    <span style="font-weight:bold">for</span> {
+        ok := scanner.Scan()
+        <span style="font-weight:bold">if</span> !ok {
+            <span style="font-weight:bold">break</span>
         }
+        fmt.Println(scanner.Text())
+    }
 
-        fmt.Println(<span style="font-style:italic">&#34;--&gt; Client at&#34;</span>, remoteAddr, <span style="font-style:italic">&#34;disconnected&#34;</span>)
+    log.Println(<span style="font-style:italic">&#34;Client at&#34;</span>, remoteAddr, <span style="font-style:italic">&#34;disconnected&#34;</span>)
 }</code></pre></div>
 <h2 id="sources">Sources</h2>
 

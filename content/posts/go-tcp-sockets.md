@@ -29,7 +29,8 @@ func main() {
 }
 ```
 
-To add a timeout you can use the `Dialer` structure:
+To add a timeout you can use the `Dialer` structure (I've also added error
+checking + reading from command line arguments):
 
 ```go
 package main
@@ -72,52 +73,54 @@ hardware failing).
 
 ## Server
 
+Concurrent TCP server that prints (echoes) what it receives:
+
 ```go
 // Usage: go run tcp_server.go
 package main
 
 import (
-        "bufio"
-        "fmt"
-        "net"
+    "bufio"
+    "fmt"
+    "log"
+    "net"
 )
 
 func main() {
-        // listen on a port
-        ln, err := net.Listen("tcp", ":9999")
+    // listen on a port
+    ln, err := net.Listen("tcp", "127.0.0.1:9999")
+    if err != nil {
+        log.Fatalln(err)
+    }
+
+    for {
+        // accept a connection
+        c, err := ln.Accept()
         if err != nil {
-                fmt.Println(err)
-                return
+            log.Println(err)
+            continue
         }
 
-        for {
-                // accept a connection
-                c, err := ln.Accept()
-                if err != nil {
-                        fmt.Println(err)
-                        continue
-                }
-
-                // handle the connection
-                go handleServerConnection(c)
-        }
+        // handle the connection
+        go handleServerConnection(c)
+    }
 }
 
 func handleServerConnection(c net.Conn) {
-        remoteAddr := c.RemoteAddr().String()
-        fmt.Println("--> Client connected from", remoteAddr)
+    remoteAddr := c.RemoteAddr().String()
+    log.Println("Client connected from", remoteAddr)
 
-        // echo received messages
-        scanner := bufio.NewScanner(c)
-        for {
-                ok := scanner.Scan()
-                if !ok {
-                        break
-                }
-                fmt.Println(scanner.Text())
+    // echo received messages
+    scanner := bufio.NewScanner(c)
+    for {
+        ok := scanner.Scan()
+        if !ok {
+            break
         }
+        fmt.Println(scanner.Text())
+    }
 
-        fmt.Println("--> Client at", remoteAddr, "disconnected")
+    log.Println("Client at", remoteAddr, "disconnected")
 }
 ```
 
