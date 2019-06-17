@@ -96,6 +96,7 @@ type Email struct {
     Address string
 }
 
+// This method gets used implicitly by Println() in the main() below.
 func (p Person) String() string {
     s := p.Name.Personal + " " + p.Name.Family
     for _, v := range p.Email {
@@ -107,7 +108,6 @@ func (p Person) String() string {
 func main() {
     var person Person
     loadJSON("person.json", &person)
-
     fmt.Println("Person", person)
 }
 

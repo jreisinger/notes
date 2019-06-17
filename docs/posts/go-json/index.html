@@ -169,7 +169,8 @@ languages.</p>
     Address <span style="">string</span>
 }
 
-<span style="font-weight:bold">func</span> (p Person) String() <span style="">string</span> {
+<span style="font-style:italic">// This method gets used implicitly by Println() in the main() below.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">func</span> (p Person) String() <span style="">string</span> {
     s := p.Name.Personal + <span style="font-style:italic">&#34; &#34;</span> + p.Name.Family
     <span style="font-weight:bold">for</span> _, v := <span style="font-weight:bold">range</span> p.Email {
         s += <span style="font-style:italic">&#34;\n&#34;</span> + v.Kind + <span style="font-style:italic">&#34;: &#34;</span> + v.Address
@@ -180,7 +181,6 @@ languages.</p>
 <span style="font-weight:bold">func</span> main() {
     <span style="font-weight:bold">var</span> person Person
     loadJSON(<span style="font-style:italic">&#34;person.json&#34;</span>, &amp;person)
-
     fmt.Println(<span style="font-style:italic">&#34;Person&#34;</span>, person)
 }
 
