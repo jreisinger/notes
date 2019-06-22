@@ -43,11 +43,7 @@ with open("/etc/passwd") as file_object:
 
 ## `<>`
 
-Process every line in a file on command line or stdin if no file:
-
-```perl
-while (<>) { print }
-```
+Process every line in a file on command line or stdin if no file (`while (<>) { print }`):
 
 ```python
 import fileinput
