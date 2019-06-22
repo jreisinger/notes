@@ -59,7 +59,7 @@ for line in sys.stdin:
     print line
 ```
 
-## slurp the whole file/stdin:
+## slurp the whole file/stdin
 
 ```python
 # into a string
