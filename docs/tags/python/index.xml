@@ -6,10 +6,33 @@
     <description>Recent content in Python on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Oct 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 May 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python basics</title>
+      <link>https://jreisinger.github.io/notes/posts/python/</link>
+      <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/python/</guid>
+      <description>all Python objects are instances of one class or another  Variables
+ types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like labels that reference various objects (integers, strings, class instances, &amp;hellip;)
+x = &amp;#34;2&amp;#34; # x is string x = int(x) # x is now integer don&amp;rsquo;t have to be declared
+ can have any built-in data type, user-defined object, function, or module assigned to them</description>
+    </item>
+    
+    <item>
+      <title>Perl to Python</title>
+      <link>https://jreisinger.github.io/notes/posts/perl2python/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/perl2python/</guid>
+      <description>Going from Perl to Python &amp;hellip;
+Data structures Both languages are dynamic so you can mix types in data structures (data containers).
+Perl Python Example Note ---- ------ ------- ----- array list [ 1, 3.4, &amp;#39;hello&amp;#39; ] you can mix types list tuple ( 10, 20, 30 ) immutable, parens are optional hash dictionary { &amp;#39;a&amp;#39;: 3, &amp;#39;b&amp;#39;: 42 } have to quote strings in Python n/a set set( [1, 2, 3] ) can be faked with hash in Perl In lists/tuples the comma is the operator.</description>
+    </item>
     
     <item>
       <title>Signals</title>

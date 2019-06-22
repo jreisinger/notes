@@ -3,7 +3,7 @@ title: "Perl to Python"
 date: 2016-01-11
 draft: false
 categories: [prog]
-tags: [perl,pytho]
+tags: [perl,python]
 ---
 
 Going from Perl to Python ...
@@ -110,7 +110,7 @@ print( convert_number(sys.argv[1]) )
 Warnings
 
     # Perl...
-    
+
     my @filenames = qw(README.md y empty);
 
     for my $file (@filenames) {
@@ -124,7 +124,7 @@ Warnings
     }
 
     # Python...
-    
+
     class EmptyFileError(Exception):
         pass
 

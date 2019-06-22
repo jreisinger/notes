@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Python basics - Notes</title>
+  <meta property="og:title" content="Python basics - Notes" />
+  <meta name="twitter:title" content="Python basics - Notes" />
+  <meta name="description" content="all Python objects are instances of one class or another  Variables
+ types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;)
+x = &#34;2&#34; # x is string x = int(x) # x is now integer don&rsquo;t have to be declared
+ can have any built-in data type, user-defined object, function, or module assigned to them">
+  <meta property="og:description" content="all Python objects are instances of one class or another  Variables
+ types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;)
+x = &#34;2&#34; # x is string x = int(x) # x is now integer don&rsquo;t have to be declared
+ can have any built-in data type, user-defined object, function, or module assigned to them">
+  <meta name="twitter:description" content="all Python objects are instances of one class or another  Variables
+ types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/python/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+
+    
+    <ul>
+      
+        
+        
+        
+        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/python.md">See on GitHub</a>
+        
+      
+    </ul>
+
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Python basics</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>May 13, 2016</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/python/">
+            <i class="fas fa-tag"></i>
+            python
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  
+</aside>
+      <ul>
+<li>all Python objects are instances of one class or another</li>
+</ul>
+
+<p>Variables</p>
+
+<ul>
+<li>types are associated with objects, not variables</li>
+<li>variables are not checked for type at compile time</li>
+
+<li><p>Python variables are more like labels that reference various objects
+(integers, strings, class instances, &hellip;)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = &#34;2&#34;     # x is string
+x = int(x)  # x is now integer</pre></div></li>
+
+<li><p>don&rsquo;t have to be declared</p></li>
+
+<li><p>can have any built-in data type, user-defined object, function, or module
+assigned to them</p></li>
+</ul>
+
+<p>Built-in data types</p>
+
+<ul>
+<li>built-in data types can be manipulated with operators, built-in functions,
+library functions, or a data type&rsquo;s own methods</li>
+<li>numbers</li>
+
+<li><p>tuples (immutable lists)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">(0, 1, 2)</pre></div></li>
+
+<li><p>lists</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[]
+[1]
+[1, &#34;two&#34;, (3, 4), [&#34;a&#34;, &#34;b&#34;]]</pre></div>
+<ul>
+<li>built-in functions: len, max, min</li>
+<li>operators: in, +, * (create new list, original unchanged)</li>
+<li>statements: del</li>
+<li>methods: append, count, extend, index, insert, pop, remove, reverse, sort</li>
+</ul></li>
+
+<li><p>strings</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; x = &#34;Do not meddle    in \the affairs of \nwizards&#34;
+&gt;&gt;&gt; x2 = x.replace(&#34;\the&#34;, &#34;the&#34;)
+&gt;&gt;&gt; import re
+&gt;&gt;&gt; regex = re.compile(r&#34;[\t ]+&#34;)
+&gt;&gt;&gt; regex.sub(&#34; &#34;, x2)
+&#39;Do not meddle in the affairs of \nwizards&#39;
+
+# raw strings do not interpret escape sequences
+&gt;&gt;&gt; print r&#39;hello\nworld&#39;
+hello\nworld
+&gt;&gt;&gt; print &#39;hello\nworld&#39;
+hello
+world</pre></div></li>
+
+<li><p>dictionaries (associative array functionality implemented using hash tables)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">{ 1: &#34;one&#34;, 2: &#34;two&#34; }</pre></div>
+<ul>
+<li>keys must be of an immutable type (numbers, strings, tuples)</li>
+</ul></li>
+
+<li><p>sets (an unordered collection of objects)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; x = set([1, 2, 3])
+&gt;&gt;&gt; 1 in x
+True
+&gt;&gt;&gt; 4 in x
+False</pre></div>
+<ul>
+<li>when membership and uniqueness in the set are important</li>
+<li>like dictionary keys without values</li>
+</ul></li>
+
+<li><p>file objects</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">f = open(&#34;myfile&#34;, &#34;r&#34;)
+line1 = f.readline()
+f.close()</pre></div></li>
+</ul>
+
+<p>Control flow structures</p>
+
+<ul>
+<li><code>False</code> (boolean constant), <code>0</code>, <code>None</code> (Python nil value) and empty values (ex. <code>[ ]</code>, <code>&quot;&quot;</code>)
+are taken as <code>False</code></li>
+<li><code>True</code> and everything else are considered <code>True</code></li>
+</ul>
+
+<p>Exceptions (errors)</p>
+
+<ul>
+<li>special objects to manage errors that arise during execution</li>
+<li>whenever en error occurs Python creates an exception object</li>
+<li>if you handle the exception (by <code>try-except-finally-else</code> compound statement) the program continues to run</li>
+<li>any uncaught exception will cause the program to exit and show a <em>traceback</em> describing the exception that was raised</li>
+</ul>
+
+<p>Argument parsing and error handling</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/env python3
+
+import argparse
+
+parser = argparse.ArgumentParser(description=&#34;This program&#39;s description&#34;)
+parser.add_argument(&#39;-f&#39;, type=str, help=&#39;Name of file to open&#39;, required=True)
+
+cmdargs = parser.parse_args()
+f = cmdargs.f
+
+try:
+    fh = open(f)
+    line = fh.readline()
+# generic exception; more specific exceptions could be caught before
+except Exception as e: 
+    print(&#34;There was an error: &#34;, e)
+    exit(1)  # like tchrist said
+else:
+    print(&#34;1st line from&#34;, f, &#34;is&#34;, line, end=&#34;&#34;)
+    fh.close()</pre></div>
+<p>Calling to System</p>
+
+<p>1) <code>os</code> library (module)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">    import os
+    os.getcwd()
+    os.getenv(&#39;PATH&#39;)
+    os.system(&#39;ls -la&#39;)</pre></div>
+<p>2) <code>subprocess</code> module</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">    from subprocess import call
+    call([&#39;ls&#39;, &#39;-la&#39;])</pre></div>
+<p>Filenames and Paths</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/python
+
+import os
+import sys
+
+def walk(dirname):
+&#34;&#34;&#34;Walk through a directory and print names of files&#34;&#34;&#34;
+    for name in os.listdir(dirname):
+        path = os.path.join(dirname, name)
+        if os.path.isfile(path):
+            print path
+        elif os.path.isdir(path):
+            walk(path)
+
+walk(sys.argv[1])</pre></div>
+<p>Threading</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/env python3
+
+import threading
+import time
+
+class aThread(threading.Thread):
+    def __init__(self, num, val):
+        threading.Thread.__init__(self)
+        self.threadNum=num
+        self.loopCount=val
+
+    def run(self):
+        print(&#34;Starting to run thread: &#34;, self.threadNum)
+        myfunc(self.threadNum, self.loopCount)
+
+def myfunc(num, val):
+    count=0
+    while count &lt; val:
+        print(num, &#34; : &#34;, val*count)
+        count=count+1
+        #time.sleep(1)
+
+t1=aThread(1, 15)
+t2=aThread(2, 20)
+t3=aThread(3, 30)
+
+t1.start()
+t2.start()
+t3.start()
+
+threads = []
+threads.append(t1)
+threads.append(t2)
+threads.append(t3)
+
+# wait for all threads to complete by entering them
+for t in threads:
+    t.join()</pre></div>
+<p>Classes and instances</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/env python
+
+class me:
+    def __init__(self, foo):
+        self.myvar = foo
+
+    def getval(self):
+        return self.myvar
+
+    def setval(self, bar):
+        self.myvar = bar
+
+x = me(&#39;bla&#39;)
+y = x.getval()
+z = me(&#39;baz&#39;)
+print(y)
+x.setval(&#39;ble&#39;)
+print x.getval()
+print z.getval()</pre></div>
+<hr />
+
+<p>Sources</p>
+
+<ul>
+<li>The Quick Python Book</li>
+<li>Mastering Python (Safari video)</li>
+<li>Think Python</li>
+</ul>
+
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="https://jreisinger.github.io/notes/posts/tcpdump/" data-toggle="tooltip" data-placement="top" title="tcpdump">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/perl2python/" data-toggle="tooltip" data-placement="top" title="Perl to Python">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

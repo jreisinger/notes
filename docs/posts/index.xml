@@ -190,6 +190,18 @@ CAMS: culture, automation, measurement, and sharing. &amp;ndash; D. Edwards, J. 
     </item>
     
     <item>
+      <title>Python basics</title>
+      <link>https://jreisinger.github.io/notes/posts/python/</link>
+      <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/python/</guid>
+      <description>all Python objects are instances of one class or another  Variables
+ types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like labels that reference various objects (integers, strings, class instances, &amp;hellip;)
+x = &amp;#34;2&amp;#34; # x is string x = int(x) # x is now integer don&amp;rsquo;t have to be declared
+ can have any built-in data type, user-defined object, function, or module assigned to them</description>
+    </item>
+    
+    <item>
       <title>Perl to Python</title>
       <link>https://jreisinger.github.io/notes/posts/perl2python/</link>
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
