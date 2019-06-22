@@ -6,16 +6,15 @@
   <title>Python basics - Notes</title>
   <meta property="og:title" content="Python basics - Notes" />
   <meta name="twitter:title" content="Python basics - Notes" />
-  <meta name="description" content="all Python objects are instances of one class or another  Variables
- types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;)
-x = &#34;2&#34; # x is string x = int(x) # x is now integer don&rsquo;t have to be declared
- can have any built-in data type, user-defined object, function, or module assigned to them">
-  <meta property="og:description" content="all Python objects are instances of one class or another  Variables
- types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;)
-x = &#34;2&#34; # x is string x = int(x) # x is now integer don&rsquo;t have to be declared
- can have any built-in data type, user-defined object, function, or module assigned to them">
-  <meta name="twitter:description" content="all Python objects are instances of one class or another  Variables
- types are associated with objects, not variables variables are not checked for type at compile time Python variables are more like …">
+  <meta name="description" content="All Python objects are instances of one class or another.
+Variables Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;):
+x = &#34;2&#34; # x is string x = int(x) # x is now integer  types are associated with objects, not variables variables are not checked for type at compile time variables don&rsquo;t have to be declared variables can have any built-in data type, user-defined object, function, or module assigned to them  Built-in data types Built-in data types can be manipulated with operators, built-in functions, library functions, or a data type&rsquo;s own methods.">
+  <meta property="og:description" content="All Python objects are instances of one class or another.
+Variables Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;):
+x = &#34;2&#34; # x is string x = int(x) # x is now integer  types are associated with objects, not variables variables are not checked for type at compile time variables don&rsquo;t have to be declared variables can have any built-in data type, user-defined object, function, or module assigned to them  Built-in data types Built-in data types can be manipulated with operators, built-in functions, library functions, or a data type&rsquo;s own methods.">
+  <meta name="twitter:description" content="All Python objects are instances of one class or another.
+Variables Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;):
+x = &#34;2&#34; …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/python/" />
@@ -79,89 +78,112 @@ x = &#34;2&#34; # x is string x = int(x) # x is now integer don&rsquo;t have to 
       </ul>
       
 <aside class="toc">
-  
-</aside>
-      <ul>
-<li>all Python objects are instances of one class or another</li>
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#built-in-data-types">Built-in data types</a>
+<ul>
+<li><a href="#numbers">numbers</a></li>
+<li><a href="#strings">strings</a></li>
+<li><a href="#lists">lists</a></li>
+<li><a href="#tuples">tuples</a></li>
+<li><a href="#dictionaries">dictionaries</a></li>
+<li><a href="#sets">sets</a></li>
+<li><a href="#file-objects">file objects</a></li>
+</ul></li>
+<li><a href="#what-is-truth">What is Truth</a></li>
+<li><a href="#exceptions">Exceptions</a></li>
+<li><a href="#calling-to-system">Calling to System</a>
+<ul>
+<li><a href="#os-module"><code>os</code> module</a></li>
+<li><a href="#subprocess-module"><code>subprocess</code> module</a></li>
+</ul></li>
+<li><a href="#filenames-and-paths">Filenames and Paths</a></li>
+<li><a href="#threading">Threading</a></li>
+<li><a href="#classes-and-instances">Classes and instances</a></li>
+<li><a href="#sources">Sources</a></li>
 </ul>
+</nav>
+</aside>
+      
 
-<p>Variables</p>
+<p>All Python <em>objects</em> are instances of one class or another.</p>
 
+<h1 id="variables">Variables</h1>
+
+<p>Python variables are more like labels that reference various objects (integers, strings, class instances, &hellip;):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = <span style="font-style:italic">&#34;2&#34;</span>     <span style="font-style:italic"># x is string</span>
+x = int(x)  <span style="font-style:italic"># x is now integer</span></code></pre></div>
 <ul>
 <li>types are associated with objects, not variables</li>
 <li>variables are not checked for type at compile time</li>
-
-<li><p>Python variables are more like labels that reference various objects
-(integers, strings, class instances, &hellip;)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = &#34;2&#34;     # x is string
-x = int(x)  # x is now integer</pre></div></li>
-
-<li><p>don&rsquo;t have to be declared</p></li>
-
-<li><p>can have any built-in data type, user-defined object, function, or module
-assigned to them</p></li>
+<li>variables don&rsquo;t have to be declared</li>
+<li>variables can have any built-in data type, user-defined object, function, or module assigned to them</li>
 </ul>
 
-<p>Built-in data types</p>
+<h1 id="built-in-data-types">Built-in data types</h1>
 
-<ul>
-<li>built-in data types can be manipulated with operators, built-in functions,
-library functions, or a data type&rsquo;s own methods</li>
-<li>numbers</li>
+<p>Built-in data types can be manipulated with operators, built-in functions, library functions, or a data type&rsquo;s own methods.</p>
 
-<li><p>tuples (immutable lists)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">(0, 1, 2)</pre></div></li>
+<h2 id="numbers">numbers</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; type(1)
+&lt;<span style="font-weight:bold">class</span> <span style="">&#39;</span><span style="font-weight:bold">int</span><span style="font-style:italic">&#39;&gt;</span><span style="">
+</span><span style=""></span><span style="font-style:italic">&gt;&gt;&gt; type(1.1)</span><span style="">
+</span><span style=""></span><span style="font-style:italic">&lt;class &#39;</span>float<span style="font-style:italic">&#39;&gt;</span></code></pre></div>
+<h2 id="strings">strings</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; x = <span style="font-style:italic">&#34;Do not meddle    in </span><span style="font-weight:bold;font-style:italic">\t</span><span style="font-style:italic">he affairs of </span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">wizards&#34;</span>
+&gt;&gt;&gt; x2 = x.replace(<span style="font-style:italic">&#34;</span><span style="font-weight:bold;font-style:italic">\t</span><span style="font-style:italic">he&#34;</span>, <span style="font-style:italic">&#34;the&#34;</span>)
+&gt;&gt;&gt; <span style="font-weight:bold">import</span> <span style="font-weight:bold">re</span>
+&gt;&gt;&gt; regex = re.compile(<span style="font-style:italic">r</span><span style="font-style:italic">&#34;[\t ]+&#34;</span>)
+&gt;&gt;&gt; regex.sub(<span style="font-style:italic">&#34; &#34;</span>, x2)
+<span style="font-style:italic">&#39;Do not meddle in the affairs of </span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">wizards&#39;</span>
 
-<li><p>lists</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">[]
-[1]
-[1, &#34;two&#34;, (3, 4), [&#34;a&#34;, &#34;b&#34;]]</pre></div>
-<ul>
-<li>built-in functions: len, max, min</li>
-<li>operators: in, +, * (create new list, original unchanged)</li>
-<li>statements: del</li>
-<li>methods: append, count, extend, index, insert, pop, remove, reverse, sort</li>
-</ul></li>
-
-<li><p>strings</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; x = &#34;Do not meddle    in \the affairs of \nwizards&#34;
-&gt;&gt;&gt; x2 = x.replace(&#34;\the&#34;, &#34;the&#34;)
-&gt;&gt;&gt; import re
-&gt;&gt;&gt; regex = re.compile(r&#34;[\t ]+&#34;)
-&gt;&gt;&gt; regex.sub(&#34; &#34;, x2)
-&#39;Do not meddle in the affairs of \nwizards&#39;
-
-# raw strings do not interpret escape sequences
-&gt;&gt;&gt; print r&#39;hello\nworld&#39;
+<span style="font-style:italic"># raw strings do not interpret escape sequences</span>
+&gt;&gt;&gt; <span style="font-weight:bold">print</span> <span style="font-style:italic">r</span><span style="font-style:italic">&#39;hello\nworld&#39;</span>
 hello\nworld
-&gt;&gt;&gt; print &#39;hello\nworld&#39;
+&gt;&gt;&gt; <span style="font-weight:bold">print</span> <span style="font-style:italic">&#39;hello</span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">world&#39;</span>
 hello
-world</pre></div></li>
-
-<li><p>dictionaries (associative array functionality implemented using hash tables)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">{ 1: &#34;one&#34;, 2: &#34;two&#34; }</pre></div>
+world</code></pre></div>
+<h2 id="lists">lists</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">[]
+[1]
+[1, <span style="font-style:italic">&#34;two&#34;</span>, (3, 4), [<span style="font-style:italic">&#34;a&#34;</span>, <span style="font-style:italic">&#34;b&#34;</span>]]</code></pre></div>
 <ul>
+<li>built-in functions: <code>len()</code>, <code>max()</code>, <code>min()</code></li>
+<li>operators: <code>in</code>, <code>+</code>, <code>*</code> (create new list, original unchanged)</li>
+<li>statements: <code>del</code></li>
+<li>methods: <code>append()</code>, <code>count()</code>, <code>extend()</code>, <code>index()</code>, <code>insert()</code>, <code>pop()</code>, <code>remove()</code>, <code>reverse()</code>, <code>sort()</code></li>
+</ul>
+
+<h2 id="tuples">tuples</h2>
+
+<p>immutable lists</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">(0, 1, 2)
+(1, ) <span style="font-style:italic"># one element tuple</span></code></pre></div>
+<h2 id="dictionaries">dictionaries</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{ 1: <span style="font-style:italic">&#34;one&#34;</span>, 2: <span style="font-style:italic">&#34;two&#34;</span> }</code></pre></div>
+<ul>
+<li>associative array functionality implemented using hash tables</li>
 <li>keys must be of an immutable type (numbers, strings, tuples)</li>
-</ul></li>
+</ul>
 
-<li><p>sets (an unordered collection of objects)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; x = set([1, 2, 3])
-&gt;&gt;&gt; 1 in x
+<h2 id="sets">sets</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; x = set([1, 2, 3])
+&gt;&gt;&gt; 1 <span style="font-weight:bold">in</span> x
 True
-&gt;&gt;&gt; 4 in x
-False</pre></div>
+&gt;&gt;&gt; 4 <span style="font-weight:bold">in</span> x
+False</code></pre></div>
 <ul>
+<li>an unordered collection of objects</li>
 <li>when membership and uniqueness in the set are important</li>
 <li>like dictionary keys without values</li>
-</ul></li>
-
-<li><p>file objects</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">f = open(&#34;myfile&#34;, &#34;r&#34;)
-line1 = f.readline()
-f.close()</pre></div></li>
 </ul>
 
-<p>Control flow structures</p>
+<h2 id="file-objects">file objects</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">f = open(<span style="font-style:italic">&#34;myfile&#34;</span>, <span style="font-style:italic">&#34;r&#34;</span>)
+line1 = f.readline()
+f.close()</code></pre></div>
+<h1 id="what-is-truth">What is Truth</h1>
 
 <ul>
 <li><code>False</code> (boolean constant), <code>0</code>, <code>None</code> (Python nil value) and empty values (ex. <code>[ ]</code>, <code>&quot;&quot;</code>)
@@ -169,84 +191,85 @@ are taken as <code>False</code></li>
 <li><code>True</code> and everything else are considered <code>True</code></li>
 </ul>
 
-<p>Exceptions (errors)</p>
+<h1 id="exceptions">Exceptions</h1>
 
 <ul>
-<li>special objects to manage errors that arise during execution</li>
+<li>special objects to manage <strong>errors</strong> that arise during execution</li>
 <li>whenever en error occurs Python creates an exception object</li>
 <li>if you handle the exception (by <code>try-except-finally-else</code> compound statement) the program continues to run</li>
 <li>any uncaught exception will cause the program to exit and show a <em>traceback</em> describing the exception that was raised</li>
 </ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic">#!/usr/bin/env python3</span>
+<span style="font-style:italic"># Argument parsing and error handling</span>
 
-<p>Argument parsing and error handling</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/env python3
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">argparse</span>
 
-import argparse
-
-parser = argparse.ArgumentParser(description=&#34;This program&#39;s description&#34;)
-parser.add_argument(&#39;-f&#39;, type=str, help=&#39;Name of file to open&#39;, required=True)
+parser = argparse.ArgumentParser(description=<span style="font-style:italic">&#34;This program&#39;s description&#34;</span>)
+parser.add_argument(<span style="font-style:italic">&#39;-f&#39;</span>, type=str, help=<span style="font-style:italic">&#39;Name of file to open&#39;</span>, required=True)
 
 cmdargs = parser.parse_args()
 f = cmdargs.f
 
-try:
+<span style="font-weight:bold">try</span>:
     fh = open(f)
     line = fh.readline()
-# generic exception; more specific exceptions could be caught before
-except Exception as e: 
-    print(&#34;There was an error: &#34;, e)
-    exit(1)  # like tchrist said
-else:
-    print(&#34;1st line from&#34;, f, &#34;is&#34;, line, end=&#34;&#34;)
-    fh.close()</pre></div>
-<p>Calling to System</p>
+<span style="font-style:italic"># generic exception; more specific exceptions could be caught before</span>
+<span style="font-weight:bold">except</span> <span style="font-weight:bold">Exception</span> <span style="font-weight:bold">as</span> e: 
+    <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;There was an error: &#34;</span>, e)
+    exit(1)  <span style="font-style:italic"># like tchrist said</span>
+<span style="font-weight:bold">else</span>:
+    <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;1st line from&#34;</span>, f, <span style="font-style:italic">&#34;is&#34;</span>, line, end=<span style="font-style:italic">&#34;&#34;</span>)
+    fh.close()</code></pre></div>
+<h1 id="calling-to-system">Calling to System</h1>
 
-<p>1) <code>os</code> library (module)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">    import os
-    os.getcwd()
-    os.getenv(&#39;PATH&#39;)
-    os.system(&#39;ls -la&#39;)</pre></div>
-<p>2) <code>subprocess</code> module</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">    from subprocess import call
-    call([&#39;ls&#39;, &#39;-la&#39;])</pre></div>
-<p>Filenames and Paths</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/python
+<h2 id="os-module"><code>os</code> module</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">import</span> <span style="font-weight:bold">os</span>
+os.getcwd()
+os.getenv(<span style="font-style:italic">&#39;PATH&#39;</span>)
+os.system(<span style="font-style:italic">&#39;ls -la&#39;</span>)</code></pre></div>
+<h2 id="subprocess-module"><code>subprocess</code> module</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">from</span> <span style="font-weight:bold">subprocess</span> <span style="font-weight:bold">import</span> call
+call([<span style="font-style:italic">&#39;ls&#39;</span>, <span style="font-style:italic">&#39;-la&#39;</span>])</code></pre></div>
+<h1 id="filenames-and-paths">Filenames and Paths</h1>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic">#!/usr/bin/python</span>
 
-import os
-import sys
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">os</span>
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">sys</span>
 
-def walk(dirname):
-&#34;&#34;&#34;Walk through a directory and print names of files&#34;&#34;&#34;
-    for name in os.listdir(dirname):
+<span style="font-weight:bold">def</span> walk(dirname):
+<span style="font-style:italic">&#34;&#34;&#34;Walk through a directory and print names of files&#34;&#34;&#34;</span>
+    <span style="font-weight:bold">for</span> name <span style="font-weight:bold">in</span> os.listdir(dirname):
         path = os.path.join(dirname, name)
-        if os.path.isfile(path):
-            print path
-        elif os.path.isdir(path):
+        <span style="font-weight:bold">if</span> os.path.isfile(path):
+            <span style="font-weight:bold">print</span> path
+        <span style="font-weight:bold">elif</span> os.path.isdir(path):
             walk(path)
 
-walk(sys.argv[1])</pre></div>
-<p>Threading</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/env python3
+walk(sys.argv[1])</code></pre></div>
+<h1 id="threading">Threading</h1>
 
-import threading
-import time
+<p>Not really a Python&rsquo;s strength due to GIL (see Golang).</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic">#!/usr/bin/env python3</span>
 
-class aThread(threading.Thread):
-    def __init__(self, num, val):
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">threading</span>
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">time</span>
+
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">aThread</span>(threading.Thread):
+    <span style="font-weight:bold">def</span> __init__(self, num, val):
         threading.Thread.__init__(self)
         self.threadNum=num
         self.loopCount=val
 
-    def run(self):
-        print(&#34;Starting to run thread: &#34;, self.threadNum)
+    <span style="font-weight:bold">def</span> run(self):
+        <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;Starting to run thread: &#34;</span>, self.threadNum)
         myfunc(self.threadNum, self.loopCount)
 
-def myfunc(num, val):
+<span style="font-weight:bold">def</span> myfunc(num, val):
     count=0
-    while count &lt; val:
-        print(num, &#34; : &#34;, val*count)
+    <span style="font-weight:bold">while</span> count &lt; val:
+        <span style="font-weight:bold">print</span>(num, <span style="font-style:italic">&#34; : &#34;</span>, val*count)
         count=count+1
-        #time.sleep(1)
+        <span style="font-style:italic">#time.sleep(1)</span>
 
 t1=aThread(1, 15)
 t2=aThread(2, 20)
@@ -261,37 +284,35 @@ threads.append(t1)
 threads.append(t2)
 threads.append(t3)
 
-# wait for all threads to complete by entering them
-for t in threads:
-    t.join()</pre></div>
-<p>Classes and instances</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#!/usr/bin/env python
+<span style="font-style:italic"># wait for all threads to complete by entering them</span>
+<span style="font-weight:bold">for</span> t <span style="font-weight:bold">in</span> threads:
+    t.join()</code></pre></div>
+<h1 id="classes-and-instances">Classes and instances</h1>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic">#!/usr/bin/env python</span>
 
-class me:
-    def __init__(self, foo):
+<span style="font-weight:bold">class</span> <span style="font-weight:bold">me</span>:
+    <span style="font-weight:bold">def</span> __init__(self, foo):
         self.myvar = foo
 
-    def getval(self):
-        return self.myvar
+    <span style="font-weight:bold">def</span> getval(self):
+        <span style="font-weight:bold">return</span> self.myvar
 
-    def setval(self, bar):
+    <span style="font-weight:bold">def</span> setval(self, bar):
         self.myvar = bar
 
-x = me(&#39;bla&#39;)
+x = me(<span style="font-style:italic">&#39;bla&#39;</span>)
 y = x.getval()
-z = me(&#39;baz&#39;)
-print(y)
-x.setval(&#39;ble&#39;)
-print x.getval()
-print z.getval()</pre></div>
-<hr />
-
-<p>Sources</p>
+z = me(<span style="font-style:italic">&#39;baz&#39;</span>)
+<span style="font-weight:bold">print</span>(y)
+x.setval(<span style="font-style:italic">&#39;ble&#39;</span>)
+<span style="font-weight:bold">print</span> x.getval()
+<span style="font-weight:bold">print</span> z.getval()</code></pre></div>
+<h1 id="sources">Sources</h1>
 
 <ul>
 <li>The Quick Python Book</li>
 <li>Mastering Python (Safari video)</li>
-<li>Think Python</li>
+<li><a href="https://greenteapress.com/wp/think-python-2e/">Think Python</a></li>
 </ul>
 
     </article>
