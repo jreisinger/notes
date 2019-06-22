@@ -190,6 +190,17 @@ CAMS: culture, automation, measurement, and sharing. &amp;ndash; D. Edwards, J. 
     </item>
     
     <item>
+      <title>Perl to Python</title>
+      <link>https://jreisinger.github.io/notes/posts/perl2python/</link>
+      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/perl2python/</guid>
+      <description>Going from Perl to Python &amp;hellip;
+Data structures Both languages are dynamic so you can mix types in data structures (data containers).
+Perl Python Example Note ---- ------ ------- ----- array list [ 1, 3.4, &amp;#39;hello&amp;#39; ] you can mix types list tuple ( 10, 20, 30 ) immutable, parens are optional hash dictionary { &amp;#39;a&amp;#39;: 3, &amp;#39;b&amp;#39;: 42 } have to quote strings in Python n/a set set( [1, 2, 3] ) can be faked with hash in Perl In lists/tuples the comma is the operator.</description>
+    </item>
+    
+    <item>
       <title>Signals</title>
       <link>https://jreisinger.github.io/notes/posts/signals/</link>
       <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
