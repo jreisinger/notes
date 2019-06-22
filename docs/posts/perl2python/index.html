@@ -86,13 +86,27 @@ Perl Python Example Note ---- ------ ------- ----- array list [ …">
 <aside class="toc">
   <nav id="TableOfContents">
 <ul>
-<li>
-<ul>
 <li><a href="#data-structures">Data structures</a></li>
-<li><a href="#file-i-o">File I/O</a></li>
-<li><a href="#error-handling">Error handling</a></li>
-<li><a href="#comprehesions-and-generators">Comprehesions and generators</a></li>
+<li><a href="#file-i-o">File I/O</a>
+<ul>
+<li><a href="#read-from-file">read from file</a></li>
+<li><a href="#toc_3"><code>&lt;&gt;</code></a></li>
+<li><a href="#access-stdin-directly">access stdin directly</a></li>
+<li><a href="#slurp-the-whole-file-stdin">slurp the whole file/stdin:</a></li>
+<li><a href="#write-to-a-file">write to a file</a></li>
 </ul></li>
+<li><a href="#error-handling">Error handling</a>
+<ul>
+<li><a href="#errors">errors</a></li>
+<li><a href="#warnings">warnings</a></li>
+</ul></li>
+<li><a href="#comprehesions">Comprehesions</a>
+<ul>
+<li><a href="#mapping">mapping</a></li>
+<li><a href="#filtering">filtering</a></li>
+</ul></li>
+<li><a href="#generators">Generators</a></li>
+<li><a href="#more">More</a></li>
 </ul>
 </nav>
 </aside>
@@ -100,7 +114,7 @@ Perl Python Example Note ---- ------ ------- ----- array list [ …">
 
 <p>Going from Perl to Python &hellip;</p>
 
-<h2 id="data-structures">Data structures</h2>
+<h1 id="data-structures">Data structures</h1>
 
 <p>Both languages are dynamic so you can mix types in data structures (data
 containers).</p>
@@ -112,137 +126,125 @@ hash   dictionary   { &#39;a&#39;: 3, &#39;b&#39;: 42 }  have to quote strings i
 n/a    set          set( [1, 2, 3] )     can be faked with hash in Perl</pre></div>
 <p>In lists/tuples the comma is the operator. So a one element tuple is <code>( 10, )</code>.</p>
 
-<h2 id="file-i-o">File I/O</h2>
+<h1 id="file-i-o">File I/O</h1>
+
+<h2 id="read-from-file">read from file</h2>
 
 <p>Process every line in a file:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">for line in file(&#39;filename.txt&#39;):  # or open(&#34;filename.txt&#34;)
-    print line
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">for</span> line <span style="font-weight:bold">in</span> file(<span style="font-style:italic">&#39;filename.txt&#39;</span>):  <span style="font-style:italic"># or open(&#34;filename.txt&#34;)</span>
+    <span style="font-weight:bold">print</span> line
 
-# the with keyword closes the file automatically (even when the prog crashes)
-with open(&#34;/etc/passwd&#34;) as file_object:
-    for line in file_object:
-        # print statement adds a newline so we remove it with rstrip()
-        print line.rstrip()</pre></div>
+<span style="font-style:italic"># the with keyword closes the file automatically (even when the prog crashes)</span>
+<span style="font-weight:bold">with</span> open(<span style="font-style:italic">&#34;/etc/passwd&#34;</span>) <span style="font-weight:bold">as</span> file_object:
+    <span style="font-weight:bold">for</span> line <span style="font-weight:bold">in</span> file_object:
+        <span style="font-style:italic"># print statement adds a newline so we remove it with rstrip()</span>
+        <span style="font-weight:bold">print</span> line.rstrip()</code></pre></div>
+<h2 id="toc_3"><code>&lt;&gt;</code></h2>
+
 <p>Process every line in a file on command line or stdin if no file:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># Perl
-while (&lt;&gt;) { print }
-
-# Python
-import fileinput
-for line in fileinput.input():
-    print line</pre></div>
-<p>Access stdin directly:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import sys
-for line in sys.stdin:
-    print line</pre></div>
-<p>Slurp the whole file/stdin:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># into a string
-contents = file(&#39;filename.txt&#39;).read()
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="font-weight:bold">while</span> (&lt;&gt;) { <span style="font-weight:bold">print</span> }</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">import</span> <span style="font-weight:bold">fileinput</span>
+<span style="font-weight:bold">for</span> line <span style="font-weight:bold">in</span> fileinput.input():
+    <span style="font-weight:bold">print</span> line</code></pre></div>
+<h2 id="access-stdin-directly">access stdin directly</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">import</span> <span style="font-weight:bold">sys</span>
+<span style="font-weight:bold">for</span> line <span style="font-weight:bold">in</span> sys.stdin:
+    <span style="font-weight:bold">print</span> line</code></pre></div>
+<h2 id="slurp-the-whole-file-stdin">slurp the whole file/stdin:</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># into a string</span>
+contents = file(<span style="font-style:italic">&#39;filename.txt&#39;</span>).read()
 all_input = sys.stdin.read()
 
-# one string per line
-list_of_strings = file(&#39;filename.txt&#39;).readlines()
+<span style="font-style:italic"># one string per line</span>
+list_of_strings = file(<span style="font-style:italic">&#39;filename.txt&#39;</span>).readlines()
 all_input_as_list = sys.stdin.readlines()
 
-with open(&#39;/etc/passwd&#39;) as file_object:
-    # read() returns an empty string when it reaches the end of a file
+<span style="font-weight:bold">with</span> open(<span style="font-style:italic">&#39;/etc/passwd&#39;</span>) <span style="font-weight:bold">as</span> file_object:
+    <span style="font-style:italic"># read() returns an empty string when it reaches the end of a file</span>
     contents = file_object.read()
-    # rstrip() removes the extra blank line added by read()
-    print contents.rstrip()</pre></div>
-<p>Write to a file:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">f = open(&#34;out&#34;, &#34;w&#34;)
-while year &lt;= numyears:
+    <span style="font-style:italic"># rstrip() removes the extra blank line added by read()</span>
+    <span style="font-weight:bold">print</span> contents.rstrip()</code></pre></div>
+<h2 id="write-to-a-file">write to a file</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">f = open(<span style="font-style:italic">&#34;out&#34;</span>, <span style="font-style:italic">&#34;w&#34;</span>)
+<span style="font-weight:bold">while</span> year &lt;= numyears:
     principal = principal * (1 + rate)
-    f.write(&#34;%3d %0.2f&#34; % (year, principal))
-    #print &gt;&gt;f, &#34;%3d %0.2f&#34; % (year, principal)
+    f.write(<span style="font-style:italic">&#34;</span><span style="font-weight:bold;font-style:italic">%3d</span><span style="font-style:italic"> </span><span style="font-weight:bold;font-style:italic">%0.2f</span><span style="font-style:italic">&#34;</span> % (year, principal))
+    <span style="font-style:italic">#print &gt;&gt;f, &#34;%3d %0.2f&#34; % (year, principal)</span>
     year += 1
-f.close()</pre></div>
-<h2 id="error-handling">Error handling</h2>
+f.close()</code></pre></div>
+<h1 id="error-handling">Error handling</h1>
 
-<p>Errors:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># Perl...
+<h2 id="errors">errors</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="font-style:italic"># Perl...</span>
 
-# Convert string to int, return undef on error
-sub convert_number { int $_[0] }
-print convert_number $ARGV[0];</pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># Python...
+<span style="font-style:italic"># Convert string to int, return undef on error</span>
+<span style="font-weight:bold">sub</span> convert_number { int $_[0] }
+<span style="font-weight:bold">print</span> convert_number $ARGV[0];</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># Python...</span>
 
-# Emulate Perl&#39;s behavior above
-import sys
+<span style="font-style:italic"># Emulate Perl&#39;s behavior above</span>
+<span style="font-weight:bold">import</span> <span style="font-weight:bold">sys</span>
 
-def convert_number(s):
-    try:
-        return int(s)
-    except ValueError:
-        return None
+<span style="font-weight:bold">def</span> convert_number(s):
+    <span style="font-weight:bold">try</span>:
+        <span style="font-weight:bold">return</span> int(s)
+    <span style="font-weight:bold">except</span> <span style="font-weight:bold">ValueError</span>:
+        <span style="font-weight:bold">return</span> None
 
-print( convert_number(sys.argv[1]) )</pre></div>
-<p>Warnings</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># Perl...
+<span style="font-weight:bold">print</span>( convert_number(sys.argv[1]) )</code></pre></div>
+<h2 id="warnings">warnings</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="font-weight:bold">my</span> @filenames = <span style="font-style:italic">qw(README.md y empty)</span>;
 
-my @filenames = qw(README.md y empty);
-
-for my $file (@filenames) {
-    my $fh;
-    # C library/sys calls return undef on error and set $!
-    unless ( open $fh, $file ) {
-        warn &#34;$file: could not be opened: $!\n&#34;;
-        next;
+<span style="font-weight:bold">for</span> <span style="font-weight:bold">my</span> $file (@filenames) {
+    <span style="font-weight:bold">my</span> $fh;
+    <span style="font-style:italic"># C library/sys calls return undef on error and set $!</span>
+    <span style="font-weight:bold">unless</span> ( open $fh, $file ) {
+        warn <span style="font-style:italic">&#34;$file: could not be opened: $!\n&#34;</span>;
+        <span style="font-weight:bold">next</span>;
     }
-    warn &#34;$file: is empty\n&#34; unless readline $fh;
-}
+    warn <span style="font-style:italic">&#34;$file: is empty\n&#34;</span> <span style="font-weight:bold">unless</span> readline $fh;
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-weight:bold">class</span> <span style="font-weight:bold">EmptyFileError</span>(<span style="font-weight:bold">Exception</span>):
+    <span style="font-weight:bold">pass</span>
 
-# Python...
+filenames = [ <span style="font-style:italic">&#34;README.md&#34;</span>, <span style="font-style:italic">&#34;y&#34;</span>, <span style="font-style:italic">&#34;empty&#34;</span> ]
 
-class EmptyFileError(Exception):
-    pass
-
-filenames = [ &#34;README.md&#34;, &#34;y&#34;, &#34;empty&#34; ]
-
-for file in filenames:
-    try:
-        f = open(file, &#34;r&#34;)
+<span style="font-weight:bold">for</span> file <span style="font-weight:bold">in</span> filenames:
+    <span style="font-weight:bold">try</span>:
+        f = open(file, <span style="font-style:italic">&#34;r&#34;</span>)
         line = f.readline()
-        if line == &#34;&#34;:
+        <span style="font-weight:bold">if</span> line == <span style="font-style:italic">&#34;&#34;</span>:
             f.close()
-            raise EmptyFileError(&#34;%s: is empty&#34; % file)
-    except IOError as error:
-        print(&#34;%s: could not be opened: %s&#34; % (file, error.strerror))
-    except EmptyFileError as error:
-        print(error)</pre></div>
-<h2 id="comprehesions-and-generators">Comprehesions and generators</h2>
+            <span style="font-weight:bold">raise</span> EmptyFileError(<span style="font-style:italic">&#34;</span><span style="font-weight:bold;font-style:italic">%s</span><span style="font-style:italic">: is empty&#34;</span> % file)
+    <span style="font-weight:bold">except</span> <span style="font-weight:bold">IOError</span> <span style="font-weight:bold">as</span> error:
+        <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;</span><span style="font-weight:bold;font-style:italic">%s</span><span style="font-style:italic">: could not be opened: </span><span style="font-weight:bold;font-style:italic">%s</span><span style="font-style:italic">&#34;</span> % (file, error.strerror))
+    <span style="font-weight:bold">except</span> EmptyFileError <span style="font-weight:bold">as</span> error:
+        <span style="font-weight:bold">print</span>(error)</code></pre></div>
+<h1 id="comprehesions">Comprehesions</h1>
 
-<p>Mapping</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># map()
-$ perl -le &#39;print join &#34;, &#34;, map ucfirst, @ARGV&#39; jane john jack
-Jane, John, Jack
+<h2 id="mapping">mapping</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="font-style:italic"># map()</span>
+$ perl -<span style="font-weight:bold">le</span> <span style="font-style:italic">&#39;print join &#34;, &#34;, map ucfirst, @ARGV&#39;</span> jane john jack
+Jane, John, Jack</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># list comprehension</span>
+&gt;&gt;&gt; names = [<span style="font-style:italic">&#39;jane&#39;</span>, <span style="font-style:italic">&#39;john&#39;</span>, <span style="font-style:italic">&#39;jack&#39;</span>]
+&gt;&gt;&gt; [ s.capitalize() <span style="font-weight:bold">for</span> s <span style="font-weight:bold">in</span> names ]
+[<span style="font-style:italic">&#39;Jane&#39;</span>, <span style="font-style:italic">&#39;John&#39;</span>, <span style="font-style:italic">&#39;Jack&#39;</span>]</code></pre></div>
+<h2 id="filtering">filtering</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="font-style:italic"># grep()</span>
+$ perl -<span style="font-weight:bold">le</span> <span style="font-style:italic">&#39;print join &#34;, &#34;, grep $_ eq uc $_, @ARGV&#39;</span> a BC Cd d EF
+BC, EF</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic"># list comprehension</span>
+&gt;&gt;&gt; strings = [<span style="font-style:italic">&#39;a&#39;</span>, <span style="font-style:italic">&#39;BC&#39;</span>, <span style="font-style:italic">&#39;Cd&#39;</span>, <span style="font-style:italic">&#39;d&#39;</span>, <span style="font-style:italic">&#39;EF&#39;</span>]
+&gt;&gt;&gt; [ s <span style="font-weight:bold">for</span> s <span style="font-weight:bold">in</span> strings <span style="font-weight:bold">if</span> s.isupper() ]
+[<span style="font-style:italic">&#39;BC&#39;</span>, <span style="font-style:italic">&#39;EF&#39;</span>]</code></pre></div>
+<h1 id="generators">Generators</h1>
 
-# list comprehension
-&gt;&gt;&gt; names = [&#39;jane&#39;, &#39;john&#39;, &#39;jack&#39;]
-&gt;&gt;&gt; [ s.capitalize() for s in names ]
-[&#39;Jane&#39;, &#39;John&#39;, &#39;Jack&#39;]</pre></div>
-<p>Filtering</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># grep()
-$ perl -le &#39;print join &#34;, &#34;, grep $_ eq uc $_, @ARGV&#39; a BC Cd d EF
-BC, EF
-
-# list comprehension
-&gt;&gt;&gt; strings = [&#39;a&#39;, &#39;BC&#39;, &#39;Cd&#39;, &#39;d&#39;, &#39;EF&#39;]
-&gt;&gt;&gt; [ s for s in strings if s.isupper() ]
-[&#39;BC&#39;, &#39;EF&#39;]</pre></div>
-<p>Generator expression (this time we go from Python to Perl&hellip;)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&gt;&gt;&gt; g = ( n ** 2 for n in range(5) )
+<p>This time we go from Python to Perl&hellip;</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; g = ( n ** 2 <span style="font-weight:bold">for</span> n <span style="font-weight:bold">in</span> range(5) )
 &gt;&gt;&gt; next(g)
 0
 &gt;&gt;&gt; g.next()
-1
-$ perl -le &#39;print join &#34;, &#34;, map $_ ** 2, 0 .. 4&#39;
-0, 1, 4, 9, 16
-
-&gt;&gt;&gt; sum( n ** 2 for n in range(5) )
-30
-$ perl -le &#39;$sum += $_ for map $_ ** 2, 0 .. 4; print $sum&#39;
-30</pre></div>
-<p>More:</p>
+1</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl -<span style="font-weight:bold">le</span> <span style="font-style:italic">&#39;print join &#34;, &#34;, map $_ ** 2, 0 .. 4&#39;</span>
+0, 1, 4, 9, 16</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; sum( n ** 2 <span style="font-weight:bold">for</span> n <span style="font-weight:bold">in</span> range(5) )
+30</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$ perl -<span style="font-weight:bold">le</span> <span style="font-style:italic">&#39;$sum += $_ for map $_ ** 2, 0 .. 4; print $sum&#39;</span>
+30</code></pre></div>
+<h1 id="more">More</h1>
 
 <ul>
 <li><a href="https://youtu.be/-tdI9RYjZNE">Andrew Grangaard - A perler&rsquo;s Python Primer</a></li>
