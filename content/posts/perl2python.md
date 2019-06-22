@@ -142,15 +142,15 @@ Warnings
         except EmptyFileError as error:
             print(error)
 
-Shortcuts
----------
+Comprehesions and generators
+----------------------------
 
 Mapping
 
     # map()
     $ perl -le 'print join ", ", map ucfirst, @ARGV' jane john jack
     Jane, John, Jack
-    
+
     # list comprehension
     >>> names = ['jane', 'john', 'jack']
     >>> [ s.capitalize() for s in names ]
@@ -161,7 +161,7 @@ Filtering
     # grep()
     $ perl -le 'print join ", ", grep $_ eq uc $_, @ARGV' a BC Cd d EF
     BC, EF
-    
+
     # list comprehension
     >>> strings = ['a', 'BC', 'Cd', 'd', 'EF']
     >>> [ s for s in strings if s.isupper() ]
