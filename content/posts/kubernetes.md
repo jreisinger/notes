@@ -24,8 +24,13 @@ Namespace
 
 * group of objects in a cluster
 * similar to a filesystem folder
+* see [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) for more 
 
 ```bash
+# your current namespace
+kubectl config get-contexts # search for asterisk and see column NAMESPACE
+
+# all namespaces in a cluster
 kubectl get namespaces
 ```
 
