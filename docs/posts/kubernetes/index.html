@@ -7,11 +7,9 @@
   <meta property="og:title" content="Kubernetes - Notes" />
   <meta name="twitter:title" content="Kubernetes - Notes" />
   <meta name="description" content="Basics Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects Basic objects
- everything in Kubernetes is represented by a RESTful resource aka.">
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more  # your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE  # all namespaces in a cluster kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects Basic objects">
   <meta property="og:description" content="Basics Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder  kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects Basic objects
- everything in Kubernetes is represented by a RESTful resource aka.">
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more  # your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE  # all namespaces in a cluster kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects Basic objects">
   <meta name="twitter:description" content="Basics Kubernetes is the operating system for cloud-native applications.
 Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem …">
   <meta name="author" content="Jozef Reisinger"/>
@@ -19,7 +17,7 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -122,8 +120,13 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
 <ul>
 <li>group of objects in a cluster</li>
 <li>similar to a filesystem folder</li>
+<li>see <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a> for more</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get namespaces</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># your current namespace
+</span><span style="font-style:italic"></span>kubectl config get-contexts <span style="font-style:italic"># search for asterisk and see column NAMESPACE
+</span><span style="font-style:italic"></span>
+<span style="font-style:italic"># all namespaces in a cluster
+</span><span style="font-style:italic"></span>kubectl get namespaces</code></pre></div>
 <h2 id="context">Context</h2>
 
 <ul>
@@ -288,7 +291,7 @@ kubectl run wget --image=busybox:1.28 --rm -it -restart=Never --command -- wget 
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -332,7 +335,7 @@ kubectl run wget --image=busybox:1.28 --rm -it -restart=Never --command -- wget 
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

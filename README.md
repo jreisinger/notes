@@ -12,6 +12,7 @@ Typical workcycle:
 
 ## Posts
 
+* [Concurrency and Channels](content/posts/concurrency-and-channels.md)
 * [Devops](content/posts/devops.md)
 * [Docker](content/posts/docker.md)
 * [Gen Rand File](content/posts/gen_rand_file.md)
@@ -28,7 +29,9 @@ Typical workcycle:
 * [Meaning of Life by Zentara](content/posts/meaning-of-life-by-zentara.md)
 * [Net Basics](content/posts/net-basics.md)
 * [Net Prog](content/posts/net-prog.md)
+* [Perl2Python](content/posts/perl2python.md)
 * [Perl One Liners](content/posts/perl-one-liners.md)
+* [Python](content/posts/python.md)
 * [Read Stdin or Args](content/posts/read-stdin-or-args.md)
 * [Signals](content/posts/signals.md)
 * [Sorting with Go](content/posts/sorting-with-go.md)
