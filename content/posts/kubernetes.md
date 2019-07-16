@@ -199,6 +199,14 @@ Explain resource types:
 kubectl explain svc
 ```
 
+Get pods per node:
+
+```
+kubectl get pods -o json --all-namespaces | jq '.items |
+  group_by(.spec.nodeName) | map({"nodeName": .[0].spec.nodeName,
+  "count": length}) | sort_by(.count) | reverse'
+```
+
 Debugging
 ---------
 
