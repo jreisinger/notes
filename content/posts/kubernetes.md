@@ -213,29 +213,26 @@ Generate resource manifest:
 kubectl run demo --image=cloudnatived/demo:hello --dry-run -o yaml
 ```
 
-Debugging
----------
-
-Seeing logs:
+Show logs:
 
 ```sh
 kubectl logs [-f] <pod>
 kubectl exec -it <pod> -- bash  # or sh instead of bash
 ```
 
-Copying files:
+Copy files:
 
 ```sh
 kubectl cp <pod>:/path/to/remote/file /path/to/local/file
 ```
 
-Access a Pod via port forwarding:
+Access Pod via port forwarding:
 
 ```sh
 kubectl port-forward kuard 8080:8080  # tunnel: localhost -> k8s master -> k8s worker node
 ```
 
-Running containers for troubleshooting:
+Run containers for troubleshooting:
 
 ```sh
 kubectl run demo --image=cloudnatived/demo:hello --expose --port 8888 # pod to troubleshoot
