@@ -207,6 +207,12 @@ kubectl get pods -o json --all-namespaces | jq '.items |
   "count": length}) | sort_by(.count) | reverse'
 ```
 
+Generate resource manifest:
+
+```
+kubectl run demo --image=cloudnatived/demo:hello --dry-run -o yaml
+```
+
 Debugging
 ---------
 
