@@ -20,7 +20,7 @@ determine:
 * characteristics of data (e.g. all strings have length)
 * operations that can be performed on data (e.g. `len("a string")`)
 * data size (e.g. `int8`)
-* how data are stored in memory
+* how data is stored in memory
 
 ## Numbers
 
