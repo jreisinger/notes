@@ -24,6 +24,7 @@ Typical workcycle:
 * [Hashes](content/posts/hashes.md)
 * [HTTP Protocol](content/posts/http-protocol.md)
 * [Heap Vs Stack](content/posts/heap-vs-stack.md)
+* [Introduction to Go](content/posts/go-intro.md)
 * [Kubernetes](content/posts/kubernetes.md)
 * [Linux Performance Analysis](content/posts/linux-performance-analysis.md)
 * [Meaning of Life by Zentara](content/posts/meaning-of-life-by-zentara.md)

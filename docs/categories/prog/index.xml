@@ -6,10 +6,22 @@
     <description>Recent content in Prog on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/categories/prog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to Go</title>
+      <link>https://jreisinger.github.io/notes/posts/go-intro/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/go-intro/</guid>
+      <description>Data types Go is statically typed - variables always have specific type and type cannot change during the program run time.
+Types help us reason about what our program is doing and help us catch many errors.
+Types are similar to sets in mathematics. They classify data into groups and determine:
+ characteristics of data (e.g. all strings have length) operations that can be performed on data (e.g. len(&amp;quot;a string&amp;quot;)) data size (e.</description>
+    </item>
     
     <item>
       <title>Concurrency and Channels</title>
