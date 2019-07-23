@@ -98,6 +98,8 @@ determine:</p>
 <li>how data is stored in memory</li>
 </ul>
 
+<p>See also A Tour of Go: <a href="https://tour.golang.org/basics/11">Basic types</a>.</p>
+
 <h2 id="numbers">Numbers</h2>
 
 <p>Computers use base-2 binary system to store and work with the numbers. So
@@ -127,6 +129,39 @@ know to use them</li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// we use .0 to tell Go it&#39;s a floating-point number
 </span><span style="font-style:italic"></span>fmt.Prinln(<span style="font-style:italic">&#34;1 + 1 =&#34;</span>, 1.0 + 1.0)</code></pre></div>
+<h2 id="strings">Strings</h2>
+
+<ul>
+<li>sequences of characters used to represent text</li>
+<li>made up of individual bytes, usually (but not always) one for each character</li>
+</ul>
+
+<p>String literals are created with:</p>
+
+<ul>
+<li>double quotes (<code>&quot;Hello world&quot;</code>) - cannot contain newlines and allow escape
+sequeences (e.g. <code>\t</code>, <code>\n</code>)</li>
+<li>backticks (<code>`Hello world`</code>)</li>
+</ul>
+
+<p>Common operations on strings:</p>
+
+<ul>
+<li>find length: <code>len(&quot;Hello world&quot;)</code></li>
+<li>access a character: <code>&quot;Hello world[1]</code> -&gt; 101 instead of e because the
+character is represented by a byte (i.e. and integer)</li>
+<li>concatenate strings: <code>&quot;Hello &quot; + &quot;world&quot;</code> -&gt; Go figures out what to do based
+on the type of the arguments</li>
+</ul>
+
+<h2 id="booleans">Booleans</h2>
+
+<ul>
+<li>special 1-bit integer type used to represent true and false (or on and off)</li>
+<li>logical operators: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></li>
+<li>truth tables define how these operators work</li>
+</ul>
+
     </article>
 
     

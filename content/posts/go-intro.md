@@ -22,6 +22,8 @@ determine:
 * data size (e.g. `int8`)
 * how data is stored in memory
 
+See also A Tour of Go: [Basic types](https://tour.golang.org/basics/11).
+
 ## Numbers
 
 Computers use base-2 binary system to store and work with the numbers. So
@@ -50,3 +52,30 @@ Floating-point types
 // we use .0 to tell Go it's a floating-point number
 fmt.Prinln("1 + 1 =", 1.0 + 1.0)
 ```
+
+## Strings
+
+* sequences of characters used to represent text
+* made up of individual bytes, usually (but not always) one for each character
+
+String literals are created with:
+
+* double quotes (`"Hello world"`) - cannot contain newlines and allow escape
+    sequeences (e.g. `\t`, `\n`)
+* backticks (`` `Hello world` ``)
+
+Common operations on strings:
+
+* find length: `len("Hello world")`
+* access a character: `"Hello world[1]` -> 101 instead of e because the
+    character is represented by a byte (i.e. and integer)
+* concatenate strings: `"Hello " + "world"` -> Go figures out what to do based
+    on the type of the arguments
+
+## Booleans
+
+* special 1-bit integer type used to represent true and false (or on and off)
+* logical operators: `&&`, `||`, `!`
+* truth tables define how these operators work
+
+
