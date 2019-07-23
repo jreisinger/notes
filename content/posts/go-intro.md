@@ -99,3 +99,6 @@ func main() {
 	fmt.Printf("%.2f ft = %.2f m\n", feet, meters)
 }
 ```
+# Sources
+
+* Caleb Doxsey: Introducing Go (O'Reilly, 2016)
