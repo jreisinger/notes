@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -162,12 +162,20 @@ on the type of the arguments</li>
 <li>truth tables define how these operators work</li>
 </ul>
 
+<h1 id="variables">Variables</h1>
+
+<ul>
+<li>variable - storage location, with a specific type and an associated name</li>
+<li><a href="https://golang.org/ref/spec#Declarations_and_scope">scope</a> - the range of places where you are allowed to use a variable (&ldquo;Go is lexically scoped using block.&rdquo;)</li>
+<li>constants - variables whose values cannot be changed during program run time</li>
+</ul>
+
     </article>
 
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -209,7 +217,7 @@ on the type of the arguments</li>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -78,4 +78,9 @@ Common operations on strings:
 * logical operators: `&&`, `||`, `!`
 * truth tables define how these operators work
 
+# Variables
+
+* variable - storage location, with a specific type and an associated name
+* [scope](https://golang.org/ref/spec#Declarations_and_scope) - the range of places where you are allowed to use a variable ("Go is lexically scoped using block.")
+* constants - variables whose values cannot be changed during program run time
 
