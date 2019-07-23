@@ -84,3 +84,18 @@ Common operations on strings:
 * [scope](https://golang.org/ref/spec#Declarations_and_scope) - the range of places where you are allowed to use a variable ("Go is lexically scoped using block.")
 * constants - variables whose values cannot be changed during program run time
 
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Print("Enter distance in feet: ")
+	var feet float64 // one way to define var
+	fmt.Scanf("%f", &feet)
+	meters := feet * 0.3048 // another way to define var
+	fmt.Printf("%.2f ft = %.2f m\n", feet, meters)
+}
+```

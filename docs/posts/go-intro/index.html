@@ -78,6 +78,19 @@ Types help us reason about what our program is doing and help us catch many …"
         </li>
       </ul>
       
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#data-types">Data types</a>
+<ul>
+<li><a href="#numbers">Numbers</a></li>
+<li><a href="#strings">Strings</a></li>
+<li><a href="#booleans">Booleans</a></li>
+</ul></li>
+<li><a href="#variables">Variables</a></li>
+</ul>
+</nav>
+</aside>
       
 
 <h1 id="data-types">Data types</h1>
@@ -169,7 +182,19 @@ on the type of the arguments</li>
 <li><a href="https://golang.org/ref/spec#Declarations_and_scope">scope</a> - the range of places where you are allowed to use a variable (&ldquo;Go is lexically scoped using block.&rdquo;)</li>
 <li>constants - variables whose values cannot be changed during program run time</li>
 </ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
+<span style="font-weight:bold">import</span> (
+	<span style="font-style:italic">&#34;fmt&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+	fmt.Print(<span style="font-style:italic">&#34;Enter distance in feet: &#34;</span>)
+	<span style="font-weight:bold">var</span> feet <span style="">float64</span> <span style="font-style:italic">// one way to define var
+</span><span style="font-style:italic"></span>	fmt.Scanf(<span style="font-style:italic">&#34;%f&#34;</span>, &amp;feet)
+	meters := feet * 0.3048 <span style="font-style:italic">// another way to define var
+</span><span style="font-style:italic"></span>	fmt.Printf(<span style="font-style:italic">&#34;%.2f ft = %.2f m\n&#34;</span>, feet, meters)
+}</code></pre></div>
     </article>
 
     
