@@ -22,7 +22,7 @@ determine:
 * data size (e.g. `int8`)
 * how data is stored in memory
 
-See also A Tour of Go: [Basic types](https://tour.golang.org/basics/11).
+See also "A Tour of Go: [Basic types](https://tour.golang.org/basics/11)".
 
 ## Numbers
 
@@ -126,7 +126,7 @@ If the if statement becomes too verbose use the switch statement.
 
 ```go
 for i := 1; i <= 10; i++ {
-    switch i {
+    switch i { // expression after switch can be omitted
     case 1: fmt.Println("one")
     case 5: fmt.Println("five")
     case 6: fmt.Println("six")
@@ -139,21 +139,6 @@ for i := 1; i <= 10; i++ {
 The value of the expressions (in this example `i`) is compared to the
 expression following each `case` keyword. If they are equivalent the statements
 following `:` are executed. The first one to succeed is chosen.
-
-```go
-for i := 1; i <= 30; i++ {
-    switch {
-    case i%3 == 0 && i%5 == 0:
-        fmt.Println("FizzBuzz")
-    case i%3 == 0:
-        fmt.Println("Fizz")
-    case i%5 == 0:
-        fmt.Println("Buzz")
-    default:
-        fmt.Println(i)
-    }
-}
-```
 
 # Sources
 

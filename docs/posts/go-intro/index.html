@@ -117,7 +117,7 @@ determine:</p>
 <li>how data is stored in memory</li>
 </ul>
 
-<p>See also A Tour of Go: <a href="https://tour.golang.org/basics/11">Basic types</a>.</p>
+<p>See also &ldquo;A Tour of Go: <a href="https://tour.golang.org/basics/11">Basic types</a>&rdquo;.</p>
 
 <h2 id="numbers">Numbers</h2>
 
@@ -221,8 +221,8 @@ i := 1              <span style="font-style:italic">// declaration + initializat
 
 <p>If the if statement becomes too verbose use the switch statement.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">for</span> i := 1; i &lt;= 10; i++ {
-    <span style="font-weight:bold">switch</span> i {
-    <span style="font-weight:bold">case</span> 1: fmt.Println(<span style="font-style:italic">&#34;one&#34;</span>)
+    <span style="font-weight:bold">switch</span> i { <span style="font-style:italic">// expression after switch can be omitted
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">case</span> 1: fmt.Println(<span style="font-style:italic">&#34;one&#34;</span>)
     <span style="font-weight:bold">case</span> 5: fmt.Println(<span style="font-style:italic">&#34;five&#34;</span>)
     <span style="font-weight:bold">case</span> 6: fmt.Println(<span style="font-style:italic">&#34;six&#34;</span>)
     <span style="font-weight:bold">case</span> 10: fmt.Println(<span style="font-style:italic">&#34;ten&#34;</span>)
@@ -232,18 +232,7 @@ i := 1              <span style="font-style:italic">// declaration + initializat
 <p>The value of the expressions (in this example <code>i</code>) is compared to the
 expression following each <code>case</code> keyword. If they are equivalent the statements
 following <code>:</code> are executed. The first one to succeed is chosen.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">for</span> i := 1; i &lt;= 30; i++ {
-    <span style="font-weight:bold">switch</span> {
-    <span style="font-weight:bold">case</span> i%3 == 0 &amp;&amp; i%5 == 0:
-        fmt.Println(<span style="font-style:italic">&#34;FizzBuzz&#34;</span>)
-    <span style="font-weight:bold">case</span> i%3 == 0:
-        fmt.Println(<span style="font-style:italic">&#34;Fizz&#34;</span>)
-    <span style="font-weight:bold">case</span> i%5 == 0:
-        fmt.Println(<span style="font-style:italic">&#34;Buzz&#34;</span>)
-    <span style="font-weight:bold">default</span>:
-        fmt.Println(i)
-    }
-}</code></pre></div>
+
 <h1 id="sources">Sources</h1>
 
 <ul>
