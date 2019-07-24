@@ -6,15 +6,15 @@
   <title>Introduction to Go - Notes</title>
   <meta property="og:title" content="Introduction to Go - Notes" />
   <meta name="twitter:title" content="Introduction to Go - Notes" />
-  <meta name="description" content="Data types Go is statically typed - variables always have specific type and type cannot change during the program run time.
+  <meta name="description" content="Data Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many errors.
 Types are similar to sets in mathematics. They classify data into groups and determine:
  characteristics of data (e.g. all strings have length) operations that can be performed on data (e.g. len(&quot;a string&quot;)) data size (e.">
-  <meta property="og:description" content="Data types Go is statically typed - variables always have specific type and type cannot change during the program run time.
+  <meta property="og:description" content="Data Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many errors.
 Types are similar to sets in mathematics. They classify data into groups and determine:
  characteristics of data (e.g. all strings have length) operations that can be performed on data (e.g. len(&quot;a string&quot;)) data size (e.">
-  <meta name="twitter:description" content="Data types Go is statically typed - variables always have specific type and type cannot change during the program run time.
+  <meta name="twitter:description" content="Data Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
@@ -81,20 +81,25 @@ Types help us reason about what our program is doing and help us catch many …"
 <aside class="toc">
   <nav id="TableOfContents">
 <ul>
-<li><a href="#data-types">Data types</a>
+<li><a href="#data-types">Data Types</a>
 <ul>
 <li><a href="#numbers">Numbers</a></li>
 <li><a href="#strings">Strings</a></li>
 <li><a href="#booleans">Booleans</a></li>
 </ul></li>
 <li><a href="#variables">Variables</a></li>
+<li><a href="#control-structures">Control Structures</a>
+<ul>
+<li><a href="#the-for-statement">The for Statement</a></li>
+<li><a href="#the-if-and-switch-statements">The if and switch Statements</a></li>
+</ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
 </nav>
 </aside>
       
 
-<h1 id="data-types">Data types</h1>
+<h1 id="data-types">Data Types</h1>
 
 <p>Go is statically typed - variables always have specific type and type cannot
 change during the program run time.</p>
@@ -186,15 +191,58 @@ on the type of the arguments</li>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
-	<span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;fmt&#34;</span>
 )
 
 <span style="font-weight:bold">func</span> main() {
-	fmt.Print(<span style="font-style:italic">&#34;Enter distance in feet: &#34;</span>)
-	<span style="font-weight:bold">var</span> feet <span style="">float64</span> <span style="font-style:italic">// one way to define var
-</span><span style="font-style:italic"></span>	fmt.Scanf(<span style="font-style:italic">&#34;%f&#34;</span>, &amp;feet)
-	meters := feet * 0.3048 <span style="font-style:italic">// another way to define var
-</span><span style="font-style:italic"></span>	fmt.Printf(<span style="font-style:italic">&#34;%.2f ft = %.2f m\n&#34;</span>, feet, meters)
+    fmt.Print(<span style="font-style:italic">&#34;Enter distance in feet: &#34;</span>)
+    <span style="font-weight:bold">var</span> feet <span style="">float64</span> <span style="font-style:italic">// one way to define var
+</span><span style="font-style:italic"></span>    fmt.Scanf(<span style="font-style:italic">&#34;%f&#34;</span>, &amp;feet)
+    meters := feet * 0.3048 <span style="font-style:italic">// another way to define var
+</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%.2f ft = %.2f m\n&#34;</span>, feet, meters)
+}</code></pre></div>
+<h1 id="control-structures">Control Structures</h1>
+
+<h2 id="the-for-statement">The for Statement</h2>
+
+<p>Other programming languages have various types of loops (while, until, foreach,
+&hellip;). Go only has for loop that can be used in various ways, e.g.:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// traditional c-style
+</span><span style="font-style:italic"></span><span style="font-weight:bold">for</span> i := 1; i &lt;= 10; i++ {
+    fmt.Println(i)
+}
+
+i := 1              <span style="font-style:italic">// declaration + initialization
+</span><span style="font-style:italic"></span><span style="font-weight:bold">for</span> i &lt;= 10 {       <span style="font-style:italic">// condition
+</span><span style="font-style:italic"></span>    fmt.Println(i)
+    i++             <span style="font-style:italic">// increment
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<h2 id="the-if-and-switch-statements">The if and switch Statements</h2>
+
+<p>If the if statement becomes too verbose use the switch statement.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">for</span> i := 1; i &lt;= 10; i++ {
+    <span style="font-weight:bold">switch</span> i {
+    <span style="font-weight:bold">case</span> 1: fmt.Println(<span style="font-style:italic">&#34;one&#34;</span>)
+    <span style="font-weight:bold">case</span> 5: fmt.Println(<span style="font-style:italic">&#34;five&#34;</span>)
+    <span style="font-weight:bold">case</span> 6: fmt.Println(<span style="font-style:italic">&#34;six&#34;</span>)
+    <span style="font-weight:bold">case</span> 10: fmt.Println(<span style="font-style:italic">&#34;ten&#34;</span>)
+    <span style="font-weight:bold">default</span>: fmt.Println(i) <span style="font-style:italic">// similar to else
+</span><span style="font-style:italic"></span>    }
+}</code></pre></div>
+<p>The value of the expressions (in this example <code>i</code>) is compared to the
+expression following each <code>case</code> keyword. If they are equivalent the statements
+following <code>:</code> are executed. The first one to succeed is chosen.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">for</span> i := 1; i &lt;= 30; i++ {
+    <span style="font-weight:bold">switch</span> {
+    <span style="font-weight:bold">case</span> i%3 == 0 &amp;&amp; i%5 == 0:
+        fmt.Println(<span style="font-style:italic">&#34;FizzBuzz&#34;</span>)
+    <span style="font-weight:bold">case</span> i%3 == 0:
+        fmt.Println(<span style="font-style:italic">&#34;Fizz&#34;</span>)
+    <span style="font-weight:bold">case</span> i%5 == 0:
+        fmt.Println(<span style="font-style:italic">&#34;Buzz&#34;</span>)
+    <span style="font-weight:bold">default</span>:
+        fmt.Println(i)
+    }
 }</code></pre></div>
 <h1 id="sources">Sources</h1>
 

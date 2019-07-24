@@ -6,7 +6,7 @@ categories: [prog]
 tags: [go]
 ---
 
-# Data types
+# Data Types
 
 Go is statically typed - variables always have specific type and type cannot
 change during the program run time.
@@ -88,17 +88,73 @@ Common operations on strings:
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
-	fmt.Print("Enter distance in feet: ")
-	var feet float64 // one way to define var
-	fmt.Scanf("%f", &feet)
-	meters := feet * 0.3048 // another way to define var
-	fmt.Printf("%.2f ft = %.2f m\n", feet, meters)
+    fmt.Print("Enter distance in feet: ")
+    var feet float64 // one way to define var
+    fmt.Scanf("%f", &feet)
+    meters := feet * 0.3048 // another way to define var
+    fmt.Printf("%.2f ft = %.2f m\n", feet, meters)
 }
 ```
+
+# Control Structures
+
+## The for Statement
+
+Other programming languages have various types of loops (while, until, foreach,
+...). Go only has for loop that can be used in various ways, e.g.:
+
+```go
+// traditional c-style
+for i := 1; i <= 10; i++ {
+    fmt.Println(i)
+}
+
+i := 1              // declaration + initialization
+for i <= 10 {       // condition
+    fmt.Println(i)
+    i++             // increment
+}
+```
+
+## The if and switch Statements
+
+If the if statement becomes too verbose use the switch statement.
+
+```go
+for i := 1; i <= 10; i++ {
+    switch i {
+    case 1: fmt.Println("one")
+    case 5: fmt.Println("five")
+    case 6: fmt.Println("six")
+    case 10: fmt.Println("ten")
+    default: fmt.Println(i) // similar to else
+    }
+}
+```
+
+The value of the expressions (in this example `i`) is compared to the
+expression following each `case` keyword. If they are equivalent the statements
+following `:` are executed. The first one to succeed is chosen.
+
+```go
+for i := 1; i <= 30; i++ {
+    switch {
+    case i%3 == 0 && i%5 == 0:
+        fmt.Println("FizzBuzz")
+    case i%3 == 0:
+        fmt.Println("Fizz")
+    case i%5 == 0:
+        fmt.Println("Buzz")
+    default:
+        fmt.Println(i)
+    }
+}
+```
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)
