@@ -34,7 +34,7 @@ Integer types
 * [u]int{8, 16, 32, 64}
 * machine dependent: uint, **int**, uintptr
 * byte - alias for uint8
-* rune - alias for int32
+* rune - alias for int32 (represents a Unicode code point)
 
 Floating-point types
 
