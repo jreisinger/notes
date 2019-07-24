@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -117,7 +117,7 @@ determine:</p>
 <li>how data is stored in memory</li>
 </ul>
 
-<p>See also &ldquo;A Tour of Go: <a href="https://tour.golang.org/basics/11">Basic types</a>&rdquo;.</p>
+<p>See also <a href="https://tour.golang.org/basics/11">Basic types</a> and <a href="https://tour.golang.org/basics/12">Zero values</a>.</p>
 
 <h2 id="numbers">Numbers</h2>
 
@@ -130,7 +130,7 @@ computers count like this: 0, 1, 10, 11, 100, 110, 111, &hellip;</p>
 <li>[u]int{8, 16, 32, 64}</li>
 <li>machine dependent: uint, <strong>int</strong>, uintptr</li>
 <li>byte - alias for uint8</li>
-<li>rune - alias for int32</li>
+<li>rune - alias for int32 (represents a Unicode code point)</li>
 </ul>
 
 <p>Floating-point types</p>
@@ -201,6 +201,8 @@ on the type of the arguments</li>
     meters := feet * 0.3048 <span style="font-style:italic">// another way to define var
 </span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%.2f ft = %.2f m\n&#34;</span>, feet, meters)
 }</code></pre></div>
+<p>See also <a href="https://tour.golang.org/basics/14">Type inference</a>.</p>
+
 <h1 id="control-structures">Control Structures</h1>
 
 <h2 id="the-for-statement">The for Statement</h2>
@@ -237,6 +239,7 @@ following <code>:</code> are executed. The first one to succeed is chosen.</p>
 
 <ul>
 <li>Caleb Doxsey: Introducing Go (O&rsquo;Reilly, 2016)</li>
+<li><a href="https://tour.golang.org">A Tour of Go</a></li>
 </ul>
 
     </article>
@@ -244,7 +247,7 @@ following <code>:</code> are executed. The first one to succeed is chosen.</p>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -286,7 +289,7 @@ following <code>:</code> are executed. The first one to succeed is chosen.</p>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
