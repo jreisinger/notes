@@ -22,9 +22,7 @@ determine:
 * data size (e.g. `int8`)
 * how data is stored in memory
 
-See also "A Tour of Go":
-* [Basic types](https://tour.golang.org/basics/11)
-* [Zero values](https://tour.golang.org/basics/12)
+See also [Basic types](https://tour.golang.org/basics/11) and [Zero values](https://tour.golang.org/basics/12).
 
 ## Numbers
 
@@ -102,6 +100,8 @@ func main() {
 }
 ```
 
+See also [Type inference](https://tour.golang.org/basics/14).
+
 # Control Structures
 
 ## The for Statement
@@ -145,3 +145,4 @@ following `:` are executed. The first one to succeed is chosen.
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)
+* [A Tour of Go](https://tour.golang.org)
