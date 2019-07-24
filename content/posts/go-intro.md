@@ -22,7 +22,9 @@ determine:
 * data size (e.g. `int8`)
 * how data is stored in memory
 
-See also "A Tour of Go: [Basic types](https://tour.golang.org/basics/11)".
+See also "A Tour of Go":
+* [Basic types](https://tour.golang.org/basics/11)
+* [Zero values](https://tour.golang.org/basics/12)
 
 ## Numbers
 
