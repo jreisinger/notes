@@ -154,8 +154,7 @@ following `:` are executed. The first one to succeed is chosen.
 Array is a numbered sequence of elements of a single type with a *fixed length*.
 
 ```go
-// array of three integers
-var a1 [3]int
+var a1 [3]int // array of three integers
 a1[0] = 10
 a1[1] = 20
 a1[3] = 30
@@ -183,7 +182,10 @@ Slice is a segment of an array. Like arrays, they are indexable and have a lengt
     s5 := a[:]                  // [1 2 3 4 5]
 ```
 
-Slices are always associated with some array.
+Slices are always associated with some array. The are like
+[references](https://tour.golang.org/moretypes/8) to arrays.
+
+See also [Slice literals](https://tour.golang.org/moretypes/9).
 
 ### `append` operator
 

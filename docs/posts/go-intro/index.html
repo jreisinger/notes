@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -254,9 +254,8 @@ following <code>:</code> are executed. The first one to succeed is chosen.</p>
 <h2 id="arrays">Arrays</h2>
 
 <p>Array is a numbered sequence of elements of a single type with a <em>fixed length</em>.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// array of three integers
-</span><span style="font-style:italic"></span><span style="font-weight:bold">var</span> a1 [3]<span style="">int</span>
-a1[0] = 10
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">var</span> a1 [3]<span style="">int</span> <span style="font-style:italic">// array of three integers
+</span><span style="font-style:italic"></span>a1[0] = 10
 a1[1] = 20
 a1[3] = 30
 
@@ -277,7 +276,10 @@ a1[3] = 30
 </span><span style="font-style:italic"></span>    a := [5]<span style="">float64</span>{1,2,3,4,5}
     s4 := a[1:3]                <span style="font-style:italic">// [2 3]
 </span><span style="font-style:italic"></span>    s5 := a[:]                  // [1 2 3 4 5]</code></pre></div>
-<p>Slices are always associated with some array.</p>
+<p>Slices are always associated with some array. The are like
+<a href="https://tour.golang.org/moretypes/8">references</a> to arrays.</p>
+
+<p>See also <a href="https://tour.golang.org/moretypes/9">Slice literals</a>.</p>
 
 <h3 id="append-operator"><code>append</code> operator</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">s1 := []<span style="">int</span>{1,2,3}
@@ -315,7 +317,7 @@ s2 := make([]<span style="">int</span>, 2)
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -357,7 +359,7 @@ s2 := make([]<span style="">int</span>, 2)
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
