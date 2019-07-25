@@ -211,6 +211,8 @@ copy(s2, s1)
 * all of the entries in `src` are copied into `dst` overwriting whatever is there
 * if lengths are not the same, the smaller of the two will be used
 
+See also [copy](https://golang.org/pkg/builtin/#copy).
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)
