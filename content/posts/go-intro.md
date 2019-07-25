@@ -6,7 +6,7 @@ categories: [prog]
 tags: [go]
 ---
 
-# Data Types
+# Types
 
 Go is statically typed - variables always have specific type and type cannot
 change during the program run time.
@@ -22,7 +22,7 @@ determine:
 * data size (e.g. `int8`)
 * how data is stored in memory
 
-See also [Basic types](https://tour.golang.org/basics/11) and [Zero values](https://tour.golang.org/basics/12).
+See also [Basic types](https://tour.golang.org/basics/11), [Zero values](https://tour.golang.org/basics/12) and [Type conversions](https://tour.golang.org/basics/13).
 
 ## Numbers
 
@@ -120,6 +120,11 @@ for i <= 10 {       // condition
     fmt.Println(i)
     i++             // increment
 }
+
+// loop over array/slice
+for i, value := range x {
+    ...
+}
 ```
 
 ## The if and switch Statements
@@ -141,6 +146,70 @@ for i := 1; i <= 10; i++ {
 The value of the expressions (in this example `i`) is compared to the
 expression following each `case` keyword. If they are equivalent the statements
 following `:` are executed. The first one to succeed is chosen.
+
+# More built-in types
+
+## Arrays
+
+Array is a numbered sequence of elements of a single type with a *fixed length*.
+
+```go
+// array of three integers
+var a1 [3]int
+a1[0] = 10
+a1[1] = 20
+a1[3] = 30
+
+// shorter syntax for creating arrays
+a2 := [3]int{ 10, 20, 30, }
+```
+
+Now, you rarely see arrays used directly in Go code :-).
+
+## Slices
+
+Slice is a segment of an array. Like arrays, they are indexable and have a length. Unlike arrays, the *length is allowed to change*.
+
+```go
+    var s1 []float64            // []
+    s2 := make([]float64, 3)    // [0 0 0]
+
+    // define length (3) and capacity (5)
+    s3 := make([]float64, 3, 5) // [0 0 0]
+
+    // create slice from array
+    a := [5]float64{1,2,3,4,5}
+    s4 := a[1:3]                // [2 3]
+    s5 := a[:]                  // [1 2 3 4 5]
+```
+
+Slices are always associated with some array.
+
+### `append` operator
+
+```go
+s1 := []int{1,2,3}
+s2 := append(s1, 4, 5)
+```
+
+* adds elements onto the end of a slice and creates a *new slice*
+* if there's sufficient capacity, the backing array's length is incremented
+* if not, a new backing array is created and all the existing elements are copied over
+
+See also [Appending to a slice](https://tour.golang.org/moretypes/15).
+
+### `copy` operator
+
+```go
+s1 := []int{1,2,3}
+s2 := make([]int, 2)
+// func copy(dst, src []Type) int
+copy(s2, s1)
+// s1: [1,2,3], s2: [1,2]
+```
+
+* all of the entries in `src` are copied into `dst` overwriting whatever is there
+* if lengths are not the same, the smaller of the two will be used
 
 # Sources
 

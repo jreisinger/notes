@@ -6,22 +6,22 @@
   <title>Introduction to Go - Notes</title>
   <meta property="og:title" content="Introduction to Go - Notes" />
   <meta name="twitter:title" content="Introduction to Go - Notes" />
-  <meta name="description" content="Data Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
+  <meta name="description" content="Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many errors.
 Types are similar to sets in mathematics. They classify data into groups and determine:
  characteristics of data (e.g. all strings have length) operations that can be performed on data (e.g. len(&quot;a string&quot;)) data size (e.">
-  <meta property="og:description" content="Data Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
+  <meta property="og:description" content="Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many errors.
 Types are similar to sets in mathematics. They classify data into groups and determine:
  characteristics of data (e.g. all strings have length) operations that can be performed on data (e.g. len(&quot;a string&quot;)) data size (e.">
-  <meta name="twitter:description" content="Data Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
+  <meta name="twitter:description" content="Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -81,7 +81,7 @@ Types help us reason about what our program is doing and help us catch many …"
 <aside class="toc">
   <nav id="TableOfContents">
 <ul>
-<li><a href="#data-types">Data Types</a>
+<li><a href="#types">Types</a>
 <ul>
 <li><a href="#numbers">Numbers</a></li>
 <li><a href="#strings">Strings</a></li>
@@ -93,13 +93,22 @@ Types help us reason about what our program is doing and help us catch many …"
 <li><a href="#the-for-statement">The for Statement</a></li>
 <li><a href="#the-if-and-switch-statements">The if and switch Statements</a></li>
 </ul></li>
+<li><a href="#more-built-in-types">More built-in types</a>
+<ul>
+<li><a href="#arrays">Arrays</a></li>
+<li><a href="#slices">Slices</a>
+<ul>
+<li><a href="#append-operator"><code>append</code> operator</a></li>
+<li><a href="#copy-operator"><code>copy</code> operator</a></li>
+</ul></li>
+</ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
 </nav>
 </aside>
       
 
-<h1 id="data-types">Data Types</h1>
+<h1 id="types">Types</h1>
 
 <p>Go is statically typed - variables always have specific type and type cannot
 change during the program run time.</p>
@@ -117,7 +126,7 @@ determine:</p>
 <li>how data is stored in memory</li>
 </ul>
 
-<p>See also <a href="https://tour.golang.org/basics/11">Basic types</a> and <a href="https://tour.golang.org/basics/12">Zero values</a>.</p>
+<p>See also <a href="https://tour.golang.org/basics/11">Basic types</a>, <a href="https://tour.golang.org/basics/12">Zero values</a> and <a href="https://tour.golang.org/basics/13">Type conversions</a>.</p>
 
 <h2 id="numbers">Numbers</h2>
 
@@ -218,7 +227,12 @@ i := 1              <span style="font-style:italic">// declaration + initializat
 </span><span style="font-style:italic"></span><span style="font-weight:bold">for</span> i &lt;= 10 {       <span style="font-style:italic">// condition
 </span><span style="font-style:italic"></span>    fmt.Println(i)
     i++             <span style="font-style:italic">// increment
-</span><span style="font-style:italic"></span>}</code></pre></div>
+</span><span style="font-style:italic"></span>}
+
+<span style="font-style:italic">// loop over array/slice
+</span><span style="font-style:italic"></span><span style="font-weight:bold">for</span> i, value := <span style="font-weight:bold">range</span> x {
+    ...
+}</code></pre></div>
 <h2 id="the-if-and-switch-statements">The if and switch Statements</h2>
 
 <p>If the if statement becomes too verbose use the switch statement.</p>
@@ -235,6 +249,58 @@ i := 1              <span style="font-style:italic">// declaration + initializat
 expression following each <code>case</code> keyword. If they are equivalent the statements
 following <code>:</code> are executed. The first one to succeed is chosen.</p>
 
+<h1 id="more-built-in-types">More built-in types</h1>
+
+<h2 id="arrays">Arrays</h2>
+
+<p>Array is a numbered sequence of elements of a single type with a <em>fixed length</em>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// array of three integers
+</span><span style="font-style:italic"></span><span style="font-weight:bold">var</span> a1 [3]<span style="">int</span>
+a1[0] = 10
+a1[1] = 20
+a1[3] = 30
+
+<span style="font-style:italic">// shorter syntax for creating arrays
+</span><span style="font-style:italic"></span>a2 := [3]<span style="">int</span>{ 10, 20, 30, }</code></pre></div>
+<p>Now, you rarely see arrays used directly in Go code :-).</p>
+
+<h2 id="slices">Slices</h2>
+
+<p>Slice is a segment of an array. Like arrays, they are indexable and have a length. Unlike arrays, the <em>length is allowed to change</em>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="font-weight:bold">var</span> s1 []<span style="">float64</span>            <span style="font-style:italic">// []
+</span><span style="font-style:italic"></span>    s2 := make([]<span style="">float64</span>, 3)    <span style="font-style:italic">// [0 0 0]
+</span><span style="font-style:italic"></span>
+    <span style="font-style:italic">// define length (3) and capacity (5)
+</span><span style="font-style:italic"></span>    s3 := make([]<span style="">float64</span>, 3, 5) <span style="font-style:italic">// [0 0 0]
+</span><span style="font-style:italic"></span>
+    <span style="font-style:italic">// create slice from array
+</span><span style="font-style:italic"></span>    a := [5]<span style="">float64</span>{1,2,3,4,5}
+    s4 := a[1:3]                <span style="font-style:italic">// [2 3]
+</span><span style="font-style:italic"></span>    s5 := a[:]                  // [1 2 3 4 5]</code></pre></div>
+<p>Slices are always associated with some array.</p>
+
+<h3 id="append-operator"><code>append</code> operator</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">s1 := []<span style="">int</span>{1,2,3}
+s2 := append(s1, 4, 5)</code></pre></div>
+<ul>
+<li>adds elements onto the end of a slice and creates a <em>new slice</em></li>
+<li>if there&rsquo;s sufficient capacity, the backing array&rsquo;s length is incremented</li>
+<li>if not, a new backing array is created and all the existing elements are copied over</li>
+</ul>
+
+<p>See also <a href="https://tour.golang.org/moretypes/15">Appending to a slice</a>.</p>
+
+<h3 id="copy-operator"><code>copy</code> operator</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">s1 := []<span style="">int</span>{1,2,3}
+s2 := make([]<span style="">int</span>, 2)
+<span style="font-style:italic">// func copy(dst, src []Type) int
+</span><span style="font-style:italic"></span>copy(s2, s1)
+// s1: [1,2,3], s2: [1,2]</code></pre></div>
+<ul>
+<li>all of the entries in <code>src</code> are copied into <code>dst</code> overwriting whatever is there</li>
+<li>if lengths are not the same, the smaller of the two will be used</li>
+</ul>
+
 <h1 id="sources">Sources</h1>
 
 <ul>
@@ -247,7 +313,7 @@ following <code>:</code> are executed. The first one to succeed is chosen.</p>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -289,7 +355,7 @@ following <code>:</code> are executed. The first one to succeed is chosen.</p>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
