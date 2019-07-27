@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -101,6 +101,7 @@ Types help us reason about what our program is doing and help us catch many …"
 <li><a href="#append-operator"><code>append</code> operator</a></li>
 <li><a href="#copy-operator"><code>copy</code> operator</a></li>
 </ul></li>
+<li><a href="#maps">Maps</a></li>
 </ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
@@ -305,6 +306,35 @@ s2 := make([]<span style="">int</span>, 2)
 
 <p>See also <a href="https://golang.org/pkg/builtin/#copy">copy</a>.</p>
 
+<h2 id="maps">Maps</h2>
+
+<ul>
+<li>unordered collection of key-value pairs (also called associative arrays, hash tables, or dictionaries)</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// x is a map of strings into ints
+</span><span style="font-style:italic"></span>
+<span style="font-style:italic">// WRONG: this will yield a run time error
+</span><span style="font-style:italic"></span><span style="font-weight:bold">var</span> x <span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">int</span>
+x[<span style="font-style:italic">&#34;key&#34;</span>] = 10 <span style="font-style:italic">// panic: assignment to entry in nil map
+</span><span style="font-style:italic"></span>
+<span style="font-style:italic">// maps have to be initialized before they can be used
+</span><span style="font-style:italic"></span><span style="font-weight:bold">var</span> x = make(<span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">int</span>)
+x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
+
+<span style="font-style:italic">// delete an item from a map
+</span><span style="font-style:italic"></span>delete(x, <span style="font-style:italic">&#34;key&#34;</span>)</code></pre></div>
+<ul>
+<li>maps are often used as lookup tables (dictionaries)</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">elements := <span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">string</span>{
+    <span style="font-style:italic">&#34;H&#34;</span>:  <span style="font-style:italic">&#34;Hydrogen&#34;</span>,
+    <span style="font-style:italic">&#34;He&#34;</span>: <span style="font-style:italic">&#34;Helium&#34;</span>,
+    <span style="font-style:italic">&#34;Li&#34;</span>: <span style="font-style:italic">&#34;Lithium&#34;</span>,
+}
+
+<span style="font-weight:bold">if</span> name, ok := elements[<span style="font-style:italic">&#34;He&#34;</span>]; ok {
+    fmt.Printf(<span style="font-style:italic">&#34;He is %s\n&#34;</span>, name)
+}</code></pre></div>
 <h1 id="sources">Sources</h1>
 
 <ul>
@@ -317,7 +347,7 @@ s2 := make([]<span style="">int</span>, 2)
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -359,7 +389,7 @@ s2 := make([]<span style="">int</span>, 2)
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

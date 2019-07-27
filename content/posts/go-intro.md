@@ -215,6 +215,39 @@ copy(s2, s1)
 
 See also [copy](https://golang.org/pkg/builtin/#copy).
 
+## Maps
+
+* unordered collection of key-value pairs (also called associative arrays, hash tables, or dictionaries)
+
+```go
+// x is a map of strings into ints
+
+// WRONG: this will yield a run time error
+var x map[string]int
+x["key"] = 10 // panic: assignment to entry in nil map
+
+// maps have to be initialized before they can be used
+var x = make(map[string]int)
+x["key"] = 10
+
+// delete an item from a map
+delete(x, "key")
+```
+
+* maps are often used as lookup tables (dictionaries)
+
+```go
+elements := map[string]string{
+    "H":  "Hydrogen",
+    "He": "Helium",
+    "Li": "Lithium",
+}
+
+if name, ok := elements["He"]; ok {
+    fmt.Printf("He is %s\n", name)
+}
+```
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)
