@@ -103,6 +103,10 @@ Types help us reason about what our program is doing and help us catch many …"
 </ul></li>
 <li><a href="#maps">Maps</a></li>
 </ul></li>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#variadic-functions">Variadic functions</a></li>
+</ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
 </nav>
@@ -335,6 +339,75 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 <span style="font-weight:bold">if</span> name, ok := elements[<span style="font-style:italic">&#34;He&#34;</span>]; ok {
     fmt.Printf(<span style="font-style:italic">&#34;He is %s\n&#34;</span>, name)
 }</code></pre></div>
+<h1 id="functions">Functions</h1>
+
+<p>A function (aka a procedure, or a subroutine) is an independent section of code that maps zero or more input parameters to zero or more output parameters:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Inputs -&gt; [ func f(i, j int) int {} ] -&gt; Outputs</pre></div>
+<ul>
+<li>collectively, the parameters (i, j) and the return type (int) are called function&rsquo;s signature</li>
+</ul>
+
+<p>Functions form call stacks:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
+    fmt.Println(f1())
+}
+
+<span style="font-weight:bold">func</span> f1() <span style="">int</span> {
+    <span style="font-weight:bold">return</span> f2()
+}
+
+<span style="font-weight:bold">func</span> f2() <span style="">int</span> {
+    <span style="font-weight:bold">return</span> 1
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">                            +----+
+                            | f2 | return
+                            +----+
+              +----+        +----+        +----+
+              | f1 |   f2   | f1 |        | f1 | return
+              +----+        +----+        +----+
++----+        +----+        +----+        +----+        +----+
+|main|   f1   |main|        |main|        |main|        |main|
++----+        +----+        +----+        +----+        +----+</pre></div>
+<ul>
+<li>each time we call a function, we push it onto the call stack</li>
+<li>each time we return from a function, we pop it off of the stack</li>
+</ul>
+
+<p>Return types can have names:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> f2() (r <span style="">int</span>) {
+    r := 1
+    <span style="font-weight:bold">return</span>
+}</code></pre></div>
+<p>Multiple values can be returned:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> f() (<span style="">int</span>, <span style="">int</span>) {
+    <span style="font-weight:bold">return</span> 4, 2
+}
+
+<span style="font-weight:bold">func</span> main() {
+    x, y := f()
+}</code></pre></div>
+<p>Multiple values are often used to return an error value along with the result (<code>x, err := f()</code>), or a boolean to indicate success (<code>x, ok := f()</code>).</p>
+
+<h2 id="variadic-functions">Variadic functions</h2>
+
+<p>There is a special form available for the last parameter:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// sump up zero or more integers
+</span><span style="font-style:italic"></span><span style="font-weight:bold">func</span> sum(args ...<span style="">int</span>) <span style="">int</span> {     <span style="font-style:italic">// prefix ellipsis
+</span><span style="font-style:italic"></span>    total := 0
+    <span style="font-weight:bold">for</span> _, v := <span style="font-weight:bold">range</span> args {
+        total += v
+    }
+    <span style="font-weight:bold">return</span> total
+}
+
+<span style="font-weight:bold">func</span> main() {
+    fmt.Println(sum())
+    fmt.Println(sum(1, 2))
+
+    xs := []<span style="">int</span>{1,2,3}
+    fmt.Println(sum(xs...))     <span style="font-style:italic">// suffix ellipsis
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<p>fmt.Println can take any number of values (&hellip;) of any type (interface{}):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Println(a ...<span style="font-weight:bold">interface</span>{}) (n <span style="">int</span>, err <span style="">error</span>)</code></pre></div>
 <h1 id="sources">Sources</h1>
 
 <ul>

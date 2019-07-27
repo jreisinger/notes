@@ -248,6 +248,99 @@ if name, ok := elements["He"]; ok {
 }
 ```
 
+# Functions
+
+A function (aka a procedure, or a subroutine) is an independent section of code that maps zero or more input parameters to zero or more output parameters:
+
+```
+Inputs -> [ func f(i, j int) int {} ] -> Outputs
+```
+
+* collectively, the parameters (i, j) and the return type (int) are called function's signature
+
+Functions form call stacks:
+
+```go
+func main() {
+    fmt.Println(f1())
+}
+
+func f1() int {
+    return f2()
+}
+
+func f2() int {
+    return 1
+}
+```
+
+```
+                            +----+
+                            | f2 | return
+                            +----+
+              +----+        +----+        +----+
+              | f1 |   f2   | f1 |        | f1 | return
+              +----+        +----+        +----+
++----+        +----+        +----+        +----+        +----+
+|main|   f1   |main|        |main|        |main|        |main|
++----+        +----+        +----+        +----+        +----+
+```
+
+* each time we call a function, we push it onto the call stack
+* each time we return from a function, we pop it off of the stack
+
+Return types can have names:
+
+```go
+func f2() (r int) {
+    r := 1
+    return
+}
+```
+
+Multiple values can be returned:
+
+```go
+func f() (int, int) {
+    return 4, 2
+}
+
+func main() {
+    x, y := f()
+}
+```
+
+Multiple values are often used to return an error value along with the result (`x, err := f()`), or a boolean to indicate success (`x, ok := f()`).
+
+## Variadic functions
+
+There is a special form available for the last parameter:
+
+```go
+// sump up zero or more integers
+func sum(args ...int) int {     // prefix ellipsis
+    total := 0
+    for _, v := range args {
+        total += v
+    }
+    return total
+}
+
+func main() {
+    fmt.Println(sum())
+    fmt.Println(sum(1, 2))
+
+    xs := []int{1,2,3}
+    fmt.Println(sum(xs...))     // suffix ellipsis
+}
+```
+
+fmt.Println can take any number of values (...) of any type (interface{}):
+
+```go
+func Println(a ...interface{}) (n int, err error)
+```
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)
