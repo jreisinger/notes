@@ -341,6 +341,73 @@ fmt.Println can take any number of values (...) of any type (interface{}):
 func Println(a ...interface{}) (n int, err error)
 ```
 
+## Closures
+
+It's possible to create functions inside functions. These local functions have
+access to other local variables:
+
+```go
+func main() {
+    // local variable accessible by increment
+    x := 0
+
+    // local variable of type func() int
+    increment := func() int {
+        x++
+        return x
+    }
+
+    fmt.Println(increment()) // 1
+    fmt.Println(increment()) // 2
+}
+```
+
+* a function like this together with nonlocal variables it references is know
+    as closure
+
+One way to use closure is to write a function that returns another function:
+
+```go
+func makeEvenGenerator() func() uint {
+    i := uint(0) // unlike normal local variable this one persists between calls
+    return func() (ret uint) {
+        ret = i
+        i += 2
+        return
+    }
+}
+
+func main() {
+    nextEven := makeEvenGenerator()
+    fmt.Println(nextEven()) // 0
+    fmt.Println(nextEven()) // 2
+    fmt.Println(nextEven()) // 4
+}
+```
+
+## Recursion
+
+A function is able to call itself:
+
+```go
+func factorial(x uint) uint {
+    if x == 0 {
+        return 1
+    }
+    return x * factorial(x-1)
+}
+```
+
+factorial(2):
+
+1. Is x == 0? No (x is 2).
+2. Find the factorial of x - 1.
+    1. Is x == 0? No (x is 1).
+    2. Find the factorial of x - 1.
+        1. Is x == 0? Yes, return 1.
+    3. Return 1 * 1.
+3. Return 2 * 1.
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)

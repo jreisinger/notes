@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -106,6 +106,8 @@ Types help us reason about what our program is doing and help us catch many …"
 <li><a href="#functions">Functions</a>
 <ul>
 <li><a href="#variadic-functions">Variadic functions</a></li>
+<li><a href="#closures">Closures</a></li>
+<li><a href="#recursion">Recursion</a></li>
 </ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
@@ -408,6 +410,71 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 </span><span style="font-style:italic"></span>}</code></pre></div>
 <p>fmt.Println can take any number of values (&hellip;) of any type (interface{}):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Println(a ...<span style="font-weight:bold">interface</span>{}) (n <span style="">int</span>, err <span style="">error</span>)</code></pre></div>
+<h2 id="closures">Closures</h2>
+
+<p>It&rsquo;s possible to create functions inside functions. These local functions have
+access to other local variables:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
+    <span style="font-style:italic">// local variable accessible by increment
+</span><span style="font-style:italic"></span>    x := 0
+
+    <span style="font-style:italic">// local variable of type func() int
+</span><span style="font-style:italic"></span>    increment := <span style="font-weight:bold">func</span>() <span style="">int</span> {
+        x++
+        <span style="font-weight:bold">return</span> x
+    }
+
+    fmt.Println(increment()) <span style="font-style:italic">// 1
+</span><span style="font-style:italic"></span>    fmt.Println(increment()) <span style="font-style:italic">// 2
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<ul>
+<li>a function like this together with nonlocal variables it references is know
+as closure</li>
+</ul>
+
+<p>One way to use closure is to write a function that returns another function:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> makeEvenGenerator() <span style="font-weight:bold">func</span>() <span style="">uint</span> {
+    i := uint(0) <span style="font-style:italic">// unlike normal local variable this one persists between calls
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">return</span> <span style="font-weight:bold">func</span>() (ret <span style="">uint</span>) {
+        ret = i
+        i += 2
+        <span style="font-weight:bold">return</span>
+    }
+}
+
+<span style="font-weight:bold">func</span> main() {
+    nextEven := makeEvenGenerator()
+    fmt.Println(nextEven()) <span style="font-style:italic">// 0
+</span><span style="font-style:italic"></span>    fmt.Println(nextEven()) <span style="font-style:italic">// 2
+</span><span style="font-style:italic"></span>    fmt.Println(nextEven()) <span style="font-style:italic">// 4
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<h2 id="recursion">Recursion</h2>
+
+<p>A function is able to call itself:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> factorial(x <span style="">uint</span>) <span style="">uint</span> {
+    <span style="font-weight:bold">if</span> x == 0 {
+        <span style="font-weight:bold">return</span> 1
+    }
+    <span style="font-weight:bold">return</span> x * factorial(x-1)
+}</code></pre></div>
+<p>factorial(2):</p>
+
+<ol>
+<li>Is x == 0? No (x is 2).</li>
+<li>Find the factorial of x - 1.
+
+<ol>
+<li>Is x == 0? No (x is 1).</li>
+<li>Find the factorial of x - 1.
+
+<ol>
+<li>Is x == 0? Yes, return 1.</li>
+</ol></li>
+<li>Return 1 * 1.</li>
+</ol></li>
+<li>Return 2 * 1.</li>
+</ol>
+
 <h1 id="sources">Sources</h1>
 
 <ul>
@@ -420,7 +487,7 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -462,7 +529,7 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
