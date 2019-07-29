@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -108,6 +108,9 @@ Types help us reason about what our program is doing and help us catch many …"
 <li><a href="#variadic-functions">Variadic functions</a></li>
 <li><a href="#closures">Closures</a></li>
 <li><a href="#recursion">Recursion</a></li>
+<li><a href="#defer">defer</a></li>
+<li><a href="#panic-and-recover">panic and recover</a></li>
+<li><a href="#pointers">Pointers</a></li>
 </ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
@@ -475,6 +478,86 @@ as closure</li>
 <li>Return 2 * 1.</li>
 </ol>
 
+<h2 id="defer">defer</h2>
+
+<p>defer schedules a function call to be run before a function returns. It&rsquo;s often used when resources need to be freed in some way, e.g.:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
+    f, _ := os.Open(filename)
+    <span style="font-weight:bold">defer</span> f.Close()
+}</code></pre></div>
+<p>This has three advantages:</p>
+
+<ul>
+<li>you keep the closing call close to the opening call</li>
+<li>if a function had multiple return calls (like within an if statement) defer would call Close before any of them</li>
+<li>deferred functions run even if a runtime panic occurs</li>
+</ul>
+
+<h2 id="panic-and-recover">panic and recover</h2>
+
+<ul>
+<li><code>panic</code> causes a runtime error immediately stopping the function&rsquo;s execution</li>
+<li><code>recover</code> stops the panic and returns the value that was passed to <code>panic</code></li>
+</ul>
+
+<p>WRONG:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
+    panic(<span style="font-style:italic">&#34;PANIC&#34;</span>)
+    str := recover() <span style="font-style:italic">// this will never happen!
+</span><span style="font-style:italic"></span>    fmt.Println(str)
+}</code></pre></div>
+<p>CORRECT:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
+    <span style="font-weight:bold">defer</span> <span style="font-weight:bold">func</span>() {
+        str := recover()
+        fmt.Println(str)
+    }()
+    panic(<span style="font-style:italic">&#34;PANIC&#34;</span>)
+}</code></pre></div>
+<p>A panic generally indicates a programmer&rsquo;s error or an exceptional condition that&rsquo;s not easy to recover from.</p>
+
+<p>See <a href="https://blog.golang.org/defer-panic-and-recover">https://blog.golang.org/defer-panic-and-recover</a> for more.</p>
+
+<h2 id="pointers">Pointers</h2>
+
+<p>Normally a function&rsquo;s argument is copied:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> zero(x <span style="">int</span>) {
+    x = 0
+}
+
+<span style="font-weight:bold">func</span> main() {
+    x := 1
+    zero(x)
+    <span style="font-style:italic">// x is still 1
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<p>If we want to modify the original argument one way to do it is to use a special data type known as a pointer:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> zero(xPtr *<span style="">int</span>) {
+    x = 0
+}
+
+<span style="font-weight:bold">func</span> main() {
+    x := 1
+    zero(&amp;x)
+    <span style="font-style:italic">// x is 0
+</span><span style="font-style:italic"></span>}</code></pre></div>
+<p>Pointers reference a <em>location</em> in memory where a value is stored rather than the <em>value</em> itself.</p>
+
+<ul>
+<li><code>*</code> represents a pointer, e.g. <code>*int</code> means a pointer to an integer value</li>
+<li><code>*</code> is also used to dereference a pointer variable, i.e. to get to the value a pointer points to</li>
+<li><code>&amp;</code> operator finds the memory location (address) of a variable</li>
+</ul>
+
+<p>Another way to get a pointer is to use the <code>new</code> built-in function:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">xPtr := new(<span style="">int</span>)</code></pre></div>
+<ul>
+<li><code>new</code> takes a type as an argument, allocates enough memory to fit a value of that type, and returns a pointer to it</li>
+</ul>
+
+<p>Go is a garbage-collected language. It means memory is cleaned up automatically when nothing refers to it anymore.</p>
+
+<p>Pointers are rarely used with Go&rsquo;s built-in types but are extremely useful when paired with structs.</p>
+
 <h1 id="sources">Sources</h1>
 
 <ul>
@@ -487,7 +570,7 @@ as closure</li>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -529,7 +612,7 @@ as closure</li>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

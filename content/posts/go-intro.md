@@ -408,6 +408,102 @@ factorial(2):
     3. Return 1 * 1.
 3. Return 2 * 1.
 
+## defer
+
+defer schedules a function call to be run before a function returns. It's often used when resources need to be freed in some way, e.g.:
+
+```go
+func main() {
+    f, _ := os.Open(filename)
+    defer f.Close()
+}
+```
+
+This has three advantages:
+
+* you keep the closing call close to the opening call
+* if a function had multiple return calls (like within an if statement) defer would call Close before any of them
+* deferred functions run even if a runtime panic occurs
+
+## panic and recover
+
+* `panic` causes a runtime error immediately stopping the function's execution
+* `recover` stops the panic and returns the value that was passed to `panic`
+
+WRONG:
+
+```go
+func main() {
+    panic("PANIC")
+    str := recover() // this will never happen!
+    fmt.Println(str)
+}
+```
+
+CORRECT:
+
+```go
+func main() {
+    defer func() {
+        str := recover()
+        fmt.Println(str)
+    }()
+    panic("PANIC")
+}
+```
+
+A panic generally indicates a programmer's error or an exceptional condition that's not easy to recover from.
+
+See https://blog.golang.org/defer-panic-and-recover for more.
+
+## Pointers
+
+Normally a function's argument is copied:
+
+```go
+func zero(x int) {
+    x = 0
+}
+
+func main() {
+    x := 1
+    zero(x)
+    // x is still 1
+}
+```
+
+If we want to modify the original argument one way to do it is to use a special data type known as a pointer:
+
+```go
+func zero(xPtr *int) {
+    x = 0
+}
+
+func main() {
+    x := 1
+    zero(&x)
+    // x is 0
+}
+```
+
+Pointers reference a *location* in memory where a value is stored rather than the *value* itself.
+
+* `*` represents a pointer, e.g. `*int` means a pointer to an integer value
+* `*` is also used to dereference a pointer variable, i.e. to get to the value a pointer points to
+* `&` operator finds the memory location (address) of a variable
+
+Another way to get a pointer is to use the `new` built-in function:
+
+```go
+xPtr := new(int)
+```
+
+* `new` takes a type as an argument, allocates enough memory to fit a value of that type, and returns a pointer to it
+
+Go is a garbage-collected language. It means memory is cleaned up automatically when nothing refers to it anymore.
+
+Pointers are rarely used with Go's built-in types but are extremely useful when paired with structs.
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)
