@@ -476,7 +476,7 @@ If we want to modify the original argument one way to do it is to use a special 
 
 ```go
 func zero(xPtr *int) {
-    x = 0
+    *xPtr = 0
 }
 
 func main() {
@@ -489,7 +489,7 @@ func main() {
 Pointers reference a *location* in memory where a value is stored rather than the *value* itself.
 
 * `*` represents a pointer, e.g. `*int` means a pointer to an integer value
-* `*` is also used to dereference a pointer variable, i.e. to get to the value a pointer points to
+* `*` is also used to dereference a pointer variable (`*xPtr`), i.e. to get to the value a pointer points to
 * `&` operator finds the memory location (address) of a variable
 
 Another way to get a pointer is to use the `new` built-in function:

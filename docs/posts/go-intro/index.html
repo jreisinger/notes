@@ -532,7 +532,7 @@ as closure</li>
 </span><span style="font-style:italic"></span>}</code></pre></div>
 <p>If we want to modify the original argument one way to do it is to use a special data type known as a pointer:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> zero(xPtr *<span style="">int</span>) {
-    x = 0
+    *xPtr = 0
 }
 
 <span style="font-weight:bold">func</span> main() {
@@ -544,7 +544,7 @@ as closure</li>
 
 <ul>
 <li><code>*</code> represents a pointer, e.g. <code>*int</code> means a pointer to an integer value</li>
-<li><code>*</code> is also used to dereference a pointer variable, i.e. to get to the value a pointer points to</li>
+<li><code>*</code> is also used to dereference a pointer variable (<code>*xPtr</code>), i.e. to get to the value a pointer points to</li>
 <li><code>&amp;</code> operator finds the memory location (address) of a variable</li>
 </ul>
 
