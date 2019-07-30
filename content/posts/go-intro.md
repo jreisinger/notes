@@ -504,6 +504,138 @@ Go is a garbage-collected language. It means memory is cleaned up automatically 
 
 Pointers are rarely used with Go's built-in types but are extremely useful when paired with structs.
 
+# Structs and interfaces
+
+At some point it would become tedious and error prone to write programs using only Go's built-in types.
+
+## Structs
+
+A struct is a type that contains named fields:
+
+```go
+// Circle represents, well, a circle.
+type Circle struct {
+    x, y, r float64
+}
+
+// Several ways to do initialization.
+var c Circle
+c := new(Circle) // returns pointer
+c := Circle{x: 0, y: 0, r: 5}
+c := Circle{0, 0, 5}
+c := &Circle{0, 0, 5} // most typical
+
+// Accessing fields.
+fmt.Println(c.x)
+c.r = 10
+```
+
+## Methods
+
+Using structs with functions:
+
+A normal function:
+
+```go
+func circleArea(c *Circle) float64 {
+    return math.Pi * c.r*c.r // no dereferencing needed... hm
+}
+
+c := Circle{0, 0, 5}
+fmt.Println(circleArea(&c))
+```
+
+A special function - method:
+
+```go
+func (c *Circle) area() float64 {
+    return math.Pi * c.r*c.r
+}
+
+c := Circle{0, 0, 5}
+fmt.Println(c.area()) // Go automatically knows to pass a pointer to the circle
+```
+
+## Embedded types
+
+A struct's fields usually represent the *has-a* relationship, e.g. `Person` has a name:
+
+```go
+type Person struct {
+    Name string
+}
+
+func (p *Person) Talk() {
+    fmt.Println("Hi, my name is", p.Name)
+}
+```
+
+We use embedded types (anonymous fields) to represent the *is-a* relationship, e.g. `Android` is a person (so it can `Talk()`):
+
+```go
+type Android struct {
+    Person // embedded type
+    Model string
+}
+
+a := new(Android)
+a.Name = "R2D2"
+a.Talk() // could be also: a.Person.Talk()
+```
+
+## Interfaces
+
+Interfaces are similar to structs but instead of fields they have a method set:
+
+```go
+type Shape interface {
+    area() float64
+}
+```
+
+A method set is a list of methods that a type must have in order to *implement* the interface.
+
+We can use interface types as arguments to functions:
+
+```go
+func totalArea(shapes ...Shape) float64 {
+    var area float64
+    for _, s := range shapes {
+        area += s.area()
+        }
+    return area
+}
+
+// circle and rectangle must have area() method to implement Shape interface
+fmt.Println(totalArea(&c, &r))
+```
+
+Interfaces can also be used as fields:
+
+```go
+type MultiShape struct {
+    shapes []Shape
+}
+
+multiShape := MultiShape{
+    shapes: []Shape{
+        Circle{0, 0, 5},
+        Rectangle{0, 0, 10, 10},
+    },
+}
+
+// Turn MultiShape into a Shape by giving it an area method.
+func (m *MultiShape) area() float64 {
+    var area float64
+    for _, s :+ range m.shapes {
+        area += s.area()
+    }
+    return area
+}
+
+Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.
+```
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)

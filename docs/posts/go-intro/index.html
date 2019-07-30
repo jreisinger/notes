@@ -112,6 +112,13 @@ Types help us reason about what our program is doing and help us catch many …"
 <li><a href="#panic-and-recover">panic and recover</a></li>
 <li><a href="#pointers">Pointers</a></li>
 </ul></li>
+<li><a href="#structs-and-interfaces">Structs and interfaces</a>
+<ul>
+<li><a href="#structs">Structs</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#embedded-types">Embedded types</a></li>
+<li><a href="#interfaces">Interfaces</a></li>
+</ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
 </nav>
@@ -558,6 +565,106 @@ as closure</li>
 
 <p>Pointers are rarely used with Go&rsquo;s built-in types but are extremely useful when paired with structs.</p>
 
+<h1 id="structs-and-interfaces">Structs and interfaces</h1>
+
+<p>At some point it would become tedious and error prone to write programs using only Go&rsquo;s built-in types.</p>
+
+<h2 id="structs">Structs</h2>
+
+<p>A struct is a type that contains named fields:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Circle represents, well, a circle.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">type</span> Circle <span style="font-weight:bold">struct</span> {
+    x, y, r <span style="">float64</span>
+}
+
+<span style="font-style:italic">// Several ways to do initialization.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">var</span> c Circle
+c := new(Circle) <span style="font-style:italic">// returns pointer
+</span><span style="font-style:italic"></span>c := Circle{x: 0, y: 0, r: 5}
+c := Circle{0, 0, 5}
+c := &amp;Circle{0, 0, 5} <span style="font-style:italic">// most typical
+</span><span style="font-style:italic"></span>
+<span style="font-style:italic">// Accessing fields.
+</span><span style="font-style:italic"></span>fmt.Println(c.x)
+c.r = 10</code></pre></div>
+<h2 id="methods">Methods</h2>
+
+<p>Using structs with functions:</p>
+
+<p>A normal function:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> circleArea(c *Circle) <span style="">float64</span> {
+    <span style="font-weight:bold">return</span> math.Pi * c.r*c.r <span style="font-style:italic">// no dereferencing needed... hm
+</span><span style="font-style:italic"></span>}
+
+c := Circle{0, 0, 5}
+fmt.Println(circleArea(&amp;c))</code></pre></div>
+<p>A special function - method:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> (c *Circle) area() <span style="">float64</span> {
+    <span style="font-weight:bold">return</span> math.Pi * c.r*c.r
+}
+
+c := Circle{0, 0, 5}
+fmt.Println(c.area()) // Go automatically knows to pass a pointer to the circle</code></pre></div>
+<h2 id="embedded-types">Embedded types</h2>
+
+<p>A struct&rsquo;s fields usually represent the <em>has-a</em> relationship, e.g. <code>Person</code> has a name:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> Person <span style="font-weight:bold">struct</span> {
+    Name <span style="">string</span>
+}
+
+<span style="font-weight:bold">func</span> (p *Person) Talk() {
+    fmt.Println(<span style="font-style:italic">&#34;Hi, my name is&#34;</span>, p.Name)
+}</code></pre></div>
+<p>We use embedded types (anonymous fields) to represent the <em>is-a</em> relationship, e.g. <code>Android</code> is a person (so it can <code>Talk()</code>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> Android <span style="font-weight:bold">struct</span> {
+    Person <span style="font-style:italic">// embedded type
+</span><span style="font-style:italic"></span>    Model <span style="">string</span>
+}
+
+a := new(Android)
+a.Name = <span style="font-style:italic">&#34;R2D2&#34;</span>
+a.Talk() // could be also: a.Person.Talk()</code></pre></div>
+<h2 id="interfaces">Interfaces</h2>
+
+<p>Interfaces are similar to structs but instead of fields they have a method set:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> Shape <span style="font-weight:bold">interface</span> {
+    area() <span style="">float64</span>
+}</code></pre></div>
+<p>A method set is a list of methods that a type must have in order to <em>implement</em> the interface.</p>
+
+<p>We can use interface types as arguments to functions:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> totalArea(shapes ...Shape) <span style="">float64</span> {
+    <span style="font-weight:bold">var</span> area <span style="">float64</span>
+    <span style="font-weight:bold">for</span> _, s := <span style="font-weight:bold">range</span> shapes {
+        area += s.area()
+        }
+    <span style="font-weight:bold">return</span> area
+}
+
+<span style="font-style:italic">// circle and rectangle must have area() method to implement Shape interface
+</span><span style="font-style:italic"></span>fmt.Println(totalArea(&amp;c, &amp;r))</code></pre></div>
+<p>Interfaces can also be used as fields:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> MultiShape <span style="font-weight:bold">struct</span> {
+    shapes []Shape
+}
+
+multiShape := MultiShape{
+    shapes: []Shape{
+        Circle{0, 0, 5},
+        Rectangle{0, 0, 10, 10},
+    },
+}
+
+<span style="font-style:italic">// Turn MultiShape into a Shape by giving it an area method.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">func</span> (m *MultiShape) area() <span style="">float64</span> {
+    <span style="font-weight:bold">var</span> area <span style="">float64</span>
+    <span style="font-weight:bold">for</span> _, s :+ <span style="font-weight:bold">range</span> m.shapes {
+        area += s.area()
+    }
+    <span style="font-weight:bold">return</span> area
+}
+
+Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.</code></pre></div>
 <h1 id="sources">Sources</h1>
 
 <ul>
