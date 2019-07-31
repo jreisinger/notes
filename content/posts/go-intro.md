@@ -585,20 +585,20 @@ a.Talk() // could be also: a.Person.Talk()
 
 ## Interfaces
 
-Interfaces are similar to structs but instead of fields they have a method set:
+Interfaces are similar to structs but instead of fields they have a method set. A method set is a list of methods that a type must have in order to *implement* the interface. We can use interface types as arguments to functions.
 
 ```go
+package main
+
+import (
+    "fmt"
+    "math"
+)
+
 type Shape interface {
-    area() float64
+    area() float64 // any type that has area method is a Shape
 }
-```
-
-A method set is a list of methods that a type must have in order to *implement* the interface.
-
-We can use interface types as arguments to functions:
-
-```go
-func totalArea(shapes ...Shape) float64 {
+func totalArea(shapes ...Shape) float64 { // interface (not a type) as argument
     var area float64
     for _, s := range shapes {
         area += s.area()
@@ -606,8 +606,36 @@ func totalArea(shapes ...Shape) float64 {
     return area
 }
 
-// circle and rectangle must have area() method to implement Shape interface
-fmt.Println(totalArea(&c, &r))
+// Circle type with area method.
+type Circle struct {
+    x, y, r float64
+}
+func (c *Circle) area() float64 {
+    return math.Pi * c.r * c.r
+}
+
+// Rectangle type with area method.
+type Rectangle struct {
+    x1, y1, x2, y2 float64
+}
+func (r *Rectangle) area() float64 {
+    l := distance(r.x1, r.y1, r.x1, r.y2)
+    w := distance(r.x1, r.y1, r.x2, r.y1)
+    return l * w
+}
+
+func distance(x1, y1, x2, y2 float64) float64 {
+    a := x2 - x1
+    b := y2 - y1
+    return math.Sqrt(a*a + b*b)
+}
+
+func main() {
+    c := &Circle{0, 0, 5}
+    r := &Rectangle{0, 0, 10, 10}
+    tot := totalArea(c, r)
+    fmt.Println(tot)
+}
 ```
 
 Interfaces can also be used as fields:
@@ -635,6 +663,8 @@ func (m *MultiShape) area() float64 {
 ```
 
 Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.
+
+See also John Graham-Cumming: [Interfaces](https://learning.oreilly.com/learning-paths/learning-path-go/9781491990384/9781491913871-video191862).
 
 # Sources
 

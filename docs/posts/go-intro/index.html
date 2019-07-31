@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -626,23 +626,55 @@ a.Name = <span style="font-style:italic">&#34;R2D2&#34;</span>
 a.Talk() // could be also: a.Person.Talk()</code></pre></div>
 <h2 id="interfaces">Interfaces</h2>
 
-<p>Interfaces are similar to structs but instead of fields they have a method set:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> Shape <span style="font-weight:bold">interface</span> {
-    area() <span style="">float64</span>
-}</code></pre></div>
-<p>A method set is a list of methods that a type must have in order to <em>implement</em> the interface.</p>
+<p>Interfaces are similar to structs but instead of fields they have a method set. A method set is a list of methods that a type must have in order to <em>implement</em> the interface. We can use interface types as arguments to functions.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
-<p>We can use interface types as arguments to functions:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> totalArea(shapes ...Shape) <span style="">float64</span> {
-    <span style="font-weight:bold">var</span> area <span style="">float64</span>
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;math&#34;</span>
+)
+
+<span style="font-weight:bold">type</span> Shape <span style="font-weight:bold">interface</span> {
+    area() <span style="">float64</span> <span style="font-style:italic">// any type that has area method is a Shape
+</span><span style="font-style:italic"></span>}
+<span style="font-weight:bold">func</span> totalArea(shapes ...Shape) <span style="">float64</span> { <span style="font-style:italic">// interface (not a type) as argument
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">var</span> area <span style="">float64</span>
     <span style="font-weight:bold">for</span> _, s := <span style="font-weight:bold">range</span> shapes {
         area += s.area()
     }
     <span style="font-weight:bold">return</span> area
 }
 
-<span style="font-style:italic">// circle and rectangle must have area() method to implement Shape interface
-</span><span style="font-style:italic"></span>fmt.Println(totalArea(&amp;c, &amp;r))</code></pre></div>
+<span style="font-style:italic">// Circle type with area method.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">type</span> Circle <span style="font-weight:bold">struct</span> {
+    x, y, r <span style="">float64</span>
+}
+<span style="font-weight:bold">func</span> (c *Circle) area() <span style="">float64</span> {
+    <span style="font-weight:bold">return</span> math.Pi * c.r * c.r
+}
+
+<span style="font-style:italic">// Rectangle type with area method.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">type</span> Rectangle <span style="font-weight:bold">struct</span> {
+    x1, y1, x2, y2 <span style="">float64</span>
+}
+<span style="font-weight:bold">func</span> (r *Rectangle) area() <span style="">float64</span> {
+    l := distance(r.x1, r.y1, r.x1, r.y2)
+    w := distance(r.x1, r.y1, r.x2, r.y1)
+    <span style="font-weight:bold">return</span> l * w
+}
+
+<span style="font-weight:bold">func</span> distance(x1, y1, x2, y2 <span style="">float64</span>) <span style="">float64</span> {
+    a := x2 - x1
+    b := y2 - y1
+    <span style="font-weight:bold">return</span> math.Sqrt(a*a + b*b)
+}
+
+<span style="font-weight:bold">func</span> main() {
+    c := &amp;Circle{0, 0, 5}
+    r := &amp;Rectangle{0, 0, 10, 10}
+    tot := totalArea(c, r)
+    fmt.Println(tot)
+}</code></pre></div>
 <p>Interfaces can also be used as fields:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> MultiShape <span style="font-weight:bold">struct</span> {
     shapes []Shape
@@ -665,6 +697,8 @@ multiShape := MultiShape{
 }</code></pre></div>
 <p>Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.</p>
 
+<p>See also John Graham-Cumming: <a href="https://learning.oreilly.com/learning-paths/learning-path-go/9781491990384/9781491913871-video191862">Interfaces</a>.</p>
+
 <h1 id="sources">Sources</h1>
 
 <ul>
@@ -677,7 +711,7 @@ multiShape := MultiShape{
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -719,7 +753,7 @@ multiShape := MultiShape{
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
