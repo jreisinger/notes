@@ -599,8 +599,8 @@ c.r = 10</code></pre></div>
 c := Circle{0, 0, 5}
 fmt.Println(circleArea(&amp;c))</code></pre></div>
 <p>A special function - method:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> (c *Circle) area() <span style="">float64</span> {
-    <span style="font-weight:bold">return</span> math.Pi * c.r*c.r
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> (c *Circle) area() <span style="">float64</span> { <span style="font-style:italic">// (c *Circle) is called a receiver
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">return</span> math.Pi * c.r*c.r
 }
 
 c := Circle{0, 0, 5}
@@ -637,7 +637,7 @@ a.Talk() // could be also: a.Person.Talk()</code></pre></div>
     <span style="font-weight:bold">var</span> area <span style="">float64</span>
     <span style="font-weight:bold">for</span> _, s := <span style="font-weight:bold">range</span> shapes {
         area += s.area()
-        }
+    }
     <span style="font-weight:bold">return</span> area
 }
 
@@ -662,9 +662,9 @@ multiShape := MultiShape{
         area += s.area()
     }
     <span style="font-weight:bold">return</span> area
-}
+}</code></pre></div>
+<p>Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.</p>
 
-Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.</code></pre></div>
 <h1 id="sources">Sources</h1>
 
 <ul>
