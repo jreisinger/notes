@@ -236,8 +236,8 @@ Run containers for troubleshooting:
 
 ```sh
 kubectl run demo --image=cloudnatived/demo:hello --expose --port 8888 # pod to troubleshoot
-kubectl run nslookup --image=busybox:1.28 --rm -it --restart=Never --command -- nslookup demo
-kubectl run wget --image=busybox:1.28 --rm -it --restart=Never --command -- wget -qO- http://demo:8888
+kubectl run nslookup --image=busybox --rm -it --restart=Never --command -- nslookup demo
+kubectl run wget --image=busybox --rm -it --restart=Never --command -- wget -qO- http://demo:8888
 ```
 
 * `--command` -- command to run instead of container's default entrypoint
