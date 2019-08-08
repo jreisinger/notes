@@ -578,7 +578,7 @@ type Android struct {
     Model string
 }
 
-a := new(Android)
+a := new(Android) // you cannot do &Android{Name: "R2D2"} here
 a.Name = "R2D2"
 a.Talk() // could be also: a.Person.Talk()
 ```

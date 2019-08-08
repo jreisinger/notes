@@ -621,8 +621,8 @@ fmt.Println(c.area()) // Go automatically knows to pass a pointer to the circle<
 </span><span style="font-style:italic"></span>    Model <span style="">string</span>
 }
 
-a := new(Android)
-a.Name = <span style="font-style:italic">&#34;R2D2&#34;</span>
+a := new(Android) <span style="font-style:italic">// you cannot do &amp;Android{Name: &#34;R2D2&#34;} here
+</span><span style="font-style:italic"></span>a.Name = <span style="font-style:italic">&#34;R2D2&#34;</span>
 a.Talk() // could be also: a.Person.Talk()</code></pre></div>
 <h2 id="interfaces">Interfaces</h2>
 
