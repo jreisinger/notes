@@ -695,6 +695,111 @@ b.WriteTo(os.Stdout)
 * you can convert it into a `[]byte` by calling `buf.Bytes()`
 * if you only need to read from a string, you can use the more efficient `strings.NewReader` function
 
+### Files and Folders
+
+The easiest way to open a file:
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+)
+
+func main() {
+    bs, err := ioutil.ReadFile("/etc/passwd")
+    if err != nil {
+        // handle error here
+        return
+    }
+    str := string(bs)
+    fmt.Println(str)
+}
+```
+
+Create a file:
+
+```go
+package main
+
+import (
+    "os"
+)
+
+func main() {
+    file, err := os.Create("test.txt") // file is os.File
+    if err != nil {
+        // handler error here
+        return
+    }
+    defer file.Close()
+    file.WriteString("test")
+}
+```
+
+Get contents of a directory:
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+func main() {
+    dir, err := os.Open(".")
+    if err != nil {
+        // handle error here
+        return
+    }
+    defer dir.Close()
+
+    fileInfos, err := dir.Readdir(-1) // -1 means return all entries
+    if err != nil {
+        return
+    }
+    for _, fi := range fileInfos {
+        fmt.Println(fi.Name())
+    }
+}
+```
+
+Recursively walk a folder (read the folder’s contents, all the subfolders, all the sub-subfolders, etc.):
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+    "path/filepath"
+)
+
+func main() {
+    // func() is called for every file and folder in "."
+    filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+        fmt.Println(path)
+        return nil
+    })
+}
+```
+
+### Errors
+
+Go has a built-in type for errors (the `error` type). We can also create our own errors:
+
+```go
+package main
+
+import "errors"
+
+func main() {
+    err := errors.New("error message")
+}
+```
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)

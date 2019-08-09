@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.46" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -124,6 +124,8 @@ Types help us reason about what our program is doing and help us catch many …"
 <li><a href="#the-core-packages">The Core Packages</a>
 <ul>
 <li><a href="#input-output">Input/Output</a></li>
+<li><a href="#files-and-folders">Files and Folders</a></li>
+<li><a href="#errors">Errors</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#sources">Sources</a></li>
@@ -731,6 +733,91 @@ b.WriteTo(os.Stdout)</code></pre></div>
 <li>if you only need to read from a string, you can use the more efficient <code>strings.NewReader</code> function</li>
 </ul>
 
+<h3 id="files-and-folders">Files and Folders</h3>
+
+<p>The easiest way to open a file:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;io/ioutil&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    bs, err := ioutil.ReadFile(<span style="font-style:italic">&#34;/etc/passwd&#34;</span>)
+    <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+        <span style="font-style:italic">// handle error here
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">return</span>
+    }
+    str := string(bs)
+    fmt.Println(str)
+}</code></pre></div>
+<p>Create a file:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;os&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    file, err := os.Create(<span style="font-style:italic">&#34;test.txt&#34;</span>) <span style="font-style:italic">// file is os.File
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+        <span style="font-style:italic">// handler error here
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">return</span>
+    }
+    <span style="font-weight:bold">defer</span> file.Close()
+    file.WriteString(<span style="font-style:italic">&#34;test&#34;</span>)
+}</code></pre></div>
+<p>Get contents of a directory:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;os&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    dir, err := os.Open(<span style="font-style:italic">&#34;.&#34;</span>)
+    <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+        <span style="font-style:italic">// handle error here
+</span><span style="font-style:italic"></span>        <span style="font-weight:bold">return</span>
+    }
+    <span style="font-weight:bold">defer</span> dir.Close()
+
+    fileInfos, err := dir.Readdir(-1) <span style="font-style:italic">// -1 means return all entries
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">if</span> err != <span style="font-weight:bold">nil</span> {
+        <span style="font-weight:bold">return</span>
+    }
+    <span style="font-weight:bold">for</span> _, fi := <span style="font-weight:bold">range</span> fileInfos {
+        fmt.Println(fi.Name())
+    }
+}</code></pre></div>
+<p>Recursively walk a folder (read the folder’s contents, all the subfolders, all the sub-subfolders, etc.):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;os&#34;</span>
+    <span style="font-style:italic">&#34;path/filepath&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    <span style="font-style:italic">// func() is called for every file and folder in &#34;.&#34;
+</span><span style="font-style:italic"></span>    filepath.Walk(<span style="font-style:italic">&#34;.&#34;</span>, <span style="font-weight:bold">func</span>(path <span style="">string</span>, info os.FileInfo, err <span style="">error</span>) <span style="">error</span> {
+        fmt.Println(path)
+        <span style="font-weight:bold">return</span> <span style="font-weight:bold">nil</span>
+    })
+}</code></pre></div>
+<h3 id="errors">Errors</h3>
+
+<p>Go has a built-in type for errors (the <code>error</code> type). We can also create our own errors:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> <span style="font-style:italic">&#34;errors&#34;</span>
+
+<span style="font-weight:bold">func</span> main() {
+    err := errors.New(<span style="font-style:italic">&#34;error message&#34;</span>)
+}</code></pre></div>
 <h1 id="sources">Sources</h1>
 
 <ul>
@@ -743,7 +830,7 @@ b.WriteTo(os.Stdout)</code></pre></div>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -785,7 +872,7 @@ b.WriteTo(os.Stdout)</code></pre></div>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
