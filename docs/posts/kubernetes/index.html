@@ -272,8 +272,8 @@ kubectl exec -it &lt;pod&gt; -- bash  # or sh instead of bash</code></pre></div>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl port-forward kuard 8080:8080  # tunnel: localhost -&gt; k8s master -&gt; k8s worker node</code></pre></div>
 <p>Run containers for troubleshooting:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl run demo --image=cloudnatived/demo:hello --expose --port 8888 <span style="font-style:italic"># pod to troubleshoot
-</span><span style="font-style:italic"></span>kubectl run nslookup --image=busybox:1.28 --rm -it --restart=Never --command -- nslookup demo
-kubectl run wget --image=busybox:1.28 --rm -it -restart=Never --command -- wget -qO- http://demo:8888</code></pre></div>
+</span><span style="font-style:italic"></span>kubectl run nslookup --image=busybox --rm -it --restart=Never --command -- nslookup demo
+kubectl run wget --image=busybox --rm -it --restart=Never --command -- wget -qO- http://demo:8888</code></pre></div>
 <ul>
 <li><code>--command</code> &ndash; command to run instead of container&rsquo;s default entrypoint</li>
 </ul>

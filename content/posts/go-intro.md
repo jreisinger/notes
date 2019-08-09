@@ -666,6 +666,35 @@ Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.
 
 See also John Graham-Cumming: [Interfaces](https://learning.oreilly.com/learning-paths/learning-path-go/9781491990384/9781491913871-video191862).
 
+# Packages
+
+* Go was designed to encourage good software engineering practices
+* one of them is code reuse (DRY - Don't Repeat Yourself): functions, packages
+
+## The Core Packages
+
+### Input/Output
+
+[io](https://golang.org/pkg/io/) package consists of a few functions, but mostly interfaces used in other packages. The two main interfaces are `Reader` and `Writer`. `Reader`s support reading via the `Read` method. `Writer`s support writing via the `Write` method. Many functions in Go take Readers or Writers as arguments. E.g. the io.Copy function copies data from a Reader to a Writer:
+
+```go
+func Copy(dst Writer, src Reader) (written int64, err error)
+```
+
+To read/write to a `[]byte` or a `string`, you can use the `Buffer` type (struct) from [bytes](https://golang.org/pkg/bytes) package:
+
+```go
+var b bytes.Buffer
+b.Write([]byte("Hello "))
+fmt.Fprintf(&b, "world!")
+b.WriteTo(os.Stdout)
+```
+
+* a `Buffer` doesn't have to be initialized
+* it supports both the `Reader` and `Writer` interfaces
+* you can convert it into a `[]byte` by calling `buf.Bytes()`
+* if you only need to read from a string, you can use the more efficient `strings.NewReader` function
+
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)

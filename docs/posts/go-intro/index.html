@@ -119,6 +119,13 @@ Types help us reason about what our program is doing and help us catch many …"
 <li><a href="#embedded-types">Embedded types</a></li>
 <li><a href="#interfaces">Interfaces</a></li>
 </ul></li>
+<li><a href="#packages">Packages</a>
+<ul>
+<li><a href="#the-core-packages">The Core Packages</a>
+<ul>
+<li><a href="#input-output">Input/Output</a></li>
+</ul></li>
+</ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
 </nav>
@@ -698,6 +705,31 @@ multiShape := MultiShape{
 <p>Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.</p>
 
 <p>See also John Graham-Cumming: <a href="https://learning.oreilly.com/learning-paths/learning-path-go/9781491990384/9781491913871-video191862">Interfaces</a>.</p>
+
+<h1 id="packages">Packages</h1>
+
+<ul>
+<li>Go was designed to encourage good software engineering practices</li>
+<li>one of them is code reuse (DRY - Don&rsquo;t Repeat Yourself): functions, packages</li>
+</ul>
+
+<h2 id="the-core-packages">The Core Packages</h2>
+
+<h3 id="input-output">Input/Output</h3>
+
+<p><a href="https://golang.org/pkg/io/">io</a> package consists of a few functions, but mostly interfaces used in other packages. The two main interfaces are <code>Reader</code> and <code>Writer</code>. <code>Reader</code>s support reading via the <code>Read</code> method. <code>Writer</code>s support writing via the <code>Write</code> method. Many functions in Go take Readers or Writers as arguments. E.g. the io.Copy function copies data from a Reader to a Writer:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Copy(dst Writer, src Reader) (written <span style="">int64</span>, err <span style="">error</span>)</code></pre></div>
+<p>To read/write to a <code>[]byte</code> or a <code>string</code>, you can use the <code>Buffer</code> type (struct) from <a href="https://golang.org/pkg/bytes">bytes</a> package:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">var</span> b bytes.Buffer
+b.Write([]byte(<span style="font-style:italic">&#34;Hello &#34;</span>))
+fmt.Fprintf(&amp;b, <span style="font-style:italic">&#34;world!&#34;</span>)
+b.WriteTo(os.Stdout)</code></pre></div>
+<ul>
+<li>a <code>Buffer</code> doesn&rsquo;t have to be initialized</li>
+<li>it supports both the <code>Reader</code> and <code>Writer</code> interfaces</li>
+<li>you can convert it into a <code>[]byte</code> by calling <code>buf.Bytes()</code></li>
+<li>if you only need to read from a string, you can use the more efficient <code>strings.NewReader</code> function</li>
+</ul>
 
 <h1 id="sources">Sources</h1>
 
