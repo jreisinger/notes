@@ -832,4 +832,5 @@ func main() {
 # Sources
 
 * Caleb Doxsey: Introducing Go (O'Reilly, 2016)
+* Donovan, Kernighan: The Go Programming Language (Addison-Wesley, 2016)
 * [A Tour of Go](https://tour.golang.org)
