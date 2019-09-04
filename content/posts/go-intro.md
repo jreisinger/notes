@@ -695,6 +695,35 @@ b.WriteTo(os.Stdout)
 * you can convert it into a `[]byte` by calling `buf.Bytes()`
 * if you only need to read from a string, you can use the more efficient `strings.NewReader` function
 
+`bufio` package helps make input and output efficient and convenient. Its `Scanner` type reads input and breaks it into lines or words. `bufio` is good for "streaming" mode where input is read and broken into lines on the fly:
+
+```go
+// Dup1 prints the text of each line that appears more than
+// once in the standard input, preceded by its count.
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+)
+
+func main() {
+    counts := make(map[string]int)
+    input := bufio.NewScanner(os.Stdin) // input is a ref to bufio.Scanner type
+
+    for input.Scan() {          // read the next line, remove newline and return true
+        counts[input.Text()]++  // input.Text() returns the line read
+    }
+
+    for line, n := range counts {
+        if n > 1 {
+            fmt.Printf("%d\t%s\n", n, line)
+        }
+    }
+}
+```
+
 ### Files and Folders
 
 The easiest way to open a file:
