@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -733,6 +733,31 @@ b.WriteTo(os.Stdout)</code></pre></div>
 <li>if you only need to read from a string, you can use the more efficient <code>strings.NewReader</code> function</li>
 </ul>
 
+<p><code>bufio</code> package helps make input and output efficient and convenient. Its <code>Scanner</code> type reads input and breaks it into lines or words. <code>bufio</code> is good for &ldquo;streaming&rdquo; mode where input is read and broken into lines on the fly:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Dup1 prints the text of each line that appears more than
+</span><span style="font-style:italic">// once in the standard input, preceded by its count.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;bufio&#34;</span>
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;os&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    counts := make(<span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">int</span>)
+    input := bufio.NewScanner(os.Stdin) <span style="font-style:italic">// input is a ref to bufio.Scanner type
+</span><span style="font-style:italic"></span>
+    <span style="font-weight:bold">for</span> input.Scan() {          <span style="font-style:italic">// read the next line, remove newline and return true
+</span><span style="font-style:italic"></span>        counts[input.Text()]++  <span style="font-style:italic">// input.Text() returns the line read
+</span><span style="font-style:italic"></span>    }
+
+    <span style="font-weight:bold">for</span> line, n := <span style="font-weight:bold">range</span> counts {
+        <span style="font-weight:bold">if</span> n &gt; 1 {
+            fmt.Printf(<span style="font-style:italic">&#34;%d\t%s\n&#34;</span>, n, line)
+        }
+    }
+}</code></pre></div>
 <h3 id="files-and-folders">Files and Folders</h3>
 
 <p>The easiest way to open a file:</p>
@@ -822,6 +847,7 @@ b.WriteTo(os.Stdout)</code></pre></div>
 
 <ul>
 <li>Caleb Doxsey: Introducing Go (O&rsquo;Reilly, 2016)</li>
+<li>Donovan, Kernighan: The Go Programming Language (Addison-Wesley, 2016)</li>
 <li><a href="https://tour.golang.org">A Tour of Go</a></li>
 </ul>
 
@@ -830,7 +856,7 @@ b.WriteTo(os.Stdout)</code></pre></div>
     
     <div class="disqus-comments">
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -872,7 +898,7 @@ b.WriteTo(os.Stdout)</code></pre></div>
 <script src="https://jreisinger.github.io/notes/js/script.js"></script>
 <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
