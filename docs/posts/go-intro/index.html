@@ -121,12 +121,14 @@ Types help us reason about what our program is doing and help us catch many …"
 </ul></li>
 <li><a href="#packages">Packages</a>
 <ul>
-<li><a href="#the-core-packages">The Core Packages</a>
+<li><a href="#input-output">Input/Output</a>
 <ul>
-<li><a href="#input-output">Input/Output</a></li>
+<li><a href="#io">io</a></li>
+<li><a href="#bytes">bytes</a></li>
+<li><a href="#bufio">bufio</a></li>
+</ul></li>
 <li><a href="#files-and-folders">Files and Folders</a></li>
 <li><a href="#errors">Errors</a></li>
-</ul></li>
 </ul></li>
 <li><a href="#sources">Sources</a></li>
 </ul>
@@ -715,16 +717,18 @@ multiShape := MultiShape{
 <li>one of them is code reuse (DRY - Don&rsquo;t Repeat Yourself): functions, packages</li>
 </ul>
 
-<h2 id="the-core-packages">The Core Packages</h2>
+<h2 id="input-output">Input/Output</h2>
 
-<h3 id="input-output">Input/Output</h3>
+<h3 id="io">io</h3>
 
 <p><a href="https://golang.org/pkg/io/">io</a> package consists of a few functions, but mostly interfaces used in other packages. The two main interfaces are <code>Reader</code> and <code>Writer</code>. <code>Reader</code>s support reading via the <code>Read</code> method. <code>Writer</code>s support writing via the <code>Write</code> method. Many functions in Go take Readers or Writers as arguments. E.g. the io.Copy function copies data from a Reader to a Writer:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Copy(dst Writer, src Reader) (written <span style="">int64</span>, err <span style="">error</span>)</code></pre></div>
-<p>To read/write to a <code>[]byte</code> or a <code>string</code>, you can use the <code>Buffer</code> type (struct) from <a href="https://golang.org/pkg/bytes">bytes</a> package:</p>
+<h3 id="bytes">bytes</h3>
+
+<p>To read/write a <code>[]byte</code> or a <code>string</code>, you can use the <code>Buffer</code> type (struct) from <a href="https://golang.org/pkg/bytes">bytes</a> package:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">var</span> b bytes.Buffer
 b.Write([]byte(<span style="font-style:italic">&#34;Hello &#34;</span>))
-fmt.Fprintf(&amp;b, <span style="font-style:italic">&#34;world!&#34;</span>)
+fmt.Fprintf(&amp;b, <span style="font-style:italic">&#34;world!\n&#34;</span>)
 b.WriteTo(os.Stdout)</code></pre></div>
 <ul>
 <li>a <code>Buffer</code> doesn&rsquo;t have to be initialized</li>
@@ -732,6 +736,8 @@ b.WriteTo(os.Stdout)</code></pre></div>
 <li>you can convert it into a <code>[]byte</code> by calling <code>buf.Bytes()</code></li>
 <li>if you only need to read from a string, you can use the more efficient <code>strings.NewReader</code> function</li>
 </ul>
+
+<h3 id="bufio">bufio</h3>
 
 <p><code>bufio</code> package helps make input and output efficient and convenient. Its <code>Scanner</code> type reads input and breaks it into lines or words. <code>bufio</code> is good for &ldquo;streaming&rdquo; mode where input is read and broken into lines on the fly:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Dup1 prints the text of each line that appears more than
@@ -758,7 +764,7 @@ b.WriteTo(os.Stdout)</code></pre></div>
         }
     }
 }</code></pre></div>
-<h3 id="files-and-folders">Files and Folders</h3>
+<h2 id="files-and-folders">Files and Folders</h2>
 
 <p>The easiest way to open a file:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
@@ -833,7 +839,7 @@ b.WriteTo(os.Stdout)</code></pre></div>
         <span style="font-weight:bold">return</span> <span style="font-weight:bold">nil</span>
     })
 }</code></pre></div>
-<h3 id="errors">Errors</h3>
+<h2 id="errors">Errors</h2>
 
 <p>Go has a built-in type for errors (the <code>error</code> type). We can also create our own errors:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main

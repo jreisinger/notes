@@ -671,9 +671,9 @@ See also John Graham-Cumming: [Interfaces](https://learning.oreilly.com/learning
 * Go was designed to encourage good software engineering practices
 * one of them is code reuse (DRY - Don't Repeat Yourself): functions, packages
 
-## The Core Packages
+## Input/Output
 
-### Input/Output
+### io
 
 [io](https://golang.org/pkg/io/) package consists of a few functions, but mostly interfaces used in other packages. The two main interfaces are `Reader` and `Writer`. `Reader`s support reading via the `Read` method. `Writer`s support writing via the `Write` method. Many functions in Go take Readers or Writers as arguments. E.g. the io.Copy function copies data from a Reader to a Writer:
 
@@ -681,12 +681,14 @@ See also John Graham-Cumming: [Interfaces](https://learning.oreilly.com/learning
 func Copy(dst Writer, src Reader) (written int64, err error)
 ```
 
-To read/write to a `[]byte` or a `string`, you can use the `Buffer` type (struct) from [bytes](https://golang.org/pkg/bytes) package:
+### bytes
+
+To read/write a `[]byte` or a `string`, you can use the `Buffer` type (struct) from [bytes](https://golang.org/pkg/bytes) package:
 
 ```go
 var b bytes.Buffer
 b.Write([]byte("Hello "))
-fmt.Fprintf(&b, "world!")
+fmt.Fprintf(&b, "world!\n")
 b.WriteTo(os.Stdout)
 ```
 
@@ -694,6 +696,8 @@ b.WriteTo(os.Stdout)
 * it supports both the `Reader` and `Writer` interfaces
 * you can convert it into a `[]byte` by calling `buf.Bytes()`
 * if you only need to read from a string, you can use the more efficient `strings.NewReader` function
+
+### bufio
 
 `bufio` package helps make input and output efficient and convenient. Its `Scanner` type reads input and breaks it into lines or words. `bufio` is good for "streaming" mode where input is read and broken into lines on the fly:
 
@@ -724,7 +728,7 @@ func main() {
 }
 ```
 
-### Files and Folders
+## Files and Folders
 
 The easiest way to open a file:
 
@@ -815,7 +819,7 @@ func main() {
 }
 ```
 
-### Errors
+## Errors
 
 Go has a built-in type for errors (the `error` type). We can also create our own errors:
 
