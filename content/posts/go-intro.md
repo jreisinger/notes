@@ -730,7 +730,7 @@ func main() {
 
 ## Files and Folders
 
-The easiest way to open a file:
+The easiest way to read the entire file file into memory:
 
 ```go
 package main
@@ -763,7 +763,7 @@ import (
 func main() {
     file, err := os.Create("test.txt") // file is os.File
     if err != nil {
-        // handler error here
+        // handle error here
         return
     }
     defer file.Close()
@@ -819,7 +819,7 @@ func main() {
 }
 ```
 
-## Errors
+## errors
 
 Go has a built-in type for errors (the `error` type). We can also create our own errors:
 
@@ -832,6 +832,12 @@ func main() {
     err := errors.New("error message")
 }
 ```
+
+## sort
+
+* `sort` package contains functions for sorting arbitrary data
+* there are several predefined sorting functions, e.g. for [slices of ints](https://golang.org/pkg/sort/#Ints) or floats
+* you can also [sort](https://github.com/jreisinger/go/blob/master/sort.go) your own data
 
 # Sources
 
