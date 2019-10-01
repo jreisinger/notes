@@ -6,10 +6,19 @@
     <description>Recent content on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ModSecurity</title>
+      <link>https://jreisinger.github.io/notes/posts/mod-security/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/mod-security/</guid>
+      <description>ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &amp;hellip;) for performance reasons https://www.modsecurity.org  CRS  blacklist rule set should be used for all ModSecurity deployments crs-setup.</description>
+    </item>
     
     <item>
       <title>Introduction to Go</title>

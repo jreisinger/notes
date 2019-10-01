@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>ModSecurity - Notes</title>
+  <meta property="og:title" content="ModSecurity - Notes" />
+  <meta name="twitter:title" content="ModSecurity - Notes" />
+  <meta name="description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org  CRS  blacklist rule set should be used for all ModSecurity deployments crs-setup.">
+  <meta property="og:description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org  CRS  blacklist rule set should be used for all ModSecurity deployments crs-setup.">
+  <meta name="twitter:description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/mod-security/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.49.2" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+
+    
+    <ul>
+      
+        
+        
+        
+        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/mod-security.md">See on GitHub</a>
+        
+      
+    </ul>
+
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">ModSecurity</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>October 1, 2019</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/sec/">
+            <i class="fas fa-folder"></i>
+            Sec
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/waf/">
+            <i class="fas fa-tag"></i>
+            WAF
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/modsecurity/">
+            <i class="fas fa-tag"></i>
+            ModSecurity
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      
+
+<ul>
+<li>ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS</li>
+<li>Core Rule Set (CRS) - define the malicious patterns (signatures)</li>
+</ul>
+
+<h2 id="modsecurity">ModSecurity</h2>
+
+<ul>
+<li><code>/etc/nginx/modsec/modsecurity.conf</code> - config file</li>
+<li>audit logs are great for visibility but bad for performance - you can disable them via <code>SecAuditEngine off</code> (you still have the Nginx error logs)</li>
+<li>you should not inspect static content (images, &hellip;) for performance reasons</li>
+<li><a href="https://www.modsecurity.org">https://www.modsecurity.org</a></li>
+</ul>
+
+<h2 id="crs">CRS</h2>
+
+<ul>
+<li>blacklist rule set</li>
+<li>should be used for all ModSecurity deployments</li>
+<li><code>crs-setup.conf</code> - config file</li>
+<li><code>rules</code> - directory with rules (you should modify only <code>*EXCLUSION-RULES*</code>)</li>
+<li>to tune, set a high anomaly threshold and progressively lower it</li>
+<li><a href="https://coreruleset.org">https://coreruleset.org</a>, <a href="https://github.com/SpiderLabs/owasp-modsecurity-crs">https://github.com/SpiderLabs/owasp-modsecurity-crs</a>, <a href="https://www.modsecurity.org/CRS/Documentation/">https://www.modsecurity.org/CRS/Documentation/</a></li>
+</ul>
+
+<p>Paranoia levels:</p>
+
+<ol>
+<li>(default) basic security, minimal amount of false positives (FPs)</li>
+<li>elevated security level, more rules, fair amount of FPs</li>
+<li>online banking level security, specialized rules, more FPs</li>
+<li>nuclear powerplant level security, insane rules, lots of FPs</li>
+</ol>
+
+<h2 id="attacks-for-testing-waf">Attacks for testing WAF</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">curl http://$FQDN/?exec=/bin/bash # Remove Code Execution (RCE)</pre></div>
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/go-intro/" data-toggle="tooltip" data-placement="top" title="Introduction to Go">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

@@ -174,6 +174,15 @@
     </item>
     
     <item>
+      <title>Modsecurity</title>
+      <link>https://jreisinger.github.io/notes/tags/modsecurity/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/modsecurity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Perl</title>
       <link>https://jreisinger.github.io/notes/tags/perl/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
@@ -251,6 +260,15 @@
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/tags/unix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Waf</title>
+      <link>https://jreisinger.github.io/notes/tags/waf/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/waf/</guid>
       <description></description>
     </item>
     
