@@ -30,6 +30,8 @@ SecRule REQUEST_URI "@streq /index.php" "id:1,phase:1,t:lowercase,deny"
 * TRANSFORMATIONS - how to normalize VARIABLES data
 * ACTIONS - what to do when rule matches
 
+https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x)
+
 ## CRS
 
 * blacklist rule set
