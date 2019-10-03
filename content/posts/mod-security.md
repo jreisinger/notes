@@ -15,6 +15,11 @@ tags: [WAF, ModSecurity]
 * you should not inspect static content (images, ...) for performance reasons
 * https://www.modsecurity.org, https://github.com/SpiderLabs/ModSecurity/wiki
 
+ModSecurity 3.0 has a new modular architecture, i.e. it's composed of:
+
+* [libmodsecurity](https://github.com/SpiderLabs/ModSecurity) - core component containing the functionality and couple of rules
+* a connector that links libmodsecurity to the web server it is running with - [NGINX](https://github.com/SpiderLabs/ModSecurity-nginx), Apache HTTP Server, and IIS
+
 ### `SecRule` ModSecurity directive
 
 https://www.modsecurity.org/CRS/Documentation/making.html
