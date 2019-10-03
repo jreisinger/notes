@@ -15,6 +15,21 @@ tags: [WAF, ModSecurity]
 * you should not inspect static content (images, ...) for performance reasons
 * https://www.modsecurity.org, https://github.com/SpiderLabs/ModSecurity/wiki
 
+### `SecRule` ModSecurity directive
+
+https://www.modsecurity.org/CRS/Documentation/making.html
+
+```
+SecRule VARIABLES "OPERATOR" "TRANSFORMATIONS,ACTIONS"
+# E.g.
+SecRule REQUEST_URI "@streq /index.php" "id:1,phase:1,t:lowercase,deny"
+```
+
+* VARIABLES - where to look (targets)
+* OPERATOR - when to trigger a match
+* TRANSFORMATIONS - how to normalize VARIABLES data
+* ACTIONS - what to do when rule matches
+
 ## CRS
 
 * blacklist rule set
