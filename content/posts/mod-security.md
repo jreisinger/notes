@@ -13,7 +13,7 @@ tags: [WAF, ModSecurity]
 * `/etc/nginx/modsec/modsecurity.conf` - config file
 * audit logs are great for visibility but bad for performance - you can disable them via `SecAuditEngine off` (you still have the Nginx error logs)
 * you should not inspect static content (images, ...) for performance reasons
-* https://www.modsecurity.org
+* https://www.modsecurity.org, https://github.com/SpiderLabs/ModSecurity/wiki
 
 ## CRS
 
