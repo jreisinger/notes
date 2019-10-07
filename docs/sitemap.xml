@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jreisinger.github.io/notes/posts/prometheus/</loc>
+    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jreisinger.github.io/notes/posts/mod-security/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
   </url>
@@ -178,7 +183,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/categories/devops/</loc>
-    <lastmod>2018-06-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -286,7 +291,7 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/</loc>
-    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -310,13 +315,19 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/posts/</loc>
-    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jreisinger.github.io/notes/categories/prog/</loc>
     <lastmod>2019-07-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/tags/prometheus/</loc>
+    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

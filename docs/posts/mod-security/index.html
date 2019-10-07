@@ -6,8 +6,8 @@
   <title>ModSecurity - Notes</title>
   <meta property="og:title" content="ModSecurity - Notes" />
   <meta name="twitter:title" content="ModSecurity - Notes" />
-  <meta name="description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org  CRS  blacklist rule set should be used for all ModSecurity deployments crs-setup.">
-  <meta property="og:description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org  CRS  blacklist rule set should be used for all ModSecurity deployments crs-setup.">
+  <meta name="description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org, https://github.com/SpiderLabs/ModSecurity/wiki  ModSecurity 3.">
+  <meta property="og:description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org, https://github.com/SpiderLabs/ModSecurity/wiki  ModSecurity 3.">
   <meta name="twitter:description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
@@ -90,8 +90,32 @@
 <li><code>/etc/nginx/modsec/modsecurity.conf</code> - config file</li>
 <li>audit logs are great for visibility but bad for performance - you can disable them via <code>SecAuditEngine off</code> (you still have the Nginx error logs)</li>
 <li>you should not inspect static content (images, &hellip;) for performance reasons</li>
-<li><a href="https://www.modsecurity.org">https://www.modsecurity.org</a></li>
+<li><a href="https://www.modsecurity.org">https://www.modsecurity.org</a>, <a href="https://github.com/SpiderLabs/ModSecurity/wiki">https://github.com/SpiderLabs/ModSecurity/wiki</a></li>
 </ul>
+
+<p>ModSecurity 3.0 has a new modular architecture, i.e. it&rsquo;s composed of:</p>
+
+<ul>
+<li><a href="https://github.com/SpiderLabs/ModSecurity">libmodsecurity</a> - core component containing the functionality and couple of rules</li>
+<li>a connector that links libmodsecurity to the web server it is running with - <a href="https://github.com/SpiderLabs/ModSecurity-nginx">NGINX</a>, Apache HTTP Server, and IIS</li>
+</ul>
+
+<p><a href="https://www.nginx.com/blog/compiling-and-installing-modsecurity-for-open-source-nginx/">https://www.nginx.com/blog/compiling-and-installing-modsecurity-for-open-source-nginx/</a></p>
+
+<h3 id="secrule-modsecurity-directive"><code>SecRule</code> ModSecurity directive</h3>
+
+<p><a href="https://www.modsecurity.org/CRS/Documentation/making.html">https://www.modsecurity.org/CRS/Documentation/making.html</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">SecRule VARIABLES &#34;OPERATOR&#34; &#34;TRANSFORMATIONS,ACTIONS&#34;
+# E.g.
+SecRule REQUEST_URI &#34;@streq /index.php&#34; &#34;id:1,phase:1,t:lowercase,deny&#34;</pre></div>
+<ul>
+<li>VARIABLES - where to look (targets)</li>
+<li>OPERATOR - when to trigger a match</li>
+<li>TRANSFORMATIONS - how to normalize VARIABLES data</li>
+<li>ACTIONS - what to do when rule matches</li>
+</ul>
+
+<p><a href="https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x">https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x</a>)</p>
 
 <h2 id="crs">CRS</h2>
 
@@ -142,7 +166,9 @@
     </div>
 
     <ul class="pager article-pager">
-      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-newer">
+          <a href="https://jreisinger.github.io/notes/posts/prometheus/" data-toggle="tooltip" data-placement="top" title="Prometheus">&lt; Newer</a>
+      </li>
       <li class="pager-older">
         <a href="https://jreisinger.github.io/notes/posts/go-intro/" data-toggle="tooltip" data-placement="top" title="Introduction to Go">Older &gt;</a>
       </li>

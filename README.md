@@ -33,6 +33,7 @@ Typical workcycle:
 * [Net Prog](content/posts/net-prog.md)
 * [Perl2Python](content/posts/perl2python.md)
 * [Perl One Liners](content/posts/perl-one-liners.md)
+* [Prometheus](content/posts/prometheus.md)
 * [Python](content/posts/python.md)
 * [Read Stdin or Args](content/posts/read-stdin-or-args.md)
 * [Signals](content/posts/signals.md)
