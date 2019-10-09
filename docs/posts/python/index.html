@@ -20,7 +20,7 @@ x = &#34;2&#34; …">
   <meta property="og:url" content="https://jreisinger.github.io/posts/python/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.58.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -127,9 +127,9 @@ x = int(x)  <span style="font-style:italic"># x is now integer</span></code></pr
 
 <h2 id="numbers">numbers</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; type(1)
-&lt;<span style="font-weight:bold">class</span> <span style="">&#39;</span><span style="font-weight:bold">int</span><span style="font-style:italic">&#39;&gt;</span><span style="">
-</span><span style=""></span><span style="font-style:italic">&gt;&gt;&gt; type(1.1)</span><span style="">
-</span><span style=""></span><span style="font-style:italic">&lt;class &#39;</span>float<span style="font-style:italic">&#39;&gt;</span></code></pre></div>
+&lt;<span style="font-weight:bold">class</span> <span style="">&#39;</span><span style="font-weight:bold">int</span><span style="font-style:italic">&#39;&gt;</span>
+&gt;&gt;&gt; type(1.1)
+&lt;<span style="font-weight:bold">class</span> <span style="">&#39;</span><span style="font-weight:bold">float</span><span style="font-style:italic">&#39;&gt;</span></code></pre></div>
 <h2 id="strings">strings</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; x = <span style="font-style:italic">&#34;Do not meddle    in </span><span style="font-weight:bold;font-style:italic">\t</span><span style="font-style:italic">he affairs of </span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">wizards&#34;</span>
 &gt;&gt;&gt; x2 = x.replace(<span style="font-style:italic">&#34;</span><span style="font-weight:bold;font-style:italic">\t</span><span style="font-style:italic">he&#34;</span>, <span style="font-style:italic">&#34;the&#34;</span>)
@@ -197,8 +197,8 @@ are taken as <code>False</code></li>
 <li>special objects to manage <strong>errors</strong> that arise during execution</li>
 <li>whenever en error occurs Python creates an exception object</li>
 <li>if you handle the exception (by <code>try-except-finally-else</code> compound statement) the program continues to run</li>
-<li>any uncaught exception will cause the program to exit and show a <em>traceback</em> describing the exception that was raised</li>
-</ul>
+
+<li><p>any uncaught exception will cause the program to exit and show a <em>traceback</em> describing the exception that was raised</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="font-style:italic">#!/usr/bin/env python3</span>
 <span style="font-style:italic"># Argument parsing and error handling</span>
 
@@ -211,15 +211,17 @@ cmdargs = parser.parse_args()
 f = cmdargs.f
 
 <span style="font-weight:bold">try</span>:
-    fh = open(f)
-    line = fh.readline()
+fh = open(f)
+line = fh.readline()
 <span style="font-style:italic"># generic exception; more specific exceptions could be caught before</span>
 <span style="font-weight:bold">except</span> <span style="font-weight:bold">Exception</span> <span style="font-weight:bold">as</span> e: 
-    <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;There was an error: &#34;</span>, e)
-    exit(1)  <span style="font-style:italic"># like tchrist said</span>
+<span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;There was an error: &#34;</span>, e)
+exit(1)  <span style="font-style:italic"># like tchrist said</span>
 <span style="font-weight:bold">else</span>:
-    <span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;1st line from&#34;</span>, f, <span style="font-style:italic">&#34;is&#34;</span>, line, end=<span style="font-style:italic">&#34;&#34;</span>)
-    fh.close()</code></pre></div>
+<span style="font-weight:bold">print</span>(<span style="font-style:italic">&#34;1st line from&#34;</span>, f, <span style="font-style:italic">&#34;is&#34;</span>, line, end=<span style="font-style:italic">&#34;&#34;</span>)
+fh.close()</code></pre></div></li>
+</ul>
+
 <h1 id="calling-to-system">Calling to System</h1>
 
 <h2 id="os-module"><code>os</code> module</h2>

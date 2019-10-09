@@ -17,8 +17,8 @@
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/go-strings/</guid>
-      <description>Strings in Go:
- bunch of bytes indexing a string yields its bytes, not its characters characters are stored in their byte-at-a-time representation  package main import ( &amp;#34;fmt&amp;#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; // loop over the string bytes  for i := 0; i &amp;lt; len(sample); i++ { fmt.</description>
+      <description>What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (bytes&amp;rsquo; hex values range from 00 to FF):
+const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; We can also create a &amp;ldquo;raw string&amp;rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):</description>
     </item>
     
   </channel>

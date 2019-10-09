@@ -6,18 +6,17 @@
   <title>Go Strings - Notes</title>
   <meta property="og:title" content="Go Strings - Notes" />
   <meta name="twitter:title" content="Go Strings - Notes" />
-  <meta name="description" content="Strings in Go:
- bunch of bytes indexing a string yields its bytes, not its characters characters are stored in their byte-at-a-time representation  package main import ( &#34;fmt&#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; // loop over the string bytes  for i := 0; i &lt; len(sample); i&#43;&#43; { fmt.">
-  <meta property="og:description" content="Strings in Go:
- bunch of bytes indexing a string yields its bytes, not its characters characters are stored in their byte-at-a-time representation  package main import ( &#34;fmt&#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; // loop over the string bytes  for i := 0; i &lt; len(sample); i&#43;&#43; { fmt.">
-  <meta name="twitter:description" content="Strings in Go:
- bunch of bytes indexing a string yields its bytes, not its characters characters are stored in their byte-at-a-time representation  package main import ( &#34;fmt&#34; ) func main() { …">
+  <meta name="description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (bytes&rsquo; hex values range from 00 to FF):
+const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; We can also create a &ldquo;raw string&rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):">
+  <meta property="og:description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (bytes&rsquo; hex values range from 00 to FF):
+const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; We can also create a &ldquo;raw string&rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):">
+  <meta name="twitter:description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-strings/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.58.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -80,41 +79,32 @@
         </li>
       </ul>
       
-      <p>Strings in Go:</p>
+      
 
-<ul>
-<li>bunch of bytes</li>
-<li>indexing a string yields its bytes, not its characters</li>
-<li>characters are stored in their byte-at-a-time representation</li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+<h2 id="what-is-a-string">What is a string</h2>
 
-<span style="font-weight:bold">import</span> (
-    <span style="font-style:italic">&#34;fmt&#34;</span>
-)
-
-<span style="font-weight:bold">func</span> main() {
-    <span style="font-style:italic">// String is a (read-only) slice of bytes that can hold arbitrary bytes
-</span><span style="font-style:italic"></span>    <span style="font-style:italic">// (not just UTF-8 text or any other predefined format). Sample string
-</span><span style="font-style:italic"></span>    <span style="font-style:italic">// literal in hex:
-</span><span style="font-style:italic"></span>    <span style="font-weight:bold">const</span> sample = <span style="font-style:italic">&#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34;</span>
-
-    <span style="font-style:italic">// loop over the string bytes
-</span><span style="font-style:italic"></span>    <span style="font-weight:bold">for</span> i := 0; i &lt; len(sample); i++ {
-        fmt.Printf(<span style="font-style:italic">&#34;%x &#34;</span>, sample[i])
-    }
-    fmt.Println()
-
-    <span style="font-style:italic">// same as the byte-by-byte loop above
-</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;% x\n&#34;</span>, sample) <span style="font-style:italic">// bd b2 3d bc 20 e2 8c 98
+<p>String is a read-only <strong>slice of bytes</strong>. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the <code>\xNN</code> notation (bytes&rsquo; hex values range from <code>00</code> to <code>FF</code>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> sample = <span style="font-style:italic">&#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34;</span></code></pre></div>
+<p>We can also create a &ldquo;raw string&rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> placeOfInterest = <span style="font-style:italic">`⌘`</span></code></pre></div>
+<h2 id="printing-strings">Printing strings</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Print the string directly.
+</span><span style="font-style:italic"></span>fmt.Print(sample)                   <span style="font-style:italic">// ��=� ⌘
 </span><span style="font-style:italic"></span>
-    <span style="font-style:italic">// escape any non-printable byte sequences ..
-</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;% q\n&#34;</span>, sample) <span style="font-style:italic">// &#34;\xbd\xb2=\xbc ⌘&#34;
+<span style="font-style:italic">// Get individual bytes by looping over the string.
+</span><span style="font-style:italic"></span><span style="font-weight:bold">for</span> i := 0; i &lt; len(sample); i++ {  <span style="font-style:italic">// bd b2 3d bc 20 e2 8c 98
+</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%x &#34;</span>, sample[i])
+}
+
+<span style="font-style:italic">// Print bytes in hex (same output as the byte-by-byte loop above).
+</span><span style="font-style:italic"></span>fmt.Printf(<span style="font-style:italic">&#34;% x\n&#34;</span>, sample)         <span style="font-style:italic">// bd b2 3d bc 20 e2 8c 98
 </span><span style="font-style:italic"></span>
-    <span style="font-style:italic">// .. escape also non-ASCII bytes while intepreting UTF-8
-</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%+q\n&#34;</span>, sample) <span style="font-style:italic">// &#34;\xbd\xb2=\xbc \u2318&#34;
-</span><span style="font-style:italic"></span>}</code></pre></div>
-<p>More</p>
+<span style="font-style:italic">// Escape any non-printable byte sequences ..
+</span><span style="font-style:italic"></span>fmt.Printf(<span style="font-style:italic">&#34;% q\n&#34;</span>, sample)         <span style="font-style:italic">// &#34;\xbd\xb2=\xbc ⌘&#34;
+</span><span style="font-style:italic"></span>
+<span style="font-style:italic">// .. escape also non-ASCII bytes while intepreting UTF-8.
+</span><span style="font-style:italic"></span>fmt.Printf(<span style="font-style:italic">&#34;%+q\n&#34;</span>, sample)         // <span style="font-style:italic">&#34;\xbd\xb2=\xbc \u2318&#34;</span></code></pre></div>
+<h2 id="more">More</h2>
 
 <ul>
 <li><a href="https://blog.golang.org/strings">https://blog.golang.org/strings</a></li>
