@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Go Strings - Notes</title>
+  <meta property="og:title" content="Go Strings - Notes" />
+  <meta name="twitter:title" content="Go Strings - Notes" />
+  <meta name="description" content="https://blog.golang.org/strings
+package main import ( &#34;fmt&#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; // loop over the string bytes  for i := 0; i &lt; len(sample); i&#43;&#43; { fmt.Printf(&#34;%x &#34;, sample[i]) } fmt.Println() // same as the byte-by-byte loop above  fmt.">
+  <meta property="og:description" content="https://blog.golang.org/strings
+package main import ( &#34;fmt&#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; // loop over the string bytes  for i := 0; i &lt; len(sample); i&#43;&#43; { fmt.Printf(&#34;%x &#34;, sample[i]) } fmt.Println() // same as the byte-by-byte loop above  fmt.">
+  <meta name="twitter:description" content="https://blog.golang.org/strings
+package main import ( &#34;fmt&#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/go-strings/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.58.2" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+
+    
+    <ul>
+      
+        
+        
+        
+        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/go-strings.md">See on GitHub</a>
+        
+      
+    </ul>
+
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Go Strings</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>October 9, 2019</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            Prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/go/">
+            <i class="fas fa-tag"></i>
+            Go
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/strings/">
+            <i class="fas fa-tag"></i>
+            Strings
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <p><a href="https://blog.golang.org/strings">https://blog.golang.org/strings</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="font-style:italic">&#34;fmt&#34;</span>
+)
+
+<span style="font-weight:bold">func</span> main() {
+    <span style="font-style:italic">// String is a (read-only) slice of bytes that can hold arbitrary bytes
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">// (not just UTF-8 text or any other predefined format). Sample string
+</span><span style="font-style:italic"></span>    <span style="font-style:italic">// literal in hex:
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">const</span> sample = <span style="font-style:italic">&#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34;</span>
+
+    <span style="font-style:italic">// loop over the string bytes
+</span><span style="font-style:italic"></span>    <span style="font-weight:bold">for</span> i := 0; i &lt; len(sample); i++ {
+        fmt.Printf(<span style="font-style:italic">&#34;%x &#34;</span>, sample[i])
+    }
+    fmt.Println()
+
+    <span style="font-style:italic">// same as the byte-by-byte loop above
+</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;% x\n&#34;</span>, sample) <span style="font-style:italic">// bd b2 3d bc 20 e2 8c 98
+</span><span style="font-style:italic"></span>
+    <span style="font-style:italic">// escape any non-printable byte sequences ..
+</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;% q\n&#34;</span>, sample) <span style="font-style:italic">// &#34;\xbd\xb2=\xbc ⌘&#34;
+</span><span style="font-style:italic"></span>
+    <span style="font-style:italic">// .. escape also non-ASCII bytes while intepreting UTF-8
+</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%+q\n&#34;</span>, sample) <span style="font-style:italic">// &#34;\xbd\xb2=\xbc \u2318&#34;
+</span><span style="font-style:italic"></span>}</code></pre></div>
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/prometheus/" data-toggle="tooltip" data-placement="top" title="Prometheus">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

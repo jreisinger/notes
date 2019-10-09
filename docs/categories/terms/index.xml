@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Terms on Notes</title>
+    <title>terms on Notes</title>
     <link>https://jreisinger.github.io/notes/categories/terms/</link>
-    <description>Recent content in Terms on Notes</description>
+    <description>Recent content in terms on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 01 Jan 1970 00:00:00 +0000</lastBuildDate>

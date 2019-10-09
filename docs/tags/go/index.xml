@@ -6,10 +6,20 @@
     <description>Recent content in Go on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go Strings</title>
+      <link>https://jreisinger.github.io/notes/posts/go-strings/</link>
+      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/go-strings/</guid>
+      <description>https://blog.golang.org/strings
+package main import ( &amp;#34;fmt&amp;#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; // loop over the string bytes  for i := 0; i &amp;lt; len(sample); i++ { fmt.Printf(&amp;#34;%x &amp;#34;, sample[i]) } fmt.Println() // same as the byte-by-byte loop above  fmt.</description>
+    </item>
     
     <item>
       <title>Introduction to Go</title>

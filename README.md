@@ -19,6 +19,7 @@ Typical workcycle:
 * [Git](content/posts/git.md)
 * [Go Directory Structure](content/posts/go-directory-structure.md)
 * [Go Json](content/posts/go-json.md)
+* [Go Strings](content/posts/go-strings.md)
 * [Go TCP Sockets](content/posts/go-tcp-sockets.md)
 * [Grub2](content/posts/grub2.md)
 * [Hashes](content/posts/hashes.md)

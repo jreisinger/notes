@@ -22,7 +22,7 @@
   <meta property="og:url" content="https://jreisinger.github.io/posts/tcpdump/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.58.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -156,10 +156,12 @@ data_length_in_bytes</code></pre></div>
 
 <ul>
 <li>utilizes the Berkeley Packet Filter (BPF) format</li>
-<li>added to the end of the command (recommended to use single quotes)</li>
-</ul>
+
+<li><p>added to the end of the command (recommended to use single quotes)</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tcpdump -nnr packets.pcap <span style="font-style:italic">&#39;tcp dst port 8080&#39;</span> -w packets_tcp8080.pcap
-tcpdump -nnr packets.pcap -F known_good_hosts.bpf</code></pre></div>
+tcpdump -nnr packets.pcap -F known_good_hosts.bpf</code></pre></div></li>
+</ul>
+
 <h2 id="bpf">BPF</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">           operator
  primitive   |      primitive

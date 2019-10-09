@@ -7,9 +7,11 @@
   <meta property="og:title" content="Kubernetes - Notes" />
   <meta name="twitter:title" content="Kubernetes - Notes" />
   <meta name="description" content="Basics Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more  # your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE  # all namespaces in a cluster kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects Basic objects">
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more
+# your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE # all namespaces in a cluster kubectl get namespaces  Context  to change the default namespace more permanently to manage different clusters to manage different users">
   <meta property="og:description" content="Basics Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more  # your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE  # all namespaces in a cluster kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &lt;context-name&gt; Objects Basic objects">
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more
+# your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE # all namespaces in a cluster kubectl get namespaces  Context  to change the default namespace more permanently to manage different clusters to manage different users">
   <meta name="twitter:description" content="Basics Kubernetes is the operating system for cloud-native applications.
 Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem …">
   <meta name="author" content="Jozef Reisinger"/>
@@ -17,7 +19,7 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
   <meta property="og:url" content="https://jreisinger.github.io/posts/kubernetes/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.58.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -110,32 +112,36 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
 
 <h2 id="configuration">Configuration</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat ~/.kube/config
-<span style="font-style:italic"># or
-</span><span style="font-style:italic"></span>kubectl config view</code></pre></div>
+<span style="font-style:italic"># or</span>
+kubectl config view</code></pre></div>
 <h2 id="namespace">Namespace</h2>
 
 <ul>
 <li>group of objects in a cluster</li>
 <li>similar to a filesystem folder</li>
-<li>see <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a> for more</li>
+
+<li><p>see <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a> for more</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># your current namespace</span>
+kubectl config get-contexts <span style="font-style:italic"># search for asterisk and see column NAMESPACE</span>
+
+<span style="font-style:italic"># all namespaces in a cluster</span>
+kubectl get namespaces</code></pre></div></li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># your current namespace
-</span><span style="font-style:italic"></span>kubectl config get-contexts <span style="font-style:italic"># search for asterisk and see column NAMESPACE
-</span><span style="font-style:italic"></span>
-<span style="font-style:italic"># all namespaces in a cluster
-</span><span style="font-style:italic"></span>kubectl get namespaces</code></pre></div>
+
 <h2 id="context">Context</h2>
 
 <ul>
 <li>to change the default namespace more permanently</li>
 <li>to manage different clusters</li>
-<li>to manage different users</li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># list contexts
-</span><span style="font-style:italic"></span>kubectl config get-contexts
 
-<span style="font-style:italic"># switch context
-</span><span style="font-style:italic"></span>kubectl config use-context &lt;context-name&gt;</code></pre></div>
+<li><p>to manage different users</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># list contexts</span>
+kubectl config get-contexts
+
+<span style="font-style:italic"># switch context</span>
+kubectl config use-context &lt;context-name&gt;</code></pre></div></li>
+</ul>
+
 <h1 id="objects">Objects</h1>
 
 <p>Basic objects</p>
@@ -146,22 +152,24 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
 <li>everything in Kubernetes is represented by a RESTful resource aka. a Kubernetes object (<a href="https://stackoverflow.com/questions/52309496/difference-between-kubernetes-objects-and-resources">resources vs objects</a>)</li>
 <li>each object exists at a unique HTTP path, e.g. <code>https://your-k8s.com/api/v1/namespaces/default/pods/my-pod</code></li>
 <li>the <code>kubectl</code> makes requests to these URLs to access the objects</li>
-<li><code>get</code> is conceptually similar to <code>ps</code></li>
+
+<li><p><code>get</code> is conceptually similar to <code>ps</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># view Kubernetes objects/resources</span>
+kubectl get all [-l app=nginx] <span style="font-style:italic"># all resources [with a label app=nginx]</span>
+kubectl get &lt;type&gt;             <span style="font-style:italic"># all resources of given type</span>
+kubectl get &lt;type&gt; &lt;object&gt;    <span style="font-style:italic"># specific resource</span>
+
+<span style="font-style:italic"># details about an object</span>
+kubectl describe &lt;type&gt; &lt;object&gt;
+
+<span style="font-style:italic"># create, update objects</span>
+kubectl apply -f obj.yaml
+
+<span style="font-style:italic"># delete objects</span>
+kubectl delete -f obj.yaml  <span style="font-style:italic"># no additional prompting!</span>
+kubectl delete &lt;type&gt; &lt;object&gt;</code></pre></div></li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># view Kubernetes objects/resources
-</span><span style="font-style:italic"></span>kubectl get all [-l app=nginx] <span style="font-style:italic"># all resources [with a label app=nginx]
-</span><span style="font-style:italic"></span>kubectl get &lt;type&gt;             <span style="font-style:italic"># all resources of given type
-</span><span style="font-style:italic"></span>kubectl get &lt;type&gt; &lt;object&gt;    <span style="font-style:italic"># specific resource
-</span><span style="font-style:italic"></span>
-<span style="font-style:italic"># details about an object
-</span><span style="font-style:italic"></span>kubectl describe &lt;type&gt; &lt;object&gt;
 
-<span style="font-style:italic"># create, update objects
-</span><span style="font-style:italic"></span>kubectl apply -f obj.yaml
-
-<span style="font-style:italic"># delete objects
-</span><span style="font-style:italic"></span>kubectl delete -f obj.yaml  <span style="font-style:italic"># no additional prompting!
-</span><span style="font-style:italic"></span>kubectl delete &lt;type&gt; &lt;object&gt;</code></pre></div>
 <h2 id="pod">Pod</h2>
 
 <ul>
@@ -171,23 +179,25 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
 <li>once scheduled to a node, Pods don&rsquo;t move</li>
 <li>each container runs its own cgroup but they <em>share</em> network, hostname and filesystem</li>
 <li>like a logical host</li>
-<li>if you want to persist data across multiple instances of a Pod, you need to use <code>PersistentVolumes</code></li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># Pod manifest - just a text-file representation of the Kubernetes API object
-</span><span style="font-style:italic"></span>$ cat kuard-pod.yaml
+
+<li><p>if you want to persist data across multiple instances of a Pod, you need to use <code>PersistentVolumes</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># Pod manifest - just a text-file representation of the Kubernetes API object</span>
+$ cat kuard-pod.yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kuard
+name: kuard
 spec:
-  containers:
-    - image: gcr.io/kuar-demo/kuard-amd64:1
-      name: kuard
-      ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># Creating a Pod
-</span><span style="font-style:italic"></span>kubectl apply -f kuard-pod.yaml</code></pre></div>
+containers:
+- image: gcr.io/kuar-demo/kuard-amd64:1
+  name: kuard
+  ports:
+    - containerPort: 8080
+      name: http
+      protocol: TCP</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># Creating a Pod</span>
+kubectl apply -f kuard-pod.yaml</code></pre></div></li>
+</ul>
+
 <p>What should I put into a single pod?</p>
 
 <ul>
@@ -245,16 +255,16 @@ the system)</li>
 <h1 id="tips-and-tricks">Tips and tricks</h1>
 
 <p>Useful output flags:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">-o wide       <span style="font-style:italic"># more details
-</span><span style="font-style:italic"></span>-o json       <span style="font-style:italic"># complete object in JSON format
-</span><span style="font-style:italic"></span>-o yaml       <span style="font-style:italic"># complete object in YAML format
-</span><span style="font-style:italic"></span>--v=6         <span style="font-style:italic"># verbosity
-</span><span style="font-style:italic"></span>--no-headers</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">-o wide       <span style="font-style:italic"># more details</span>
+-o json       <span style="font-style:italic"># complete object in JSON format</span>
+-o yaml       <span style="font-style:italic"># complete object in YAML format</span>
+--v=6         <span style="font-style:italic"># verbosity</span>
+--no-headers</code></pre></div>
 <p>Clean up objecs:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl delete deployments --all [--selector=<span style="font-style:italic">&#34;app=myapp,env=dev&#34;</span>]</code></pre></div>
 <p>Create a proxy server between localhost and K8s API server:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl proxy &amp;                  <span style="font-style:italic"># create proxy
-</span><span style="font-style:italic"></span>curl localhost:8001/api/v1/pods  # get list of pods</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl proxy &amp;                  <span style="font-style:italic"># create proxy</span>
+curl localhost:8001/api/v1/pods  <span style="font-style:italic"># get list of pods</span></code></pre></div>
 <p>Explain resource types:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl explain svc</code></pre></div>
 <p>Get pods per node:</p>
@@ -265,14 +275,14 @@ the system)</li>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">kubectl run demo --image=cloudnatived/demo:hello --dry-run -o yaml</pre></div>
 <p>Show logs:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl logs [-f] &lt;pod&gt;
-kubectl exec -it &lt;pod&gt; -- bash  # or sh instead of bash</code></pre></div>
+kubectl exec -it &lt;pod&gt; -- bash  <span style="font-style:italic"># or sh instead of bash</span></code></pre></div>
 <p>Copy files:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl cp &lt;pod&gt;:/path/to/remote/file /path/to/local/file</code></pre></div>
 <p>Access Pod via port forwarding:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl port-forward kuard 8080:8080  # tunnel: localhost -&gt; k8s master -&gt; k8s worker node</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl port-forward kuard 8080:8080  <span style="font-style:italic"># tunnel: localhost -&gt; k8s master -&gt; k8s worker node</span></code></pre></div>
 <p>Run containers for troubleshooting:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl run demo --image=cloudnatived/demo:hello --expose --port 8888 <span style="font-style:italic"># pod to troubleshoot
-</span><span style="font-style:italic"></span>kubectl run nslookup --image=busybox --rm -it --restart=Never --command -- nslookup demo
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl run demo --image=cloudnatived/demo:hello --expose --port 8888 <span style="font-style:italic"># pod to troubleshoot</span>
+kubectl run nslookup --image=busybox --rm -it --restart=Never --command -- nslookup demo
 kubectl run wget --image=busybox --rm -it --restart=Never --command -- wget -qO- http://demo:8888</code></pre></div>
 <ul>
 <li><code>--command</code> &ndash; command to run instead of container&rsquo;s default entrypoint</li>
