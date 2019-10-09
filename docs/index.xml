@@ -17,8 +17,8 @@
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/go-strings/</guid>
-      <description>What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (bytes&amp;rsquo; hex values range from 00 to FF):
-const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; We can also create a &amp;ldquo;raw string&amp;rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):</description>
+      <description>What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (hex values of a byte range from 00 to FF):
+const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; Printing strings // Print the string directly. fmt.Print(sample) // ��=� ⌘  // Get individual bytes by looping over the string.</description>
     </item>
     
     <item>

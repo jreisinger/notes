@@ -6,11 +6,11 @@
   <title>Go Strings - Notes</title>
   <meta property="og:title" content="Go Strings - Notes" />
   <meta name="twitter:title" content="Go Strings - Notes" />
-  <meta name="description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (bytes&rsquo; hex values range from 00 to FF):
-const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; We can also create a &ldquo;raw string&rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):">
-  <meta property="og:description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (bytes&rsquo; hex values range from 00 to FF):
-const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; We can also create a &ldquo;raw string&rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):">
-  <meta name="twitter:description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation …">
+  <meta name="description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (hex values of a byte range from 00 to FF):
+const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; Printing strings // Print the string directly. fmt.Print(sample) // ��=� ⌘  // Get individual bytes by looping over the string.">
+  <meta property="og:description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (hex values of a byte range from 00 to FF):
+const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; Printing strings // Print the string directly. fmt.Print(sample) // ��=� ⌘  // Get individual bytes by looping over the string.">
+  <meta name="twitter:description" content="What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (hex …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-strings/" />
@@ -83,10 +83,8 @@ const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; We can also create a &
 
 <h2 id="what-is-a-string">What is a string</h2>
 
-<p>String is a read-only <strong>slice of bytes</strong>. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the <code>\xNN</code> notation (bytes&rsquo; hex values range from <code>00</code> to <code>FF</code>):</p>
+<p>String is a read-only <strong>slice of bytes</strong>. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the <code>\xNN</code> notation (hex values of a byte range from <code>00</code> to <code>FF</code>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> sample = <span style="font-style:italic">&#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34;</span></code></pre></div>
-<p>We can also create a &ldquo;raw string&rdquo; that can contain only literal text (regular string can contain escape sequences as shown above):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> placeOfInterest = <span style="font-style:italic">`⌘`</span></code></pre></div>
 <h2 id="printing-strings">Printing strings</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Print the string directly.
 </span><span style="font-style:italic"></span>fmt.Print(sample)                   <span style="font-style:italic">// ��=� ⌘
@@ -104,6 +102,42 @@ const sample = &#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&#34; We can also create a &
 </span><span style="font-style:italic"></span>
 <span style="font-style:italic">// .. escape also non-ASCII bytes while intepreting UTF-8.
 </span><span style="font-style:italic"></span>fmt.Printf(<span style="font-style:italic">&#34;%+q\n&#34;</span>, sample)         // <span style="font-style:italic">&#34;\xbd\xb2=\xbc \u2318&#34;</span></code></pre></div>
+<h2 id="utf-8-and-string-literals">UTF-8 and string literals</h2>
+
+<p>We can also create a &ldquo;raw string&rdquo; that can contain only literal text (regular string - created with double quotes - can contain escape sequences as shown above):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> placeOfInterest = <span style="font-style:italic">`⌘`</span>
+
+fmt.Printf(<span style="font-style:italic">&#34;plain string: &#34;</span>)
+fmt.Printf(<span style="font-style:italic">&#34;%s\n&#34;</span>, placeOfInterest)
+
+fmt.Printf(<span style="font-style:italic">&#34;quoted string: &#34;</span>)
+fmt.Printf(<span style="font-style:italic">&#34;%+q\n&#34;</span>, placeOfInterest)
+
+fmt.Printf(<span style="font-style:italic">&#34;hex bytes: &#34;</span>)
+fmt.Printf(<span style="font-style:italic">&#34;% x\n&#34;</span>, placeOfInterest)
+
+<span style="font-style:italic">// plain string: ⌘
+</span><span style="font-style:italic">// quoted string: &#34;\u2318&#34;
+</span><span style="font-style:italic"></span>// hex bytes: e2 8c 98</code></pre></div>
+<p>This means that the Unicode character value U+2318, the &ldquo;Place of Interest&rdquo; symbol <a href="http://unicode.org/cldr/utility/character.jsp?a=2318">⌘</a>, is represented by the bytes e2 8c 98, and that those bytes are the UTF-8 encoding of the hexadecimal value 2318.</p>
+
+<p>Source code in Go is <em>defined</em> to be UTF-8 text. That implies that the text editor places the UTF-8 encoding of the symbol ⌘ into the source code file (<code>0a</code> is line feed <a href="https://en.wikipedia.org/wiki/Control_character">control character</a>):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ cat a.go
+⌘
+$ hexdump a.go
+0000000 e2 8c 98 0a
+0000004</pre></div>
+<h2 id="range-loops">Range loops</h2>
+
+<p><code>for range</code> loop on a string treats it specially. It decodes one UTF-8-encoded rune (code point) on each iteration:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> nihongo = <span style="font-style:italic">&#34;日本語&#34;</span> <span style="font-style:italic">// Japanese
+</span><span style="font-style:italic"></span><span style="font-weight:bold">for</span> index, runeValue := <span style="font-weight:bold">range</span> nihongo {
+    <span style="font-style:italic">// %#U shows the code point&#39;s Unicode value and its printed representation.
+</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%#U starts at byte position %d\n&#34;</span>, runeValue, index)
+}
+<span style="font-style:italic">// U+65E5 &#39;日&#39; starts at byte position 0
+</span><span style="font-style:italic">// U+672C &#39;本&#39; starts at byte position 3
+</span><span style="font-style:italic"></span>// U+8A9E <span style="font-style:italic">&#39;語&#39;</span> starts at <span style="">byte</span> position 6</code></pre></div>
 <h2 id="more">More</h2>
 
 <ul>
