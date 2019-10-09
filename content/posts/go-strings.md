@@ -5,7 +5,12 @@ categories: [Prog]
 tags: [Go, Strings]
 ---
 
-https://blog.golang.org/strings
+Strings in Go:
+
+* bunch of bytes
+* indexing a string yields its bytes, not its characters
+* characters are stored in their byte-at-a-time representation
+
 
 ```go
 package main
@@ -36,3 +41,6 @@ func main() {
     fmt.Printf("%+q\n", sample) // "\xbd\xb2=\xbc \u2318"
 }
 ```
+More
+
+* https://blog.golang.org/strings

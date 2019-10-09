@@ -21,7 +21,7 @@ Docker revision-controls:
   <meta property="og:url" content="https://jreisinger.github.io/posts/docker/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -181,7 +181,7 @@ system.</p>
 
 <p>Get into a running container:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps
-docker exec -it &lt;container_id&gt; /bin/bash <span style="font-style:italic"># new process created in the container</span></code></pre></div>
+docker exec -it &lt;container_id&gt; /bin/bash # new process created in the container</code></pre></div>
 <p>Stop a container:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stop &lt;container_id&gt;</code></pre></div>
 <p>Remove a container:</p>
@@ -202,8 +202,8 @@ filesystem</li>
 
 <p>Add a volume to a container (<code>-v</code>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -v /data --rm --hostname web --name web -d nginx
-$ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;</span> web | jq <span style="font-style:italic"># note source and destination keys</span>
-[
+$ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;</span> web | jq <span style="font-style:italic"># note source and destination keys
+</span><span style="font-style:italic"></span>[
   {
     <span style="font-style:italic">&#34;Type&#34;</span>: <span style="font-style:italic">&#34;volume&#34;</span>,
     <span style="font-style:italic">&#34;Name&#34;</span>: <span style="font-style:italic">&#34;2d80bc1056787f16b71fb0edced98b3036252083044b1c8db536627c2544a121&#34;</span>,
@@ -220,8 +220,8 @@ $ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;
 $ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;</span> web
 [{<span style="font-style:italic">&#34;Type&#34;</span>:<span style="font-style:italic">&#34;bind&#34;</span>,<span style="font-style:italic">&#34;Source&#34;</span>:<span style="font-style:italic">&#34;/mnt/data&#34;</span>,<span style="font-style:italic">&#34;Destination&#34;</span>:<span style="font-style:italic">&#34;/data&#34;</span>,<span style="font-style:italic">&#34;Mode&#34;</span>:<span style="font-style:italic">&#34;&#34;</span>,<span style="font-style:italic">&#34;RW&#34;</span>:true,<span style="font-style:italic">&#34;Propagation&#34;</span>:<span style="font-style:italic">&#34;rprivate&#34;</span>}]</code></pre></div>
 <p>Have a data volume container:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker create -v /mnt/data:/data --name nginx-data nginx          <span style="font-style:italic"># never runs</span>
-$ docker run --volumes-from nginx-data -p80:80 --name web -d nginx</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker create -v /mnt/data:/data --name nginx-data nginx          <span style="font-style:italic"># never runs
+</span><span style="font-style:italic"></span>$ docker run --volumes-from nginx-data -p80:80 --name web -d nginx</code></pre></div>
 <h1 id="networks">Networks</h1>
 
 <p>During installation Docker creates three default networks:</p>
@@ -245,12 +245,12 @@ e3f087868688        none                null                local</code></pre></
 <p>Containers&rsquo; statistics:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stats [--no-stream]</code></pre></div>
 <p>Clean up:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># you will be asked to confirm</span>
-docker system prune                                     <span style="font-style:italic"># containers, images</span>
-docker images prune                                     <span style="font-style:italic"># only images</span>
-
-<span style="font-style:italic"># be careful!</span>
-docker volume rm <span style="font-weight:bold">$(</span>docker volume ls -qf dangling=true<span style="font-weight:bold">)</span>  <span style="font-style:italic"># volumes</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># you will be asked to confirm
+</span><span style="font-style:italic"></span>docker system prune                                     <span style="font-style:italic"># containers, images
+</span><span style="font-style:italic"></span>docker images prune                                     <span style="font-style:italic"># only images
+</span><span style="font-style:italic"></span>
+<span style="font-style:italic"># be careful!
+</span><span style="font-style:italic"></span>docker volume rm <span style="font-weight:bold">$(</span>docker volume ls -qf dangling=true<span style="font-weight:bold">)</span>  # volumes</code></pre></div>
 <h1 id="limiting-a-container-s-resources">Limiting a container&rsquo;s resources</h1>
 
 <ul>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>k8s on Notes</title>
+    <title>K8s on Notes</title>
     <link>https://jreisinger.github.io/notes/tags/k8s/</link>
-    <description>Recent content in k8s on Notes</description>
+    <description>Recent content in K8s on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 27 Jun 2018 00:00:00 +0000</lastBuildDate>
@@ -18,8 +18,7 @@
       
       <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
       <description>Basics Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more
-# your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE # all namespaces in a cluster kubectl get namespaces  Context  to change the default namespace more permanently to manage different clusters to manage different users</description>
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more  # your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE  # all namespaces in a cluster kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects Basic objects</description>
     </item>
     
   </channel>

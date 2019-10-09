@@ -17,8 +17,8 @@
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/go-strings/</guid>
-      <description>https://blog.golang.org/strings
-package main import ( &amp;#34;fmt&amp;#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; // loop over the string bytes  for i := 0; i &amp;lt; len(sample); i++ { fmt.Printf(&amp;#34;%x &amp;#34;, sample[i]) } fmt.Println() // same as the byte-by-byte loop above  fmt.</description>
+      <description>Strings in Go:
+ bunch of bytes indexing a string yields its bytes, not its characters characters are stored in their byte-at-a-time representation  package main import ( &amp;#34;fmt&amp;#34; ) func main() { // String is a (read-only) slice of bytes that can hold arbitrary bytes  // (not just UTF-8 text or any other predefined format). Sample string  // literal in hex:  const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; // loop over the string bytes  for i := 0; i &amp;lt; len(sample); i++ { fmt.</description>
     </item>
     
     <item>
@@ -167,8 +167,7 @@ Stack (temporary to a function)
       
       <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
       <description>Basics Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more
-# your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE # all namespaces in a cluster kubectl get namespaces  Context  to change the default namespace more permanently to manage different clusters to manage different users</description>
+Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more  # your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE  # all namespaces in a cluster kubectl get namespaces Context  to change the default namespace more permanently to manage different clusters to manage different users  # list contexts kubectl config get-contexts # switch context kubectl config use-context &amp;lt;context-name&amp;gt; Objects Basic objects</description>
     </item>
     
     <item>

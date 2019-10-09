@@ -21,7 +21,7 @@ Types help us reason about what our program is doing and help us catch many …"
   <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -182,12 +182,10 @@ know to use them</li>
 <li>inexact (1.01 – 0.99 using floating-point arithmetic results in
 0.020000000000000018)</li>
 <li>have certain size (32 or 64 bit)</li>
-
-<li><p>NaN - not a number (for things like 0/0), +∞, -∞</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// we use .0 to tell Go it&#39;s a floating-point number
-</span><span style="font-style:italic"></span>fmt.Prinln(<span style="font-style:italic">&#34;1 + 1 =&#34;</span>, 1.0 + 1.0)</code></pre></div></li>
+<li>NaN - not a number (for things like 0/0), +∞, -∞</li>
 </ul>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// we use .0 to tell Go it&#39;s a floating-point number
+</span><span style="font-style:italic"></span>fmt.Prinln(<span style="font-style:italic">&#34;1 + 1 =&#34;</span>, 1.0 + 1.0)</code></pre></div>
 <h2 id="strings">Strings</h2>
 
 <ul>
@@ -226,23 +224,21 @@ on the type of the arguments</li>
 <ul>
 <li>variable - storage location, with a specific type and an associated name</li>
 <li><a href="https://golang.org/ref/spec#Declarations_and_scope">scope</a> - the range of places where you are allowed to use a variable (&ldquo;Go is lexically scoped using block.&rdquo;)</li>
-
-<li><p>constants - variables whose values cannot be changed during program run time</p>
+<li>constants - variables whose values cannot be changed during program run time</li>
+</ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
-<span style="font-style:italic">&#34;fmt&#34;</span>
+    <span style="font-style:italic">&#34;fmt&#34;</span>
 )
 
 <span style="font-weight:bold">func</span> main() {
-fmt.Print(<span style="font-style:italic">&#34;Enter distance in feet: &#34;</span>)
-<span style="font-weight:bold">var</span> feet <span style="">float64</span> <span style="font-style:italic">// one way to define var
-</span><span style="font-style:italic"></span>fmt.Scanf(<span style="font-style:italic">&#34;%f&#34;</span>, &amp;feet)
-meters := feet * 0.3048 <span style="font-style:italic">// another way to define var
-</span><span style="font-style:italic"></span>fmt.Printf(<span style="font-style:italic">&#34;%.2f ft = %.2f m\n&#34;</span>, feet, meters)
-}</code></pre></div></li>
-</ul>
-
+    fmt.Print(<span style="font-style:italic">&#34;Enter distance in feet: &#34;</span>)
+    <span style="font-weight:bold">var</span> feet <span style="">float64</span> <span style="font-style:italic">// one way to define var
+</span><span style="font-style:italic"></span>    fmt.Scanf(<span style="font-style:italic">&#34;%f&#34;</span>, &amp;feet)
+    meters := feet * 0.3048 <span style="font-style:italic">// another way to define var
+</span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%.2f ft = %.2f m\n&#34;</span>, feet, meters)
+}</code></pre></div>
 <p>See also <a href="https://tour.golang.org/basics/14">Type inference</a>.</p>
 
 <h1 id="control-structures">Control Structures</h1>
@@ -341,7 +337,8 @@ s2 := make([]<span style="">int</span>, 2)
 <h2 id="maps">Maps</h2>
 
 <ul>
-<li><p>unordered collection of key-value pairs (also called associative arrays, hash tables, or dictionaries)</p>
+<li>unordered collection of key-value pairs (also called associative arrays, hash tables, or dictionaries)</li>
+</ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// x is a map of strings into ints
 </span><span style="font-style:italic"></span>
 <span style="font-style:italic">// WRONG: this will yield a run time error
@@ -353,20 +350,19 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10 <span style="font-s
 x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 
 <span style="font-style:italic">// delete an item from a map
-</span><span style="font-style:italic"></span>delete(x, <span style="font-style:italic">&#34;key&#34;</span>)</code></pre></div></li>
-
-<li><p>maps are often used as lookup tables (dictionaries)</p>
+</span><span style="font-style:italic"></span>delete(x, <span style="font-style:italic">&#34;key&#34;</span>)</code></pre></div>
+<ul>
+<li>maps are often used as lookup tables (dictionaries)</li>
+</ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">elements := <span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">string</span>{
-<span style="font-style:italic">&#34;H&#34;</span>:  <span style="font-style:italic">&#34;Hydrogen&#34;</span>,
-<span style="font-style:italic">&#34;He&#34;</span>: <span style="font-style:italic">&#34;Helium&#34;</span>,
-<span style="font-style:italic">&#34;Li&#34;</span>: <span style="font-style:italic">&#34;Lithium&#34;</span>,
+    <span style="font-style:italic">&#34;H&#34;</span>:  <span style="font-style:italic">&#34;Hydrogen&#34;</span>,
+    <span style="font-style:italic">&#34;He&#34;</span>: <span style="font-style:italic">&#34;Helium&#34;</span>,
+    <span style="font-style:italic">&#34;Li&#34;</span>: <span style="font-style:italic">&#34;Lithium&#34;</span>,
 }
 
 <span style="font-weight:bold">if</span> name, ok := elements[<span style="font-style:italic">&#34;He&#34;</span>]; ok {
-fmt.Printf(<span style="font-style:italic">&#34;He is %s\n&#34;</span>, name)
-}</code></pre></div></li>
-</ul>
-
+    fmt.Printf(<span style="font-style:italic">&#34;He is %s\n&#34;</span>, name)
+}</code></pre></div>
 <h1 id="functions">Functions</h1>
 
 <p>A function (aka a procedure, or a subroutine) is an independent section of code that maps zero or more input parameters to zero or more output parameters:</p>

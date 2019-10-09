@@ -19,7 +19,7 @@
   <meta property="og:url" content="https://jreisinger.github.io/posts/http-protocol/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -142,8 +142,8 @@ r = requests.get(<span style="font-style:italic">&#39;http://httpbin.org/headers
 <li>line of information (method, resource, protocol, status code)</li>
 <li>zero or more of <code>name: value</code> headers</li>
 <li>blank line - server/client calls <code>recv()</code> until <code>CR-LF-CR-LF</code> to find out the headers&rsquo; end</li>
-
-<li><p>optional body - its length (framing) is defined by the <code>Content-Lenght</code> header</p>
+<li>optional body - its length (framing) is defined by the <code>Content-Lenght</code> header</li>
+</ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ curl reisinge.net -v
 * Rebuilt URL to: reisinge.net/
 *   Trying 109.230.20.210...
@@ -168,9 +168,7 @@ r = requests.get(<span style="font-style:italic">&#39;http://httpbin.org/headers
 &lt;hr&gt;&lt;center&gt;nginx/1.12.2&lt;/center&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-* Connection #0 to host reisinge.net left intact</code></pre></div></li>
-</ul>
-
+* Connection #0 to host reisinge.net left intact</code></pre></div>
 <p>The client can&rsquo;t issue another request over the same socket until the response
 is finished.</p>
 
@@ -203,7 +201,8 @@ is finished.</p>
 <p>Transfer encoding (Content-Length or chunked encoding, raw or compressed)</p>
 
 <ul>
-<li><p>wrapper used for data delivery, not a change in the underlying data itself</p>
+<li>wrapper used for data delivery, not a change in the underlying data itself</li>
+</ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET / HTTP/1.1
 Accept-Encoding: gzip
 ...
@@ -211,9 +210,7 @@ Accept-Encoding: gzip
 HTTP/1.1 200 OK
 Content-Length: 3913
 Transfer-Encoding: gzip
-...</code></pre></div></li>
-</ul>
-
+...</code></pre></div>
 <p>Content type - what format will be selected to represent a given resource</p>
 
 <ul>
@@ -224,10 +221,9 @@ Transfer-Encoding: gzip
 <p>Content encoding - if the content type ^ is text, what encoding will be used to turn text code points into bytes</p>
 
 <ul>
-<li><p><code>charset=utf-8</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Content-Type: text/html; charset=utf-8</code></pre></div></li>
+<li><code>charset=utf-8</code></li>
 </ul>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Content-Type: text/html; charset=utf-8</code></pre></div>
 <h2 id="authentication-and-cookies">Authentication and cookies</h2>
 
 <p>Basic Auth (HTTP-mediated authentication)</p>
@@ -251,9 +247,9 @@ Transfer-Encoding: gzip
 <li>every request is independent of all other requests (from the point of the
 view of the protocol)</li>
 <li>-&gt; authentication info must be carried in every request</li>
-
-<li><p>cookie = key-value pair sent by the server and then inserted in all
-further requests:</p>
+<li>cookie = key-value pair sent by the server and then inserted in all
+further requests:</li>
+</ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /login HTTP/1.1
 ...
 
@@ -263,16 +259,14 @@ Set-Cookie: session-id=d41d8cd98f00b204e9800998ecf8427e; Path=/
 
 GET /login HTTP/1.1
 Cookie: session-id=d41d8cd98f00b204e9800998ecf8427e
-...</code></pre></div></li>
-
-<li><p>cookie should be opaque - random UUID mapped to the username on the
-server or encrypted string that server alone can decrypt</p></li>
-
-<li><p>some servers give you cookie simply for visiting to track how you move
-through the site</p></li>
-
-<li><p>later when you log in, your browsing history can be copied into your
-permanent account history :-/</p></li>
+...</code></pre></div>
+<ul>
+<li>cookie should be opaque - random UUID mapped to the username on the
+server or encrypted string that server alone can decrypt</li>
+<li>some servers give you cookie simply for visiting to track how you move
+through the site</li>
+<li>later when you log in, your browsing history can be copied into your
+permanent account history :-/</li>
 </ul>
 
 <h2 id="keep-alive">Keep-Alive</h2>
@@ -298,20 +292,17 @@ Host: tools.ietf.org</code></pre></div>
 <li>1xx - Informational</li>
 <li>2xx - Success</li>
 <li>200 OK</li>
-
-<li><p>3xx - Redirects; not expected to carry a body; new location is in the <code>Location</code> header</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; r = requests.get(<span style="font-style:italic">&#39;http://httpbin.org/status/301&#39;</span>, allow_redirects=False)
-&gt;&gt;&gt; (r.status_code, r.url, r.headers[<span style="font-style:italic">&#39;Location&#39;</span>])
-(301, <span style="font-style:italic">&#39;http://httpbin.org/status/301&#39;</span>, <span style="font-style:italic">&#39;/redirect/1&#39;</span>)</code></pre></div></li>
-
-<li><p>4xx - Client errors; client request is unintelligible or illegal</p></li>
-
-<li><p>404 Not Found - the resource is not at the given URL</p></li>
-
-<li><p>5xx - Server errors</p></li>
-
-<li><p>502 Bad Gateway - the server is a proxy but it cannot contact the server
-behind it</p></li>
+<li>3xx - Redirects; not expected to carry a body; new location is in the <code>Location</code> header
+<code>python
+&gt;&gt;&gt; r = requests.get('http://httpbin.org/status/301', allow_redirects=False)
+&gt;&gt;&gt; (r.status_code, r.url, r.headers['Location'])
+(301, 'http://httpbin.org/status/301', '/redirect/1')
+</code></li>
+<li>4xx - Client errors; client request is unintelligible or illegal</li>
+<li>404 Not Found - the resource is not at the given URL</li>
+<li>5xx - Server errors</li>
+<li>502 Bad Gateway - the server is a proxy but it cannot contact the server
+behind it</li>
 </ul>
 
 <p>Caching headers</p>

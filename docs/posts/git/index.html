@@ -23,7 +23,7 @@ Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with
   <meta property="og:url" content="https://jreisinger.github.io/posts/git/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -118,7 +118,7 @@ git config --global merge.tool vimdiff</code></pre></div>
 <p>You only need to do this <em>once</em>.</p>
 
 <p>You can see your configuration like this:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git config --list    <span style="font-style:italic"># output depends on whether you&#39;re in a git repo directory or not</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git config --list    # output depends on whether you<span style="">&#39;</span>re in a git repo directory or not</code></pre></div>
 <p>You can also manage you configuration via <a href="https://github.com/jreisinger/dotfiles/blob/master/.gitconfig">~/.gitconfig</a> file.</p>
 
 <p>If you want to manage the current repository configuration just leave out the <code>--global</code> option or use the local config file <code>.git/config</code>.</p>
@@ -132,16 +132,16 @@ $ git init</code></pre></div>
 <p>You&rsquo;ve now initialized the working directory. You may notice a new directory created, named <code>.git</code>. Git stores all of its stuff in this hidden directory. If you want Git to stop tracking your files, just remove <code>.git</code>.</p>
 
 <p>Next, tell git to take a snapshot [in svk: momentka] of the contents of all files under the current directory (note the <code>.</code>), with git-add:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add .     <span style="font-style:italic"># add files in working directory to a temporary storage - index</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add .     # add files in working directory to a temporary storage - index</code></pre></div>
 <p>This snapshot is now stored in a <em>temporary staging area</em> which git calls the &ldquo;staging index&rdquo; or just &ldquo;index&rdquo;. You can permanently store the contents of the index in the repository with <code>git-commit</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git commit    <span style="font-style:italic"># add files in index to a permanent storage - repository (.git directory)</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git commit    # add files in index to a permanent storage - repository (.git directory)</code></pre></div>
 <p>This will prompt you for a commit message. You&rsquo;ve now stored the first version of your project in git.</p>
 
 <h1 id="getting-a-git-repository">Getting a git repository</h1>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic">## the Linux kernel (approx. 150MB download):</span>
-$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
-<span style="font-style:italic">## any server with ssh and git</span>
-$ git clone ssh://[user@]server.xy/path/to/repo.git/</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic">## the Linux kernel (approx. 150MB download):
+</span><span style="font-style:italic"></span>$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+<span style="font-style:italic">## any server with ssh and git
+</span><span style="font-style:italic"></span>$ git clone ssh://[user@]server.xy/path/to/repo.git/</code></pre></div>
 <h1 id="making-changes">Making changes</h1>
 
 <p>When dealing with git, it&rsquo;s best to work in small bits. Rule of thumb: <em>if you can&rsquo;t summarise it in a sentence, you&rsquo;ve gone too long without committing</em>.</p>
@@ -187,9 +187,9 @@ $ git clone ssh://[user@]server.xy/path/to/repo.git/</code></pre></div>
 <h1 id="undo-redo">Undo/Redo</h1>
 
 <p>Go back and forget about every change past a certain point</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git reset --hard SHA1_HASH  <span style="font-style:italic"># all newer commits get erased forever!!!</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git reset --hard SHA1_HASH  # all newer commits get erased forever!!!</code></pre></div>
 <p>Travel back in time</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout SHA1_HASH      <span style="font-style:italic"># newer commits are preserved</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout SHA1_HASH      # newer commits are preserved</code></pre></div>
 <p>&hellip; if you now edit and commit, you will be in an alternate reality (called a branch)</p>
 
 <h1 id="branching-and-merging">Branching and merging</h1>
@@ -201,8 +201,8 @@ $ git clone ssh://[user@]server.xy/path/to/repo.git/</code></pre></div>
 <p>Create and switch to a new branch</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout -b experimental_idea</code></pre></div>
 <p>Compare two branches</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># from within e.g. experimental_idea branch</span>
-git diff ..master
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="font-style:italic"># from within e.g. experimental_idea branch
+</span><span style="font-style:italic"></span>git diff ..master
 git diff master..
 git log ..master
 git log master..</code></pre></div>
@@ -210,21 +210,21 @@ git log master..</code></pre></div>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout master
 git merge experimental_idea</code></pre></div>
 <p>Delete a branch</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git branch -d experimental_idea <span style="font-style:italic"># you might need -D if not merged</span>
-
-<span style="font-style:italic"># delete a remote branch</span>
-git push origin --delete experimental_idea</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git branch -d experimental_idea <span style="font-style:italic"># you might need -D if not merged
+</span><span style="font-style:italic"></span>
+<span style="font-style:italic"># delete a remote branch
+</span><span style="font-style:italic"></span>git push origin --delete experimental_idea</code></pre></div>
 <h1 id="tips-and-tricks">Tips and Tricks</h1>
 
 <p>To to list tracked files:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># currently tracked files under master branch</span>
-git ls-tree -r master --name-only
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># currently tracked files under master branch
+</span><span style="font-style:italic"></span>git ls-tree -r master --name-only
 
-<span style="font-style:italic"># files that ever existed (i.e. including deleted files)</span>
-git log --pretty=format: --name-only --diff-filter=A | sort - | sed <span style="font-style:italic">&#39;/^$/d&#39;</span></code></pre></div>
+<span style="font-style:italic"># files that ever existed (i.e. including deleted files)
+</span><span style="font-style:italic"></span>git log --pretty=format: --name-only --diff-filter=A | sort - | sed <span style="font-style:italic">&#39;/^$/d&#39;</span></code></pre></div>
 <p>To remove files not tracked by Git (like log files, zipped files, compiled files)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clean -n  <span style="font-style:italic"># dry-run ...</span>
-git clean -f  <span style="font-style:italic"># files removed!</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clean -n  <span style="font-style:italic"># dry-run ...
+</span><span style="font-style:italic"></span>git clean -f  # files removed!</code></pre></div>
 <p>Apply changes generated via <code>git diff [--binary]</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git apply --ignore-space-change --ignore-whitespace</code></pre></div>
 <p>While in Git-tracked directory, print the filename followed by the author of the last commit:</p>
