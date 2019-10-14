@@ -43,8 +43,8 @@ https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-(v2.x)
 
 * blacklist rule set
 * should be used for all ModSecurity deployments
-* `crs-setup.conf` - config file
-* `rules` - directory with rules (you should modify only `*EXCLUSION-RULES*`)
+* `crs/setup.conf` - config file
+* `crs/rules` - directory with rules (you should modify only `*EXCLUSION-RULES*`)
 * to tune, set a high anomaly threshold and progressively lower it
 * https://coreruleset.org, https://github.com/SpiderLabs/owasp-modsecurity-crs, https://www.modsecurity.org/CRS/Documentation/
 
