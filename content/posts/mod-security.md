@@ -17,8 +17,8 @@ tags: [WAF, ModSecurity]
 
 ModSecurity 3.0 has a new modular architecture, i.e. it's composed of:
 
-* [libmodsecurity](https://github.com/SpiderLabs/ModSecurity) - core component containing the functionality and couple of rules
-* a connector that links libmodsecurity to the web server it is running with - [NGINX](https://github.com/SpiderLabs/ModSecurity-nginx), Apache HTTP Server, and IIS
+1. [libmodsecurity](https://github.com/SpiderLabs/ModSecurity) - core component containing the functionality and couple of rules
+2. a connector that links libmodsecurity to the web server it is running with - [NGINX](https://github.com/SpiderLabs/ModSecurity-nginx), Apache HTTP Server, and IIS
 
 https://www.nginx.com/blog/compiling-and-installing-modsecurity-for-open-source-nginx/
 
