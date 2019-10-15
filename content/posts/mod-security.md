@@ -5,8 +5,11 @@ categories: [Sec]
 tags: [WAF, ModSecurity]
 ---
 
+## Terms
+
 * ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS
 * Core Rule Set (CRS) - define the malicious patterns (signatures)
+* False positive - a WAF blocking a valid request
 
 ## ModSecurity
 
@@ -60,3 +63,8 @@ Paranoia levels:
 ```
 curl http://$FQDN/?exec=/bin/bash # Remove Code Execution (RCE)
 ```
+
+## More
+
+* https://www.oreilly.com/ideas/how-to-tune-your-waf-installation-to-reduce-false-positives
+* https://coreruleset.org/20171214/practical-ftw-testing-the-core-rule-set-or-any-other-waf/
