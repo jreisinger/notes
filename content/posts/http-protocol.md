@@ -184,7 +184,7 @@ GET /html/rfc7230 HTTP/1.1
 Host: tools.ietf.org
 ```
 
-Status codes - returned by a server with each response
+[Status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) - returned by a server with each response
 
 * 1xx - Informational
 * 2xx - Success
@@ -198,8 +198,10 @@ Status codes - returned by a server with each response
 * 4xx - Client errors; client request is unintelligible or illegal
 * 404 Not Found - the resource is not at the given URL
 * 5xx - Server errors
-* 502 Bad Gateway - the server is a proxy but it cannot contact the server
-    behind it
+* 500 Internal server error - a generic "catch-all" response
+* 502 Bad Gateway - the server is a proxy and it cannot contact the upstream server (the server behind the proxy)
+* 503 Service unavailable - server down for maintenance or overloaded
+* 504 Gateway timeout - the server is a proxy and it did not get a response from the upstream server in order to complete the request
 
 Caching headers
 
