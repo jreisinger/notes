@@ -186,18 +186,22 @@ Host: tools.ietf.org
 
 [Status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) - returned by a server with each response
 
-* 1xx - Informational
-* 2xx - Success
+1xx - Informational
+
+2xx - Success
 * 200 OK
-* 3xx - Redirects; not expected to carry a body; new location is in the `Location` header
+
+3xx - Redirects; not expected to carry a body; new location is in the `Location` header
 ```python
 >>> r = requests.get('http://httpbin.org/status/301', allow_redirects=False)
 >>> (r.status_code, r.url, r.headers['Location'])
 (301, 'http://httpbin.org/status/301', '/redirect/1')
 ```
-* 4xx - Client errors; client request is unintelligible or illegal
+
+4xx - Client errors; client request is unintelligible or illegal
 * 404 Not Found - the resource is not at the given URL
-* 5xx - Server errors
+
+5xx - Server errors
 * 500 Internal server error - a generic "catch-all" response
 * 502 Bad Gateway - the server is a proxy and it cannot contact the upstream server (the server behind the proxy)
 * 503 Service unavailable - server down for maintenance or overloaded
