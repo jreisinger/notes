@@ -184,7 +184,7 @@ GET /html/rfc7230 HTTP/1.1
 Host: tools.ietf.org
 ```
 
-[Status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) - returned by a server with each response
+[Status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) - returned by a server with each response:
 
 1xx - Informational
 
