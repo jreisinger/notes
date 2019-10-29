@@ -61,7 +61,10 @@ Paranoia levels:
 ## Attacks for testing WAF
 
 ```
-curl http://$FQDN/?exec=/bin/bash # Remove Code Execution (RCE)
+curl 'https://$FQDN/?exec=/bin/bash'           # Remove Code Execution (RCE)
+curl "https://$FQDN/?id=1'%20or%20'1'%20=%20'" # SQL Injection (SQLi)
+curl 'https://$FQDN/?page=/etc/passwd'         # Local File Inclusion (LFI)
+curl 'https://$FQDN/?<script>'                 # Cross Site Scripting (XSS)
 ```
 
 ## More
