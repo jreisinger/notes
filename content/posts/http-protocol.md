@@ -38,6 +38,8 @@ r = requests.get('http://httpbin.org/headers')
 print(r.text)
 ```
 
+## HTTP message
+
 HTTP message format (both request `>` and response `<`)
 
 * line of information (method, resource, protocol, status code)
@@ -75,6 +77,8 @@ $ curl reisinge.net -v
 
 The client can't issue another request over the same socket until the response
 is finished.
+
+For requests, the body can include parameters (for POST or PUT requests) or the contents of a file to upload. For responses, the body is the payload of the resource being requested (e.g. HTML, image data, or query results). The message body is not necessarily human readable, since it can contain images or other binary data. The body can also empty, as for GET requests or most error messages.
 
 ## URL
 
