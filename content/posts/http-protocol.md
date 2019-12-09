@@ -76,6 +76,18 @@ $ curl reisinge.net -v
 The client can't issue another request over the same socket until the response
 is finished.
 
+## URL
+
+* specifies how and where to access a resource
+* not HTTP specific, e.g. mobile OSs use URLs to communicate between apps
+* stick to URL, forget about URI and URN
+
+```
+scheme://[username:password@]hostname[:port][/path][?query][#anchor]
+```
+
+* `query` section can contain multiple `key=value` pairs separated by `&`
+
 ## Methods
 
 * actions; what the server should do
@@ -216,3 +228,4 @@ Caching headers
 
 * Foundations of Python Network Programming (2014) - [ch. 9](https://www.safaribooksonline.com/library/view/foundations-of-python/9781430258551/9781430258544_Ch09.xhtml)
 * Network Programming with Go - ch. 8
+* ULSAH 5th - ch. 19
