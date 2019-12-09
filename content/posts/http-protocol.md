@@ -104,14 +104,6 @@ POST
 * the result of POST can't be cached
 * can't be retried automatically if the response does not arrive
 
-## Headers
-
-| Name: example value | Direction | Content                              |
-|---------------------|-----------|--------------------------------------|
-| Host: reisinge.net  | >         | Domain name and port being requested |
-|                     |           |                                      |
-|                     |           |                                      |
-
 ## Encoding
 
 HTTP transfer encoding <-> content encoding
