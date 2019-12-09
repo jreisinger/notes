@@ -88,9 +88,9 @@ scheme://[username:password@]hostname[:port][/path][?query][#anchor]
 
 * `query` section can contain multiple `key=value` pairs separated by `&`
 
-## Methods
+## Methods (verbs)
 
-* actions; what the server should do
+* actions - what the server should do
 
 GET
 
@@ -100,9 +100,17 @@ GET
 
 POST
 
-* "write", update resource on a server
+* "write", update resource on a server with request data
 * the result of POST can't be cached
 * can't be retried automatically if the response does not arrive
+
+## Headers
+
+| Name: example value | Direction | Content                              |
+|---------------------|-----------|--------------------------------------|
+| Host: reisinge.net  | >         | Domain name and port being requested |
+|                     |           |                                      |
+|                     |           |                                      |
 
 ## Encoding
 
