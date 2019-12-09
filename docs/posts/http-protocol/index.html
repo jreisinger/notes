@@ -88,7 +88,9 @@
 <li>
 <ul>
 <li><a href="#intro">Intro</a></li>
-<li><a href="#methods">Methods</a></li>
+<li><a href="#http-message">HTTP message</a></li>
+<li><a href="#url">URL</a></li>
+<li><a href="#methods-verbs">Methods (verbs)</a></li>
 <li><a href="#encoding">Encoding</a></li>
 <li><a href="#authentication-and-cookies">Authentication and cookies</a></li>
 <li><a href="#keep-alive">Keep-Alive</a></li>
@@ -136,6 +138,8 @@ r = requests.get(<span style="font-style:italic">&#39;http://httpbin.org/headers
 <span style="font-weight:bold">print</span>(r.text)</code></pre></div></li>
 </ul>
 
+<h2 id="http-message">HTTP message</h2>
+
 <p>HTTP message format (both request <code>&gt;</code> and response <code>&lt;</code>)</p>
 
 <ul>
@@ -174,10 +178,24 @@ r = requests.get(<span style="font-style:italic">&#39;http://httpbin.org/headers
 <p>The client can&rsquo;t issue another request over the same socket until the response
 is finished.</p>
 
-<h2 id="methods">Methods</h2>
+<p>For requests, the body can include parameters (for POST or PUT requests) or the contents of a file to upload. For responses, the body is the payload of the resource being requested (e.g. HTML, image data, or query results). The message body is not necessarily human readable, since it can contain images or other binary data. The body can also empty, as for GET requests or most error messages.</p>
+
+<h2 id="url">URL</h2>
 
 <ul>
-<li>actions; what the server should do</li>
+<li>specifies how and where to access a resource</li>
+<li>not HTTP specific, e.g. mobile OSs use URLs to communicate between apps</li>
+
+<li><p>stick to URL, forget about URI and URN</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">scheme://[username:password@]hostname[:port][/path][?query][#anchor]</pre></div></li>
+
+<li><p><code>query</code> section can contain multiple <code>key=value</code> pairs separated by <code>&amp;</code></p></li>
+</ul>
+
+<h2 id="methods-verbs">Methods (verbs)</h2>
+
+<ul>
+<li>actions - what the server should do</li>
 </ul>
 
 <p>GET</p>
@@ -191,7 +209,7 @@ is finished.</p>
 <p>POST</p>
 
 <ul>
-<li>&ldquo;write&rdquo;, update resource on a server</li>
+<li>&ldquo;write&rdquo;, update resource on a server with request data</li>
 <li>the result of POST can&rsquo;t be cached</li>
 <li>can&rsquo;t be retried automatically if the response does not arrive</li>
 </ul>
@@ -292,27 +310,25 @@ to get the resources in parallel</li>
 <p>Minimally correct request nowadays (otherwise 404):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">GET /html/rfc7230 HTTP/1.1
 Host: tools.ietf.org</code></pre></div>
-<p>Status codes - returned by a server with each response</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">Status codes</a> - returned by a server with each response:</p>
 
-<ul>
-<li>1xx - Informational</li>
-<li>2xx - Success</li>
-<li>200 OK</li>
+<p>1xx - Informational</p>
 
-<li><p>3xx - Redirects; not expected to carry a body; new location is in the <code>Location</code> header</p>
+<p>2xx - Success
+* 200 OK</p>
+
+<p>3xx - Redirects; not expected to carry a body; new location is in the <code>Location</code> header</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; r = requests.get(<span style="font-style:italic">&#39;http://httpbin.org/status/301&#39;</span>, allow_redirects=False)
 &gt;&gt;&gt; (r.status_code, r.url, r.headers[<span style="font-style:italic">&#39;Location&#39;</span>])
-(301, <span style="font-style:italic">&#39;http://httpbin.org/status/301&#39;</span>, <span style="font-style:italic">&#39;/redirect/1&#39;</span>)</code></pre></div></li>
+(301, <span style="font-style:italic">&#39;http://httpbin.org/status/301&#39;</span>, <span style="font-style:italic">&#39;/redirect/1&#39;</span>)</code></pre></div>
+<p>4xx - Client errors; client request is unintelligible or illegal
+* 404 Not Found - the resource is not at the given URL</p>
 
-<li><p>4xx - Client errors; client request is unintelligible or illegal</p></li>
-
-<li><p>404 Not Found - the resource is not at the given URL</p></li>
-
-<li><p>5xx - Server errors</p></li>
-
-<li><p>502 Bad Gateway - the server is a proxy but it cannot contact the server
-behind it</p></li>
-</ul>
+<p>5xx - Server errors
+* 500 Internal server error - a generic &ldquo;catch-all&rdquo; response
+* 502 Bad Gateway - the server is a proxy and it cannot contact the upstream server (the server behind the proxy)
+* 503 Service unavailable - server down for maintenance or overloaded
+* 504 Gateway timeout - the server is a proxy and it did not get a response from the upstream server in order to complete the request</p>
 
 <p>Caching headers</p>
 
@@ -326,6 +342,7 @@ behind it</p></li>
 <ul>
 <li>Foundations of Python Network Programming (2014) - <a href="https://www.safaribooksonline.com/library/view/foundations-of-python/9781430258551/9781430258544_Ch09.xhtml">ch. 9</a></li>
 <li>Network Programming with Go - ch. 8</li>
+<li>ULSAH 5th - ch. 19</li>
 </ul>
 
     </article>

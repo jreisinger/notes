@@ -6,9 +6,9 @@
   <title>ModSecurity - Notes</title>
   <meta property="og:title" content="ModSecurity - Notes" />
   <meta name="twitter:title" content="ModSecurity - Notes" />
-  <meta name="description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org, https://github.com/SpiderLabs/ModSecurity/wiki  ModSecurity 3.">
-  <meta property="og:description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons https://www.modsecurity.org, https://github.com/SpiderLabs/ModSecurity/wiki  ModSecurity 3.">
-  <meta name="twitter:description" content="ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures)  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file …">
+  <meta name="description" content="Terms  ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures) False positive - a WAF blocking a valid request  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons  ModSecurity 3.">
+  <meta property="og:description" content="Terms  ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures) False positive - a WAF blocking a valid request  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &hellip;) for performance reasons  ModSecurity 3.">
+  <meta name="twitter:description" content="Terms  ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures) False positive - a WAF blocking a valid request  ModSecurity …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/mod-security/" />
@@ -79,9 +79,12 @@
       
       
 
+<h2 id="terms">Terms</h2>
+
 <ul>
 <li>ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS</li>
 <li>Core Rule Set (CRS) - define the malicious patterns (signatures)</li>
+<li>False positive - a WAF blocking a valid request</li>
 </ul>
 
 <h2 id="modsecurity">ModSecurity</h2>
@@ -90,15 +93,14 @@
 <li><code>/etc/nginx/modsec/modsecurity.conf</code> - config file</li>
 <li>audit logs are great for visibility but bad for performance - you can disable them via <code>SecAuditEngine off</code> (you still have the Nginx error logs)</li>
 <li>you should not inspect static content (images, &hellip;) for performance reasons</li>
-<li><a href="https://www.modsecurity.org">https://www.modsecurity.org</a>, <a href="https://github.com/SpiderLabs/ModSecurity/wiki">https://github.com/SpiderLabs/ModSecurity/wiki</a></li>
 </ul>
 
 <p>ModSecurity 3.0 has a new modular architecture, i.e. it&rsquo;s composed of:</p>
 
-<ul>
-<li><a href="https://github.com/SpiderLabs/ModSecurity">libmodsecurity</a> - core component containing the functionality and couple of rules</li>
+<ol>
+<li><a href="https://github.com/SpiderLabs/ModSecurity">libmodsecurity</a> (<a href="https://www.modsecurity.org">https://www.modsecurity.org</a>) - core component containing the functionality and couple of rules (<a href="https://github.com/SpiderLabs/ModSecurity/wiki">docs</a>)</li>
 <li>a connector that links libmodsecurity to the web server it is running with - <a href="https://github.com/SpiderLabs/ModSecurity-nginx">NGINX</a>, Apache HTTP Server, and IIS</li>
-</ul>
+</ol>
 
 <p><a href="https://www.nginx.com/blog/compiling-and-installing-modsecurity-for-open-source-nginx/">https://www.nginx.com/blog/compiling-and-installing-modsecurity-for-open-source-nginx/</a></p>
 
@@ -122,8 +124,8 @@ SecRule REQUEST_URI &#34;@streq /index.php&#34; &#34;id:1,phase:1,t:lowercase,de
 <ul>
 <li>blacklist rule set</li>
 <li>should be used for all ModSecurity deployments</li>
-<li><code>crs-setup.conf</code> - config file</li>
-<li><code>rules</code> - directory with rules (you should modify only <code>*EXCLUSION-RULES*</code>)</li>
+<li><code>crs/setup.conf</code> - config file</li>
+<li><code>crs/rules</code> - directory with rules (you should modify only <code>*EXCLUSION-RULES*</code>)</li>
 <li>to tune, set a high anomaly threshold and progressively lower it</li>
 <li><a href="https://coreruleset.org">https://coreruleset.org</a>, <a href="https://github.com/SpiderLabs/owasp-modsecurity-crs">https://github.com/SpiderLabs/owasp-modsecurity-crs</a>, <a href="https://www.modsecurity.org/CRS/Documentation/">https://www.modsecurity.org/CRS/Documentation/</a></li>
 </ul>
@@ -138,7 +140,17 @@ SecRule REQUEST_URI &#34;@streq /index.php&#34; &#34;id:1,phase:1,t:lowercase,de
 </ol>
 
 <h2 id="attacks-for-testing-waf">Attacks for testing WAF</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">curl http://$FQDN/?exec=/bin/bash # Remove Code Execution (RCE)</pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">curl &#39;https://$FQDN/?exec=/bin/bash&#39;           # Remove Code Execution (RCE)
+curl &#34;https://$FQDN/?id=1&#39;%20or%20&#39;1&#39;%20=%20&#39;&#34; # SQL Injection (SQLi)
+curl &#39;https://$FQDN/?page=/etc/passwd&#39;         # Local File Inclusion (LFI)
+curl &#39;https://$FQDN/?&lt;script&gt;&#39;                 # Cross Site Scripting (XSS)</pre></div>
+<h2 id="more">More</h2>
+
+<ul>
+<li><a href="https://www.oreilly.com/ideas/how-to-tune-your-waf-installation-to-reduce-false-positives">https://www.oreilly.com/ideas/how-to-tune-your-waf-installation-to-reduce-false-positives</a></li>
+<li><a href="https://coreruleset.org/20171214/practical-ftw-testing-the-core-rule-set-or-any-other-waf/">https://coreruleset.org/20171214/practical-ftw-testing-the-core-rule-set-or-any-other-waf/</a></li>
+</ul>
+
     </article>
 
     
