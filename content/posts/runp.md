@@ -1,5 +1,5 @@
 ---
-title: "Docker"
+title: "runp: run shell commands in parallel"
 date: 2019-12-17
 categories: [prog]
 tags: [sysadmin,go,parallel,shell]

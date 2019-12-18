@@ -8,11 +8,6 @@
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/runp/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jreisinger.github.io/notes/tags/go/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
   </url>
@@ -34,6 +29,11 @@
   
   <url>
     <loc>https://jreisinger.github.io/notes/categories/prog/</loc>
+    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/notes/posts/runp/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
   </url>
   
