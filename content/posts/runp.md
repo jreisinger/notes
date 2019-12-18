@@ -5,8 +5,6 @@ categories: [prog]
 tags: [sysadmin,go,parallel,shell]
 ---
 
-# runp: run shell commands in parallel
-
 ## Why and how is it useful
 
 I'm using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my [.bashrc](https://github.com/jreisinger/dotfiles/blob/master/.bashrc) runs the following commands to download or clone vim plugins I use:
