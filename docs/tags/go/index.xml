@@ -6,10 +6,20 @@
     <description>Recent content in go on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker</title>
+      <link>https://jreisinger.github.io/notes/posts/runp/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/runp/</guid>
+      <description>runp: run shell commands in parallel Why and how is it useful I&amp;rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs the following commands to download or clone vim plugins I use:
+curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash #curl -L -o $HOME/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim rm -rf $HOME/.vim/pack/plugins/start/nerdtree &amp;amp;&amp;amp; git clone https://github.com/scrooloose/nerdtree.git $HOME/.vim/pack/plugins/start/nerdtree rm -rf $HOME/.</description>
+    </item>
     
     <item>
       <title>Introduction to Go</title>

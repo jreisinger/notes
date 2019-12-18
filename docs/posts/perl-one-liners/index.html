@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Perl One Liners - Notes</title>
-  <meta property="og:title" content="Perl One Liners - Notes" />
-  <meta name="twitter:title" content="Perl One Liners - Notes" />
-  <meta name="description" content="I think Perl one liners are still super useful (even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
-perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
-  <meta property="og:description" content="I think Perl one liners are still super useful (even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
-perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; -E &#39;&lt;code&gt;&#39; (execute) &ndash; execute &lt;code&gt; enabling feature bundle (like use 5.">
-  <meta name="twitter:description" content="I think Perl one liners are still super useful (even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, …">
+  <title>Perl one-liners - Notes</title>
+  <meta property="og:title" content="Perl one-liners - Notes" />
+  <meta name="twitter:title" content="Perl one-liners - Notes" />
+  <meta name="description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
+perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.">
+  <meta property="og:description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
+perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.">
+  <meta name="twitter:description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/perl-one-liners/" />
@@ -54,7 +54,7 @@ perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
     <article class="article">
       
       
-      <h1 class="article-title">Perl One Liners</h1>
+      <h1 class="article-title">Perl one-liners</h1>
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
@@ -71,103 +71,92 @@ perl command line switches  -e &#39;&lt;code&gt;&#39; (execute) &ndash; execute 
             perl
           </a>&nbsp;
         </li>
-        <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/sysadmin/">
-            <i class="fas fa-tag"></i>
-            sysadmin
-          </a>&nbsp;
-        </li>
       </ul>
       
 <aside class="toc">
   <nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#introduction-to-perl-one-liners">Introduction to Perl one-liners</a>
 <ul>
-<li><a href="#perl-command-line-switches"><code>perl</code> command line switches</a></li>
-<li><a href="#unix-tools-replacements">Unix tools replacements</a>
+<li><a href="#switches">Switches</a></li>
+<li><a href="#examples">Examples</a>
 <ul>
-<li><a href="#grep-replacement"><code>grep</code> replacement</a></li>
-<li><a href="#sed-replacement"><code>sed</code> replacement</a></li>
-<li><a href="#awk-replacement"><code>awk</code> replacement</a></li>
-<li><a href="#dos2unix-replacement"><code>dos2unix</code> replacement</a></li>
-</ul></li>
+<li><a href="#search-and-replace">Search and replace</a></li>
 <li><a href="#various">Various</a></li>
-<li><a href="#fun">Fun</a></li>
+</ul></li>
+<li><a href="#more">More</a></li>
 </ul></li>
 </ul>
 </nav>
 </aside>
       
 
-<p>I think Perl one liners are still super useful (even Kubernetes people like them to do their <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">jobs</a> :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see <a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">Famous Perl One-Liners Explained</a>. If you want a book have a look at <a href="http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&amp;qid=1358096838&amp;sr=8-1&amp;keywords=minimal+perl+for+unix">Minimal Perl for UNIX and Linux People</a>.</p>
+<h1 id="introduction-to-perl-one-liners">Introduction to Perl one-liners</h1>
 
-<h2 id="perl-command-line-switches"><code>perl</code> command line switches</h2>
+<p>I think Perl one-liners are still super useful. They are small <a href="https://www.perl.org/">Perl</a> programs that are run directly from command line. Like this one from the Kubernetes <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">job</a> documentation:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34;</pre></div>
+<p><code>perl</code> is the Perl language interpreter. <code>-M</code> and <code>-wle</code> are command line switches (or options) that modify the <code>perl</code>&rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed. In this case it uses the <code>bpi</code> subroutine from the <a href="https://perldoc.perl.org/bignum.html">bignum</a> module to calculate the PI with accuracy of 2000 digits. The command will take a while to finish.</p>
+
+<h2 id="switches">Switches</h2>
+
+<p>These are some of the most used command line switches:</p>
 
 <ul>
-<li><code>-e '&lt;code&gt;'</code> (execute) &ndash; execute <code>&lt;code&gt;</code></li>
-<li><code>-E '&lt;code&gt;'</code> (execute) &ndash; execute <code>&lt;code&gt;</code> enabling <a href="http://perldoc.perl.org/feature.html">feature</a> bundle (like <code>use 5.010</code>) for your version of Perl</li>
-<li><code>-p</code> (printing) &ndash; loop through lines, reading and printing them (in-script equivalent: <code>while (&lt;&gt;) { [&lt;code&gt;] print }</code>)</li>
-<li><code>-w</code> (warnings) &ndash; enable warnings (generally advisable)</li>
-<li><code>-n</code> (nonautoprinting) &ndash; loop through lines, reading but not printing them</li>
-<li><code>-l</code> (line) &ndash; print a newline (<code>$/</code> actually) after each line of output and chomp newline if used with <code>-n</code> or <code>-p</code></li>
-<li><code>-i[&lt;.ext&gt;]</code> (intrepid) &ndash; create backup file (with <code>&lt;.ext&gt;</code> extension if defined)</li>
-<li><code>-a</code> (autosplit mode) &ndash; split the <code>$_</code> into <code>@F</code> (space is the default separator, change it with <code>-F</code>, ex. <code>-F:</code>)</li>
-<li><code>-s</code> (switch) &ndash; rudimentary parsing of command line switches (see &ldquo;Git-tracked directory&rdquo; multi-liner below)</li>
+<li><code>-e '&lt;code&gt;'</code> &ndash; <strong>e</strong>xecute <code>&lt;code&gt;</code></li>
+<li><code>-E '&lt;code&gt;'</code> &ndash; <strong>E</strong>xecute <code>&lt;code&gt;</code> enabling <a href="http://perldoc.perl.org/feature.html">feature</a> bundle (like <code>use 5.010</code>) for your version of Perl</li>
+<li><code>-w</code> &ndash; enable <strong>w</strong>arnings (generally advisable)</li>
+<li><code>-p</code> &ndash; loop through lines, reading and <strong>p</strong>rinting them (in-script equivalent: <code>while (&lt;&gt;) { [&lt;code&gt;] print }</code>)</li>
+<li><code>-n</code> &ndash; loop through lines, reading but <strong>n</strong>ot printing them</li>
+<li><code>-l</code> &ndash; print a new<strong>l</strong>ine (<code>$/</code> actually) after each line of output and chomp newline if used with <code>-n</code> or <code>-p</code></li>
+<li><code>-i[&lt;.ext&gt;]</code> (<strong>i</strong>ntrepid) &ndash; create backup file (with <code>&lt;.ext&gt;</code> extension if defined)</li>
+<li><code>-a</code> (<strong>a</strong>utosplit) &ndash; split the <code>$_</code> default variable into <code>@F</code> array (space is the default separator, change it with <code>-F</code>, ex. <code>-F:</code>)</li>
+<li><code>-s</code> &ndash; rudimentary parsing of command line <strong>s</strong>witches (see &ldquo;Git-tracked directory&rdquo; multi-liner below)</li>
+<li><code>-M&lt;module&gt;[=&lt;subroutine&gt;,...]</code> &ndash; load subroutine(s) from a <strong>m</strong>odule</li>
 </ul>
 
 <p>See <a href="http://perldoc.perl.org/perlrun.html">perlrun</a> for more.</p>
 
-<h2 id="unix-tools-replacements">Unix tools replacements</h2>
+<h2 id="examples">Examples</h2>
 
-<h3 id="grep-replacement"><code>grep</code> replacement</h3>
+<h3 id="search-and-replace">Search and replace</h3>
 
-<p>Find lines containing <code>&lt;regex&gt;</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="font-style:italic">&#39;print if /&lt;regex&gt;/&#39;</span> aFile</code></pre></div>
-<p>Find DNS resource records of type A:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /etc/bind -type f | xargs perl -ne <span style="font-style:italic">&#39;/\s+A\s+/ and print &#34;$ARGV: $_&#34;&#39;</span></code></pre></div>
-<h3 id="sed-replacement"><code>sed</code> replacement</h3>
+<p>Find lines in logs that contain error or warning:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -wne &#39;/error|warning/i &amp;&amp; print&#39; /var/log/*.log</pre></div>
+<p>The thing between slashes is a <a href="https://perldoc.perl.org/perlre.html">regular expression</a>. It means match string <code>error</code> or string <code>warning</code> anywhere in the log line. <code>i</code> says to Perl to ignore the case. So it will match ERROR, error, Warning etc. If the regex finds a match (i.e. evaluates to true) the <code>&amp;&amp;</code> logical operator runs the <code>print</code> statement that will print the line containing the match.</p>
 
-<p>Emit the transformed passwd file to STDOUT:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -pe <span style="font-style:italic">&#39;s#/bin/sh$#/bin/bash#&#39;</span> /etc/passwd</code></pre></div>
-<p>In-place editing with backups:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i.bak -pe <span style="font-style:italic">&#39;s/colour/color/g&#39;</span> *.txt</code></pre></div>
-<h3 id="awk-replacement"><code>awk</code> replacement</h3>
+<p>Replace <code>/bin/sh</code> with <code>/bin/bash</code> and emit the transformed passwd file to STDOUT:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -pe &#39;s#/bin/sh$#/bin/bash#&#39; /etc/passwd</pre></div>
+<p>We used <code>#</code> instead of <code>/</code> as delimeter for better readibility since to strings themselves contain slashes. <code>$</code> means end of the string.</p>
 
-<p>Switch columns:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat birthdays.txt
+<p>Replace <code>colour</code> with <code>color</code> in all text files. The original files will be kept with <code>.bak</code> suffix:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -i.bak -pe &#39;s/colour/color/g&#39; *.txt</pre></div>
+<p><code>g</code> (global) means replace all occurences in a string not just the first one.</p>
+
+<p>Convert between DOS and Unix newline:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -i -pe &#39;s/\r//&#39;  &lt;file1&gt; &lt;file2&gt; ... # dos-to-unix
+perl -i -pe &#39;s/$/\r/&#39; &lt;file1&gt; &lt;file2&gt; ... # unix-to-dos</pre></div>
+<h3 id="various">Various</h3>
+
+<p>Print 2nd and 1st field (column) out of three original ones:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ cat birthdays.txt
 03/30/45 Eric Clapton
 11/27/42 Jimi Hendrix
 06/24/44 Jeff Beck
-$ perl -lane <span style="font-style:italic">&#39;print &#34;@F[1,0]&#34;&#39;</span> birthdays.txt</code></pre></div>
-<p>Leave out the first column:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">history | perl -anE <span style="font-style:italic">&#39;say join &#34; &#34;, @F[1 .. $#F]&#39;</span> | sort | uniq</code></pre></div>
-<ul>
-<li>see <a href="http://www.perlmonks.org/?node_id=739305">http://www.perlmonks.org/?node_id=739305</a> for why you can&rsquo;t use -1 as array index here</li>
-</ul>
+$ perl -lane &#39;print @F[1,0]&#39; birthdays.txt
+Eric 03/30/45
+Jimi 11/27/42
+Jeff 06/24/44</pre></div>
+<p>The field numbering starts at 0.</p>
 
-<h3 id="dos2unix-replacement"><code>dos2unix</code> replacement</h3>
+<p>Calculate the total size of log files older than 30 days:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">find /opt/splunk/syslog/ -iname &#34;*log*&#34; -type f -mtime +30 | \
+perl -lne &#39;$sum += (stat)[7]}{print $sum&#39;</pre></div>
+<p>The <a href="https://perldoc.perl.org/functions/stat.html">stat</a> function returns a 13-element list of status info about a file. We take the 8th element (with index <code>7</code>) which is the size of a file. We loop over the found files and add the size of each into the <code>$sum</code> variable. The handy <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> is for priting the <code>$sum</code> when the loop is over (suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>).</p>
 
-<p>Convert DOS files to Unix files:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -i -pe <span style="font-style:italic">&#39;s/\r//&#39;</span> &lt;file1&gt; &lt;file2&gt; ...   <span style="font-style:italic"># dos-to-unix</span>
-perl -i -pe <span style="font-style:italic">&#39;s/$/\r/&#39;</span> &lt;file1&gt; &lt;file2&gt; ...  <span style="font-style:italic"># unix-to-dos</span></code></pre></div>
-<h2 id="various">Various</h2>
+<h2 id="more">More</h2>
 
-<p>Total size of found files (using the <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> as suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find /opt/splunk/syslog/ -iname <span style="font-style:italic">&#34;*log*&#34;</span> -type f -mtime +30 | <span style="font-weight:bold;font-style:italic">\
-</span><span style="font-weight:bold;font-style:italic"></span>perl -lne <span style="font-style:italic">&#39;$sum += (stat)[7]}{print $sum&#39;</span></code></pre></div>
-<p>Remove comments and compress all consecutive blank lines into one (<a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">more</a>):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /etc/ssh/sshd_config | perl -lne <span style="font-style:italic">&#39;!/^#/ and print&#39;</span> | perl -00 -pe <span style="font-style:italic">&#39;&#39;</span></code></pre></div>
-<p>Create HTML anchor element:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -le <span style="font-style:italic">&#39;print &#34;&lt;a href=\&#34;$ARGV[1]\&#34;&gt;$ARGV[0]&lt;/a&gt;&#34;&#39;</span> <span style="font-style:italic">&#39;perldoc&#39;</span> http://perldoc.perl.org/</code></pre></div>
-<h2 id="fun">Fun</h2>
+<p>For a deeper dive see <a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">Famous Perl One-Liners Explained</a>. If you want a book have a look at <a href="http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&amp;qid=1358096838&amp;sr=8-1&amp;keywords=minimal+perl+for+unix">Minimal Perl for UNIX and Linux People</a>.</p>
 
-<p>Find big palindromes:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -lne <span style="font-style:italic">&#39;print if $_ eq reverse and length &gt;= 5&#39;</span> /usr/share/dict/words</code></pre></div>
-<p>Print a file system tree on UNIX like systems (<a href="http://www.perlmonks.org/?node_id=1050343">source</a>):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls -R | perl -ne<span style="font-style:italic">&#39;if(s/:$//){s{[^/]*/}{--}g;s/^-/\t|/;print}&#39;</span></code></pre></div>
-<p>Greet user (stolen from <a href="http://perlmonks.org/?node_id=681898">Utilitarian</a>) (-:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -E <span style="font-style:italic">&#39;say &#34;Good &#34;.qw(night morning afternoon evening)[(localtime)[2]/6].&#34;, $ENV{USER}&#34;&#39;</span></code></pre></div>
     </article>
 
     

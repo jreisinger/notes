@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Docker - Notes</title>
+  <meta property="og:title" content="Docker - Notes" />
+  <meta name="twitter:title" content="Docker - Notes" />
+  <meta name="description" content="runp: run shell commands in parallel Why and how is it useful I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs the following commands to download or clone vim plugins I use:
+curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash #curl -L -o $HOME/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim rm -rf $HOME/.vim/pack/plugins/start/nerdtree &amp;&amp; git clone https://github.com/scrooloose/nerdtree.git $HOME/.vim/pack/plugins/start/nerdtree rm -rf $HOME/.">
+  <meta property="og:description" content="runp: run shell commands in parallel Why and how is it useful I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs the following commands to download or clone vim plugins I use:
+curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash #curl -L -o $HOME/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim rm -rf $HOME/.vim/pack/plugins/start/nerdtree &amp;&amp; git clone https://github.com/scrooloose/nerdtree.git $HOME/.vim/pack/plugins/start/nerdtree rm -rf $HOME/.">
+  <meta name="twitter:description" content="runp: run shell commands in parallel Why and how is it useful I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For …">
+  <meta name="author" content="Jozef Reisinger"/>
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/runp/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.58.2" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+    </ul>
+
+    
+    <ul>
+      
+        
+        
+        
+        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/runp.md">See on GitHub</a>
+        
+      
+    </ul>
+
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">Docker</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>December 17, 2019</time></li>
+        <li class="article-meta-categories">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
+            <i class="fas fa-folder"></i>
+            prog
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/sysadmin/">
+            <i class="fas fa-tag"></i>
+            sysadmin
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/go/">
+            <i class="fas fa-tag"></i>
+            go
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/parallel/">
+            <i class="fas fa-tag"></i>
+            parallel
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="https://jreisinger.github.io/notes/tags/shell/">
+            <i class="fas fa-tag"></i>
+            shell
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#runp-run-shell-commands-in-parallel">runp: run shell commands in parallel</a>
+<ul>
+<li><a href="#why-and-how-is-it-useful">Why and how is it useful</a></li>
+<li><a href="#how-to-install-it">How to install it</a></li>
+<li><a href="#more-examples">More examples</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
+      
+
+<h1 id="runp-run-shell-commands-in-parallel">runp: run shell commands in parallel</h1>
+
+<h2 id="why-and-how-is-it-useful">Why and how is it useful</h2>
+
+<p>I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my <a href="https://github.com/jreisinger/dotfiles/blob/master/.bashrc">.bashrc</a> runs the following commands to download or clone vim plugins I use:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+#curl -L -o $HOME/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+rm -rf $HOME/.vim/pack/plugins/start/nerdtree &amp;&amp; git clone https://github.com/scrooloose/nerdtree.git $HOME/.vim/pack/plugins/start/nerdtree
+rm -rf $HOME/.vim/pack/plugins/start/vim-nerdtree-tabs &amp;&amp; git clone https://github.com/jistr/vim-nerdtree-tabs.git $HOME/.vim/pack/plugins/start/vim-nerdtree-tabs
+rm -rf $HOME/.vim/pack/plugins/start/vim-markdown &amp;&amp; git clone https://github.com/plasticboy/vim-markdown.git $HOME/.vim/pack/plugins/start/vim-markdown
+rm -rf $HOME/.vim/pack/plugins/start/bufexplorer &amp;&amp; git clone https://github.com/jlanzarotta/bufexplorer.git $HOME/.vim/pack/plugins/start/bufexplorer
+rm -rf $HOME/.vim/pack/plugins/start/ansible-vim &amp;&amp; git clone https://github.com/pearofducks/ansible-vim.git $HOME/.vim/pack/plugins/start/ansible-vim
+rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go
+rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim
+# https://tpaschalis.github.io/vim-go-setup/
+rm -rf $HOME/.vim/pack/plugins/start/vim-airline &amp;&amp; git clone https://github.com/vim-airline/vim-airline $HOME/.vim/pack/plugins/start/vim-airline</pre></div>
+<p>The problem is that these commmands run sequentially and it takes a while until they are done. I was thinking of a way how to speed them up. So to scratch my itch I came up with <a href="https://github.com/jreisinger/runp">runp</a>. Now I can run those commands (I stored them in <code>install-my-stuff.txt</code>) in parallel:</p>
+
+<script id="asciicast-288718" src="https://asciinema.org/a/288718.js" async></script>
+
+<p>Let&rsquo;s see how much time did I save:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ time bash install-my-stuff.txt
+&lt;...&gt;
+real	0m15.690s
+user	0m3.440s
+sys	0m0.902s
+
+$ time runp install-my-stuff.txt
+&lt;...&gt;
+real	0m3.678s
+user	0m3.904s
+sys	0m0.880s</pre></div>
+<p>Hmm, around 12 seconds. Not bad I think :-).</p>
+
+<p>If you don&rsquo;t want <code>runp</code> to add any output of its own (that is sent to stderr by the way) use the <code>-q</code> flag to quiet it:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ runp -q install-my-stuff.txt 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 70071  100 70071    0     0   145k      0 --:--:-- --:--:-- --:--:--  145k
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/vim-nerdtree-tabs&#39;...
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/bufexplorer&#39;...
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/ansible-vim&#39;...
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/grep.vim&#39;...
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/vim-airline&#39;...
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/nerdtree&#39;...
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/vim-markdown&#39;...
+Cloning into &#39;/home/reisinge/.vim/pack/plugins/start/vim-go&#39;...</pre></div>
+<h2 id="how-to-install-it">How to install it</h2>
+
+<p><code>runp</code> is easy to install it. It&rsquo;s a single binary that you download and make it executable:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># choose your system and architecture
+export SYS=linux  # or darwin
+export ARCH=amd64 # or arm
+
+# download it an make it executable
+curl -L https://github.com/jreisinger/runp/releases/latest/download/runp-$SYS-$ARCH -o ~/bin/runp
+chmod u+x ~/bin/runp</pre></div>
+<h2 id="more-examples">More examples</h2>
+
+<p>The commands to execute can be supplied also via stdin. It means that <code>runp</code> can be used within pipelines like this one:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ for dir in $HOME /etc /tmp; do echo sudo &#34;du -sh $dir&#34;; done | runp -q | sort -h
+13M	/tmp
+17M	/etc
+370G	/home/reisinge</pre></div>
+<p>Here we generate the commands to run in a bash for loop. Then we pipe the commands into <code>runp</code>. Finally the <code>runp</code>&rsquo;s output (stdout) is sorted.</p>
+
+<p>We can simplify by using the <code>-p</code> flag which adds a prefix string to the final command that will be run:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ echo -e &#34;$HOME\n/etc\n/tmp&#34; | runp -q -p &#39;sudo du -sh&#39; | sort -h
+13M	/tmp
+17M	/etc
+370G	/home/reisinge</pre></div>
+<p>The final example shows how to find open ports from a list of hosts and ports:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># file with host-port pairs
+$ cat host-port.txt
+localhost 80
+localhost 81
+127.0.0.1 443
+127.0.0.1 444
+localhost 22
+
+# find out which ports are listening
+$ cat host-port.txt | runp -p &#39;netcat -v -w2 -z&#39; -q 2&gt;&amp;1 | egrep &#39;open$&#39;
+localhost [127.0.0.1] 443 (https) open
+localhost [127.0.0.1] 80 (http) open
+localhost [127.0.0.1] 22 (ssh) open</pre></div>
+    </article>
+
+    
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "notes-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-older">
+        <a href="https://jreisinger.github.io/notes/posts/go-intro/" data-toggle="tooltip" data-placement="top" title="Introduction to Go">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright"></div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="https://jreisinger.github.io/about" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-124886160-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+</html>

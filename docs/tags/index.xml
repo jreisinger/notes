@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,36 @@
     <item>
       <title>go</title>
       <link>https://jreisinger.github.io/notes/tags/go/</link>
-      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>parallel</title>
+      <link>https://jreisinger.github.io/notes/tags/parallel/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/parallel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell</title>
+      <link>https://jreisinger.github.io/notes/tags/shell/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sysadmin</title>
+      <link>https://jreisinger.github.io/notes/tags/sysadmin/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/sysadmin/</guid>
       <description></description>
     </item>
     
@@ -44,15 +71,6 @@
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/tags/perl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sysadmin</title>
-      <link>https://jreisinger.github.io/notes/tags/sysadmin/</link>
-      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/sysadmin/</guid>
       <description></description>
     </item>
     
