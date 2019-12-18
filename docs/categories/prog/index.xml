@@ -6,20 +6,10 @@
     <description>Recent content in prog on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/categories/prog/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Go Strings</title>
-      <link>https://jreisinger.github.io/notes/posts/go-strings/</link>
-      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/go-strings/</guid>
-      <description>What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (hex values of a byte range from 00 to FF):
-const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; Printing strings // Print the string directly. fmt.Print(sample) // ��=� ⌘  // Get individual bytes by looping over the string.</description>
-    </item>
     
     <item>
       <title>Introduction to Go</title>
@@ -34,28 +24,6 @@ Types are similar to sets in mathematics. They classify data into groups and det
     </item>
     
     <item>
-      <title>Concurrency and Channels</title>
-      <link>https://jreisinger.github.io/notes/posts/concurrency-and-channels/</link>
-      <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/concurrency-and-channels/</guid>
-      <description>A goroutine is a function capable of running concurrently with other functions. Create a gouroutine with the go keyword.
-A channel is a way for gouroutines to communicate with each other and synchronize their execution.
-When pinger or ponger attempts to send a message on the channel, it will wait until printer is ready to receive the message (blocking):
-package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch := make(chan string) go pinger(ch) go ponger(ch) go printer(ch) // Wait for Enter to exit.</description>
-    </item>
-    
-    <item>
-      <title>JSON Serialization with Go</title>
-      <link>https://jreisinger.github.io/notes/posts/go-json/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/go-json/</guid>
-      <description>Networked programs need to exchange information via messages. TCP and UDP provide a transport mechanism to do this. However, at transport level the messages are just sequences of bytes with no structure.
-A program will typically build a complex data structure to hold the current program state. To transfer this data outside of the program&amp;rsquo;s own address space (e.g. to another application over the network) it needs to be serialized. This process is also called marshalling or encoding.</description>
-    </item>
-    
-    <item>
       <title>TCP sockets with Go</title>
       <link>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
@@ -66,27 +34,6 @@ A program will typically build a complex data structure to hold the current prog
     </item>
     
     <item>
-      <title>Go directory structure</title>
-      <link>https://jreisinger.github.io/notes/posts/go-directory-structure/</link>
-      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/go-directory-structure/</guid>
-      <description>NOTE: See How to Write Go Code for official tutorial.
-Go has a strong opinion about directory structure.
-## Set location of your workspace (It&amp;#39;s used by the `go` tool) $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install all *.</description>
-    </item>
-    
-    <item>
-      <title>Sorting with Go</title>
-      <link>https://jreisinger.github.io/notes/posts/sorting-with-go/</link>
-      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/sorting-with-go/</guid>
-      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sort&amp;#34; ) // A type with the three methods required for sorting. type StringSlice []string func (p StringSlice) Len() int { return len(p) } func (p StringSlice) Less(i, j int) bool { return p[i] &amp;lt; p[j] } func (p StringSlice) Swap(i, j int) { p[i], p[j] = p[j], p[i] } func main() { names := []string{&amp;#34;Xavier&amp;#34;, &amp;#34;John&amp;#34;, &amp;#34;Eve&amp;#34;, &amp;#34;Adam&amp;#34;} // sort.Strings(names) has the same effect 	sort.</description>
-    </item>
-    
-    <item>
       <title>Perl One Liners</title>
       <link>https://jreisinger.github.io/notes/posts/perl-one-liners/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
@@ -94,74 +41,6 @@ Go has a strong opinion about directory structure.
       <guid>https://jreisinger.github.io/notes/posts/perl-one-liners/</guid>
       <description>I think Perl one liners are still super useful (even Kubernetes people like them to do their jobs :-). They are small Perl programs that are run directly from a command line (ex. on Unix/Linux, Cygwin). For a deeper dive see Famous Perl One-Liners Explained. If you want a book have a look at Minimal Perl for UNIX and Linux People.
 perl command line switches  -e &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; -E &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; enabling feature bundle (like use 5.</description>
-    </item>
-    
-    <item>
-      <title>Reading from STDIN or from command line arguments</title>
-      <link>https://jreisinger.github.io/notes/posts/read-stdin-or-args/</link>
-      <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/read-stdin-or-args/</guid>
-      <description>// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;os&amp;#34; ) func main() { counts := make(map[string]int) files := os.Args[1:] if len(files) == 0 { // STDIN  countLines(os.Stdin, counts) } else { // command line args  for _, arg := range files { f, err := os.</description>
-    </item>
-    
-    <item>
-      <title>Heap vs Stack</title>
-      <link>https://jreisinger.github.io/notes/posts/heap-vs-stack/</link>
-      <pubDate>Tue, 07 Aug 2018 08:43:41 +0200</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/heap-vs-stack/</guid>
-      <description>Both are memory regions.
-Stack (temporary to a function)
- stores temporary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap (global)
- not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:</description>
-    </item>
-    
-    <item>
-      <title>Python basics</title>
-      <link>https://jreisinger.github.io/notes/posts/python/</link>
-      <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/python/</guid>
-      <description>All Python objects are instances of one class or another.
-Variables Python variables are more like labels that reference various objects (integers, strings, class instances, &amp;hellip;):
-x = &amp;#34;2&amp;#34; # x is string x = int(x) # x is now integer  types are associated with objects, not variables variables are not checked for type at compile time variables don&amp;rsquo;t have to be declared variables can have any built-in data type, user-defined object, function, or module assigned to them  Built-in data types Built-in data types can be manipulated with operators, built-in functions, library functions, or a data type&amp;rsquo;s own methods.</description>
-    </item>
-    
-    <item>
-      <title>Perl to Python</title>
-      <link>https://jreisinger.github.io/notes/posts/perl2python/</link>
-      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/perl2python/</guid>
-      <description>Going from Perl to Python &amp;hellip;
-Data structures Both languages are dynamic so you can mix types in data structures (data containers).
-Perl Python Example Note ---- ------ ------- ----- array list [ 1, 3.4, &amp;#39;hello&amp;#39; ] you can mix types list tuple ( 10, 20, 30 ) immutable, parens are optional hash dictionary { &amp;#39;a&amp;#39;: 3, &amp;#39;b&amp;#39;: 42 } have to quote strings in Python n/a set set( [1, 2, 3] ) can be faked with hash in Perl In lists/tuples the comma is the operator.</description>
-    </item>
-    
-    <item>
-      <title>Signals</title>
-      <link>https://jreisinger.github.io/notes/posts/signals/</link>
-      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/signals/</guid>
-      <description>Signal &amp;ndash; a message from the kernel (or a process) to a process. Used for:
- errors (kernel saying: &amp;ldquo;You can&amp;rsquo;t touch that area of memory!&amp;rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
-kill [-SIGNAL] PID # default signal is TERM Selected signal types:
- TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.</description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>https://jreisinger.github.io/notes/posts/git/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/git/</guid>
-      <description>Git is a free &amp;amp; open source, distributed version (revision) control system created by Linus Torvalds.
-Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server.
-Branching and merging are fast and easy to do.
-Git uses an intelligent compression system to reduce the cost of storing the entire history.
-First-Time Git Setup Introduce yourself to git with your name and public email address before doing any operation:</description>
     </item>
     
   </channel>

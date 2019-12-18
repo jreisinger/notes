@@ -6,39 +6,10 @@
     <description>Recent content on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Go Strings</title>
-      <link>https://jreisinger.github.io/notes/posts/go-strings/</link>
-      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/go-strings/</guid>
-      <description>What is a string String is a read-only slice of bytes. A string can hold arbitrary bytes not just UTF-8 text or any other predefined format. Here is a string literal that uses the \xNN notation (hex values of a byte range from 00 to FF):
-const sample = &amp;#34;\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98&amp;#34; Printing strings // Print the string directly. fmt.Print(sample) // ��=� ⌘  // Get individual bytes by looping over the string.</description>
-    </item>
-    
-    <item>
-      <title>Prometheus</title>
-      <link>https://jreisinger.github.io/notes/posts/prometheus/</link>
-      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/prometheus/</guid>
-      <description>Introduction to PromQL  not an SQL-like language PromQL is powerful but most of the time your needs will be simple  Aggregation Basics Gauge  snapshot of state we usually agregate it with sum, avg, min or max  Total FS size on each machine (node_filesystem_size_bytes metric comes from Node exporter):
-sum(node_filesystem_size_bytes) without(device, fstype, mountpoint)  sum up everything with the same labels ingnore those three  Counter  tracks the number or size of events (total since start) use rate function as counters are always increasing  How many samples Prometheus is ingesting per-second averaged over one minute:</description>
-    </item>
-    
-    <item>
-      <title>ModSecurity</title>
-      <link>https://jreisinger.github.io/notes/posts/mod-security/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/mod-security/</guid>
-      <description>Terms  ModSecurity - a WAF engine (library, module) for Apache, Nginx, IIS Core Rule Set (CRS) - define the malicious patterns (signatures) False positive - a WAF blocking a valid request  ModSecurity  /etc/nginx/modsec/modsecurity.conf - config file audit logs are great for visibility but bad for performance - you can disable them via SecAuditEngine off (you still have the Nginx error logs) you should not inspect static content (images, &amp;hellip;) for performance reasons  ModSecurity 3.</description>
-    </item>
     
     <item>
       <title>Introduction to Go</title>
@@ -53,28 +24,6 @@ Types are similar to sets in mathematics. They classify data into groups and det
     </item>
     
     <item>
-      <title>Concurrency and Channels</title>
-      <link>https://jreisinger.github.io/notes/posts/concurrency-and-channels/</link>
-      <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/concurrency-and-channels/</guid>
-      <description>A goroutine is a function capable of running concurrently with other functions. Create a gouroutine with the go keyword.
-A channel is a way for gouroutines to communicate with each other and synchronize their execution.
-When pinger or ponger attempts to send a message on the channel, it will wait until printer is ready to receive the message (blocking):
-package main import ( &amp;#34;fmt&amp;#34; &amp;#34;time&amp;#34; ) func main() { ch := make(chan string) go pinger(ch) go ponger(ch) go printer(ch) // Wait for Enter to exit.</description>
-    </item>
-    
-    <item>
-      <title>JSON Serialization with Go</title>
-      <link>https://jreisinger.github.io/notes/posts/go-json/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/go-json/</guid>
-      <description>Networked programs need to exchange information via messages. TCP and UDP provide a transport mechanism to do this. However, at transport level the messages are just sequences of bytes with no structure.
-A program will typically build a complex data structure to hold the current program state. To transfer this data outside of the program&amp;rsquo;s own address space (e.g. to another application over the network) it needs to be serialized. This process is also called marshalling or encoding.</description>
-    </item>
-    
-    <item>
       <title>TCP sockets with Go</title>
       <link>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
@@ -82,40 +31,6 @@ A program will typically build a complex data structure to hold the current prog
       <guid>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</guid>
       <description>Client This is an HTTP client implemented using socket-level programming:
 // Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&amp;rsquo;ve also added error checking + reading from command line arguments):</description>
-    </item>
-    
-    <item>
-      <title>SRE</title>
-      <link>https://jreisinger.github.io/notes/posts/sre/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/sre/</guid>
-      <description>Hope is not a strategy. &amp;ndash; SRE saying
- Two approaches to run a computing system: sysadmin, SRE.
-Sysadmin approach  traditional way assemble existing SW components to produce a service run the service  Advantages
- relatively easy to implement for companies (familiar industry paradigm, lots of examples to emulate, wide talent pool, existing tools and consultants)  Disadvantages
- team size scales linearly with the load generated by the system you end up with two different teams (product developers and product operators) that often live in conflict  SRE approach  invented by Google (planet-scale products) hire software engineers to run products they create systems that do the work otherwise done by sysadmins  Advantages</description>
-    </item>
-    
-    <item>
-      <title>Go directory structure</title>
-      <link>https://jreisinger.github.io/notes/posts/go-directory-structure/</link>
-      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/go-directory-structure/</guid>
-      <description>NOTE: See How to Write Go Code for official tutorial.
-Go has a strong opinion about directory structure.
-## Set location of your workspace (It&amp;#39;s used by the `go` tool) $ export GOPATH=`pwd` $ echo $GOPATH /Users/reisinge/temp/go A single file program:
-## Create a program $ tree . └── src └── hello # this directory name is the program name └── main.go # package main 2 directories, 1 file ## Install the program $ go install hello # compile and install all *.</description>
-    </item>
-    
-    <item>
-      <title>Sorting with Go</title>
-      <link>https://jreisinger.github.io/notes/posts/sorting-with-go/</link>
-      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/sorting-with-go/</guid>
-      <description>package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sort&amp;#34; ) // A type with the three methods required for sorting. type StringSlice []string func (p StringSlice) Len() int { return len(p) } func (p StringSlice) Less(i, j int) bool { return p[i] &amp;lt; p[j] } func (p StringSlice) Swap(i, j int) { p[i], p[j] = p[j], p[i] } func main() { names := []string{&amp;#34;Xavier&amp;#34;, &amp;#34;John&amp;#34;, &amp;#34;Eve&amp;#34;, &amp;#34;Adam&amp;#34;} // sort.Strings(names) has the same effect 	sort.</description>
     </item>
     
     <item>
@@ -129,60 +44,6 @@ perl command line switches  -e &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;nda
     </item>
     
     <item>
-      <title>Hashes</title>
-      <link>https://jreisinger.github.io/notes/posts/hashes/</link>
-      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/hashes/</guid>
-      <description>There are several classes of hashes (hash functions) used for different purposes:
- hash datatype in Perl (maps a lookup string to a memory location; fast and short) networking protocols checks like CRC or Adler (rarely go over 32-bits in length) cryptographic hashes (this article is about them)  Cryptographic hashes
- provide an encryption using an algorithm and no key a variable length plaintext is &amp;ldquo;hashed&amp;rdquo; into a fixed-length hash value (also called a message digest or a hash) primarily used to provide integrity &amp;ndash;&amp;gt; if the hash changed, the plaintext must have changed have an &amp;ldquo;avalanche effect&amp;rdquo; &amp;ndash;&amp;gt; changing just one bit of input creates a completely different output  Collisions</description>
-    </item>
-    
-    <item>
-      <title>Reading from STDIN or from command line arguments</title>
-      <link>https://jreisinger.github.io/notes/posts/read-stdin-or-args/</link>
-      <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/read-stdin-or-args/</guid>
-      <description>// Dup2 prints the count and text of lines that appear more than once // in the input. It reads from stdin or from a list of named files. package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;os&amp;#34; ) func main() { counts := make(map[string]int) files := os.Args[1:] if len(files) == 0 { // STDIN  countLines(os.Stdin, counts) } else { // command line args  for _, arg := range files { f, err := os.</description>
-    </item>
-    
-    <item>
-      <title>Heap vs Stack</title>
-      <link>https://jreisinger.github.io/notes/posts/heap-vs-stack/</link>
-      <pubDate>Tue, 07 Aug 2018 08:43:41 +0200</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/heap-vs-stack/</guid>
-      <description>Both are memory regions.
-Stack (temporary to a function)
- stores temporary variables created by functions LIFO data structure with push/pop operations all vars are popped off when function exits very fast limited in size  Heap (global)
- not as tightly managed by CPU in C you have to manage it yourself via malloc(), calloc() or realloc() if you fail you get a memory leak slower access because pointers are used limited only by physical memory  Go example:</description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://jreisinger.github.io/notes/posts/kubernetes/</link>
-      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/kubernetes/</guid>
-      <description>Basics Kubernetes is the operating system for cloud-native applications.
-Configuration cat ~/.kube/config # or kubectl config view Namespace  group of objects in a cluster similar to a filesystem folder see Namespaces for more
-# your current namespace kubectl config get-contexts # search for asterisk and see column NAMESPACE # all namespaces in a cluster kubectl get namespaces  Context  to change the default namespace more permanently to manage different clusters to manage different users</description>
-    </item>
-    
-    <item>
-      <title>HTTP protocol</title>
-      <link>https://jreisinger.github.io/notes/posts/http-protocol/</link>
-      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/http-protocol/</guid>
-      <description>Intro What
- stateless, connectionless, reliable protocol HTTP versions: 0.9 (&amp;lsquo;91), 1.0 (&amp;lsquo;96), 1.1 (&amp;lsquo;99), 2 (&amp;lsquo;15) HTTP &amp;lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &amp;lt; 2 are text based, HTTP 2 is binary  What for
- used to fetch network resources (documents) based on their hostname and path user agents actually get a representation of the given resource (e.g. a copy of a static file) dominant document type - WWW of hypertext documents dominant version - HTTP/1.</description>
-    </item>
-    
-    <item>
       <title>Docker</title>
       <link>https://jreisinger.github.io/notes/posts/docker/</link>
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
@@ -192,29 +53,6 @@ Configuration cat ~/.kube/config # or kubectl config view Namespace  group of ob
  kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks (iptables)  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
 Docker revision-controls:
  filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:</description>
-    </item>
-    
-    <item>
-      <title>Network Programming</title>
-      <link>https://jreisinger.github.io/notes/posts/net-prog/</link>
-      <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/net-prog/</guid>
-      <description>Sockets  a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types 1) SOCK_STREAM - similar to pipes
- bidirectional &amp;ndash;&amp;gt; full duplex (simultaneous communication in both directions) connection-oriented = like a phone call byte-stream = no concept of message boundaries reliable = data will be either delivered exactly as transmitted or we&amp;rsquo;ll get notification of a failure  2) SOCK_DGRAM - only garantee that message borders will be preserverd when read (but lower overhead)</description>
-    </item>
-    
-    <item>
-      <title>Devops</title>
-      <link>https://jreisinger.github.io/notes/posts/devops/</link>
-      <pubDate>Sun, 20 Nov 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/devops/</guid>
-      <description>The opposite of DevOps is despair. &amp;ndash; Gene Kim
-If HW and SW are sufficiently fault tolerant, the remaining problems are human. &amp;ndash; TPoCSA
-CAMS: culture, automation, measurement, and sharing. &amp;ndash; D. Edwards, J. Willis (2010)
- DevOps is a set of techniques to solve the chronic conflict between Development an IT Operations. This conflict causes:
- increased time to market problematic code deployments increased number of Sev 1 outages unplanned work technical debt  The techniques are:</description>
     </item>
     
     <item>
@@ -231,83 +69,6 @@ CAMS: culture, automation, measurement, and sharing. &amp;ndash; D. Edwards, J. 
     </item>
     
     <item>
-      <title>Python basics</title>
-      <link>https://jreisinger.github.io/notes/posts/python/</link>
-      <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/python/</guid>
-      <description>All Python objects are instances of one class or another.
-Variables Python variables are more like labels that reference various objects (integers, strings, class instances, &amp;hellip;):
-x = &amp;#34;2&amp;#34; # x is string x = int(x) # x is now integer  types are associated with objects, not variables variables are not checked for type at compile time variables don&amp;rsquo;t have to be declared variables can have any built-in data type, user-defined object, function, or module assigned to them  Built-in data types Built-in data types can be manipulated with operators, built-in functions, library functions, or a data type&amp;rsquo;s own methods.</description>
-    </item>
-    
-    <item>
-      <title>Perl to Python</title>
-      <link>https://jreisinger.github.io/notes/posts/perl2python/</link>
-      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/perl2python/</guid>
-      <description>Going from Perl to Python &amp;hellip;
-Data structures Both languages are dynamic so you can mix types in data structures (data containers).
-Perl Python Example Note ---- ------ ------- ----- array list [ 1, 3.4, &amp;#39;hello&amp;#39; ] you can mix types list tuple ( 10, 20, 30 ) immutable, parens are optional hash dictionary { &amp;#39;a&amp;#39;: 3, &amp;#39;b&amp;#39;: 42 } have to quote strings in Python n/a set set( [1, 2, 3] ) can be faked with hash in Perl In lists/tuples the comma is the operator.</description>
-    </item>
-    
-    <item>
-      <title>Signals</title>
-      <link>https://jreisinger.github.io/notes/posts/signals/</link>
-      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/signals/</guid>
-      <description>Signal &amp;ndash; a message from the kernel (or a process) to a process. Used for:
- errors (kernel saying: &amp;ldquo;You can&amp;rsquo;t touch that area of memory!&amp;rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
-kill [-SIGNAL] PID # default signal is TERM Selected signal types:
- TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.</description>
-    </item>
-    
-    <item>
-      <title>Networking basics</title>
-      <link>https://jreisinger.github.io/notes/posts/net-basics/</link>
-      <pubDate>Wed, 16 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/net-basics/</guid>
-      <description>Networking models OSI layering provides for standard interfaces between layers and has these benefits:
- higher layers are shielded from the complexity of the lower layers application &amp;ldquo;thinks&amp;rdquo; it&amp;rsquo;s directly communicating with another application through the standard sockets API one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&amp;rsquo;s built-in TCP/IP SW)  OSI and TCP/IP models:
-OSI TCP/IP TCP/IP Sample original updated protocol +------------+ +------------+ +------------+ +----------------+ Contains the &amp;#34;language&amp;#34; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------+ | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------+ | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------+- - -+------------+- - -+------------+- - -+----------------+ data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------+- - -+------------+- - -+------------+- - -+----------------+ how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------+- - -+------------+- - -+------------+- - -+----------------+ 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------+ | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.</description>
-    </item>
-    
-    <item>
-      <title>Linux Performance Analysis</title>
-      <link>https://jreisinger.github.io/notes/posts/linux-performance-analysis/</link>
-      <pubDate>Sun, 14 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/linux-performance-analysis/</guid>
-      <description>Taking stock of hardware Sources of hardware information:
-lscpu /proc/cpuinfo # one entry for each core seen by the OS free -m /proc/meminfo hpacucli ctrl all show config [detail] # HP physical RAID lsblk [-o KNAME,TYPE,SIZE,MODEL] # installed on RHEL/CentOS parted -l # supports both MBR (msdos) and GPT fdisk -l # only traditional MBR partition table cat /proc/diskstats dmsetup ls # LVM device mapper udevadm info --query=all --name=/dev/sda Desktop Management Interface (DMI, aka SMBIOS):</description>
-    </item>
-    
-    <item>
-      <title>GRUB 2</title>
-      <link>https://jreisinger.github.io/notes/posts/grub2/</link>
-      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/grub2/</guid>
-      <description>GRUB 2 vs. GRUB (Legacy)
- simpler code structure modular model internationalization (support for non-ASCII character sets) GUI interface  /boot/grub/grub.cfg still exists but is not supposed to be edited.
-Files and directories
- /boot/grub/grub.cfg - automatically created central config file /etc/default/grub - general options (no menu entries) /etc/grub.d - helper scripts; you can add scripts here to add menu entries  GRUB 2 generally automates lot of steps (helper scripts search the partitions for known OSs and create the required entries).</description>
-    </item>
-    
-    <item>
-      <title>Meaning of Life by Zentara</title>
-      <link>https://jreisinger.github.io/notes/posts/meaning-of-life-by-zentara/</link>
-      <pubDate>Mon, 19 Jan 2015 17:07:00 +0200</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/meaning-of-life-by-zentara/</guid>
-      <description>http://zentara.net/ =&amp;gt; Deep Thoughts =&amp;gt; Want to know the meaning of life?
-This is the essence of the meaning of life Once you read it, you will never be able to get it out of your subconcious mind. It will crack open the door to the next level of conciousness. .................................................................... Your most previous incarnation, was a 9-month life inside your mother. During this life, you were developing the organs needed to exist on the next level.</description>
-    </item>
-    
-    <item>
       <title>Generate Random File</title>
       <link>https://jreisinger.github.io/notes/posts/gen_rand_file/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
@@ -316,39 +77,6 @@ This is the essence of the meaning of life Once you read it, you will never be a
       <description> How to generate a file of a defined size (ex. 100MB) with random content
 binary file: dd if=/dev/urandom of=file.dat bs=1M count=100 or
 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`  bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock  base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100</description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>https://jreisinger.github.io/notes/posts/git/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/git/</guid>
-      <description>Git is a free &amp;amp; open source, distributed version (revision) control system created by Linus Torvalds.
-Every Git clone is a full-fledged [in svk: ucelený, kompletný] repository with complete history and full revision tracking capabilities, not dependent on network access or a central server.
-Branching and merging are fast and easy to do.
-Git uses an intelligent compression system to reduce the cost of storing the entire history.
-First-Time Git Setup Introduce yourself to git with your name and public email address before doing any operation:</description>
-    </item>
-    
-    <item>
-      <title>System administration philosophy of Æ. Frish</title>
-      <link>https://jreisinger.github.io/notes/posts/sysadmin-philosophy/</link>
-      <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/sysadmin-philosophy/</guid>
-      <description> Know how things work. Plan it before you do it. Make it reversible (backups help a lot with this one). Make changes incrementally. Test, test, test, before you unleash it on the world.  </description>
-    </item>
-    
-    <item>
-      <title>Terms</title>
-      <link>https://jreisinger.github.io/notes/posts/terms/</link>
-      <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/terms/</guid>
-      <description>big data The idea that large databases of seemingly random data (ex. purchasing habits, location information) about people are valueable.
-block size The POSIX standard defines a block size of 512 bytes. However, this size is harder to read, so by default, the df and du output in most Linux distributions is in 1024-byte blocks.
-caching means that data likely to be used in the future is kept &amp;ldquo;nearby&amp;rdquo;</description>
     </item>
     
   </channel>

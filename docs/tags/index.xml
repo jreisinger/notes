@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,54 +14,9 @@
     <item>
       <title>go</title>
       <link>https://jreisinger.github.io/notes/tags/go/</link>
-      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Strings</title>
-      <link>https://jreisinger.github.io/notes/tags/strings/</link>
-      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/strings/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Prometheus</title>
-      <link>https://jreisinger.github.io/notes/tags/prometheus/</link>
-      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/prometheus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ModSecurity</title>
-      <link>https://jreisinger.github.io/notes/tags/modsecurity/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/modsecurity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>WAF</title>
-      <link>https://jreisinger.github.io/notes/tags/waf/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/waf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>json</title>
-      <link>https://jreisinger.github.io/notes/tags/json/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/json/</guid>
       <description></description>
     </item>
     
@@ -84,24 +39,6 @@
     </item>
     
     <item>
-      <title>devops</title>
-      <link>https://jreisinger.github.io/notes/tags/devops/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sre</title>
-      <link>https://jreisinger.github.io/notes/tags/sre/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/sre/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>perl</title>
       <link>https://jreisinger.github.io/notes/tags/perl/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
@@ -120,74 +57,11 @@
     </item>
     
     <item>
-      <title>hashes</title>
-      <link>https://jreisinger.github.io/notes/tags/hashes/</link>
-      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/hashes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>c</title>
-      <link>https://jreisinger.github.io/notes/tags/c/</link>
-      <pubDate>Tue, 07 Aug 2018 08:43:41 +0200</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/c/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>k8s</title>
-      <link>https://jreisinger.github.io/notes/tags/k8s/</link>
-      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://jreisinger.github.io/notes/tags/kubernetes/</link>
-      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>http</title>
-      <link>https://jreisinger.github.io/notes/tags/http/</link>
-      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/http/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>web</title>
-      <link>https://jreisinger.github.io/notes/tags/web/</link>
-      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>docker</title>
       <link>https://jreisinger.github.io/notes/tags/docker/</link>
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IPC</title>
-      <link>https://jreisinger.github.io/notes/tags/ipc/</link>
-      <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/ipc/</guid>
       <description></description>
     </item>
     
@@ -201,87 +75,6 @@
     </item>
     
     <item>
-      <title>python</title>
-      <link>https://jreisinger.github.io/notes/tags/python/</link>
-      <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>signals</title>
-      <link>https://jreisinger.github.io/notes/tags/signals/</link>
-      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/signals/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>basics</title>
-      <link>https://jreisinger.github.io/notes/tags/basics/</link>
-      <pubDate>Wed, 16 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/basics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://jreisinger.github.io/notes/tags/linux/</link>
-      <pubDate>Sun, 14 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>boot</title>
-      <link>https://jreisinger.github.io/notes/tags/boot/</link>
-      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/boot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>grub</title>
-      <link>https://jreisinger.github.io/notes/tags/grub/</link>
-      <pubDate>Mon, 01 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/grub/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>life</title>
-      <link>https://jreisinger.github.io/notes/tags/life/</link>
-      <pubDate>Mon, 19 Jan 2015 17:07:00 +0200</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/life/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>meaning</title>
-      <link>https://jreisinger.github.io/notes/tags/meaning/</link>
-      <pubDate>Mon, 19 Jan 2015 17:07:00 +0200</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/meaning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>zentara</title>
-      <link>https://jreisinger.github.io/notes/tags/zentara/</link>
-      <pubDate>Mon, 19 Jan 2015 17:07:00 +0200</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/zentara/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>dd</title>
       <link>https://jreisinger.github.io/notes/tags/dd/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
@@ -291,20 +84,11 @@
     </item>
     
     <item>
-      <title>git</title>
-      <link>https://jreisinger.github.io/notes/tags/git/</link>
+      <title>linux</title>
+      <link>https://jreisinger.github.io/notes/tags/linux/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/notes/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>philosophy</title>
-      <link>https://jreisinger.github.io/notes/tags/philosophy/</link>
-      <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/philosophy/</guid>
+      <guid>https://jreisinger.github.io/notes/tags/linux/</guid>
       <description></description>
     </item>
     

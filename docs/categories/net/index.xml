@@ -6,20 +6,10 @@
     <description>Recent content in net on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/categories/net/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>JSON Serialization with Go</title>
-      <link>https://jreisinger.github.io/notes/posts/go-json/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/go-json/</guid>
-      <description>Networked programs need to exchange information via messages. TCP and UDP provide a transport mechanism to do this. However, at transport level the messages are just sequences of bytes with no structure.
-A program will typically build a complex data structure to hold the current program state. To transfer this data outside of the program&amp;rsquo;s own address space (e.g. to another application over the network) it needs to be serialized. This process is also called marshalling or encoding.</description>
-    </item>
     
     <item>
       <title>TCP sockets with Go</title>
@@ -29,27 +19,6 @@ A program will typically build a complex data structure to hold the current prog
       <guid>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</guid>
       <description>Client This is an HTTP client implemented using socket-level programming:
 // Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&amp;rsquo;ve also added error checking + reading from command line arguments):</description>
-    </item>
-    
-    <item>
-      <title>HTTP protocol</title>
-      <link>https://jreisinger.github.io/notes/posts/http-protocol/</link>
-      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/http-protocol/</guid>
-      <description>Intro What
- stateless, connectionless, reliable protocol HTTP versions: 0.9 (&amp;lsquo;91), 1.0 (&amp;lsquo;96), 1.1 (&amp;lsquo;99), 2 (&amp;lsquo;15) HTTP &amp;lt; 1.1 needed a separate TCP connection for each HTTP request HTTP &amp;lt; 2 are text based, HTTP 2 is binary  What for
- used to fetch network resources (documents) based on their hostname and path user agents actually get a representation of the given resource (e.g. a copy of a static file) dominant document type - WWW of hypertext documents dominant version - HTTP/1.</description>
-    </item>
-    
-    <item>
-      <title>Network Programming</title>
-      <link>https://jreisinger.github.io/notes/posts/net-prog/</link>
-      <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/net-prog/</guid>
-      <description>Sockets  a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types 1) SOCK_STREAM - similar to pipes
- bidirectional &amp;ndash;&amp;gt; full duplex (simultaneous communication in both directions) connection-oriented = like a phone call byte-stream = no concept of message boundaries reliable = data will be either delivered exactly as transmitted or we&amp;rsquo;ll get notification of a failure  2) SOCK_DGRAM - only garantee that message borders will be preserverd when read (but lower overhead)</description>
     </item>
     
     <item>
@@ -63,17 +32,6 @@ A program will typically build a complex data structure to hold the current prog
 -w FILE &amp;ndash; write raw packets to FILE
 -r FILE &amp;ndash; read packets from FILE
 -nn &amp;ndash; turn off host and protocol name resolution (to avoid generating DNS packets)</description>
-    </item>
-    
-    <item>
-      <title>Networking basics</title>
-      <link>https://jreisinger.github.io/notes/posts/net-basics/</link>
-      <pubDate>Wed, 16 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/net-basics/</guid>
-      <description>Networking models OSI layering provides for standard interfaces between layers and has these benefits:
- higher layers are shielded from the complexity of the lower layers application &amp;ldquo;thinks&amp;rdquo; it&amp;rsquo;s directly communicating with another application through the standard sockets API one vendor writes SW implementing higher layers (e.g. web browser), another vendor writes SW implementing lower layers (e.g. M$&amp;rsquo;s built-in TCP/IP SW)  OSI and TCP/IP models:
-OSI TCP/IP TCP/IP Sample original updated protocol +------------+ +------------+ +------------+ +----------------+ Contains the &amp;#34;language&amp;#34; that 7 |Application | | | | | |Telnet HTTP | apps and servers use to |------------+ | | | | |FTP SMTP | communicate 6 |Presentation| |Application | 5-7 |Application | |POP3 VoIP | |------------+ | | | | |SNMP DNS Halo 3 | 5 |Session | | | | | |arp traceroute | |------------+- - -+------------+- - -+------------+- - -+----------------+ data transmission 4 |Transport | |Transport | 4 |Transport | |TCP UDP | characteristics |------------+- - -+------------+- - -+------------+- - -+----------------+ how to move packets 3 |Network | |Internetwork| 3 |Internetwork| |IP ICMP | from src to dst |------------+- - -+------------+- - -+------------+- - -+----------------+ 2 |Data link | |Network | 2 |Data link | |Eth HDLC PPP ARP| |------------+ | |- - -|------------|- - -|----------------| how to send raw data 1 |Physical | |access | 1 |Physical | |Eth RJ-45 V.</description>
     </item>
     
   </channel>

@@ -21,39 +21,5 @@
 perl command line switches  -e &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; -E &#39;&amp;lt;code&amp;gt;&#39; (execute) &amp;ndash; execute &amp;lt;code&amp;gt; enabling feature bundle (like use 5.</description>
     </item>
     
-    <item>
-      <title>Hashes</title>
-      <link>https://jreisinger.github.io/notes/posts/hashes/</link>
-      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/hashes/</guid>
-      <description>There are several classes of hashes (hash functions) used for different purposes:
- hash datatype in Perl (maps a lookup string to a memory location; fast and short) networking protocols checks like CRC or Adler (rarely go over 32-bits in length) cryptographic hashes (this article is about them)  Cryptographic hashes
- provide an encryption using an algorithm and no key a variable length plaintext is &amp;ldquo;hashed&amp;rdquo; into a fixed-length hash value (also called a message digest or a hash) primarily used to provide integrity &amp;ndash;&amp;gt; if the hash changed, the plaintext must have changed have an &amp;ldquo;avalanche effect&amp;rdquo; &amp;ndash;&amp;gt; changing just one bit of input creates a completely different output  Collisions</description>
-    </item>
-    
-    <item>
-      <title>Perl to Python</title>
-      <link>https://jreisinger.github.io/notes/posts/perl2python/</link>
-      <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/perl2python/</guid>
-      <description>Going from Perl to Python &amp;hellip;
-Data structures Both languages are dynamic so you can mix types in data structures (data containers).
-Perl Python Example Note ---- ------ ------- ----- array list [ 1, 3.4, &amp;#39;hello&amp;#39; ] you can mix types list tuple ( 10, 20, 30 ) immutable, parens are optional hash dictionary { &amp;#39;a&amp;#39;: 3, &amp;#39;b&amp;#39;: 42 } have to quote strings in Python n/a set set( [1, 2, 3] ) can be faked with hash in Perl In lists/tuples the comma is the operator.</description>
-    </item>
-    
-    <item>
-      <title>Signals</title>
-      <link>https://jreisinger.github.io/notes/posts/signals/</link>
-      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/signals/</guid>
-      <description>Signal &amp;ndash; a message from the kernel (or a process) to a process. Used for:
- errors (kernel saying: &amp;ldquo;You can&amp;rsquo;t touch that area of memory!&amp;rdquo;) events (death of a child, interrupt with Ctrl-C)  To ask the kernel to a send a signal:
-kill [-SIGNAL] PID # default signal is TERM Selected signal types:
- TERM (15) - terminate a process (polite request to die, i.e. can and should be caught) KILL (9) - terminate a process at the kernel level and remove it forcibly from memory (cannot be caught, blocked or ignored) INT (2) - interrupt, sent by the terminal driver on Ctrl-C.</description>
-    </item>
-    
   </channel>
 </rss>

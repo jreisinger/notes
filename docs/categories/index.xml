@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,16 +14,25 @@
     <item>
       <title>prog</title>
       <link>https://jreisinger.github.io/notes/categories/prog/</link>
-      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/categories/prog/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>net</title>
+      <link>https://jreisinger.github.io/notes/categories/net/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/categories/net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>DevOps</title>
       <link>https://jreisinger.github.io/notes/categories/devops/</link>
-      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/categories/devops/</guid>
       <description></description>
@@ -32,45 +41,18 @@
     <item>
       <title>sec</title>
       <link>https://jreisinger.github.io/notes/categories/sec/</link>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/categories/sec/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>net</title>
-      <link>https://jreisinger.github.io/notes/categories/net/</link>
-      <pubDate>Tue, 29 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/categories/net/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mngmt</title>
-      <link>https://jreisinger.github.io/notes/categories/mngmt/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/categories/mngmt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>os</title>
       <link>https://jreisinger.github.io/notes/categories/os/</link>
-      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/categories/os/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>terms</title>
-      <link>https://jreisinger.github.io/notes/categories/terms/</link>
-      <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/categories/terms/</guid>
       <description></description>
     </item>
     

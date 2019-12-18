@@ -21,15 +21,5 @@
 // Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&amp;rsquo;ve also added error checking + reading from command line arguments):</description>
     </item>
     
-    <item>
-      <title>Network Programming</title>
-      <link>https://jreisinger.github.io/notes/posts/net-prog/</link>
-      <pubDate>Fri, 10 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/posts/net-prog/</guid>
-      <description>Sockets  a method for IPC endpoints for communication allow processes to communicate on a host or over a network  Socket types 1) SOCK_STREAM - similar to pipes
- bidirectional &amp;ndash;&amp;gt; full duplex (simultaneous communication in both directions) connection-oriented = like a phone call byte-stream = no concept of message boundaries reliable = data will be either delivered exactly as transmitted or we&amp;rsquo;ll get notification of a failure  2) SOCK_DGRAM - only garantee that message borders will be preserverd when read (but lower overhead)</description>
-    </item>
-    
   </channel>
 </rss>
