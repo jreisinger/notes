@@ -14,9 +14,11 @@ rm -rf $HOME/.vim/pack/plugins/start/grep.vim && git clone https://github.com/ye
 rm -rf $HOME/.vim/pack/plugins/start/vim-go && git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go
 ```
 
-## Why and how is it useful
+The problem is that these commmands run sequentially and it takes a while until they are done. I was thinking of a way how to speed them up. So to scratch my itch I came up with [runp](https://github.com/jreisinger/runp).
 
-The problem is that these commmands run sequentially and it takes a while until they are done. I was thinking of a way how to speed them up. So to scratch my itch I came up with [runp](https://github.com/jreisinger/runp). Now I can run those commands (I stored them in `install-my-stuff.txt`) in parallel:
+## Why and how to use it
+
+Now I can run those commands (I stored them in `install-my-stuff.txt`) in parallel:
 
 <script id="asciicast-288718" src="https://asciinema.org/a/288718.js" async></script>
 

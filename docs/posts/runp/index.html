@@ -7,16 +7,16 @@
   <meta property="og:title" content="runp: run shell commands in parallel - Notes" />
   <meta name="twitter:title" content="runp: run shell commands in parallel - Notes" />
   <meta name="description" content="I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
-curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go Why and how is it useful The problem is that these commmands run sequentially and it takes a while until they are done.">
+curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.">
   <meta property="og:description" content="I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
-curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go Why and how is it useful The problem is that these commmands run sequentially and it takes a while until they are done.">
+curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.">
   <meta name="twitter:description" content="I&rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
   <meta property="og:url" content="https://jreisinger.github.io/posts/runp/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
@@ -96,7 +96,7 @@ curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/
 <ul>
 <li>
 <ul>
-<li><a href="#why-and-how-is-it-useful">Why and how is it useful</a></li>
+<li><a href="#why-and-how-to-use-it">Why and how to use it</a></li>
 <li><a href="#how-to-install-it">How to install it</a></li>
 <li><a href="#more-examples">More examples</a></li>
 </ul></li>
@@ -110,9 +110,11 @@ curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/
 rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim
 # https://tpaschalis.github.io/vim-go-setup/
 rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go</pre></div>
-<h2 id="why-and-how-is-it-useful">Why and how is it useful</h2>
+<p>The problem is that these commmands run sequentially and it takes a while until they are done. I was thinking of a way how to speed them up. So to scratch my itch I came up with <a href="https://github.com/jreisinger/runp">runp</a>.</p>
 
-<p>The problem is that these commmands run sequentially and it takes a while until they are done. I was thinking of a way how to speed them up. So to scratch my itch I came up with <a href="https://github.com/jreisinger/runp">runp</a>. Now I can run those commands (I stored them in <code>install-my-stuff.txt</code>) in parallel:</p>
+<h2 id="why-and-how-to-use-it">Why and how to use it</h2>
+
+<p>Now I can run those commands (I stored them in <code>install-my-stuff.txt</code>) in parallel:</p>
 
 <script id="asciicast-288718" src="https://asciinema.org/a/288718.js" async></script>
 

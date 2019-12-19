@@ -6,94 +6,13 @@
     <description>Recent content in Tags on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Mar 2014 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>go</title>
-      <link>https://jreisinger.github.io/notes/tags/go/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>parallel</title>
-      <link>https://jreisinger.github.io/notes/tags/parallel/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/parallel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shell</title>
-      <link>https://jreisinger.github.io/notes/tags/shell/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/shell/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sysadmin</title>
-      <link>https://jreisinger.github.io/notes/tags/sysadmin/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/sysadmin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sockets</title>
-      <link>https://jreisinger.github.io/notes/tags/sockets/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/sockets/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tcp</title>
-      <link>https://jreisinger.github.io/notes/tags/tcp/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/tcp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>perl</title>
-      <link>https://jreisinger.github.io/notes/tags/perl/</link>
-      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/perl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://jreisinger.github.io/notes/tags/docker/</link>
-      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>unix</title>
-      <link>https://jreisinger.github.io/notes/tags/unix/</link>
-      <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/notes/tags/unix/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dd</title>
+      <title>Dd</title>
       <link>https://jreisinger.github.io/notes/tags/dd/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
@@ -102,11 +21,92 @@
     </item>
     
     <item>
-      <title>linux</title>
+      <title>Docker</title>
+      <link>https://jreisinger.github.io/notes/tags/docker/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://jreisinger.github.io/notes/tags/go/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
       <link>https://jreisinger.github.io/notes/tags/linux/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Parallel</title>
+      <link>https://jreisinger.github.io/notes/tags/parallel/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/parallel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Perl</title>
+      <link>https://jreisinger.github.io/notes/tags/perl/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/perl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>https://jreisinger.github.io/notes/tags/shell/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sockets</title>
+      <link>https://jreisinger.github.io/notes/tags/sockets/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/sockets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sysadmin</title>
+      <link>https://jreisinger.github.io/notes/tags/sysadmin/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/sysadmin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tcp</title>
+      <link>https://jreisinger.github.io/notes/tags/tcp/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/tcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unix</title>
+      <link>https://jreisinger.github.io/notes/tags/unix/</link>
+      <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/tags/unix/</guid>
       <description></description>
     </item>
     

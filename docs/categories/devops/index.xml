@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevOps on Notes</title>
+    <title>Devops on Notes</title>
     <link>https://jreisinger.github.io/notes/categories/devops/</link>
-    <description>Recent content in DevOps on Notes</description>
+    <description>Recent content in Devops on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 24 Jul 2017 00:00:00 +0000</lastBuildDate>
