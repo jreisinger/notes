@@ -5,23 +5,16 @@ categories: [prog]
 tags: [sysadmin,go,parallel,shell]
 ---
 
-## Why and how is it useful
-
-I'm using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my [.bashrc](https://github.com/jreisinger/dotfiles/blob/master/.bashrc) runs the following commands to download or clone vim plugins I use:
+I'm using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my [.bashrc](https://github.com/jreisinger/dotfiles/blob/master/.bashrc) runs commands like these to download or clone vim plugins I use:
 
 ```
 curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-#curl -L -o $HOME/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-rm -rf $HOME/.vim/pack/plugins/start/nerdtree && git clone https://github.com/scrooloose/nerdtree.git $HOME/.vim/pack/plugins/start/nerdtree
-rm -rf $HOME/.vim/pack/plugins/start/vim-nerdtree-tabs && git clone https://github.com/jistr/vim-nerdtree-tabs.git $HOME/.vim/pack/plugins/start/vim-nerdtree-tabs
-rm -rf $HOME/.vim/pack/plugins/start/vim-markdown && git clone https://github.com/plasticboy/vim-markdown.git $HOME/.vim/pack/plugins/start/vim-markdown
-rm -rf $HOME/.vim/pack/plugins/start/bufexplorer && git clone https://github.com/jlanzarotta/bufexplorer.git $HOME/.vim/pack/plugins/start/bufexplorer
-rm -rf $HOME/.vim/pack/plugins/start/ansible-vim && git clone https://github.com/pearofducks/ansible-vim.git $HOME/.vim/pack/plugins/start/ansible-vim
-rm -rf $HOME/.vim/pack/plugins/start/vim-go && git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go
 rm -rf $HOME/.vim/pack/plugins/start/grep.vim && git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim
 # https://tpaschalis.github.io/vim-go-setup/
-rm -rf $HOME/.vim/pack/plugins/start/vim-airline && git clone https://github.com/vim-airline/vim-airline $HOME/.vim/pack/plugins/start/vim-airline
+rm -rf $HOME/.vim/pack/plugins/start/vim-go && git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go
 ```
+
+## Why and how is it useful
 
 The problem is that these commmands run sequentially and it takes a while until they are done. I was thinking of a way how to speed them up. So to scratch my itch I came up with [runp](https://github.com/jreisinger/runp). Now I can run those commands (I stored them in `install-my-stuff.txt`) in parallel:
 
@@ -52,14 +45,8 @@ $ runp -q install-my-stuff.txt
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 70071  100 70071    0     0   145k      0 --:--:-- --:--:-- --:--:--  145k
-Cloning into '/home/reisinge/.vim/pack/plugins/start/vim-nerdtree-tabs'...
-Cloning into '/home/reisinge/.vim/pack/plugins/start/bufexplorer'...
-Cloning into '/home/reisinge/.vim/pack/plugins/start/ansible-vim'...
-Cloning into '/home/reisinge/.vim/pack/plugins/start/grep.vim'...
-Cloning into '/home/reisinge/.vim/pack/plugins/start/vim-airline'...
-Cloning into '/home/reisinge/.vim/pack/plugins/start/nerdtree'...
-Cloning into '/home/reisinge/.vim/pack/plugins/start/vim-markdown'...
 Cloning into '/home/reisinge/.vim/pack/plugins/start/vim-go'...
+Cloning into '/home/reisinge/.vim/pack/plugins/start/grep.vim'...
 ```
 
 ## How to install it

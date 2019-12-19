@@ -17,8 +17,8 @@
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/runp/</guid>
-      <description>Why and how is it useful I&amp;rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs the following commands to download or clone vim plugins I use:
-curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash #curl -L -o $HOME/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim rm -rf $HOME/.vim/pack/plugins/start/nerdtree &amp;amp;&amp;amp; git clone https://github.com/scrooloose/nerdtree.git $HOME/.vim/pack/plugins/start/nerdtree rm -rf $HOME/.vim/pack/plugins/start/vim-nerdtree-tabs &amp;amp;&amp;amp; git clone https://github.com/jistr/vim-nerdtree-tabs.git $HOME/.vim/pack/plugins/start/vim-nerdtree-tabs rm -rf $HOME/.</description>
+      <description>I&amp;rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
+curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;amp;&amp;amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;amp;&amp;amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go Why and how is it useful The problem is that these commmands run sequentially and it takes a while until they are done.</description>
     </item>
     
     <item>
