@@ -1,5 +1,5 @@
-baseurl = "https://jreisinger.github.io/notes/"
-title = "Notes"
+baseurl = "https://jreisinger.github.io/blog/"
+title = "Blog"
 theme = "whiteplain"
 languageCode = "en"
 # Disqus shortname
@@ -27,7 +27,7 @@ pygmentsstyle                 = "bw"
 [params]
   # Date format
   #dateFormat = "January 2, 2006"
-  editURL = "https://github.com/jreisinger/notes/tree/master/content/"
+  editURL = "https://github.com/jreisinger/blog/tree/master/content/"
 
 # This is displayer in About page.
 [params.author]

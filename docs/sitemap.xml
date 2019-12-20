@@ -3,165 +3,165 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/runp/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/runp/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/go-intro/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/go-intro/</loc>
     <lastmod>2019-07-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/go-tcp-sockets/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/perl-one-liners/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/perl-one-liners/</loc>
     <lastmod>2018-09-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/docker/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/docker/</loc>
     <lastmod>2017-07-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/tcpdump/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/tcpdump/</loc>
     <lastmod>2016-05-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/testing-perl-script/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/testing-perl-script/</loc>
     <lastmod>2015-12-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/gen_rand_file/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/gen_rand_file/</loc>
     <lastmod>2014-03-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/notes/tags/dd/</loc>
-    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/notes/categories/devops/</loc>
-    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/notes/tags/docker/</loc>
-    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/notes/tags/go/</loc>
+    <loc>https://jreisinger.github.io/blog/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/linux/</loc>
+    <loc>https://jreisinger.github.io/blog/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/blog/tags/dd/</loc>
     <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/categories/net/</loc>
+    <loc>https://jreisinger.github.io/blog/categories/devops/</loc>
+    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/blog/tags/docker/</loc>
+    <lastmod>2017-07-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/blog/tags/go/</loc>
+    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/blog/tags/linux/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jreisinger.github.io/blog/categories/net/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/</loc>
-    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jreisinger.github.io/notes/categories/os/</loc>
+    <loc>https://jreisinger.github.io/blog/categories/os/</loc>
     <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/parallel/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/parallel/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/perl/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/perl/</loc>
     <lastmod>2018-09-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/posts/</loc>
+    <loc>https://jreisinger.github.io/blog/posts/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/categories/prog/</loc>
+    <loc>https://jreisinger.github.io/blog/categories/prog/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/categories/sec/</loc>
+    <loc>https://jreisinger.github.io/blog/categories/sec/</loc>
     <lastmod>2016-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/series/</loc>
+    <loc>https://jreisinger.github.io/blog/series/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/shell/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/shell/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/sockets/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/sockets/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/sysadmin/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/sysadmin/</loc>
     <lastmod>2019-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/</loc>
     <lastmod>2014-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/tcp/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/tcp/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jreisinger.github.io/notes/tags/unix/</loc>
+    <loc>https://jreisinger.github.io/blog/tags/unix/</loc>
     <lastmod>2016-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Perl on Notes</title>
-    <link>https://jreisinger.github.io/notes/tags/perl/</link>
-    <description>Recent content in Perl on Notes</description>
+    <title>Perl on Blog</title>
+    <link>https://jreisinger.github.io/blog/tags/perl/</link>
+    <description>Recent content in Perl on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 26 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/notes/tags/perl/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/blog/tags/perl/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Perl one-liners</title>
-      <link>https://jreisinger.github.io/notes/posts/perl-one-liners/</link>
+      <link>https://jreisinger.github.io/blog/posts/perl-one-liners/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/notes/posts/perl-one-liners/</guid>
+      <guid>https://jreisinger.github.io/blog/posts/perl-one-liners/</guid>
       <description>Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
 perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&amp;rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
     </item>
     
     <item>
       <title>Testing Perl script</title>
-      <link>https://jreisinger.github.io/notes/posts/testing-perl-script/</link>
+      <link>https://jreisinger.github.io/blog/posts/testing-perl-script/</link>
       <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/notes/posts/testing-perl-script/</guid>
+      <guid>https://jreisinger.github.io/blog/posts/testing-perl-script/</guid>
       <description>How to write tests for a Perl script At $work, I was to upgrade several Debians from Squeezy through Wheezy to Jessie (6 to 8). I wanted to be sure that after the upgrade (mostly) the same processes are running as before. I whipped up a script, that simply stores the list of running processes before the upgrade. When run subsequently it reports missing processes (if any).
 To make the script reliable and easy to maintain I wanted to test it somehow.</description>
     </item>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sec on Notes</title>
-    <link>https://jreisinger.github.io/notes/categories/sec/</link>
-    <description>Recent content in Sec on Notes</description>
+    <title>Sec on Blog</title>
+    <link>https://jreisinger.github.io/blog/categories/sec/</link>
+    <description>Recent content in Sec on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 16 May 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/notes/categories/sec/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/blog/categories/sec/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>tcpdump</title>
-      <link>https://jreisinger.github.io/notes/posts/tcpdump/</link>
+      <link>https://jreisinger.github.io/blog/posts/tcpdump/</link>
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/notes/posts/tcpdump/</guid>
+      <guid>https://jreisinger.github.io/blog/posts/tcpdump/</guid>
       <description>despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options -D &amp;ndash; list available interfaces
 -i INTERFACE &amp;ndash; listen on INTERFACE (default: lowest numbered interface)
 -w FILE &amp;ndash; write raw packets to FILE
