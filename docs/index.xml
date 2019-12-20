@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog</title>
@@ -17,7 +17,7 @@
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog/posts/runp/</guid>
-      <description>I&amp;rsquo;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
+      <description>I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
 curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;amp;&amp;amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;amp;&amp;amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.</description>
     </item>
     
@@ -40,7 +40,7 @@ Types are similar to sets in mathematics. They classify data into groups and det
       
       <guid>https://jreisinger.github.io/blog/posts/go-tcp-sockets/</guid>
       <description>Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&amp;rsquo;ve also added error checking + reading from command line arguments):</description>
+// Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&#39;ve also added error checking + reading from command line arguments):</description>
     </item>
     
     <item>
@@ -50,7 +50,7 @@ Types are similar to sets in mathematics. They classify data into groups and det
       
       <guid>https://jreisinger.github.io/blog/posts/perl-one-liners/</guid>
       <description>Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
-perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&amp;rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
+perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&#39;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
     </item>
     
     <item>
@@ -59,7 +59,7 @@ perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl langua
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog/posts/docker/</guid>
-      <description>Docker is a container technology. Cointainers standardize software packaging. It&amp;rsquo;s a well timed fusion of
+      <description>Docker is a container technology. Cointainers standardize software packaging. It&#39;s a well timed fusion of
  kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks (iptables)  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
 Docker revision-controls:
  filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:</description>
@@ -94,9 +94,9 @@ To make the script reliable and easy to maintain I wanted to test it somehow.</d
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog/posts/gen_rand_file/</guid>
-      <description> How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100 or
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`  bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock  base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100</description>
+      <description>How to generate a file of a defined size (ex. 100MB) with random content
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  </description>
     </item>
     
   </channel>

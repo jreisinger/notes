@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Devops on Blog</title>
+    <title>DevOps on Blog</title>
     <link>https://jreisinger.github.io/blog/categories/devops/</link>
-    <description>Recent content in Devops on Blog</description>
+    <description>Recent content in DevOps on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 24 Jul 2017 00:00:00 +0000</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog/posts/docker/</guid>
-      <description>Docker is a container technology. Cointainers standardize software packaging. It&amp;rsquo;s a well timed fusion of
+      <description>Docker is a container technology. Cointainers standardize software packaging. It&#39;s a well timed fusion of
  kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks (iptables)  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
 Docker revision-controls:
  filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:</description>

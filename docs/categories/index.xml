@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Blog</title>
@@ -6,39 +6,13 @@
     <description>Recent content in Categories on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Devops</title>
-      <link>https://jreisinger.github.io/blog/categories/devops/</link>
-      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/categories/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Net</title>
-      <link>https://jreisinger.github.io/blog/categories/net/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/categories/net/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Os</title>
-      <link>https://jreisinger.github.io/blog/categories/os/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/categories/os/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Prog</title>
+      <title>prog</title>
       <link>https://jreisinger.github.io/blog/categories/prog/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
@@ -47,11 +21,38 @@
     </item>
     
     <item>
-      <title>Sec</title>
+      <title>net</title>
+      <link>https://jreisinger.github.io/blog/categories/net/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/categories/net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://jreisinger.github.io/blog/categories/devops/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sec</title>
       <link>https://jreisinger.github.io/blog/categories/sec/</link>
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog/categories/sec/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>os</title>
+      <link>https://jreisinger.github.io/blog/categories/os/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/categories/os/</guid>
       <description></description>
     </item>
     

@@ -3,36 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>TCP sockets with Go - Notes</title>
-  <meta property="og:title" content="TCP sockets with Go - Notes" />
-  <meta name="twitter:title" content="TCP sockets with Go - Notes" />
+  <title>TCP sockets with Go - Blog</title>
+  <meta property="og:title" content="TCP sockets with Go - Blog" />
+  <meta name="twitter:title" content="TCP sockets with Go - Blog" />
   <meta name="description" content="Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&rsquo;ve also added error checking &#43; reading from command line arguments):">
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&#39;ve also added error checking &#43; reading from command line arguments):">
   <meta property="og:description" content="Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&rsquo;ve also added error checking &#43; reading from command line arguments):">
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&#39;ve also added error checking &#43; reading from command line arguments):">
   <meta name="twitter:description" content="Client This is an HTTP client implemented using socket-level programming:
 // Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring …">
   <meta name="author" content="Jozef Reisinger"/>
-  <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/posts/go-tcp-sockets/" />
+  <meta property="og:site_name" content="Blog" />
+  <meta property="og:url" content="https://jreisinger.github.io/blog/posts/go-tcp-sockets/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <meta name="generator" content="Hugo 0.61.0" />
+
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/custom.css" media="all" />
+
+  <script src="https://jreisinger.github.io/blog/js/script.js"></script>
+  <script src="https://jreisinger.github.io/blog/js/custom.js"></script>
+  <script defer src="https://jreisinger.github.io/blog/js/fontawesome.js"></script>
 </head>
 
 <body>
 <header class="site-header">
   <nav class="site-navi">
-    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <h1 class="site-title"><a href="https://jreisinger.github.io/blog/">Blog</a></h1>
     <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
     <ul class="site-navi-items">
-      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
-      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/blog/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/blog/tags/" title="Tags">Tags</a></li>
     </ul>
 
     
@@ -41,7 +44,7 @@
         
         
         
-        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/go-tcp-sockets.md">See on GitHub</a>
+        <a href="https://github.com/jreisinger/blog/tree/master/content/posts/go-tcp-sockets.md">See on GitHub</a>
         
       
     </ul>
@@ -61,41 +64,38 @@
       <ul class="article-meta">
         <li class="article-meta-date"><time>January 25, 2019</time></li>
         <li class="article-meta-categories">
-          <a href="https://jreisinger.github.io/notes/categories/net/">
+          <a href="https://jreisinger.github.io/blog/categories/net/">
             <i class="fas fa-folder"></i>
             net
           </a>&nbsp;
         </li>
         <li class="article-meta-categories">
-          <a href="https://jreisinger.github.io/notes/categories/prog/">
+          <a href="https://jreisinger.github.io/blog/categories/prog/">
             <i class="fas fa-folder"></i>
             prog
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/tcp/">
+          <a href="https://jreisinger.github.io/blog/tags/tcp/">
             <i class="fas fa-tag"></i>
             tcp
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/sockets/">
+          <a href="https://jreisinger.github.io/blog/tags/sockets/">
             <i class="fas fa-tag"></i>
             sockets
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/go/">
+          <a href="https://jreisinger.github.io/blog/tags/go/">
             <i class="fas fa-tag"></i>
             go
           </a>&nbsp;
         </li>
       </ul>
       
-      
-
-<h2 id="client">Client</h2>
-
+      <h2 id="client">Client</h2>
 <p>This is an HTTP client implemented using socket-level programming:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run telnet.go
 </span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
@@ -112,8 +112,8 @@
 </span><span style="font-style:italic"></span>    fmt.Fprintf(conn, <span style="font-style:italic">&#34;GET / HTTP/1.0\r\n\r\n&#34;</span>) <span style="font-style:italic">// Send string over the connection
 </span><span style="font-style:italic"></span>    status, _ := bufio.NewReader(conn).ReadString(<span style="font-style:italic">&#39;\n&#39;</span>)
     fmt.Print(status) <span style="font-style:italic">// Print the first response line
-</span><span style="font-style:italic"></span>}</code></pre></div>
-<p>To add a timeout you can use the <code>Dialer</code> structure (I&rsquo;ve also added error
+</span><span style="font-style:italic"></span>}
+</code></pre></div><p>To add a timeout you can use the <code>Dialer</code> structure (I've also added error
 checking + reading from command line arguments):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
@@ -146,13 +146,11 @@ checking + reading from command line arguments):</p>
         fmt.Fprintf(os.Stderr, <span style="font-style:italic">&#34;%v\n&#34;</span>, err.Error())
         os.Exit(1)
     }
-}</code></pre></div>
-<p>It&rsquo;s normal to have a lot of error checking in network programming because lot
+}
+</code></pre></div><p>It's normal to have a lot of error checking in network programming because lot
 of things can go wrong (e.g. syntax error in the address, service not running,
 hardware failing).</p>
-
 <h2 id="server">Server</h2>
-
 <p>Concurrent TCP server that prints (echoes) what it receives:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Usage: go run tcp_server.go
 </span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
@@ -199,9 +197,8 @@ hardware failing).</p>
     }
 
     log.Println(<span style="font-style:italic">&#34;Client at&#34;</span>, remoteAddr, <span style="font-style:italic">&#34;disconnected&#34;</span>)
-}</code></pre></div>
-<h2 id="sources">Sources</h2>
-
+}
+</code></pre></div><h2 id="sources">Sources</h2>
 <ul>
 <li><a href="https://www.apress.com/gp/book/9781484226919">Network programming with
 Go</a>: Ch 3. Socket-level programming</li>
@@ -236,10 +233,10 @@ Go</a>: Ch 3. Socket-level programming</li>
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="https://jreisinger.github.io/notes/posts/go-intro/" data-toggle="tooltip" data-placement="top" title="Introduction to Go">&lt; Newer</a>
+          <a href="https://jreisinger.github.io/blog/posts/go-intro/" data-toggle="tooltip" data-placement="top" title="Introduction to Go">&lt; Newer</a>
       </li>
       <li class="pager-older">
-        <a href="https://jreisinger.github.io/notes/posts/perl-one-liners/" data-toggle="tooltip" data-placement="top" title="Perl one-liners">Older &gt;</a>
+        <a href="https://jreisinger.github.io/blog/posts/perl-one-liners/" data-toggle="tooltip" data-placement="top" title="Perl one-liners">Older &gt;</a>
       </li>
     </ul>
   </div>
@@ -254,8 +251,6 @@ Go</a>: Ch 3. Socket-level programming</li>
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
-<script src="https://jreisinger.github.io/notes/js/script.js"></script>
-<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

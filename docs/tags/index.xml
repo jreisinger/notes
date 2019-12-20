@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Blog</title>
@@ -6,31 +6,13 @@
     <description>Recent content in Tags on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 20 Mar 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Dd</title>
-      <link>https://jreisinger.github.io/blog/tags/dd/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/tags/dd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://jreisinger.github.io/blog/tags/docker/</link>
-      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
+      <title>go</title>
       <link>https://jreisinger.github.io/blog/tags/go/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
@@ -39,16 +21,7 @@
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>https://jreisinger.github.io/blog/tags/linux/</link>
-      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Parallel</title>
+      <title>parallel</title>
       <link>https://jreisinger.github.io/blog/tags/parallel/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
@@ -57,16 +30,7 @@
     </item>
     
     <item>
-      <title>Perl</title>
-      <link>https://jreisinger.github.io/blog/tags/perl/</link>
-      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/tags/perl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Shell</title>
+      <title>shell</title>
       <link>https://jreisinger.github.io/blog/tags/shell/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
@@ -75,16 +39,7 @@
     </item>
     
     <item>
-      <title>Sockets</title>
-      <link>https://jreisinger.github.io/blog/tags/sockets/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jreisinger.github.io/blog/tags/sockets/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sysadmin</title>
+      <title>sysadmin</title>
       <link>https://jreisinger.github.io/blog/tags/sysadmin/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
@@ -93,7 +48,16 @@
     </item>
     
     <item>
-      <title>Tcp</title>
+      <title>sockets</title>
+      <link>https://jreisinger.github.io/blog/tags/sockets/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/tags/sockets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tcp</title>
       <link>https://jreisinger.github.io/blog/tags/tcp/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
       
@@ -102,11 +66,47 @@
     </item>
     
     <item>
-      <title>Unix</title>
+      <title>perl</title>
+      <link>https://jreisinger.github.io/blog/tags/perl/</link>
+      <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/tags/perl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://jreisinger.github.io/blog/tags/docker/</link>
+      <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unix</title>
       <link>https://jreisinger.github.io/blog/tags/unix/</link>
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/blog/tags/unix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dd</title>
+      <link>https://jreisinger.github.io/blog/tags/dd/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/tags/dd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://jreisinger.github.io/blog/tags/linux/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/blog/tags/linux/</guid>
       <description></description>
     </item>
     

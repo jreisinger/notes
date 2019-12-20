@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sockets on Blog</title>
+    <title>sockets on Blog</title>
     <link>https://jreisinger.github.io/blog/tags/sockets/</link>
-    <description>Recent content in Sockets on Blog</description>
+    <description>Recent content in sockets on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate>
@@ -18,7 +18,7 @@
       
       <guid>https://jreisinger.github.io/blog/posts/go-tcp-sockets/</guid>
       <description>Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&amp;rsquo;ve also added error checking + reading from command line arguments):</description>
+// Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&#39;ve also added error checking + reading from command line arguments):</description>
     </item>
     
   </channel>

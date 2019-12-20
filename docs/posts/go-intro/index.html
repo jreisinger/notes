@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Introduction to Go - Notes</title>
-  <meta property="og:title" content="Introduction to Go - Notes" />
-  <meta name="twitter:title" content="Introduction to Go - Notes" />
+  <title>Introduction to Go - Blog</title>
+  <meta property="og:title" content="Introduction to Go - Blog" />
+  <meta name="twitter:title" content="Introduction to Go - Blog" />
   <meta name="description" content="Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many errors.
 Types are similar to sets in mathematics. They classify data into groups and determine:
@@ -17,26 +17,29 @@ Types are similar to sets in mathematics. They classify data into groups and det
   <meta name="twitter:description" content="Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many …">
   <meta name="author" content="Jozef Reisinger"/>
-  <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/posts/go-intro/" />
+  <meta property="og:site_name" content="Blog" />
+  <meta property="og:url" content="https://jreisinger.github.io/blog/posts/go-intro/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.49.2" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <meta name="generator" content="Hugo 0.61.0" />
+
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/custom.css" media="all" />
+
+  <script src="https://jreisinger.github.io/blog/js/script.js"></script>
+  <script src="https://jreisinger.github.io/blog/js/custom.js"></script>
+  <script defer src="https://jreisinger.github.io/blog/js/fontawesome.js"></script>
 </head>
 
 <body>
 <header class="site-header">
   <nav class="site-navi">
-    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
+    <h1 class="site-title"><a href="https://jreisinger.github.io/blog/">Blog</a></h1>
     <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
     <ul class="site-navi-items">
-      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
-      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/blog/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/blog/tags/" title="Tags">Tags</a></li>
     </ul>
 
     
@@ -45,7 +48,7 @@ Types help us reason about what our program is doing and help us catch many …"
         
         
         
-        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/go-intro.md">See on GitHub</a>
+        <a href="https://github.com/jreisinger/blog/tree/master/content/posts/go-intro.md">See on GitHub</a>
         
       
     </ul>
@@ -65,13 +68,13 @@ Types help us reason about what our program is doing and help us catch many …"
       <ul class="article-meta">
         <li class="article-meta-date"><time>July 22, 2019</time></li>
         <li class="article-meta-categories">
-          <a href="https://jreisinger.github.io/notes/categories/prog/">
+          <a href="https://jreisinger.github.io/blog/categories/prog/">
             <i class="fas fa-folder"></i>
             prog
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/notes/tags/go/">
+          <a href="https://jreisinger.github.io/blog/tags/go/">
             <i class="fas fa-tag"></i>
             go
           </a>&nbsp;
@@ -80,99 +83,83 @@ Types help us reason about what our program is doing and help us catch many …"
       
 <aside class="toc">
   <nav id="TableOfContents">
-<ul>
-<li><a href="#types">Types</a>
-<ul>
-<li><a href="#numbers">Numbers</a></li>
-<li><a href="#strings">Strings</a></li>
-<li><a href="#booleans">Booleans</a></li>
-</ul></li>
-<li><a href="#variables">Variables</a></li>
-<li><a href="#control-structures">Control Structures</a>
-<ul>
-<li><a href="#the-for-statement">The for Statement</a></li>
-<li><a href="#the-if-and-switch-statements">The if and switch Statements</a></li>
-</ul></li>
-<li><a href="#more-built-in-types">More built-in types</a>
-<ul>
-<li><a href="#arrays">Arrays</a></li>
-<li><a href="#slices">Slices</a>
-<ul>
-<li><a href="#append-operator"><code>append</code> operator</a></li>
-<li><a href="#copy-operator"><code>copy</code> operator</a></li>
-</ul></li>
-<li><a href="#maps">Maps</a></li>
-</ul></li>
-<li><a href="#functions">Functions</a>
-<ul>
-<li><a href="#variadic-functions">Variadic functions</a></li>
-<li><a href="#closures">Closures</a></li>
-<li><a href="#recursion">Recursion</a></li>
-<li><a href="#defer">defer</a></li>
-<li><a href="#panic-and-recover">panic and recover</a></li>
-<li><a href="#pointers">Pointers</a></li>
-</ul></li>
-<li><a href="#structs-and-interfaces">Structs and interfaces</a>
-<ul>
-<li><a href="#structs">Structs</a></li>
-<li><a href="#methods">Methods</a></li>
-<li><a href="#embedded-types">Embedded types</a></li>
-<li><a href="#interfaces">Interfaces</a></li>
-</ul></li>
-<li><a href="#packages">Packages</a>
-<ul>
-<li><a href="#input-output">Input/Output</a>
-<ul>
-<li><a href="#io">io</a></li>
-<li><a href="#bytes">bytes</a></li>
-<li><a href="#bufio">bufio</a></li>
-</ul></li>
-<li><a href="#files-and-folders">Files and Folders</a></li>
-<li><a href="#errors">errors</a></li>
-<li><a href="#sort">sort</a></li>
-</ul></li>
-<li><a href="#sources">Sources</a></li>
-</ul>
+  <ul>
+    <li><a href="#numbers">Numbers</a></li>
+    <li><a href="#strings">Strings</a></li>
+    <li><a href="#booleans">Booleans</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#the-for-statement">The for Statement</a></li>
+    <li><a href="#the-if-and-switch-statements">The if and switch Statements</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#arrays">Arrays</a></li>
+    <li><a href="#slices">Slices</a>
+      <ul>
+        <li><a href="#append-operator">append operator</a></li>
+        <li><a href="#copy-operator">copy operator</a></li>
+      </ul>
+    </li>
+    <li><a href="#maps">Maps</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#variadic-functions">Variadic functions</a></li>
+    <li><a href="#closures">Closures</a></li>
+    <li><a href="#recursion">Recursion</a></li>
+    <li><a href="#defer">defer</a></li>
+    <li><a href="#panic-and-recover">panic and recover</a></li>
+    <li><a href="#pointers">Pointers</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#structs">Structs</a></li>
+    <li><a href="#methods">Methods</a></li>
+    <li><a href="#embedded-types">Embedded types</a></li>
+    <li><a href="#interfaces">Interfaces</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#inputoutput">Input/Output</a>
+      <ul>
+        <li><a href="#io">io</a></li>
+        <li><a href="#bytes">bytes</a></li>
+        <li><a href="#bufio">bufio</a></li>
+      </ul>
+    </li>
+    <li><a href="#files-and-folders">Files and Folders</a></li>
+    <li><a href="#errors">errors</a></li>
+    <li><a href="#sort">sort</a></li>
+  </ul>
 </nav>
 </aside>
-      
-
-<h1 id="types">Types</h1>
-
+      <h1 id="types">Types</h1>
 <p>Go is statically typed - variables always have specific type and type cannot
 change during the program run time.</p>
-
 <p>Types help us reason about what our program is doing and help us catch many
 errors.</p>
-
 <p>Types are similar to sets in mathematics. They classify data into groups and
 determine:</p>
-
 <ul>
 <li>characteristics of data (e.g. all strings have length)</li>
 <li>operations that can be performed on data (e.g. <code>len(&quot;a string&quot;)</code>)</li>
 <li>data size (e.g. <code>int8</code>)</li>
 <li>how data is stored in memory</li>
 </ul>
-
 <p>See also <a href="https://tour.golang.org/basics/11">Basic types</a>, <a href="https://tour.golang.org/basics/12">Zero values</a> and <a href="https://tour.golang.org/basics/13">Type conversions</a>.</p>
-
 <h2 id="numbers">Numbers</h2>
-
 <p>Computers use base-2 binary system to store and work with the numbers. So
 computers count like this: 0, 1, 10, 11, 100, 110, 111, &hellip;</p>
-
 <p>Integer types</p>
-
 <ul>
 <li>[u]int{8, 16, 32, 64}</li>
 <li>machine dependent: uint, <strong>int</strong>, uintptr</li>
 <li>byte - alias for uint8</li>
 <li>rune - alias for int32 (represents a Unicode code point)</li>
 </ul>
-
 <p>Floating-point types</p>
-
 <ul>
 <li>float32 (single precision), <strong>float64</strong> (double precision)</li>
 <li>complex64, complex128</li>
@@ -185,24 +172,19 @@ know to use them</li>
 <li>NaN - not a number (for things like 0/0), +∞, -∞</li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// we use .0 to tell Go it&#39;s a floating-point number
-</span><span style="font-style:italic"></span>fmt.Prinln(<span style="font-style:italic">&#34;1 + 1 =&#34;</span>, 1.0 + 1.0)</code></pre></div>
-<h2 id="strings">Strings</h2>
-
+</span><span style="font-style:italic"></span>fmt.Prinln(<span style="font-style:italic">&#34;1 + 1 =&#34;</span>, 1.0 + 1.0)
+</code></pre></div><h2 id="strings">Strings</h2>
 <ul>
 <li>sequences of characters used to represent text</li>
 <li>made up of individual bytes, usually (but not always) one for each character</li>
 </ul>
-
 <p>String literals are created with:</p>
-
 <ul>
 <li>double quotes (<code>&quot;Hello world&quot;</code>) - cannot contain newlines and allow escape
 sequeences (e.g. <code>\t</code>, <code>\n</code>)</li>
 <li>backticks (<code>`Hello world`</code>)</li>
 </ul>
-
 <p>Common operations on strings:</p>
-
 <ul>
 <li>find length: <code>len(&quot;Hello world&quot;)</code></li>
 <li>access a character: <code>&quot;Hello world[1]</code> -&gt; 101 instead of e because the
@@ -210,20 +192,16 @@ character is represented by a byte (i.e. and integer)</li>
 <li>concatenate strings: <code>&quot;Hello &quot; + &quot;world&quot;</code> -&gt; Go figures out what to do based
 on the type of the arguments</li>
 </ul>
-
 <h2 id="booleans">Booleans</h2>
-
 <ul>
 <li>special 1-bit integer type used to represent true and false (or on and off)</li>
 <li>logical operators: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></li>
 <li>truth tables define how these operators work</li>
 </ul>
-
 <h1 id="variables">Variables</h1>
-
 <ul>
 <li>variable - storage location, with a specific type and an associated name</li>
-<li><a href="https://golang.org/ref/spec#Declarations_and_scope">scope</a> - the range of places where you are allowed to use a variable (&ldquo;Go is lexically scoped using block.&rdquo;)</li>
+<li><a href="https://golang.org/ref/spec#Declarations_and_scope">scope</a> - the range of places where you are allowed to use a variable (&ldquo;Go is lexically scoped using block.&quot;)</li>
 <li>constants - variables whose values cannot be changed during program run time</li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
@@ -238,13 +216,10 @@ on the type of the arguments</li>
 </span><span style="font-style:italic"></span>    fmt.Scanf(<span style="font-style:italic">&#34;%f&#34;</span>, &amp;feet)
     meters := feet * 0.3048 <span style="font-style:italic">// another way to define var
 </span><span style="font-style:italic"></span>    fmt.Printf(<span style="font-style:italic">&#34;%.2f ft = %.2f m\n&#34;</span>, feet, meters)
-}</code></pre></div>
-<p>See also <a href="https://tour.golang.org/basics/14">Type inference</a>.</p>
-
+}
+</code></pre></div><p>See also <a href="https://tour.golang.org/basics/14">Type inference</a>.</p>
 <h1 id="control-structures">Control Structures</h1>
-
 <h2 id="the-for-statement">The for Statement</h2>
-
 <p>Other programming languages have various types of loops (while, until, foreach,
 &hellip;). Go only has for loop that can be used in various ways, e.g.:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// traditional c-style
@@ -261,9 +236,8 @@ i := 1              <span style="font-style:italic">// declaration + initializat
 <span style="font-style:italic">// loop over array/slice
 </span><span style="font-style:italic"></span><span style="font-weight:bold">for</span> i, value := <span style="font-weight:bold">range</span> x {
     ...
-}</code></pre></div>
-<h2 id="the-if-and-switch-statements">The if and switch Statements</h2>
-
+}
+</code></pre></div><h2 id="the-if-and-switch-statements">The if and switch Statements</h2>
 <p>If the if statement becomes too verbose use the switch statement.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">for</span> i := 1; i &lt;= 10; i++ {
     <span style="font-weight:bold">switch</span> i { <span style="font-style:italic">// expression after switch can be omitted
@@ -273,15 +247,12 @@ i := 1              <span style="font-style:italic">// declaration + initializat
     <span style="font-weight:bold">case</span> 10: fmt.Println(<span style="font-style:italic">&#34;ten&#34;</span>)
     <span style="font-weight:bold">default</span>: fmt.Println(i) <span style="font-style:italic">// similar to else
 </span><span style="font-style:italic"></span>    }
-}</code></pre></div>
-<p>The value of the expressions (in this example <code>i</code>) is compared to the
+}
+</code></pre></div><p>The value of the expressions (in this example <code>i</code>) is compared to the
 expression following each <code>case</code> keyword. If they are equivalent the statements
 following <code>:</code> are executed. The first one to succeed is chosen.</p>
-
 <h1 id="more-built-in-types">More built-in types</h1>
-
 <h2 id="arrays">Arrays</h2>
-
 <p>Array is a numbered sequence of elements of a single type with a <em>fixed length</em>.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">var</span> a1 [3]<span style="">int</span> <span style="font-style:italic">// array of three integers
 </span><span style="font-style:italic"></span>a1[0] = 10
@@ -289,11 +260,9 @@ a1[1] = 20
 a1[3] = 30
 
 <span style="font-style:italic">// shorter syntax for creating arrays
-</span><span style="font-style:italic"></span>a2 := [3]<span style="">int</span>{ 10, 20, 30, }</code></pre></div>
-<p>Now, you rarely see arrays used directly in Go code :-).</p>
-
+</span><span style="font-style:italic"></span>a2 := [3]<span style="">int</span>{ 10, 20, 30, }
+</code></pre></div><p>Now, you rarely see arrays used directly in Go code :-).</p>
 <h2 id="slices">Slices</h2>
-
 <p>Slice is a segment of an array. Like arrays, they are indexable and have a length. Unlike arrays, the <em>length is allowed to change</em>.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="font-weight:bold">var</span> s1 []<span style="">float64</span>            <span style="font-style:italic">// []
 </span><span style="font-style:italic"></span>    s2 := make([]<span style="">float64</span>, 3)    <span style="font-style:italic">// [0 0 0]
@@ -304,38 +273,31 @@ a1[3] = 30
     <span style="font-style:italic">// create slice from array
 </span><span style="font-style:italic"></span>    a := [5]<span style="">float64</span>{1,2,3,4,5}
     s4 := a[1:3]                <span style="font-style:italic">// [2 3]
-</span><span style="font-style:italic"></span>    s5 := a[:]                  // [1 2 3 4 5]</code></pre></div>
-<p>Slices are always associated with some array. The are like
+</span><span style="font-style:italic"></span>    s5 := a[:]                  <span style="font-style:italic">// [1 2 3 4 5]
+</span></code></pre></div><p>Slices are always associated with some array. The are like
 <a href="https://tour.golang.org/moretypes/8">references</a> to arrays.</p>
-
 <p>See also <a href="https://tour.golang.org/moretypes/9">Slice literals</a>.</p>
-
 <h3 id="append-operator"><code>append</code> operator</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">s1 := []<span style="">int</span>{1,2,3}
-s2 := append(s1, 4, 5)</code></pre></div>
-<ul>
+s2 := append(s1, 4, 5)
+</code></pre></div><ul>
 <li>adds elements onto the end of a slice and creates a <em>new slice</em></li>
-<li>if there&rsquo;s sufficient capacity, the backing array&rsquo;s length is incremented</li>
+<li>if there's sufficient capacity, the backing array's length is incremented</li>
 <li>if not, a new backing array is created and all the existing elements are copied over</li>
 </ul>
-
 <p>See also <a href="https://tour.golang.org/moretypes/15">Appending to a slice</a>.</p>
-
 <h3 id="copy-operator"><code>copy</code> operator</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">s1 := []<span style="">int</span>{1,2,3}
 s2 := make([]<span style="">int</span>, 2)
 <span style="font-style:italic">// func copy(dst, src []Type) int
 </span><span style="font-style:italic"></span>copy(s2, s1)
-// s1: [1,2,3], s2: [1,2]</code></pre></div>
-<ul>
+<span style="font-style:italic">// s1: [1,2,3], s2: [1,2]
+</span></code></pre></div><ul>
 <li>all of the entries in <code>src</code> are copied into <code>dst</code> overwriting whatever is there</li>
 <li>if lengths are not the same, the smaller of the two will be used</li>
 </ul>
-
 <p>See also <a href="https://golang.org/pkg/builtin/#copy">copy</a>.</p>
-
 <h2 id="maps">Maps</h2>
-
 <ul>
 <li>unordered collection of key-value pairs (also called associative arrays, hash tables, or dictionaries)</li>
 </ul>
@@ -350,8 +312,8 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10 <span style="font-s
 x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 
 <span style="font-style:italic">// delete an item from a map
-</span><span style="font-style:italic"></span>delete(x, <span style="font-style:italic">&#34;key&#34;</span>)</code></pre></div>
-<ul>
+</span><span style="font-style:italic"></span>delete(x, <span style="font-style:italic">&#34;key&#34;</span>)
+</code></pre></div><ul>
 <li>maps are often used as lookup tables (dictionaries)</li>
 </ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">elements := <span style="font-weight:bold">map</span>[<span style="">string</span>]<span style="">string</span>{
@@ -362,15 +324,13 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 
 <span style="font-weight:bold">if</span> name, ok := elements[<span style="font-style:italic">&#34;He&#34;</span>]; ok {
     fmt.Printf(<span style="font-style:italic">&#34;He is %s\n&#34;</span>, name)
-}</code></pre></div>
-<h1 id="functions">Functions</h1>
-
+}
+</code></pre></div><h1 id="functions">Functions</h1>
 <p>A function (aka a procedure, or a subroutine) is an independent section of code that maps zero or more input parameters to zero or more output parameters:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Inputs -&gt; [ func f(i, j int) int {} ] -&gt; Outputs</pre></div>
-<ul>
-<li>collectively, the parameters (i, j) and the return type (int) are called function&rsquo;s signature</li>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Inputs -&gt; [ func f(i, j int) int {} ] -&gt; Outputs
+</code></pre></div><ul>
+<li>collectively, the parameters (i, j) and the return type (int) are called function's signature</li>
 </ul>
-
 <p>Functions form call stacks:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
     fmt.Println(f1())
@@ -382,7 +342,8 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 
 <span style="font-weight:bold">func</span> f2() <span style="">int</span> {
     <span style="font-weight:bold">return</span> 1
-}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">                            +----+
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">                            +----+
                             | f2 | return
                             +----+
               +----+        +----+        +----+
@@ -390,29 +351,26 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
               +----+        +----+        +----+
 +----+        +----+        +----+        +----+        +----+
 |main|   f1   |main|        |main|        |main|        |main|
-+----+        +----+        +----+        +----+        +----+</pre></div>
-<ul>
++----+        +----+        +----+        +----+        +----+
+</code></pre></div><ul>
 <li>each time we call a function, we push it onto the call stack</li>
 <li>each time we return from a function, we pop it off of the stack</li>
 </ul>
-
 <p>Return types can have names:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> f2() (r <span style="">int</span>) {
     r := 1
     <span style="font-weight:bold">return</span>
-}</code></pre></div>
-<p>Multiple values can be returned:</p>
+}
+</code></pre></div><p>Multiple values can be returned:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> f() (<span style="">int</span>, <span style="">int</span>) {
     <span style="font-weight:bold">return</span> 4, 2
 }
 
 <span style="font-weight:bold">func</span> main() {
     x, y := f()
-}</code></pre></div>
-<p>Multiple values are often used to return an error value along with the result (<code>x, err := f()</code>), or a boolean to indicate success (<code>x, ok := f()</code>).</p>
-
+}
+</code></pre></div><p>Multiple values are often used to return an error value along with the result (<code>x, err := f()</code>), or a boolean to indicate success (<code>x, ok := f()</code>).</p>
 <h2 id="variadic-functions">Variadic functions</h2>
-
 <p>There is a special form available for the last parameter:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// sump up zero or more integers
 </span><span style="font-style:italic"></span><span style="font-weight:bold">func</span> sum(args ...<span style="">int</span>) <span style="">int</span> {     <span style="font-style:italic">// prefix ellipsis
@@ -429,12 +387,11 @@ x[<span style="font-style:italic">&#34;key&#34;</span>] = 10
 
     xs := []<span style="">int</span>{1,2,3}
     fmt.Println(sum(xs...))     <span style="font-style:italic">// suffix ellipsis
-</span><span style="font-style:italic"></span>}</code></pre></div>
-<p>fmt.Println can take any number of values (&hellip;) of any type (interface{}):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Println(a ...<span style="font-weight:bold">interface</span>{}) (n <span style="">int</span>, err <span style="">error</span>)</code></pre></div>
-<h2 id="closures">Closures</h2>
-
-<p>It&rsquo;s possible to create functions inside functions. These local functions have
+</span><span style="font-style:italic"></span>}
+</code></pre></div><p>fmt.Println can take any number of values (&hellip;) of any type (interface{}):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Println(a ...<span style="font-weight:bold">interface</span>{}) (n <span style="">int</span>, err <span style="">error</span>)
+</code></pre></div><h2 id="closures">Closures</h2>
+<p>It's possible to create functions inside functions. These local functions have
 access to other local variables:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
     <span style="font-style:italic">// local variable accessible by increment
@@ -448,12 +405,11 @@ access to other local variables:</p>
 
     fmt.Println(increment()) <span style="font-style:italic">// 1
 </span><span style="font-style:italic"></span>    fmt.Println(increment()) <span style="font-style:italic">// 2
-</span><span style="font-style:italic"></span>}</code></pre></div>
-<ul>
+</span><span style="font-style:italic"></span>}
+</code></pre></div><ul>
 <li>a function like this together with nonlocal variables it references is know
 as closure</li>
 </ul>
-
 <p>One way to use closure is to write a function that returns another function:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> makeEvenGenerator() <span style="font-weight:bold">func</span>() <span style="">uint</span> {
     i := uint(0) <span style="font-style:italic">// unlike normal local variable this one persists between calls
@@ -469,77 +425,66 @@ as closure</li>
     fmt.Println(nextEven()) <span style="font-style:italic">// 0
 </span><span style="font-style:italic"></span>    fmt.Println(nextEven()) <span style="font-style:italic">// 2
 </span><span style="font-style:italic"></span>    fmt.Println(nextEven()) <span style="font-style:italic">// 4
-</span><span style="font-style:italic"></span>}</code></pre></div>
-<h2 id="recursion">Recursion</h2>
-
+</span><span style="font-style:italic"></span>}
+</code></pre></div><h2 id="recursion">Recursion</h2>
 <p>A function is able to call itself:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> factorial(x <span style="">uint</span>) <span style="">uint</span> {
     <span style="font-weight:bold">if</span> x == 0 {
         <span style="font-weight:bold">return</span> 1
     }
     <span style="font-weight:bold">return</span> x * factorial(x-1)
-}</code></pre></div>
-<p>factorial(2):</p>
-
+}
+</code></pre></div><p>factorial(2):</p>
 <ol>
 <li>Is x == 0? No (x is 2).</li>
 <li>Find the factorial of x - 1.
-
 <ol>
 <li>Is x == 0? No (x is 1).</li>
 <li>Find the factorial of x - 1.
-
 <ol>
 <li>Is x == 0? Yes, return 1.</li>
-</ol></li>
+</ol>
+</li>
 <li>Return 1 * 1.</li>
-</ol></li>
+</ol>
+</li>
 <li>Return 2 * 1.</li>
 </ol>
-
 <h2 id="defer">defer</h2>
-
-<p>defer schedules a function call to be run before a function returns. It&rsquo;s often used when resources need to be freed in some way, e.g.:</p>
+<p>defer schedules a function call to be run before a function returns. It's often used when resources need to be freed in some way, e.g.:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
     f, _ := os.Open(filename)
     <span style="font-weight:bold">defer</span> f.Close()
-}</code></pre></div>
-<p>This has three advantages:</p>
-
+}
+</code></pre></div><p>This has three advantages:</p>
 <ul>
 <li>you keep the closing call close to the opening call</li>
 <li>if a function had multiple return calls (like within an if statement) defer would call Close before any of them</li>
 <li>deferred functions run even if a runtime panic occurs</li>
 </ul>
-
 <h2 id="panic-and-recover">panic and recover</h2>
-
 <ul>
-<li><code>panic</code> causes a runtime error immediately stopping the function&rsquo;s execution</li>
+<li><code>panic</code> causes a runtime error immediately stopping the function's execution</li>
 <li><code>recover</code> stops the panic and returns the value that was passed to <code>panic</code></li>
 </ul>
-
 <p>WRONG:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
     panic(<span style="font-style:italic">&#34;PANIC&#34;</span>)
     str := recover() <span style="font-style:italic">// this will never happen!
 </span><span style="font-style:italic"></span>    fmt.Println(str)
-}</code></pre></div>
-<p>CORRECT:</p>
+}
+</code></pre></div><p>CORRECT:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> main() {
     <span style="font-weight:bold">defer</span> <span style="font-weight:bold">func</span>() {
         str := recover()
         fmt.Println(str)
     }()
     panic(<span style="font-style:italic">&#34;PANIC&#34;</span>)
-}</code></pre></div>
-<p>A panic generally indicates a programmer&rsquo;s error or an exceptional condition that&rsquo;s not easy to recover from.</p>
-
+}
+</code></pre></div><p>A panic generally indicates a programmer's error or an exceptional condition that's not easy to recover from.</p>
 <p>See <a href="https://blog.golang.org/defer-panic-and-recover">https://blog.golang.org/defer-panic-and-recover</a> for more.</p>
-
 <h2 id="pointers">Pointers</h2>
-
-<p>Normally a function&rsquo;s argument is copied:</p>
+<p>Normally a function's argument is copied:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> zero(x <span style="">int</span>) {
     x = 0
 }
@@ -548,8 +493,8 @@ as closure</li>
     x := 1
     zero(x)
     <span style="font-style:italic">// x is still 1
-</span><span style="font-style:italic"></span>}</code></pre></div>
-<p>If we want to modify the original argument one way to do it is to use a special data type known as a pointer:</p>
+</span><span style="font-style:italic"></span>}
+</code></pre></div><p>If we want to modify the original argument one way to do it is to use a special data type known as a pointer:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> zero(xPtr *<span style="">int</span>) {
     *xPtr = 0
 }
@@ -558,31 +503,23 @@ as closure</li>
     x := 1
     zero(&amp;x)
     <span style="font-style:italic">// x is 0
-</span><span style="font-style:italic"></span>}</code></pre></div>
-<p>Pointers reference a <em>location</em> in memory where a value is stored rather than the <em>value</em> itself.</p>
-
+</span><span style="font-style:italic"></span>}
+</code></pre></div><p>Pointers reference a <em>location</em> in memory where a value is stored rather than the <em>value</em> itself.</p>
 <ul>
 <li><code>*</code> represents a pointer, e.g. <code>*int</code> means a pointer to an integer value</li>
 <li><code>*</code> is also used to dereference a pointer variable (<code>*xPtr</code>), i.e. to get to the value a pointer points to</li>
 <li><code>&amp;</code> operator finds the memory location (address) of a variable</li>
 </ul>
-
 <p>Another way to get a pointer is to use the <code>new</code> built-in function:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">xPtr := new(<span style="">int</span>)</code></pre></div>
-<ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">xPtr := new(<span style="">int</span>)
+</code></pre></div><ul>
 <li><code>new</code> takes a type as an argument, allocates enough memory to fit a value of that type, and returns a pointer to it</li>
 </ul>
-
 <p>Go is a garbage-collected language. It means memory is cleaned up automatically when nothing refers to it anymore.</p>
-
-<p>Pointers are rarely used with Go&rsquo;s built-in types but are extremely useful when paired with structs.</p>
-
+<p>Pointers are rarely used with Go's built-in types but are extremely useful when paired with structs.</p>
 <h1 id="structs-and-interfaces">Structs and interfaces</h1>
-
-<p>At some point it would become tedious and error prone to write programs using only Go&rsquo;s built-in types.</p>
-
+<p>At some point it would become tedious and error prone to write programs using only Go's built-in types.</p>
 <h2 id="structs">Structs</h2>
-
 <p>A struct is a type that contains named fields:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Circle represents, well, a circle.
 </span><span style="font-style:italic"></span><span style="font-weight:bold">type</span> Circle <span style="font-weight:bold">struct</span> {
@@ -598,36 +535,33 @@ c := &amp;Circle{0, 0, 5} <span style="font-style:italic">// most typical
 </span><span style="font-style:italic"></span>
 <span style="font-style:italic">// Accessing fields.
 </span><span style="font-style:italic"></span>fmt.Println(c.x)
-c.r = 10</code></pre></div>
-<h2 id="methods">Methods</h2>
-
+c.r = 10
+</code></pre></div><h2 id="methods">Methods</h2>
 <p>Using structs with functions:</p>
-
 <p>A normal function:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> circleArea(c *Circle) <span style="">float64</span> {
     <span style="font-weight:bold">return</span> math.Pi * c.r*c.r <span style="font-style:italic">// no dereferencing needed... hm
 </span><span style="font-style:italic"></span>}
 
 c := Circle{0, 0, 5}
-fmt.Println(circleArea(&amp;c))</code></pre></div>
-<p>A special function - method:</p>
+fmt.Println(circleArea(&amp;c))
+</code></pre></div><p>A special function - method:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> (c *Circle) area() <span style="">float64</span> { <span style="font-style:italic">// (c *Circle) is called a receiver
 </span><span style="font-style:italic"></span>    <span style="font-weight:bold">return</span> math.Pi * c.r*c.r
 }
 
 c := Circle{0, 0, 5}
-fmt.Println(c.area()) // Go automatically knows to pass a pointer to the circle</code></pre></div>
-<h2 id="embedded-types">Embedded types</h2>
-
-<p>A struct&rsquo;s fields usually represent the <em>has-a</em> relationship, e.g. <code>Person</code> has a name:</p>
+fmt.Println(c.area()) <span style="font-style:italic">// Go automatically knows to pass a pointer to the circle
+</span></code></pre></div><h2 id="embedded-types">Embedded types</h2>
+<p>A struct's fields usually represent the <em>has-a</em> relationship, e.g. <code>Person</code> has a name:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> Person <span style="font-weight:bold">struct</span> {
     Name <span style="">string</span>
 }
 
 <span style="font-weight:bold">func</span> (p *Person) Talk() {
     fmt.Println(<span style="font-style:italic">&#34;Hi, my name is&#34;</span>, p.Name)
-}</code></pre></div>
-<p>We use embedded types (anonymous fields) to represent the <em>is-a</em> relationship, e.g. <code>Android</code> is a person (so it can <code>Talk()</code>):</p>
+}
+</code></pre></div><p>We use embedded types (anonymous fields) to represent the <em>is-a</em> relationship, e.g. <code>Android</code> is a person (so it can <code>Talk()</code>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> Android <span style="font-weight:bold">struct</span> {
     Person <span style="font-style:italic">// embedded type
 </span><span style="font-style:italic"></span>    Model <span style="">string</span>
@@ -635,9 +569,8 @@ fmt.Println(c.area()) // Go automatically knows to pass a pointer to the circle<
 
 a := new(Android) <span style="font-style:italic">// you cannot do &amp;Android{Name: &#34;R2D2&#34;} here
 </span><span style="font-style:italic"></span>a.Name = <span style="font-style:italic">&#34;R2D2&#34;</span>
-a.Talk() // could be also: a.Person.Talk()</code></pre></div>
-<h2 id="interfaces">Interfaces</h2>
-
+a.Talk() <span style="font-style:italic">// could be also: a.Person.Talk()
+</span></code></pre></div><h2 id="interfaces">Interfaces</h2>
 <p>Interfaces are similar to structs but instead of fields they have a method set. A method set is a list of methods that a type must have in order to <em>implement</em> the interface. We can use interface types as arguments to functions.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
@@ -686,8 +619,8 @@ a.Talk() // could be also: a.Person.Talk()</code></pre></div>
     r := &amp;Rectangle{0, 0, 10, 10}
     tot := totalArea(c, r)
     fmt.Println(tot)
-}</code></pre></div>
-<p>Interfaces can also be used as fields:</p>
+}
+</code></pre></div><p>Interfaces can also be used as fields:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">type</span> MultiShape <span style="font-weight:bold">struct</span> {
     shapes []Shape
 }
@@ -706,43 +639,34 @@ multiShape := MultiShape{
         area += s.area()
     }
     <span style="font-weight:bold">return</span> area
-}</code></pre></div>
-<p>Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.</p>
-
+}
+</code></pre></div><p>Now a MultiShape can contain Circles, Rectangles, or even other MultiShapes.</p>
 <p>See also John Graham-Cumming: <a href="https://learning.oreilly.com/learning-paths/learning-path-go/9781491990384/9781491913871-video191862">Interfaces</a>.</p>
-
 <h1 id="packages">Packages</h1>
-
 <ul>
 <li>Go was designed to encourage good software engineering practices</li>
-<li>one of them is code reuse (DRY - Don&rsquo;t Repeat Yourself): functions, packages</li>
+<li>one of them is code reuse (DRY - Don't Repeat Yourself): functions, packages</li>
 </ul>
-
-<h2 id="input-output">Input/Output</h2>
-
+<h2 id="inputoutput">Input/Output</h2>
 <h3 id="io">io</h3>
-
 <p><a href="https://golang.org/pkg/io/">io</a> package consists of a few functions, but mostly interfaces used in other packages. The two main interfaces are <code>Reader</code> and <code>Writer</code>. <code>Reader</code>s support reading via the <code>Read</code> method. <code>Writer</code>s support writing via the <code>Write</code> method. Many functions in Go take Readers or Writers as arguments. E.g. the io.Copy function copies data from a Reader to a Writer:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Copy(dst Writer, src Reader) (written <span style="">int64</span>, err <span style="">error</span>)</code></pre></div>
-<h3 id="bytes">bytes</h3>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> Copy(dst Writer, src Reader) (written <span style="">int64</span>, err <span style="">error</span>)
+</code></pre></div><h3 id="bytes">bytes</h3>
 <p>To read/write a <code>[]byte</code> or a <code>string</code>, you can use the <code>Buffer</code> type (struct) from <a href="https://golang.org/pkg/bytes">bytes</a> package:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">var</span> b bytes.Buffer
 b.Write([]byte(<span style="font-style:italic">&#34;Hello &#34;</span>))
 fmt.Fprintf(&amp;b, <span style="font-style:italic">&#34;world!\n&#34;</span>)
-b.WriteTo(os.Stdout)</code></pre></div>
-<ul>
-<li>a <code>Buffer</code> doesn&rsquo;t have to be initialized</li>
+b.WriteTo(os.Stdout)
+</code></pre></div><ul>
+<li>a <code>Buffer</code> doesn't have to be initialized</li>
 <li>it supports both the <code>Reader</code> and <code>Writer</code> interfaces</li>
 <li>you can convert it into a <code>[]byte</code> by calling <code>buf.Bytes()</code></li>
 <li>if you only need to read from a string, you can use the more efficient <code>strings.NewReader</code> function</li>
 </ul>
-
 <h3 id="bufio">bufio</h3>
-
 <p><code>bufio</code> package helps make input and output efficient and convenient. Its <code>Scanner</code> type reads input and breaks it into lines or words. <code>bufio</code> is good for &ldquo;streaming&rdquo; mode where input is read and broken into lines on the fly:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-style:italic">// Dup1 prints the text of each line that appears more than
-</span><span style="font-style:italic">// once in the standard input, preceded by its count.
+</span><span style="font-style:italic"></span><span style="font-style:italic">// once in the standard input, preceded by its count.
 </span><span style="font-style:italic"></span><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
@@ -764,9 +688,8 @@ b.WriteTo(os.Stdout)</code></pre></div>
             fmt.Printf(<span style="font-style:italic">&#34;%d\t%s\n&#34;</span>, n, line)
         }
     }
-}</code></pre></div>
-<h2 id="files-and-folders">Files and Folders</h2>
-
+}
+</code></pre></div><h2 id="files-and-folders">Files and Folders</h2>
 <p>The easiest way to read the entire file file into memory:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
@@ -783,8 +706,8 @@ b.WriteTo(os.Stdout)</code></pre></div>
     }
     str := string(bs)
     fmt.Println(str)
-}</code></pre></div>
-<p>Create a file:</p>
+}
+</code></pre></div><p>Create a file:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
@@ -799,8 +722,8 @@ b.WriteTo(os.Stdout)</code></pre></div>
     }
     <span style="font-weight:bold">defer</span> file.Close()
     file.WriteString(<span style="font-style:italic">&#34;test&#34;</span>)
-}</code></pre></div>
-<p>Get contents of a directory:</p>
+}
+</code></pre></div><p>Get contents of a directory:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
@@ -823,8 +746,8 @@ b.WriteTo(os.Stdout)</code></pre></div>
     <span style="font-weight:bold">for</span> _, fi := <span style="font-weight:bold">range</span> fileInfos {
         fmt.Println(fi.Name())
     }
-}</code></pre></div>
-<p>Recursively walk a folder (read the folder’s contents, all the subfolders, all the sub-subfolders, etc.):</p>
+}
+</code></pre></div><p>Recursively walk a folder (read the folder’s contents, all the subfolders, all the sub-subfolders, etc.):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
@@ -839,9 +762,8 @@ b.WriteTo(os.Stdout)</code></pre></div>
         fmt.Println(path)
         <span style="font-weight:bold">return</span> <span style="font-weight:bold">nil</span>
     })
-}</code></pre></div>
-<h2 id="errors">errors</h2>
-
+}
+</code></pre></div><h2 id="errors">errors</h2>
 <p>Go has a built-in type for errors (the <code>error</code> type). We can also create our own errors:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
@@ -849,19 +771,16 @@ b.WriteTo(os.Stdout)</code></pre></div>
 
 <span style="font-weight:bold">func</span> main() {
     err := errors.New(<span style="font-style:italic">&#34;error message&#34;</span>)
-}</code></pre></div>
-<h2 id="sort">sort</h2>
-
+}
+</code></pre></div><h2 id="sort">sort</h2>
 <ul>
 <li><code>sort</code> package contains functions for sorting arbitrary data</li>
 <li>there are several predefined sorting functions, e.g. for <a href="https://golang.org/pkg/sort/#Ints">slices of ints</a> or floats</li>
 <li>you can also <a href="https://github.com/jreisinger/go/blob/master/sort.go">sort</a> your own data</li>
 </ul>
-
 <h1 id="sources">Sources</h1>
-
 <ul>
-<li>Caleb Doxsey: Introducing Go (O&rsquo;Reilly, 2016)</li>
+<li>Caleb Doxsey: Introducing Go (O'Reilly, 2016)</li>
 <li>Donovan, Kernighan: The Go Programming Language (Addison-Wesley, 2016)</li>
 <li><a href="https://tour.golang.org">A Tour of Go</a></li>
 </ul>
@@ -894,10 +813,10 @@ b.WriteTo(os.Stdout)</code></pre></div>
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="https://jreisinger.github.io/notes/posts/runp/" data-toggle="tooltip" data-placement="top" title="runp: run shell commands in parallel">&lt; Newer</a>
+          <a href="https://jreisinger.github.io/blog/posts/runp/" data-toggle="tooltip" data-placement="top" title="runp: run shell commands in parallel">&lt; Newer</a>
       </li>
       <li class="pager-older">
-        <a href="https://jreisinger.github.io/notes/posts/go-tcp-sockets/" data-toggle="tooltip" data-placement="top" title="TCP sockets with Go">Older &gt;</a>
+        <a href="https://jreisinger.github.io/blog/posts/go-tcp-sockets/" data-toggle="tooltip" data-placement="top" title="TCP sockets with Go">Older &gt;</a>
       </li>
     </ul>
   </div>
@@ -912,8 +831,6 @@ b.WriteTo(os.Stdout)</code></pre></div>
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
-<script src="https://jreisinger.github.io/notes/js/script.js"></script>
-<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
