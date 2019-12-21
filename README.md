@@ -20,3 +20,7 @@ Typical workcycle:
 * [Runp](content/posts/runp.md)
 * [Tcpdump](content/posts/tcpdump.md)
 * [Testing Perl Script](content/posts/testing-perl-script.md)
+
+## Setup
+
+* https://gohugo.io/hosting-and-deployment/hosting-on-github/#github-project-pages
