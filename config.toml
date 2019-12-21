@@ -1,5 +1,5 @@
-baseurl = "https://jreisinger.github.io/blog/"
-title = "Blog"
+baseurl = "https://jreisinger.github.io/notes/"
+title = "Notes"
 theme = "whiteplain"
 languageCode = "en"
 # Disqus shortname
@@ -22,12 +22,12 @@ pygmentsstyle                 = "bw"
 
 # and if you think your md file names or locations might change:
 [permalinks]
-  post = "/blog/:title/"
+  post = "/notes/:title/"
 
 [params]
   # Date format
   #dateFormat = "January 2, 2006"
-  editURL = "https://github.com/jreisinger/blog/tree/master/content/"
+  editURL = "https://github.com/jreisinger/notes/tree/master/content/"
 
 # This is displayer in About page.
 [params.author]

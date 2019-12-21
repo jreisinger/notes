@@ -3,38 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>runp: run shell commands in parallel - Blog</title>
-  <meta property="og:title" content="runp: run shell commands in parallel - Blog" />
-  <meta name="twitter:title" content="runp: run shell commands in parallel - Blog" />
+  <title>runp: run shell commands in parallel - Notes</title>
+  <meta property="og:title" content="runp: run shell commands in parallel - Notes" />
+  <meta name="twitter:title" content="runp: run shell commands in parallel - Notes" />
   <meta name="description" content="I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
 curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.">
   <meta property="og:description" content="I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
 curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.">
   <meta name="twitter:description" content="I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim …">
   <meta name="author" content="Jozef Reisinger"/>
-  <meta property="og:site_name" content="Blog" />
-  <meta property="og:url" content="https://jreisinger.github.io/blog/posts/runp/" />
+  <meta property="og:site_name" content="Notes" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/runp/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.61.0" />
 
-  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/style.css" media="all" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/syntax.css" media="all" />
-  <link rel="stylesheet" href="https://jreisinger.github.io/blog/css/custom.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
 
-  <script src="https://jreisinger.github.io/blog/js/script.js"></script>
-  <script src="https://jreisinger.github.io/blog/js/custom.js"></script>
-  <script defer src="https://jreisinger.github.io/blog/js/fontawesome.js"></script>
+  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
+  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
 </head>
 
 <body>
 <header class="site-header">
   <nav class="site-navi">
-    <h1 class="site-title"><a href="https://jreisinger.github.io/blog/">Blog</a></h1>
+    <h1 class="site-title"><a href="https://jreisinger.github.io/notes/">Notes</a></h1>
     <iframe src="https://duckduckgo.com/search.html?site=jreisinger.github.io/notes,github.com/jreisinger/blog&prefill=Search Notes via DDG" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
     <ul class="site-navi-items">
-      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/blog/categories/" title="Categories">Categories</a></li>
-      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/blog/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-categories"><a href="https://jreisinger.github.io/notes/categories/" title="Categories">Categories</a></li>
+      <li class="site-navi-item-tags"><a href="https://jreisinger.github.io/notes/tags/" title="Tags">Tags</a></li>
     </ul>
 
     
@@ -43,7 +43,7 @@ curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/
         
         
         
-        <a href="https://github.com/jreisinger/blog/tree/master/content/posts/runp.md">See on GitHub</a>
+        <a href="https://github.com/jreisinger/notes/tree/master/content/posts/runp.md">See on GitHub</a>
         
       
     </ul>
@@ -63,31 +63,31 @@ curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/
       <ul class="article-meta">
         <li class="article-meta-date"><time>December 17, 2019</time></li>
         <li class="article-meta-categories">
-          <a href="https://jreisinger.github.io/blog/categories/prog/">
+          <a href="https://jreisinger.github.io/notes/categories/prog/">
             <i class="fas fa-folder"></i>
             prog
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/blog/tags/sysadmin/">
+          <a href="https://jreisinger.github.io/notes/tags/sysadmin/">
             <i class="fas fa-tag"></i>
             sysadmin
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/blog/tags/go/">
+          <a href="https://jreisinger.github.io/notes/tags/go/">
             <i class="fas fa-tag"></i>
             go
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/blog/tags/parallel/">
+          <a href="https://jreisinger.github.io/notes/tags/parallel/">
             <i class="fas fa-tag"></i>
             parallel
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="https://jreisinger.github.io/blog/tags/shell/">
+          <a href="https://jreisinger.github.io/notes/tags/shell/">
             <i class="fas fa-tag"></i>
             shell
           </a>&nbsp;
@@ -197,7 +197,7 @@ localhost [127.0.0.1] 22 (ssh) open
     <ul class="pager article-pager">
       <li class="pager-newer pager-noitem">&lt; Newer</li>
       <li class="pager-older">
-        <a href="https://jreisinger.github.io/blog/posts/go-intro/" data-toggle="tooltip" data-placement="top" title="Introduction to Go">Older &gt;</a>
+        <a href="https://jreisinger.github.io/notes/posts/go-intro/" data-toggle="tooltip" data-placement="top" title="Introduction to Go">Older &gt;</a>
       </li>
     </ul>
   </div>

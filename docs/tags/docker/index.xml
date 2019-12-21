@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on Blog</title>
-    <link>https://jreisinger.github.io/blog/tags/docker/</link>
-    <description>Recent content in docker on Blog</description>
+    <title>docker on Notes</title>
+    <link>https://jreisinger.github.io/notes/tags/docker/</link>
+    <description>Recent content in docker on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 24 Jul 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/blog/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/notes/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docker</title>
-      <link>https://jreisinger.github.io/blog/posts/docker/</link>
+      <link>https://jreisinger.github.io/notes/posts/docker/</link>
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/docker/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/docker/</guid>
       <description>Docker is a container technology. Cointainers standardize software packaging. It&#39;s a well timed fusion of
  kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks (iptables)  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
 Docker revision-controls:

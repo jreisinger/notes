@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Blog</title>
-    <link>https://jreisinger.github.io/blog/posts/</link>
-    <description>Recent content in Posts on Blog</description>
+    <title>Posts on Notes</title>
+    <link>https://jreisinger.github.io/notes/posts/</link>
+    <description>Recent content in Posts on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jreisinger.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jreisinger.github.io/notes/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>runp: run shell commands in parallel</title>
-      <link>https://jreisinger.github.io/blog/posts/runp/</link>
+      <link>https://jreisinger.github.io/notes/posts/runp/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/runp/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/runp/</guid>
       <description>I&#39;m using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
 curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;amp;&amp;amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;amp;&amp;amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.</description>
     </item>
     
     <item>
       <title>Introduction to Go</title>
-      <link>https://jreisinger.github.io/blog/posts/go-intro/</link>
+      <link>https://jreisinger.github.io/notes/posts/go-intro/</link>
       <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/go-intro/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/go-intro/</guid>
       <description>Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
 Types help us reason about what our program is doing and help us catch many errors.
 Types are similar to sets in mathematics. They classify data into groups and determine:
@@ -35,30 +35,30 @@ Types are similar to sets in mathematics. They classify data into groups and det
     
     <item>
       <title>TCP sockets with Go</title>
-      <link>https://jreisinger.github.io/blog/posts/go-tcp-sockets/</link>
+      <link>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/go-tcp-sockets/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/go-tcp-sockets/</guid>
       <description>Client This is an HTTP client implemented using socket-level programming:
 // Usage: go run telnet.go package main import ( &amp;#34;bufio&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net&amp;#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&amp;#34;tcp&amp;#34;, &amp;#34;golang.org:80&amp;#34;) // Connect over TCP  fmt.Fprintf(conn, &amp;#34;GET / HTTP/1.0\r\n\r\n&amp;#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&amp;#39;\n&amp;#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&#39;ve also added error checking + reading from command line arguments):</description>
     </item>
     
     <item>
       <title>Perl one-liners</title>
-      <link>https://jreisinger.github.io/blog/posts/perl-one-liners/</link>
+      <link>https://jreisinger.github.io/notes/posts/perl-one-liners/</link>
       <pubDate>Wed, 26 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/perl-one-liners/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/perl-one-liners/</guid>
       <description>Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
 perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&#39;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://jreisinger.github.io/blog/posts/docker/</link>
+      <link>https://jreisinger.github.io/notes/posts/docker/</link>
       <pubDate>Mon, 24 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/docker/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/docker/</guid>
       <description>Docker is a container technology. Cointainers standardize software packaging. It&#39;s a well timed fusion of
  kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks (iptables)  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
 Docker revision-controls:
@@ -67,10 +67,10 @@ Docker revision-controls:
     
     <item>
       <title>tcpdump</title>
-      <link>https://jreisinger.github.io/blog/posts/tcpdump/</link>
+      <link>https://jreisinger.github.io/notes/posts/tcpdump/</link>
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/tcpdump/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/tcpdump/</guid>
       <description>despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options -D &amp;ndash; list available interfaces
 -i INTERFACE &amp;ndash; listen on INTERFACE (default: lowest numbered interface)
 -w FILE &amp;ndash; write raw packets to FILE
@@ -80,20 +80,20 @@ Docker revision-controls:
     
     <item>
       <title>Testing Perl script</title>
-      <link>https://jreisinger.github.io/blog/posts/testing-perl-script/</link>
+      <link>https://jreisinger.github.io/notes/posts/testing-perl-script/</link>
       <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/testing-perl-script/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/testing-perl-script/</guid>
       <description>How to write tests for a Perl script At $work, I was to upgrade several Debians from Squeezy through Wheezy to Jessie (6 to 8). I wanted to be sure that after the upgrade (mostly) the same processes are running as before. I whipped up a script, that simply stores the list of running processes before the upgrade. When run subsequently it reports missing processes (if any).
 To make the script reliable and easy to maintain I wanted to test it somehow.</description>
     </item>
     
     <item>
       <title>Generate Random File</title>
-      <link>https://jreisinger.github.io/blog/posts/gen_rand_file/</link>
+      <link>https://jreisinger.github.io/notes/posts/gen_rand_file/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://jreisinger.github.io/blog/posts/gen_rand_file/</guid>
+      <guid>https://jreisinger.github.io/notes/posts/gen_rand_file/</guid>
       <description>How to generate a file of a defined size (ex. 100MB) with random content
 binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
 dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  </description>
