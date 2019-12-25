@@ -20,7 +20,7 @@ The problem is that these commmands run sequentially and it takes a while until 
 
 Now I can run those commands (I stored them in `install-my-stuff.txt`) in parallel:
 
-<script id="asciicast-288718" src="https://asciinema.org/a/288718.js" async></script>
+[![asciicast](https://asciinema.org/a/288718.svg)](https://asciinema.org/a/288718)
 
 Let's see how much time did I save:
 
