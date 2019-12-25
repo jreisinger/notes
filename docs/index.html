@@ -8,20 +8,17 @@
   <meta name="twitter:title" content="Notes" />
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/" />
+  <meta property="og:url" content="https://jreisinger.github.io/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.61.0" />
+  <meta name="generator" content="Hugo 0.58.2" />
   <link href="https://jreisinger.github.io/notes/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
   <link href="https://jreisinger.github.io/notes/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
-
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-
-  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
-  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
-  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -84,11 +81,6 @@
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          I'm using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
-curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/runp/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -111,13 +103,6 @@ curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          Types Go is statically typed - variables always have specific type and type cannot change during the program run time.
-Types help us reason about what our program is doing and help us catch many errors.
-Types are similar to sets in mathematics. They classify data into groups and determine:
- characteristics of data (e.g. all strings have length) operations that can be performed on data (e.g. len(&quot;a string&quot;)) data size (e.
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/go-intro/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -158,11 +143,6 @@ Types are similar to sets in mathematics. They classify data into groups and det
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I've also added error checking + reading from command line arguments):
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/go-tcp-sockets/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -185,11 +165,6 @@ Types are similar to sets in mathematics. They classify data into groups and det
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
-perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl's behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/perl-one-liners/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -212,13 +187,6 @@ perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language inter
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          Docker is a container technology. Cointainers standardize software packaging. It's a well timed fusion of
- kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks (iptables)  Think of a container not as a virtual machine but a very lightweight wrapper around an isolated group of processes. These processes are restricted to private root filesystem and process namespace.
-Docker revision-controls:
- filesystem layers image tags  Architecture Terminology Docker server - the docker command run in daemon mode on a Linux host:
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/docker/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -247,14 +215,6 @@ Docker revision-controls:
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options -D &ndash; list available interfaces
--i INTERFACE &ndash; listen on INTERFACE (default: lowest numbered interface)
--w FILE &ndash; write raw packets to FILE
--r FILE &ndash; read packets from FILE
--nn &ndash; turn off host and protocol name resolution (to avoid generating DNS packets)
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/tcpdump/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -277,11 +237,6 @@ Docker revision-controls:
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          How to write tests for a Perl script At $work, I was to upgrade several Debians from Squeezy through Wheezy to Jessie (6 to 8). I wanted to be sure that after the upgrade (mostly) the same processes are running as before. I whipped up a script, that simply stores the list of running processes before the upgrade. When run subsequently it reports missing processes (if any).
-To make the script reliable and easy to maintain I wanted to test it somehow.
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/testing-perl-script/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -310,29 +265,6 @@ To make the script reliable and easy to maintain I wanted to test it somehow.
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          <p>How to generate a file of a defined size (ex. 100MB) with random content</p>
-<h2 id="binary-file">binary file:</h2>
-<pre><code>dd if=/dev/urandom of=file.dat bs=1M count=100
-</code></pre>
-<p>or</p>
-<pre><code>dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
-</code></pre>
-<ul>
-<li><code>bs</code> &ndash; block size in bytes</li>
-</ul>
-<h2 id="text-file">text file:</h2>
-<pre><code>base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock
-</code></pre>
-<ul>
-<li><code>base64</code> represents (encodes) binary data using printable ASCII characters</li>
-</ul>
-<h2 id="empty-file">empty file:</h2>
-<pre><code>dd if=/dev/zero of=file.dat bs=1M count=100
-</code></pre>
-
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/gen_rand_file/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
@@ -357,6 +289,8 @@ To make the script reliable and easy to maintain I wanted to test it somehow.
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

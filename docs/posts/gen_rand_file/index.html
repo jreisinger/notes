@@ -6,29 +6,26 @@
   <title>Generate Random File - Notes</title>
   <meta property="og:title" content="Generate Random File - Notes" />
   <meta name="twitter:title" content="Generate Random File - Notes" />
-  <meta name="description" content="How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  ">
-  <meta property="og:description" content="How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  ">
-  <meta name="twitter:description" content="How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
+  <meta name="description" content=" How to generate a file of a defined size (ex. 100MB) with random content
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100 or
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`  bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock  base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100">
+  <meta property="og:description" content=" How to generate a file of a defined size (ex. 100MB) with random content
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100 or
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`  bs &ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock  base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100">
+  <meta name="twitter:description" content=" How to generate a file of a defined size (ex. 100MB) with random content
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100 or
 dd if=/dev/urandom of=file.dat bs=1024 count=`echo …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/gen_rand_file/" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/gen_rand_file/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.61.0" />
-
+  <meta name="generator" content="Hugo 0.58.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-
-  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
-  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
-  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -86,26 +83,26 @@ dd if=/dev/urandom of=file.dat bs=1024 count=`echo …">
         </li>
       </ul>
       
-      <p>How to generate a file of a defined size (ex. 100MB) with random content</p>
+      
+
+<p>How to generate a file of a defined size (ex. 100MB) with random content</p>
+
 <h2 id="binary-file">binary file:</h2>
-<pre><code>dd if=/dev/urandom of=file.dat bs=1M count=100
-</code></pre>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">dd if=/dev/urandom of=file.dat bs=1M count=100</pre></div>
 <p>or</p>
-<pre><code>dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
-</code></pre>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`</pre></div>
 <ul>
 <li><code>bs</code> &ndash; block size in bytes</li>
 </ul>
+
 <h2 id="text-file">text file:</h2>
-<pre><code>base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock
-</code></pre>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock</pre></div>
 <ul>
 <li><code>base64</code> represents (encodes) binary data using printable ASCII characters</li>
 </ul>
-<h2 id="empty-file">empty file:</h2>
-<pre><code>dd if=/dev/zero of=file.dat bs=1M count=100
-</code></pre>
 
+<h2 id="empty-file">empty file:</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">dd if=/dev/zero of=file.dat bs=1M count=100</pre></div>
     </article>
 
     
@@ -150,6 +147,8 @@ dd if=/dev/urandom of=file.dat bs=1024 count=`echo …">
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

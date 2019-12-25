@@ -7,24 +7,21 @@
   <meta property="og:title" content="Perl one-liners - Notes" />
   <meta name="twitter:title" content="Perl one-liners - Notes" />
   <meta name="description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
-perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&#39;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.">
+perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.">
   <meta property="og:description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
-perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&#39;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.">
+perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.">
   <meta name="twitter:description" content="Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/perl-one-liners/" />
+  <meta property="og:url" content="https://jreisinger.github.io/posts/perl-one-liners/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.61.0" />
-
+  <meta name="generator" content="Hugo 0.58.2" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-
-  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
-  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
-  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -78,24 +75,32 @@ perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language inter
       
 <aside class="toc">
   <nav id="TableOfContents">
-  <ul>
-    <li><a href="#switches">Switches</a></li>
-    <li><a href="#examples">Examples</a>
-      <ul>
-        <li><a href="#search-and-replace">Search and replace</a></li>
-        <li><a href="#various">Various</a></li>
-      </ul>
-    </li>
-    <li><a href="#more">More</a></li>
-  </ul>
+<ul>
+<li><a href="#introduction-to-perl-one-liners">Introduction to Perl one-liners</a>
+<ul>
+<li><a href="#switches">Switches</a></li>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#search-and-replace">Search and replace</a></li>
+<li><a href="#various">Various</a></li>
+</ul></li>
+<li><a href="#more">More</a></li>
+</ul></li>
+</ul>
 </nav>
 </aside>
-      <h1 id="introduction-to-perl-one-liners">Introduction to Perl one-liners</h1>
+      
+
+<h1 id="introduction-to-perl-one-liners">Introduction to Perl one-liners</h1>
+
 <p>I think Perl one-liners are still super useful. They are small <a href="https://www.perl.org/">Perl</a> programs that are run directly from command line. Like this one from the Kubernetes <a href="https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#running-an-example-job">job</a> documentation:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34;
-</code></pre></div><p><code>perl</code> is the Perl language interpreter. <code>-M</code> and <code>-wle</code> are command line switches (or options) that modify the <code>perl</code>'s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed. In this case it uses the <code>bpi</code> subroutine from the <a href="https://perldoc.perl.org/bignum.html">bignum</a> module to calculate the PI with accuracy of 2000 digits. The command will take a while to finish.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34;</pre></div>
+<p><code>perl</code> is the Perl language interpreter. <code>-M</code> and <code>-wle</code> are command line switches (or options) that modify the <code>perl</code>&rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed. In this case it uses the <code>bpi</code> subroutine from the <a href="https://perldoc.perl.org/bignum.html">bignum</a> module to calculate the PI with accuracy of 2000 digits. The command will take a while to finish.</p>
+
 <h2 id="switches">Switches</h2>
+
 <p>These are some of the most used command line switches:</p>
+
 <ul>
 <li><code>-e '&lt;code&gt;'</code> &ndash; <strong>e</strong>xecute <code>&lt;code&gt;</code></li>
 <li><code>-E '&lt;code&gt;'</code> &ndash; <strong>E</strong>xecute <code>&lt;code&gt;</code> enabling <a href="http://perldoc.perl.org/feature.html">feature</a> bundle (like <code>use 5.010</code>) for your version of Perl</li>
@@ -108,37 +113,48 @@ perl -Mbignum=bpi -wle &#34;print bpi(2000)&#34; perl is the Perl language inter
 <li><code>-s</code> &ndash; rudimentary parsing of command line <strong>s</strong>witches (see &ldquo;Git-tracked directory&rdquo; multi-liner below)</li>
 <li><code>-M&lt;module&gt;[=&lt;subroutine&gt;,...]</code> &ndash; load subroutine(s) from a <strong>m</strong>odule</li>
 </ul>
+
 <p>See <a href="http://perldoc.perl.org/perlrun.html">perlrun</a> for more.</p>
+
 <h2 id="examples">Examples</h2>
+
 <h3 id="search-and-replace">Search and replace</h3>
+
 <p>Find lines in logs that contain error or warning:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">perl -wne &#39;/error|warning/i &amp;&amp; print&#39; /var/log/*.log
-</code></pre></div><p>The thing between slashes is a <a href="https://perldoc.perl.org/perlre.html">regular expression</a>. It means match string <code>error</code> or string <code>warning</code> anywhere in the log line. <code>i</code> says to Perl to ignore the case. So it will match ERROR, error, Warning etc. If the regex finds a match (i.e. evaluates to true) the <code>&amp;&amp;</code> logical operator runs the <code>print</code> statement that will print the line containing the match.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -wne &#39;/error|warning/i &amp;&amp; print&#39; /var/log/*.log</pre></div>
+<p>The thing between slashes is a <a href="https://perldoc.perl.org/perlre.html">regular expression</a>. It means match string <code>error</code> or string <code>warning</code> anywhere in the log line. <code>i</code> says to Perl to ignore the case. So it will match ERROR, error, Warning etc. If the regex finds a match (i.e. evaluates to true) the <code>&amp;&amp;</code> logical operator runs the <code>print</code> statement that will print the line containing the match.</p>
+
 <p>Replace <code>/bin/sh</code> with <code>/bin/bash</code> and emit the transformed passwd file to STDOUT:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">perl -pe &#39;s#/bin/sh$#/bin/bash#&#39; /etc/passwd
-</code></pre></div><p>We used <code>#</code> instead of <code>/</code> as delimeter for better readibility since to strings themselves contain slashes. <code>$</code> means end of the string.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -pe &#39;s#/bin/sh$#/bin/bash#&#39; /etc/passwd</pre></div>
+<p>We used <code>#</code> instead of <code>/</code> as delimeter for better readibility since to strings themselves contain slashes. <code>$</code> means end of the string.</p>
+
 <p>Replace <code>colour</code> with <code>color</code> in all text files. The original files will be kept with <code>.bak</code> suffix:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">perl -i.bak -pe &#39;s/colour/color/g&#39; *.txt
-</code></pre></div><p><code>g</code> (global) means replace all occurences in a string not just the first one.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -i.bak -pe &#39;s/colour/color/g&#39; *.txt</pre></div>
+<p><code>g</code> (global) means replace all occurences in a string not just the first one.</p>
+
 <p>Convert between DOS and Unix newline:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">perl -i -pe &#39;s/\r//&#39;  &lt;file1&gt; &lt;file2&gt; ... # dos-to-unix
-perl -i -pe &#39;s/$/\r/&#39; &lt;file1&gt; &lt;file2&gt; ... # unix-to-dos
-</code></pre></div><h3 id="various">Various</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">perl -i -pe &#39;s/\r//&#39;  &lt;file1&gt; &lt;file2&gt; ... # dos-to-unix
+perl -i -pe &#39;s/$/\r/&#39; &lt;file1&gt; &lt;file2&gt; ... # unix-to-dos</pre></div>
+<h3 id="various">Various</h3>
+
 <p>Print 2nd and 1st field (column) out of three original ones:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ cat birthdays.txt
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ cat birthdays.txt
 03/30/45 Eric Clapton
 11/27/42 Jimi Hendrix
 06/24/44 Jeff Beck
 $ perl -lane &#39;print @F[1,0]&#39; birthdays.txt
 Eric 03/30/45
 Jimi 11/27/42
-Jeff 06/24/44
-</code></pre></div><p>The field numbering starts at 0.</p>
+Jeff 06/24/44</pre></div>
+<p>The field numbering starts at 0.</p>
+
 <p>Calculate the total size of log files older than 30 days:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">find /opt/splunk/syslog/ -iname &#34;*log*&#34; -type f -mtime +30 | \
-perl -lne &#39;$sum += (stat)[7]}{print $sum&#39;
-</code></pre></div><p>The <a href="https://perldoc.perl.org/functions/stat.html">stat</a> function returns a 13-element list of status info about a file. We take the 8th element (with index <code>7</code>) which is the size of a file. We loop over the found files and add the size of each into the <code>$sum</code> variable. The handy <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> is for priting the <code>$sum</code> when the loop is over (suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>).</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">find /opt/splunk/syslog/ -iname &#34;*log*&#34; -type f -mtime +30 | \
+perl -lne &#39;$sum += (stat)[7]}{print $sum&#39;</pre></div>
+<p>The <a href="https://perldoc.perl.org/functions/stat.html">stat</a> function returns a 13-element list of status info about a file. We take the 8th element (with index <code>7</code>) which is the size of a file. We loop over the found files and add the size of each into the <code>$sum</code> variable. The handy <a href="http://www.catonmat.net/blog/secret-perl-operators/#eskimo">Eskimo Greeting Operator</a> is for priting the <code>$sum</code> when the loop is over (suggested by <a href="http://www.perlmonks.org/?node_id=1172707">PerlMonks</a>).</p>
+
 <h2 id="more">More</h2>
+
 <p>For a deeper dive see <a href="http://www.catonmat.net/blog/perl-one-liners-explained-part-one/">Famous Perl One-Liners Explained</a>. If you want a book have a look at <a href="http://www.amazon.com/Minimal-Perl-UNIX-Linux-People/dp/1932394508/ref=sr_1_1?ie=UTF8&amp;qid=1358096838&amp;sr=8-1&amp;keywords=minimal+perl+for+unix">Minimal Perl for UNIX and Linux People</a>.</p>
 
     </article>
@@ -187,6 +203,8 @@ perl -lne &#39;$sum += (stat)[7]}{print $sum&#39;
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

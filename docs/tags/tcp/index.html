@@ -8,20 +8,17 @@
   <meta name="twitter:title" content="tcp - Notes" />
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/tags/tcp/" />
+  <meta property="og:url" content="https://jreisinger.github.io/tags/tcp/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.61.0" />
+  <meta name="generator" content="Hugo 0.58.2" />
   <link href="https://jreisinger.github.io/notes/tags/tcp/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
   <link href="https://jreisinger.github.io/notes/tags/tcp/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
-
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-
-  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
-  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
-  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -87,11 +84,6 @@
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          Client This is an HTTP client implemented using socket-level programming:
-// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I've also added error checking + reading from command line arguments):
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/go-tcp-sockets/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
@@ -116,6 +108,8 @@
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

@@ -8,20 +8,17 @@
   <meta name="twitter:title" content="parallel - Notes" />
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/tags/parallel/" />
+  <meta property="og:url" content="https://jreisinger.github.io/tags/parallel/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.61.0" />
+  <meta name="generator" content="Hugo 0.58.2" />
   <link href="https://jreisinger.github.io/notes/tags/parallel/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
   <link href="https://jreisinger.github.io/notes/tags/parallel/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
-
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-
-  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
-  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
-  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -87,11 +84,6 @@
             </a>&nbsp;
           </li>
         </ul>
-        <div class="article-content">
-          I'm using shell (bash specifically) on daily basis. From time to time a need arises to run multiple commands in parallel. For example my .bashrc runs commands like these to download or clone vim plugins I use:
-curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash rm -rf $HOME/.vim/pack/plugins/start/grep.vim &amp;&amp; git clone https://github.com/yegappan/grep.git $HOME/.vim/pack/plugins/start/grep.vim # https://tpaschalis.github.io/vim-go-setup/ rm -rf $HOME/.vim/pack/plugins/start/vim-go &amp;&amp; git clone https://github.com/fatih/vim-go.git $HOME/.vim/pack/plugins/start/vim-go The problem is that these commmands run sequentially and it takes a while until they are done.
-        </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/runp/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
@@ -116,6 +108,8 @@ curl -L -o $HOME/.git-completion.bash https://raw.githubusercontent.com/git/git/
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
+<script src="https://jreisinger.github.io/notes/js/script.js"></script>
+<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
