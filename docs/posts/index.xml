@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Notes</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jreisinger.github.io/notes/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notes now on at reisinge.net/notes</title>
+      <link>https://jreisinger.github.io/notes/posts/reisinge.net/</link>
+      <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jreisinger.github.io/notes/posts/reisinge.net/</guid>
+      <description>I don&amp;rsquo;t update this site anymore. I&amp;rsquo;ve been keeping my notes at https://reisinge.net/notes for some time now.</description>
+    </item>
     
     <item>
       <title>runp: run shell commands in parallel</title>
@@ -50,7 +59,7 @@ Types are similar to sets in mathematics. They classify data into groups and det
       
       <guid>https://jreisinger.github.io/notes/posts/perl-one-liners/</guid>
       <description>Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
-perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&amp;rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
+perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&#39;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
     </item>
     
     <item>
@@ -94,9 +103,9 @@ To make the script reliable and easy to maintain I wanted to test it somehow.</d
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>https://jreisinger.github.io/notes/posts/gen_rand_file/</guid>
-      <description> How to generate a file of a defined size (ex. 100MB) with random content
-binary file: dd if=/dev/urandom of=file.dat bs=1M count=100 or
-dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`  bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock  base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100</description>
+      <description>How to generate a file of a defined size (ex. 100MB) with random content
+binary file: dd if=/dev/urandom of=file.dat bs=1M count=100  or
+dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`   bs &amp;ndash; block size in bytes  text file: base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock   base64 represents (encodes) binary data using printable ASCII characters  empty file: dd if=/dev/zero of=file.dat bs=1M count=100  </description>
     </item>
     
   </channel>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>perl on Notes</title>
@@ -18,7 +18,7 @@
       
       <guid>https://jreisinger.github.io/notes/posts/perl-one-liners/</guid>
       <description>Introduction to Perl one-liners I think Perl one-liners are still super useful. They are small Perl programs that are run directly from command line. Like this one from the Kubernetes job documentation:
-perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&amp;rsquo;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
+perl -Mbignum=bpi -wle &amp;#34;print bpi(2000)&amp;#34; perl is the Perl language interpreter. -M and -wle are command line switches (or options) that modify the perl&#39;s behaviour. See below for explanation of what they mean. The string within double quotes is the Perl code that gets executed.</description>
     </item>
     
     <item>
