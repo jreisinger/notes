@@ -1,5 +1,5 @@
 ---
-title: "Notes now on at reisinge.net/notes"
+title: "Notes now at reisinge.net/notes"
 date: 2020-10-06
 categories: [other]
 tags: [other]
