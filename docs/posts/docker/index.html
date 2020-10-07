@@ -18,15 +18,18 @@ Docker revision-controls:
  kernel features (cgroups, namespaces) filesystem tricks (UnionFS) networking hacks …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/posts/docker/" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/docker/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.73.0" />
+
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
+  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
 </head>
 
 <body>
@@ -79,118 +82,82 @@ Docker revision-controls:
       </ul>
       
 <aside class="toc">
-  <nav id="TableOfContents">
-<ul>
-<li><a href="#architecture">Architecture</a></li>
-<li><a href="#terminology">Terminology</a></li>
-<li><a href="#images">Images</a></li>
-<li><a href="#containers">Containers</a></li>
-<li><a href="#volumes">Volumes</a></li>
-<li><a href="#networks">Networks</a></li>
-<li><a href="#monitoring-and-cleanup">Monitoring and cleanup</a></li>
-<li><a href="#limiting-a-container-s-resources">Limiting a container&rsquo;s resources</a></li>
-<li><a href="#swarm">Swarm</a></li>
-<li><a href="#sources">Sources</a></li>
-</ul>
-</nav>
+  <nav id="TableOfContents"></nav>
 </aside>
-      
-
-<p>Docker is a container technology. Cointainers standardize software packaging.
+      <p>Docker is a container technology. Cointainers standardize software packaging.
 It&rsquo;s a well timed fusion of</p>
-
 <ul>
 <li>kernel features (cgroups, <a href="https://gist.github.com/jreisinger/65488e6d7648f3a07a1a346ae3ef549d">namespaces</a>)</li>
 <li>filesystem tricks (UnionFS)</li>
 <li>networking hacks (iptables)</li>
 </ul>
-
 <p>Think of a container not as a virtual machine but a very lightweight wrapper
 around an isolated group of processes. These processes are restricted to private
 root filesystem and process namespace.</p>
-
 <p>Docker revision-controls:</p>
-
 <ol>
 <li>filesystem layers</li>
 <li>image tags</li>
 </ol>
-
 <h1 id="architecture">Architecture</h1>
-
-<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_architecture.png" alt="docker architecture" title="Docker architecture" /></p>
-
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_architecture.png" alt="docker architecture" title="Docker architecture"></p>
 <h1 id="terminology">Terminology</h1>
-
 <p>Docker <em>server</em> - the <code>docker</code> command run in daemon mode on a Linux host:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo docker -d -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375</code></pre></div>
-<p>Docker <em>image</em> - one or more filesystem layers and metadata that represent all
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo docker -d -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
+</code></pre></div><p>Docker <em>image</em> - one or more filesystem layers and metadata that represent all
 the files required to run a Dockerized application:</p>
-
-<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_images.png" alt="docker images" title="Docker images" /></p>
-
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_images.png" alt="docker images" title="Docker images"></p>
 <p>Docker <em>container</em> - a Linux container that has been instantiated from a Docker
 image</p>
-
 <h1 id="images">Images</h1>
-
 <p>Two ways to launch a container:</p>
-
 <ul>
 <li>download a public image</li>
 <li>create your own</li>
 </ul>
-
 <p>To create a custom image you need a <code>Dockerfile</code> - each line in a Dockerfile creates a new image layer that is stored by Docker</p>
-
 <p>Build an image:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/spkane/docker-node-hello.git
 cd docker-node-hello
-docker build -t example/docker-node-hello:latest .</code></pre></div>
-<p>Run an image (or a container?):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -d -p 80:8080 example/docker-node-hello:latest</code></pre></div>
-<ul>
+docker build -t example/docker-node-hello:latest .
+</code></pre></div><p>Run an image (or a container?):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -d -p 80:8080 example/docker-node-hello:latest
+</code></pre></div><ul>
 <li><code>-d, --detach</code> run container in background (daemon mode) and print container ID</li>
 <li><code>-p 80:8080</code> tells Docker to map host&rsquo;s port 80 to the container&rsquo;s port 8080 (port binding)</li>
 <li><code>example/docker-node-hello</code> image to derive the container from</li>
 <li><code>:latest</code> (default) tag specifying the image version</li>
 </ul>
-
 <p>Remove an image:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker images
-docker rmi &lt;image_id&gt;</code></pre></div>
-<p>Remove all images on your Docker host:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker rmi <span style="font-weight:bold">$(</span>docker images -q -<span style="font-weight:bold">)</span></code></pre></div>
-<h1 id="containers">Containers</h1>
-
+docker rmi &lt;image_id&gt;
+</code></pre></div><p>Remove all images on your Docker host:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker rmi <span style="font-weight:bold">$(</span>docker images -q -<span style="font-weight:bold">)</span>
+</code></pre></div><h1 id="containers">Containers</h1>
 <p>A container is a self-contained execution environment that shares the kernel of
 the host system and which is isolated from other containers in the
 system.</p>
-
 <p>Containers are a <em>Linux only</em> technology.</p>
-
 <p>Create a container (see also &ldquo;Run an image&rdquo; above):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --rm -it ubuntu /bin/bash</code></pre></div>
-<ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --rm -it ubuntu /bin/bash
+</code></pre></div><ul>
 <li><code>run</code> = <code>create</code> + <code>start</code></li>
 <li><code>--rm</code> - delete the container (the read/write filesystem layer) when it exits</li>
 <li><code>-i</code> - interactive session, i.e. keep STDIN open</li>
 <li><code>-t</code> - allocate a pseudo-TTY</li>
 <li><code>/bin/bash</code> - executable to run within the container</li>
 </ul>
-
 <p>Get into a running container:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps
-docker exec -it &lt;container_id&gt; /bin/bash <span style="font-style:italic"># new process created in the container</span></code></pre></div>
-<p>Stop a container:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stop &lt;container_id&gt;</code></pre></div>
-<p>Remove a container:</p>
+docker exec -it &lt;container_id&gt; /bin/bash <span style="font-style:italic"># new process created in the container</span>
+</code></pre></div><p>Stop a container:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stop &lt;container_id&gt;
+</code></pre></div><p>Remove a container:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps -a
-docker rm &lt;container_id&gt;</code></pre></div>
-<p>Remove all containers on your Docker host:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker rm  <span style="font-weight:bold">$(</span>docker ps -a -q<span style="font-weight:bold">)</span></code></pre></div>
-<h1 id="volumes">Volumes</h1>
-
+docker rm &lt;container_id&gt;
+</code></pre></div><p>Remove all containers on your Docker host:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker rm  <span style="font-weight:bold">$(</span>docker ps -a -q<span style="font-weight:bold">)</span>
+</code></pre></div><h1 id="volumes">Volumes</h1>
 <ul>
 <li>the read/write filesystem layer is a copy-on-write snapshot of an image</li>
 <li>heavy reliance on the read/write filesystem layer isn&rsquo;t the best storage solution (for data intensive apps like DBs)</li>
@@ -199,7 +166,6 @@ docker rm &lt;container_id&gt;</code></pre></div>
 filesystem</li>
 <li>volumes can be shared among containers</li>
 </ul>
-
 <p>Add a volume to a container (<code>-v</code>):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -v /data --rm --hostname web --name web -d nginx
 $ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;</span> web | jq <span style="font-style:italic"># note source and destination keys</span>
@@ -214,53 +180,45 @@ $ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;
     <span style="font-style:italic">&#34;RW&#34;</span>: true,
     <span style="font-style:italic">&#34;Propagation&#34;</span>: <span style="font-style:italic">&#34;&#34;</span>
   }
-]</code></pre></div>
-<p>Add <em>bind volume</em> (mount volume on the host and in a container simultaneously):</p>
+]
+</code></pre></div><p>Add <em>bind volume</em> (mount volume on the host and in a container simultaneously):</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -v /mnt/data:/data --rm --name web -d nginx
 $ docker inspect -f <span style="font-style:italic">&#39;{{ json .Mounts }}&#39;</span> web
-[{<span style="font-style:italic">&#34;Type&#34;</span>:<span style="font-style:italic">&#34;bind&#34;</span>,<span style="font-style:italic">&#34;Source&#34;</span>:<span style="font-style:italic">&#34;/mnt/data&#34;</span>,<span style="font-style:italic">&#34;Destination&#34;</span>:<span style="font-style:italic">&#34;/data&#34;</span>,<span style="font-style:italic">&#34;Mode&#34;</span>:<span style="font-style:italic">&#34;&#34;</span>,<span style="font-style:italic">&#34;RW&#34;</span>:true,<span style="font-style:italic">&#34;Propagation&#34;</span>:<span style="font-style:italic">&#34;rprivate&#34;</span>}]</code></pre></div>
-<p>Have a data volume container:</p>
+[{<span style="font-style:italic">&#34;Type&#34;</span>:<span style="font-style:italic">&#34;bind&#34;</span>,<span style="font-style:italic">&#34;Source&#34;</span>:<span style="font-style:italic">&#34;/mnt/data&#34;</span>,<span style="font-style:italic">&#34;Destination&#34;</span>:<span style="font-style:italic">&#34;/data&#34;</span>,<span style="font-style:italic">&#34;Mode&#34;</span>:<span style="font-style:italic">&#34;&#34;</span>,<span style="font-style:italic">&#34;RW&#34;</span>:true,<span style="font-style:italic">&#34;Propagation&#34;</span>:<span style="font-style:italic">&#34;rprivate&#34;</span>}]
+</code></pre></div><p>Have a data volume container:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker create -v /mnt/data:/data --name nginx-data nginx          <span style="font-style:italic"># never runs</span>
-$ docker run --volumes-from nginx-data -p80:80 --name web -d nginx</code></pre></div>
-<h1 id="networks">Networks</h1>
-
+$ docker run --volumes-from nginx-data -p80:80 --name web -d nginx
+</code></pre></div><h1 id="networks">Networks</h1>
 <p>During installation Docker creates three default networks:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker network ls
 NETWORK ID          NAME                DRIVER              SCOPE
 0e07cd43ad1b        bridge              bridge              local
 1876373e07e4        host                host                local
-e3f087868688        none                null                local</code></pre></div>
-<ol>
+e3f087868688        none                null                local
+</code></pre></div><ol>
 <li>bridge (virtual switch) is the default &ndash;&gt; private namespaced network within the host (which acts as poor man&rsquo;s router); you decide which ports get exposed to the outside world</li>
 <li>with host networking no separate network namespace is used (<code>docker run --net host ...</code>)</li>
 <li>none is for advanced use cases</li>
 </ol>
-
-<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_bridge.png" alt="docker bridge network" title="Docker bridge network" /></p>
-
+<p><img src="https://raw.github.com/jreisinger/blog/master/files/docker_bridge.png" alt="docker bridge network" title="Docker bridge network"></p>
 <p>When you use <code>-p</code> Docker creates <code>iptables</code> rules that route traffic from the host&rsquo;s public interface on the container&rsquo;s interface on the bridge network.</p>
-
 <h1 id="monitoring-and-cleanup">Monitoring and cleanup</h1>
-
 <p>Containers&rsquo; statistics:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stats [--no-stream]</code></pre></div>
-<p>Clean up:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker stats [--no-stream]
+</code></pre></div><p>Clean up:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="font-style:italic"># you will be asked to confirm</span>
 docker system prune                                     <span style="font-style:italic"># containers, images</span>
 docker images prune                                     <span style="font-style:italic"># only images</span>
 
 <span style="font-style:italic"># be careful!</span>
-docker volume rm <span style="font-weight:bold">$(</span>docker volume ls -qf dangling=true<span style="font-weight:bold">)</span>  <span style="font-style:italic"># volumes</span></code></pre></div>
-<h1 id="limiting-a-container-s-resources">Limiting a container&rsquo;s resources</h1>
-
+docker volume rm <span style="font-weight:bold">$(</span>docker volume ls -qf dangling=true<span style="font-weight:bold">)</span>  <span style="font-style:italic"># volumes</span>
+</code></pre></div><h1 id="limiting-a-containers-resources">Limiting a container&rsquo;s resources</h1>
 <ul>
 <li>a container has no resource constraints by default</li>
 <li>Docker provides a way to limit memory, CPU and block IO resources</li>
 <li>your kernel must support Linux capabilities (<code>docker info | grep WARNING</code>)</li>
 </ul>
-
 <p>Memory</p>
-
 <ul>
 <li>if the kernel detects that there is not enough memory, it throws an <code>Out of Memory Exception</code> and starts killing processes</li>
 <li>any process is subject to killing (including Docker)</li>
@@ -268,22 +226,17 @@ docker volume rm <span style="font-weight:bold">$(</span>docker volume ls -qf da
 <li>Docker adjusts OOM priority in the Docker daemon so it&rsquo;s less likely to get killed</li>
 <li>the OOM priority on containers is not adjusted so they are more likely to be killed than the Docker daemon</li>
 </ul>
-
 <p>To limit the memory resource to 500 MB and forbid access to swap for a container:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --rm --it --name mem-muncher --memory=500m --memory-swap=500m mem-muncher</code></pre></div>
-<p>See <a href="https://github.com/jreisinger/mem-muncher">mem-muncher</a>, <a href="https://docs.docker.com/config/containers/resource_constraints/">Limit a container&rsquo;s resources</a> and <a href="https://gist.github.com/jreisinger/2f87098558d541cdbb7eb30b86163c39">presentation</a> for more.</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --rm --it --name mem-muncher --memory=500m --memory-swap=500m mem-muncher
+</code></pre></div><p>See <a href="https://github.com/jreisinger/mem-muncher">mem-muncher</a>, <a href="https://docs.docker.com/config/containers/resource_constraints/">Limit a container&rsquo;s resources</a> and <a href="https://gist.github.com/jreisinger/2f87098558d541cdbb7eb30b86163c39">presentation</a> for more.</p>
 <h1 id="swarm">Swarm</h1>
-
 <ul>
 <li><a href="https://docs.docker.com/engine/swarm/swarm-tutorial/">tutorial</a></li>
 <li><a href="https://docs.docker.com/engine/swarm/services/#control-service-placement">service placement</a> (affinity)</li>
 <li><a href="https://github.com/stefanprodan/swarmprom">monitoring</a></li>
 <li><a href="https://gist.github.com/jreisinger/a196f3e51e3a7069f7f91665025570cf">setup</a> a simple cluster (in VirtualBox)</li>
 </ul>
-
 <h1 id="sources">Sources</h1>
-
 <ul>
 <li>Docker: Up &amp; Running (2015)</li>
 <li>Unix and Linux System Administration Handbook, 5th ed. (2017)</li>
@@ -336,8 +289,6 @@ docker volume rm <span style="font-weight:bold">$(</span>docker volume ls -qf da
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
-<script src="https://jreisinger.github.io/notes/js/script.js"></script>
-<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

@@ -8,17 +8,20 @@
   <meta name="twitter:title" content="net - Notes" />
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/categories/net/" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/categories/net/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.73.0" />
   <link href="https://jreisinger.github.io/notes/categories/net/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
   <link href="https://jreisinger.github.io/notes/categories/net/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
+
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
+  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
 </head>
 
 <body>
@@ -41,11 +44,8 @@
 <hr class="site-header-bottom">
 
 
-  <div class="breadcrumb">
-    <a href="https://jreisinger.github.io/notes/categories/">Categories</a> / Net
-  </div>
   <div class="main" role="main">
-    <section class="list taxonomy-list">
+    <section class="list term-list">
       <article class="article">
         <a href="https://jreisinger.github.io/notes/posts/go-tcp-sockets/" class="article-titles">
           <h2 class="article-title">TCP sockets with Go</h2>
@@ -84,6 +84,11 @@
             </a>&nbsp;
           </li>
         </ul>
+        <div class="article-content">
+          Client This is an HTTP client implemented using socket-level programming:
+// Usage: go run telnet.go package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; ) func main() { // NOTE: ignoring errors by storing them into _  conn, _ := net.Dial(&#34;tcp&#34;, &#34;golang.org:80&#34;) // Connect over TCP  fmt.Fprintf(conn, &#34;GET / HTTP/1.0\r\n\r\n&#34;) // Send string over the connection  status, _ := bufio.NewReader(conn).ReadString(&#39;\n&#39;) fmt.Print(status) // Print the first response line } To add a timeout you can use the Dialer structure (I&rsquo;ve also added error checking + reading from command line arguments):
+        </div>
+        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/go-tcp-sockets/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
@@ -112,6 +117,14 @@
             </a>&nbsp;
           </li>
         </ul>
+        <div class="article-content">
+          despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment  Useful options -D &ndash; list available interfaces
+-i INTERFACE &ndash; listen on INTERFACE (default: lowest numbered interface)
+-w FILE &ndash; write raw packets to FILE
+-r FILE &ndash; read packets from FILE
+-nn &ndash; turn off host and protocol name resolution (to avoid generating DNS packets)
+        </div>
+        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/tcpdump/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
@@ -136,8 +149,6 @@
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
-<script src="https://jreisinger.github.io/notes/js/script.js"></script>
-<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

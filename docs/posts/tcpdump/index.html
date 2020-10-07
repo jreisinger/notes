@@ -19,15 +19,18 @@
   <meta name="twitter:description" content="despite its name it can do much more than capturing TCP headers can sniff traffic on many network types (including 802.1Q VLAN) de facto standard for command line packet analysis in Unix environment …">
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/posts/tcpdump/" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/posts/tcpdump/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.58.2" />
+  <meta name="generator" content="Hugo 0.73.0" />
+
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/custom.css" media="all" />
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+  <script src="https://jreisinger.github.io/notes/js/script.js"></script>
+  <script src="https://jreisinger.github.io/notes/js/custom.js"></script>
+  <script defer src="https://jreisinger.github.io/notes/js/fontawesome.js"></script>
 </head>
 
 <body>
@@ -87,82 +90,57 @@
       
 <aside class="toc">
   <nav id="TableOfContents">
-<ul>
-<li><a href="#useful-options">Useful options</a></li>
-<li><a href="#output-format">Output format</a>
-<ul>
-<li><a href="#output-options">Output options</a></li>
-</ul></li>
-<li><a href="#packet-filtering">Packet Filtering</a>
-<ul>
-<li><a href="#bpf">BPF</a></li>
-</ul></li>
-<li><a href="#cookbook">Cookbook</a></li>
-<li><a href="#resources">Resources</a></li>
-</ul>
+  <ul>
+    <li><a href="#output-options">Output options</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#bpf">BPF</a></li>
+  </ul>
 </nav>
 </aside>
-      
-
-<ul>
+      <ul>
 <li>despite its name it can do much more than capturing TCP headers</li>
 <li>can sniff traffic on many network types (including 802.1Q VLAN)</li>
 <li>de facto standard for command line packet analysis in Unix environment</li>
 </ul>
-
 <h1 id="useful-options">Useful options</h1>
-
 <p><code>-D</code> &ndash; list available interfaces</p>
-
 <p><code>-i INTERFACE</code> &ndash; listen on INTERFACE (default: lowest numbered interface)</p>
-
 <p><code>-w FILE</code> &ndash; write raw packets to FILE</p>
-
 <p><code>-r FILE</code> &ndash; read packets from FILE</p>
-
 <p><code>-nn</code> &ndash; turn off host and protocol name resolution (to avoid generating DNS
 packets)</p>
-
 <p><code>-s0</code> &ndash; set snaplength to 0, i.e. read the whole packet not just first 68
 bytes (default if version &gt;= 4.0)</p>
-
 <p><code>-t</code> &ndash; turn off timestamp entries</p>
-
 <p><code>-c COUNT</code> &ndash; capture COUNT packets and stop</p>
-
 <p>Examples:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tcpdump -nni any -w packets.pcap
-tcpdump -nnr packets.pcap</code></pre></div>
-<h1 id="output-format">Output format</h1>
-
+tcpdump -nnr packets.pcap
+</code></pre></div><h1 id="output-format">Output format</h1>
 <p>will vary based upon what protocols are in use &hellip;</p>
-
 <p>TCP:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">timestamp L3_protocol sIP.sPort &gt; dIP.dPort: TCP_flags,
 TCP_sequence_number, TCP_acknowledgement_number, TCP_windows_size,
-data_length_in_bytes</code></pre></div>
-<p>UDP:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">timestamp L3_protocol sIP.sPort &gt; dIP.dPort: L4_protocol, data_length</code></pre></div>
-<h2 id="output-options">Output options</h2>
-
+data_length_in_bytes
+</code></pre></div><p>UDP:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">timestamp L3_protocol sIP.sPort &gt; dIP.dPort: L4_protocol, data_length
+</code></pre></div><h2 id="output-options">Output options</h2>
 <ul>
 <li>use up to <code>-vvv</code> to provide more information on headers</li>
 <li>use <code>-x</code> to get entire packets (including data not just headers) in hex format</li>
 <li>use <code>-A</code> to get entire packets in ASCII format</li>
 <li>use <code>-X</code> to get entire packets in hex and ASCII format</li>
 </ul>
-
 <h1 id="packet-filtering">Packet Filtering</h1>
-
 <ul>
 <li>utilizes the Berkeley Packet Filter (BPF) format</li>
-
-<li><p>added to the end of the command (recommended to use single quotes)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tcpdump -nnr packets.pcap <span style="font-style:italic">&#39;tcp dst port 8080&#39;</span> -w packets_tcp8080.pcap
-tcpdump -nnr packets.pcap -F known_good_hosts.bpf</code></pre></div></li>
+<li>added to the end of the command (recommended to use single quotes)</li>
 </ul>
-
-<h2 id="bpf">BPF</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tcpdump -nnr packets.pcap <span style="font-style:italic">&#39;tcp dst port 8080&#39;</span> -w packets_tcp8080.pcap
+tcpdump -nnr packets.pcap -F known_good_hosts.bpf
+</code></pre></div><h2 id="bpf">BPF</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">           operator
  primitive   |      primitive
      |       |         |
@@ -171,9 +149,8 @@ tcpdump -nnr packets.pcap -F known_good_hosts.bpf</code></pre></div></li>
 udp port 53 &amp;&amp; dst host 192.0.2.2
  |        |
  |        value
-qualifier</code></pre></div>
-<p>Qualifiers</p>
-
+qualifier
+</code></pre></div><p>Qualifiers</p>
 <ul>
 <li>host</li>
 <li>net - network in CIDR notation</li>
@@ -185,17 +162,13 @@ qualifier</code></pre></div>
 <li>udp - UDP protocol</li>
 <li>greater 1000 - data length is greater than 1000 bytes</li>
 </ul>
-
 <p>Logical operators</p>
-
 <ul>
 <li>&amp;&amp; - true when both conditions are true</li>
 <li>|| - true when either condition is true</li>
 <li>! - true when a condition is NOT met</li>
 </ul>
-
 <p>Examples</p>
-
 <ul>
 <li><code>host 192.0.2.100</code> -  match traffic to/from 192.0.2.100</li>
 <li><code>dst host 2001:db8:85a3::8a2e:370:7334</code> - match traffic to the IPv6 address</li>
@@ -204,16 +177,12 @@ qualifier</code></pre></div>
 <li><code>icmp</code> - match all ICMP traffic</li>
 <li><code>!ip6</code> - match everything that is not IPv6</li>
 </ul>
-
 <h1 id="cookbook">Cookbook</h1>
-
 <p><a href="https://serverfault.com/questions/504431/human-readable-format-for-http-headers-with-tcpdump">Show</a> HTTP Host header:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">stdbuf -oL -eL /usr/sbin/tcpdump -nn -A -s 10240 <span style="font-weight:bold;font-style:italic">\
-</span><span style="font-weight:bold;font-style:italic"></span><span style="font-style:italic">&#34;tcp port 80 and (((ip[2:2] - ((ip[0]&amp;0xf)&lt;&lt;2)) - ((tcp[12]&amp;0xf0)&gt;&gt;2)) != 0)&#34;</span></code></pre></div>
-<hr />
-
+</span><span style="font-weight:bold;font-style:italic"></span><span style="font-style:italic">&#34;tcp port 80 and (((ip[2:2] - ((ip[0]&amp;0xf)&lt;&lt;2)) - ((tcp[12]&amp;0xf0)&gt;&gt;2)) != 0)&#34;</span>
+</code></pre></div><hr>
 <h1 id="resources">Resources</h1>
-
 <ul>
 <li>Applied Network Security Monitoring</li>
 </ul>
@@ -264,8 +233,6 @@ qualifier</code></pre></div>
     Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
   </div>
 </div>
-<script src="https://jreisinger.github.io/notes/js/script.js"></script>
-<script src="https://jreisinger.github.io/notes/js/custom.js"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;

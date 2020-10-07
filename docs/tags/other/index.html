@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>linux - Notes</title>
-  <meta property="og:title" content="linux - Notes" />
-  <meta name="twitter:title" content="linux - Notes" />
+  <title>other - Notes</title>
+  <meta property="og:title" content="other - Notes" />
+  <meta name="twitter:title" content="other - Notes" />
   <meta name="author" content="Jozef Reisinger"/>
   <meta property="og:site_name" content="Notes" />
-  <meta property="og:url" content="https://jreisinger.github.io/notes/tags/linux/" />
+  <meta property="og:url" content="https://jreisinger.github.io/notes/tags/other/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.73.0" />
-  <link href="https://jreisinger.github.io/notes/tags/linux/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
-  <link href="https://jreisinger.github.io/notes/tags/linux/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
+  <link href="https://jreisinger.github.io/notes/tags/other/index.xml" rel="alternate" type="application/rss+xml" title="Notes" />
+  <link href="https://jreisinger.github.io/notes/tags/other/index.xml" rel="feed" type="application/rss+xml" title="Notes" />
 
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/style.css" media="all" />
   <link rel="stylesheet" href="https://jreisinger.github.io/notes/css/syntax.css" media="all" />
@@ -47,54 +47,30 @@
   <div class="main" role="main">
     <section class="list term-list">
       <article class="article">
-        <a href="https://jreisinger.github.io/notes/posts/gen_rand_file/" class="article-titles">
-          <h2 class="article-title">Generate Random File</h2>
+        <a href="https://jreisinger.github.io/notes/posts/reisinge.net/" class="article-titles">
+          <h2 class="article-title">Notes now at reisinge.net/notes</h2>
           
         </a>
         <ul class="article-meta">
-          <li class="article-meta-date"><time>March 20, 2014</time></li>
+          <li class="article-meta-date"><time>October 6, 2020</time></li>
           <li class="article-meta-categories">
-            <a href="https://jreisinger.github.io/notes/categories/os/">
+            <a href="https://jreisinger.github.io/notes/categories/other/">
               <i class="fas fa-folder"></i>
-              os
+              other
             </a>&nbsp;
           </li>
           <li class="article-meta-tags">
-            <a href="https://jreisinger.github.io/notes/tags/dd/">
+            <a href="https://jreisinger.github.io/notes/tags/other/">
               <i class="fas fa-tag"></i>
-              dd
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="https://jreisinger.github.io/notes/tags/linux/">
-              <i class="fas fa-tag"></i>
-              linux
+              other
             </a>&nbsp;
           </li>
         </ul>
         <div class="article-content">
-          <p>How to generate a file of a defined size (ex. 100MB) with random content</p>
-<h2 id="binary-file">binary file:</h2>
-<pre><code>dd if=/dev/urandom of=file.dat bs=1M count=100
-</code></pre>
-<p>or</p>
-<pre><code>dd if=/dev/urandom of=file.dat bs=1024 count=`echo $((100*1024))`
-</code></pre>
-<ul>
-<li><code>bs</code> &ndash; block size in bytes</li>
-</ul>
-<h2 id="text-file">text file:</h2>
-<pre><code>base64 /dev/urandom | dd of=file.txt bs=1M count=100 iflag=fullblock
-</code></pre>
-<ul>
-<li><code>base64</code> represents (encodes) binary data using printable ASCII characters</li>
-</ul>
-<h2 id="empty-file">empty file:</h2>
-<pre><code>dd if=/dev/zero of=file.dat bs=1M count=100
-</code></pre>
+          <p>I don&rsquo;t update this site anymore. I&rsquo;ve been keeping my notes at <a href="https://reisinge.net/notes">https://reisinge.net/notes</a> for some time now.</p>
 
         </div>
-        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/gen_rand_file/">Read more...</a></div>
+        <div class="article-readmore"><a href="https://jreisinger.github.io/notes/posts/reisinge.net/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
@@ -109,7 +85,7 @@
   <div class="copyright"></div>
   <ul class="site-footer-items">
     <li class="site-footer-item-rsslink">
-      <a href="https://jreisinger.github.io/notes/tags/linux/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+      <a href="https://jreisinger.github.io/notes/tags/other/index.xml" type="application/rss+xml" target="_blank" title="RSS">
         <i class="fas fa-rss"></i>
       </a>
     </li>
