@@ -1,4 +1,5 @@
 #!/bin/bash
+# dummy
 
 hugo
 git add .
